@@ -1,0 +1,12 @@
+{
+  "H100_rank": {
+    "endpoints_on_grid": 174,
+    "strict_interior_targets": 261,
+    "all_targets": 435
+  },
+  "H99": {
+    "endpoints_on_grid": 170,
+    "strict_interior_targets": 255,
+    "all_targets": 425
+  }
+}

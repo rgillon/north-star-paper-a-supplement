@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "pages": 10,
+  "pdf_bytes": 406422,
+  "pdf_sha256": "10b2c93f008bb794bae34adb638b9f18049c6d54ff88eb1008e6bee886555c3b",
+  "latex_sha256": "21295b5de83f3f76dcc5bc44f8ddf303c1142fae307370e2b1026612a63ba46e",
+  "external_aux_dependency": false,
+  "frozen_manuscript_references": 17,
+  "grid_replay_status": "completed 24/24, zero residuals, balanced counts, exit 0",
+  "clean_standalone_compile_exit": 0,
+  "overfull_boxes": 0,
+  "undefined_references": 0,
+  "latex_warnings": 0,
+  "visual_review": "All ten pages inspected; frozen-reference and evidence tables re-rendered after final typography adjustment."
+}

@@ -1,0 +1,68 @@
+\section{The reconstruction problem and the scope of the classification}\label{v2:sec:intro}
+For a positive integer $N$, write $C_N=\Z/N\Z$. The complete labeled cyclic autocorrelation of a subset $A\subseteq C_N$ is
+\begin{equation}\label{ii:eq:corr}
+ C_A(t)=\sum_{x\in C_N}\ind_A(x)\ind_A(x+t)
+       =\#\{x\in A:x+t\in A\},\qquad t\in C_N.
+\end{equation}
+Two sets are \emph{homometric} if these integers agree for every individual shift. We do not replace this condition by equality of multisets of values or by equality of selected marginals.
+
+Our comparison class consists of unions of additive subgroups,
+\begin{equation}\label{v2:eq:AD}
+ A_D=\bigcup_{d\in D}d\Z_N,\qquad D\subseteq\Div(N).
+\end{equation}
+In this notation $d$ is a subgroup \emph{index}, so $d\Z_N$ has order $N/d$. Removing every generator that is a multiple of another gives a unique divisibility antichain. An equivalent description uses element orders: if $I\subseteq\Div(N)$ is a downset, the set of all elements whose orders belong to $I$ is a subgroup union, called a \emph{divisor ideal}. Conversely every subgroup union has this form. Empty and full sets are allowed. Subgroup orders will always be stated explicitly when used instead of indices.
+
+Every such set is invariant under multiplication by every unit modulo $N$, hence under negation. A function with this invariance is called \emph{radial}; equivalently its value depends only on $\gcd(x,N)$, or on the additive order of $x$. Radiality implies inversion symmetry; the converse is not assumed. For even functions, the unnormalized convolution
+\[
+ (f*g)(t)=\sum_{x\in C_N}f(x)g(t-x)
+\]
+satisfies $C_f=f*f$. A subgroup union $A$ is \emph{rigid} if the only subgroup union homometric to it is $A$. A modulus $N$ is rigid if every subgroup union in $C_N$ is rigid. Thus set rigidity fixes $A$ and quantifies over its possible mates; modulus rigidity quantifies over every input $A$ as well. A theorem deciding a specified target does not by itself give a short arithmetic description of all rigid moduli.
+
+\subsection{Principal results}
+The central result is Theorem~\ref{ii:thm:subgroups}. For a specified $A$, integer conductor coefficients and local divisibility tests define a graph $\Gamma_A$. Let $u_{\rm div}(A)$ count its components disjoint from the root and from every pure prime-power conductor. All subgroup-union mates are obtained by independent sign changes on these components, and there are exactly $2^{u_{\rm div}(A)}$. The inverse transform is explicit. Theorem~\ref{v2:thm:rank} expresses the same classification as the nullity of a rational matrix with edge and anchor rows. The proof explains the Boolean structure of its kernel; it does not infer Boolean realizability from rank alone.
+
+Section~\ref{v2:sec:moments} answers the modulus question by a separate exhaustive finite procedure. A generating polynomial records the squared conductor spectrum of every divisor ideal. Separating membership cuts have nonnegative coefficient moments, and a positive moment is equivalent to a genuine distinct homometric pair. Both the complete finite search and its witness extraction are proved. The procedure may enumerate exponentially many order ideals. Its completeness is an exact logical conclusion, not an efficiency assertion or a structural prime-factor classification.
+
+The arithmetic results explain some of the rigidity forced by these criteria. We prove odd-order uniqueness even for arbitrary inversion-symmetric binary sets, twice-odd uniqueness for subgroup unions, and a height-two family subject to a precise congruence restriction. The common-fiber argument and primary-axis common-zero argument give rigidity for all
+\[
+ 2^e p^a qrs,\qquad e\ge0,\quad a\ge1,
+\]
+with $p,q,r,s$ distinct odd primes. The arbitrary-exponent two-axis and $p^a q^b r$ families are included as well. The exact symbolic certificate for $2^e p^2q^2rs$ is reported separately with its finite enumeration and proof obligations.
+
+Nonrigidity is not merely a possible output of the algorithm. The construction sections give actual binary divisor ideals with equal autocorrelation at every labeled shift. We retain the interpolation and nested-section proof for the original 100-prime construction, then explain the rank-dependent precision refinement and the 99-prime variant. The construction machinery and all finite data are supplied here or in the accompanying standalone verification files.
+
+\begin{theorem}[The reference nonrigid construction]\label{vi:th:main}
+The explicit odd integer $M_{100}$ specified by Appendix~\ref{v2:app:data} has exactly 100 distinct prime divisors. The cyclic group of order $2^{3446}M_{100}$ contains two distinct homometric subgroup unions, in different translation orbits. This modulus has 8,123 bits and 2,446 decimal digits.
+\end{theorem}
+The proof is given in Sections~\ref{vi:sec:reduce}--\ref{h100:mass}. Section~\ref{v2:sec:refined-constructions} improves the height and then reduces the odd-prime count. None of these examples is asserted to be minimal.
+
+\subsection{What is, and is not, certified in this version}
+Throughout, \textbf{PROVED} means that a complete mathematical argument is supplied, possibly using explicitly identified finite exact certificates for fixed data. \textbf{COMPUTED} identifies conclusions resting on finite symbolic enumeration or test coverage. \textbf{CONJECTURE} denotes a proposed mathematical statement without proof. \textbf{OPEN} denotes an unresolved question. A calculation on finitely many numerical moduli is never used to establish an unbounded family.
+
+\paragraph{Verification summary.}
+The analytic classification and the primary-axis rigidity theorem use no finite enumeration. The construction certificates use arbitrary-precision integers and exact rational arithmetic; their displayed decimals are not premises. The symbolic two-squared-axis calculation additionally uses bounded integer arrays, with the bound $36\cdot13^6<2^{31}$ justified in Section~\ref{subsec:terminal-grid-certificate}, and exact symbolic nullspaces and factorizations. The preparation used Python 3.12.14, NumPy 2.3.5 and SymPy 1.14.0, with assertions enabled. Appendix~\ref{v2:app:verification} and the referee guide identify each program, its data, output and logical role. The public supplement is at \url{https://github.com/rgillon/north-star-paper-a-supplement/tree/main/paper-a-v2.1}; the downloadable review package contains all required files and needs no research-repository access.
+
+The preliminary four-page Version 2 outline named two proposed source results, a \emph{generator-lattice rank theorem} and a \emph{factor-cut moments theorem}. Their full source files could not be recovered from the accessible revisions at this audit cutoff. Accordingly, this paper does not assert their specific generator-lattice compression, fixed-generator polynomial bit-time bound, or claimed avoidance of antichain backtracking. The conductor-grid rank theorem and the cut-polynomial theorem printed here are stated and proved independently at their explicit scopes. This is a disclosed change from the provisional outline, not a validation of its missing proofs. The separate referee guide records the source-access limitation and the exact claims deferred.
+
+\subsection{Relation to established work}
+Homometry arose prominently in crystallographic reconstruction and remains a basic phase-retrieval phenomenon \cite{Patterson1944,RosenblattSeymour1982,BendoryEdidinGonzalez2023}. The Fourier theory of radial, or $N$-even, arithmetic functions and its Ramanujan-sum formulation are classical \cite{TothHaukkanen2011}. Spectral units give a more general language for transformations preserving Fourier magnitudes \cite{Rosenblatt1984,Amiot2009}.
+
+The integer conductor-transform matrix of subgroup indicators identifies with a table of marks for the cyclic Burnside ring. Thus our integral inversion lemma is a concrete coordinate form of classical mark-image congruences, for which no novelty is claimed \cite{tomDieck1979,BoltjePfeiffer2008}. The specific reconstruction issue is the admissible sign group for one given spectrum, including its zero entries, followed by binary and order-ideal realizability. The mass--energy argument and marginal-defect identity supply those realization steps. The finite modulus-generating procedure is presented for completeness, without a claim that finite exhaustive decidability is itself a new general principle.
+
+\subsection{Notation guide}
+\begin{center}\small
+\begin{tabular}{@{}p{.22\linewidth}p{.71\linewidth}@{}}\toprule
+Notation & Meaning\\\midrule
+$d\Z_N$ & Additive subgroup of index $d$ and order $N/d$.\\
+$\Lambda_N=\prod_i\{0,\ldots,a_i\}$ & Valuation/conductor exponent grid for $N=\prod_i p_i^{a_i}$.\\
+$\rvec,\vv$ & Capped valuation vectors for physical elements; membership increases in these coordinates.\\
+$\s$, $c(\s)$ & Character conductor vector and its order $\prod_i p_i^{s_i}$.\\
+$F_A(\s)$ & Unnormalized real integer Fourier coefficient at that conductor.\\
+$\Gamma_A$, $u_{\rm div}(A)$ & Sign graph and number of its unanchored components.\\
+$R_A$ & Conductor-constraint matrix, with one column per nonzero conductor.\\
+$I\subseteq\Div(N)$ & Downward-closed family of physical element orders.\\
+$h_A(x)$ & Cardinality of the dyadic subgroup fiber over an odd point $x$.\\
+$\omega(M)$, $\Omega(M)$ & Number of distinct prime divisors, and prime factors counted with multiplicity.\\\bottomrule
+\end{tabular}
+\end{center}
+Physical order exponents equal $a_i-v_i$ and therefore reverse the valuation order. The transition to physical order shells in the arithmetic and construction sections is explicit; conductor exponents retain their usual character-order meaning.

@@ -1,0 +1,67 @@
+\section{Consequences, arithmetic boundaries and open questions}\label{v2:sec:consequences}
+
+\begin{corollary}[Closure under multiples]\label{vi:cor:lift}
+The set of nonrigid moduli is closed under taking multiples. For fixed odd $M$, the heights $e$ for which $2^eM$ is nonrigid form either the empty set or an upper interval beginning at some integer at least two.
+\end{corollary}
+\begin{proof}
+Let $A\ne B$ be homometric subgroup unions in $C_N$ and let $\pi:C_{kN}\to C_N$ be reduction. Preimages of subgroups are subgroups and
+\[
+ C_{\pi^{-1}A}(t)=kC_A(\pi(t))
+\]
+because every starting point downstairs has exactly $k$ lifts. The two preimages are distinct and homometric. A translation between them would project to a translation downstairs. The height assertion follows by taking $k=2$ and using odd-order and twice-odd rigidity.
+\end{proof}
+
+For an odd integer $M$ define
+\[
+ h(M)=\min\{e\ge0:2^eM\text{ is nonrigid}\},
+\]
+with value $\infty$ if this set is empty. The corollary gives $M\mid M'\Rightarrow h(M')\le h(M)$. The construction refinements give $h(M_{100})\le3360$ and the 99-prime odd part has $h(M_{99})\le3408$. These are sufficient construction heights, not values of $h$. The general lower bound is two; Proposition~\ref{prop:four} raises it to three for odd parts with at most one prime congruent to $3\pmod4$.
+
+\begin{corollary}[Minimal obstructions exist]\label{v2:cor:minimal}
+Every nonrigid modulus has a divisor that is divisibility-minimal among all nonrigid moduli. At least one such minimal modulus has at most 99 distinct odd prime divisors. Every such minimal modulus is divisible by four, has at least three distinct odd prime divisors, and does not divide any of the rigid families proved above.
+\end{corollary}
+\begin{proof}
+Choose a minimal nonrigid member of the finite set of divisors of a given nonrigid modulus. A proper nonrigid divisor of that member would also occur in this finite set, so it is globally divisibility-minimal. Apply this to the 99-prime example for the upper bound. The lower restrictions follow from odd and twice-odd rigidity and Corollary~\ref{cor:two-odd-axes}. If a nonrigid modulus divided a rigid member of one of the other families, closure under multiples would give a contradiction.
+\end{proof}
+This statement does not identify a minimal divisor or prove that 99 is the minimum number of odd primes. In particular an upper bound on the support of one construction is not an arithmetic classification of minimal obstructions.
+
+\begin{corollary}[A restriction can destroy uniqueness]
+Intersection with a union of subgroups of pairwise coprime prime-power indices can carry a rigid subgroup union to a nonrigid subgroup union.
+\end{corollary}
+\begin{proof}
+Start with the full group of a nonrigid construction, which is rigid because $C(0)=N$. For each minimal missing element order $d$ of its nonrigid ideal $A$, impose $d\nmid\ord(x)$. The solution set of this one condition is the union, over $p\mid d$, of the subgroups of indices $p^{v_p(N)-v_p(d)+1}$: at least one prime exponent of the element order must be too small for divisibility by $d$. The indices in this one union are pairwise coprime prime powers. Intersecting all the conditions gives $A$. Along any fixed ordering of the finitely many conditions, the first nonrigid intersection has a rigid predecessor.
+\end{proof}
+
+\subsection{The mathematical content of the algorithmic classification}
+The sign graph resolves three coupled constraints. First, it converts the full integral inversion problem into adjacent divisibility tests. Second, its permitted sign changes cannot create values outside $\{0,1\}$ because the total mass and energy are fixed. Third, preserving the primary Fourier values forces every nonnegative marginal defect to vanish, so divisor closure follows. These are the reasons that the mate space is a cube and that every unanchored component is an actual ambiguity. There is no further binary-feasibility condition to impose after the theorem.
+
+The coefficient-moment construction answers a different question. It gathers all possible subgroup unions at the modulus, retains every mixed Fourier coordinate, and detects whether any spectrum is shared across a membership cut. Its value is a precise universal decision and witness specification, with no hidden feasibility relaxation. Its potentially exponential enumeration is explicit. Since the prime factors, exponents, number of ideals, and conductor cancellations vary without a uniform small bound, neither procedure is presently a short arithmetic description of all rigid moduli.
+
+\paragraph{Invariants suggested by the sign graph.}
+The edge test has the arithmetic form
+\[
+ v_{p_i}\!\bigl(2F_A(\boldsymbol s)\bigr)<a_i-s_i
+\]
+for adjacent nonzero vertices $\boldsymbol s$ and
+$\boldsymbol s+\boldsymbol e_i$. This suggests studying the Fourier zero
+set together with these prime-adic divisibility thresholds and the sets
+of prime axes appearing in each connected component. For a specified
+set, the number of components avoiding the root and pure-axis anchors is
+already a complete rigidity invariant. A structural modulus theorem
+would have to control the zero and divisibility patterns realizable by
+\emph{every} divisor ideal, or construct one realizable unanchored
+pattern. Whether such control can be expressed by a useful collection
+of invariants depending only on the prime factorization of the modulus
+remains open; no sufficiency claim for a proposed smaller collection is
+made here.
+
+\subsection{Open questions and deferred claims}
+The following questions are \textbf{OPEN} at the scope of this manuscript.
+\begin{enumerate}[label=(\roman*)]
+\item Give a necessary-and-sufficient structural description of rigid moduli from their prime factors and exponents that avoids exhaustive ideal enumeration.
+\item Determine the divisibility-minimal nonrigid moduli, their minimum odd-prime count, and the possible values of $h(M)$. Is every $4M$ with $M$ odd rigid? Only the restricted family in Proposition~\ref{prop:four} is proved here.
+\item Extend the elementary common-zero proof from three squarefree residual axes to arbitrary prime-power residual axes. The full four-primary-axis problem is not resolved by Theorem~\ref{thm:primary-power-four-primes}.
+\item Give a useful representation-size bound for compressed generator-based certificates, or a direct arithmetic description of all realizable unanchored components.
+\item Determine the complete component count of the large constructed examples and whether substantially different construction methods yield smaller obstructions.
+\end{enumerate}
+No unsupported conjectural assertion is needed in any preceding proof. The two unavailable source formulations named in the provisional outline, and numerical claims tied only to them, remain \emph{unverified source claims}, not false theorems and not premises of this paper. Their verification requires the exact matrix/polynomial definitions, complete proofs and original certificates. The referee-support document specifies those missing obligations and separates them from the open mathematical problems above.

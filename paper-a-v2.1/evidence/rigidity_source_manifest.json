@@ -1,0 +1,82 @@
+{
+  "repository": "rgillon/north-star-math",
+  "main_source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+  "common_fiber_commit": "0930c856256add528c967cd1b35c742f88b4cf95",
+  "files": [
+    {
+      "path": "experiments/level1_five_core_general.py",
+      "bytes": 4942,
+      "sha256": "06cbfeb8f1b19358e992c7e2ae726919b7091cfea3734f65a1dca34a1915c86e"
+    },
+    {
+      "path": "experiments/level1_five_core_top_ranks.py",
+      "bytes": 4970,
+      "sha256": "2bab3130ad707f562bb1e69286884b70c53126e33b2217a9e0c3bb43173300df"
+    },
+    {
+      "path": "experiments/level1_four_prime_arm_sieve.py",
+      "bytes": 2620,
+      "sha256": "5ccee0eff41744c2cd9a122e80e480fa2b9dc4e33587e9de47f46242094c3992"
+    },
+    {
+      "path": "experiments/level1_four_prime_symbolic_exclusion.py",
+      "bytes": 5059,
+      "sha256": "c2a3eab95e5fff33b453708f25570b9ff1499d09b14770ed9850509bfd1f3ef0"
+    },
+    {
+      "path": "experiments/level1_four_prime_terminal.py",
+      "bytes": 3230,
+      "sha256": "3cc5fbded8163a616fcfc4d893dfd7f99c11b12bda17bdc8b0cef5e607f52579"
+    },
+    {
+      "path": "experiments/level1_grid_gap_certificate.py",
+      "bytes": 8174,
+      "sha256": "99ba9d5b8e98aae1f90f6139174addc9f8885ab84fe099f28e1d7ce32c1fce44"
+    },
+    {
+      "path": "experiments/level1_three_axis_terminal.py",
+      "bytes": 4583,
+      "sha256": "dd7c6a18159161def4cd4479e2b816beedb382b0e977bb49106b09fae6a192f9"
+    },
+    {
+      "path": "proofs/DYADIC_FIBER_SIZES_2026_11_17.md",
+      "bytes": 15323,
+      "sha256": "6bfcf251d0e889fb9b78fc5839948adb9ac8b63950e54454c9246a9680030cfa"
+    },
+    {
+      "path": "proofs/LEVEL1_CUBED_FOUR_AXIS_CORE.md",
+      "bytes": 2386,
+      "sha256": "a1bd9f1890f7bae64e25b59a86c6ab4a37c403523683f26bebb05c78daeb7afb"
+    },
+    {
+      "path": "proofs/LEVEL1_FIVE_FACTORS_WITH_MULTIPLICITY.md",
+      "bytes": 5355,
+      "sha256": "fd85150d697117a26d78b7d8b488f7b11de3955be622f68183dc8bae92a2f69d"
+    },
+    {
+      "path": "proofs/LEVEL1_PRIMARY_AXIS_COMMON_ZEROS.md",
+      "bytes": 13648,
+      "sha256": "360031d422779bc8a53d618cc389093c7fd3fdcd132853991086a79b7ce920a7"
+    },
+    {
+      "path": "proofs/LEVEL1_PRIME_POWER_TERMINAL_GRIDS.md",
+      "bytes": 6516,
+      "sha256": "869718c5d0a9d44c83faadc413004a71e39875b21ebd2cb48a42d27c7b3346ef"
+    },
+    {
+      "path": "proofs/LEVEL1_TERMINAL_PRODUCT_CRITERION.md",
+      "bytes": 5308,
+      "sha256": "2dfb43a570ec7be45e9e99fd72ea2aae82710c8819d939e9bf42711d2684ce79"
+    },
+    {
+      "path": "proofs/LEVEL1_TWO_SQUARED_AXES.md",
+      "bytes": 5163,
+      "sha256": "06b64688e388e3146a4e1aa5dca966552abe5d068a438675483bf9cc5028172c"
+    },
+    {
+      "path": "proofs/LEVEL1_UNIVERSAL_FIVE_PRIME_CORE.md",
+      "bytes": 6004,
+      "sha256": "16826f417190f0b42276a37903529ed4f94c21d6c9c8724a1cc6c9e2aaaef99c"
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+% Standalone mathematical section. Requires amsmath, amssymb, amsthm.
+% Proofs independently audited against pinned sources; no computed premise
+% occurs before the final subsection on the two-squared-axis certificate.
+\section{Rigidity from dyadic fibers and prime-axis measurements}
+\label{sec:primary-rigidity}
+
+Throughout this section, a divisor ideal in a cyclic group means a union
+of its subgroups. We use subgroup \emph{orders} when describing fibers.
+Write the ambient group as
+\[
+G=\mathbb Z_{2^e}\times \mathbb Z_M,
+\qquad M=\prod_{i=1}^n p_i^{a_i}\quad\hbox{odd}.
+\]
+The Chinese remainder theorem identifies this with the original labeled
+cyclic group. At an odd point \(y\), the fiber of a divisor ideal \(A\)
+is empty or a subgroup of \(\mathbb Z_{2^e}\): it is a union of members
+of a chain. Let \(h_A(y)\in\{0\}\cup\{2^j:0\le j\le e\}\)
+denote its size. If the odd
+order of \(y\) divides that of \(z\), then \(h_A(y)\ge h_A(z)\).
+Thus \(h_A\) is a nonincreasing function on the odd-order divisor lattice.
+For a shell with order exponents \(v=(v_i)\), its population is
+\(w(v)=\prod_i\varphi(p_i^{v_i})\).
+
+On a \(p^a\)-axis, index a character by the order \(p^k\) of its
+kernel. Its sum over the physical shell of order \(p^t\) is
+\begin{equation}
+R_p(k,t)=
+\begin{cases}
+\varphi(p^t),&t\le k,\\
+-p^k,&t=k+1,\\
+0,&t>k+1.
+\end{cases}
+\label{eq:primary-shell-row}
+\end{equation}
+For \(t=0\) the first line is one. This follows by subtracting the
+character sums over the subgroups of orders \(p^t\) and \(p^{t-1}\).
+Products of these rows compute all radial Fourier coefficients; in
+particular these coefficients are integers. We use the unnormalized
+Fourier transform throughout.
+
+\paragraph{Character order versus kernel order.}
+The character in~\eqref{eq:primary-shell-row} has conductor
+\(p^{a-k}\), not \(p^k\). On a squarefree residual axis \(C_q\),
+kernel exponent one means the trivial character and kernel exponent zero
+means a nontrivial character. Thus a residual character of conductor
+\(c>1\) has a zero kernel exponent on at least one axis. This convention
+will be used explicitly in the proof of Theorem~\ref{thm:primary-power-four-primes}.
+
+\begin{lemma}[Pure-axis measurements and common dyadic fibers]
+\label{lem:common-dyadic-fibers}
+Suppose that divisor ideals \(A,B\subseteq G\) have identical labeled
+autocorrelations. Then the following hold.
+\begin{enumerate}
+\item Every Fourier coefficient supported on a single prime-power axis
+is nonnegative, and it agrees for \(A\) and \(B\).
+Consequently, for each fixed physical state on any odd axis, the total
+signed population \(h_A-h_B\) over the complementary states is zero.
+\item Wherever both dyadic fibers are nonempty, they are equal.
+\item For every power of two \(L\), the number of odd points at which
+the fibers are \((L,0)\) equals the number at which they are \((0,L)\).
+Opposite signs of \(h_A-h_B\) cannot occur at comparable odd shells.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Fix all coordinates except one prime-power coordinate. The resulting
+section of a divisor ideal is empty or a subgroup of that cyclic
+prime-power group. Its character sum is either zero or the order of the
+subgroup. Summing over the fixed complementary coordinates proves
+nonnegativity. Since homometry equates the squares of the real Fourier
+coefficients, it equates these nonnegative coefficients themselves.
+Fourier inversion on the chosen axis gives the stated marginal equality.
+
+Fix an odd conductor \(c\). Let \(a_j(c)\) be the odd Fourier transform
+of the indicator of \(\{y:h_A(y)=2^j\}\), and define \(b_j(c)\)
+similarly. These are integers by \eqref{eq:primary-shell-row}. At a
+dyadic character with kernel order \(2^k\), the two full Fourier
+coefficients are
+\[
+P_k=\sum_{j=0}^k2^ja_j(c),\qquad
+P'_k=\sum_{j=0}^k2^jb_j(c).
+\]
+Put \(D_k=P_k-P'_k\) and \(S_k=P_k+P'_k\), with
+\(D_{-1}=S_{-1}=0\). Homometry says \(D_kS_k=0\) for every \(k\).
+If \(a_j(c)-b_j(c)\) is odd, both increments from step \(j-1\) to
+step \(j\) have exact 2-adic valuation \(j\). The incoming zero
+component cannot be accompanied by another zero component, since then
+both outgoing components would be nonzero. The incoming zero component
+therefore becomes nonzero with valuation \(j\); it remains nonzero at
+every later step, whose increments are divisible by \(2^{j+1}\).
+The other component must remain zero. No later odd increment is
+possible. Hence, at any fixed odd conductor, at most one size index
+\(j\) has \(a_j(c)-b_j(c)\) odd.
+
+If conclusion 2 failed, choose a minimal odd shell \(v\) with two
+nonempty, unequal fibers. Every strictly smaller shell has two
+nonempty equal fibers. On an axis with \(v_i>0\), choose kernel
+exponent \(v_i-1\); when \(v_i=0\), choose the trivial character.
+Modulo two, the product Fourier row is supported on the corners with
+each coordinate either zero or \(v_i\). This follows from
+\eqref{eq:primary-shell-row}, because \(p_i\) is odd and
+\(\varphi(p_i^t)\) is even for \(t>0\). Every corner except \(v\)
+has equal fibers. The two different nonzero sizes at \(v\) therefore
+give two odd values of \(a_j(c)-b_j(c)\), contradicting the preceding
+paragraph. This proves conclusion 2.
+
+At the trivial odd character all \(P_k,P'_k\) are nonnegative, so
+\(P_k=P'_k\). Subtract the equality at \(k-1\) from the equality
+at \(k\); the counts of fibers of each exact size agree. Cancel the
+common nonempty fibers using conclusion 2 to obtain conclusion 3.
+Finally, if \(h_B(v)=0<h_A(v)\), then \(h_B\) vanishes at every
+shell above \(v\), so an opposite discrepancy cannot occur there.
+Interchanging \(A,B\) handles the other sign.
+\end{proof}
+
+\begin{corollary}[Two odd axes and a three-axis family]
+\label{cor:two-odd-axes}
+Every \(2^ep^aq^b\) is rigid, where \(p,q\) are distinct odd primes
+and the exponents are nonnegative. Every \(2^ep^aq^br\) is rigid
+when \(p,q,r\) are distinct odd primes and \(a,b\ge1\).
+\end{corollary}
+
+\begin{proof}
+For two odd axes, fix an order state of the first axis. All states of
+the second axis are comparable, so all discrepancies in this section
+have the same sign by Lemma~\ref{lem:common-dyadic-fibers}. Their
+weighted sum is zero by the pure-axis marginal equality, so there are
+no discrepancies. The cases of fewer axes are included.
+
+For three axes write their order states as \((i,j,k)\), where the
+\(r\)-coordinate has \(k\in\{0,1\}\). Suppose a discrepancy exists
+and take the least \(j\) occurring in any discrepancy. If there were
+a discrepancy at \((i,j,0)\), marginal balance at the fixed state
+\(i\) would require an opposite discrepancy \((i,j',k')\).
+Comparability excludes \(k'=0\); with \(k'=1\), incomparability
+requires \(j'<j\), contradicting the choice of \(j\). Thus all
+discrepancies at this least \(j\) have \(k=1\). They form a chain
+in \(i\), have one sign, and contradict marginal balance at \(j\).
+\end{proof}
+
+We call a shell \emph{disputed} if its two fibers differ. By the lemma,
+exactly one fiber is then empty; its \emph{disputed size} is the size
+of the other fiber. The following lemma is the main additional ingredient.
+
+\begin{lemma}[Common zero along a changing primary axis]
+\label{lem:primary-common-zero}
+Let \(A,B\) be distinct homometric divisor ideals on
+\(\mathbb Z_{2^e}\times\mathbb Z_{p^a}\times\mathbb Z_K\), where
+\(K\) is odd, \(p\) is an odd prime, and \(p\nmid K\). Let \(L\)
+be the least disputed size. For each \(0\le t\le a\), let
+\(d_t:\mathbb Z_K\to\{-1,0,1\}\) indicate the signed size-\(L\)
+disputes in the physical \(p\)-order state \(p^t\). If the functions
+\(d_t\) are not all identical, their Fourier transforms have a common
+zero at a nontrivial conductor of \(K\).
+\end{lemma}
+
+Here ``nontrivial'' means conductor greater than one. If \(Z\) denotes
+the set of common zero conductors, the conclusion is
+\(Z\setminus\{1\}\ne\varnothing\), rather than merely
+\(Z\ne\varnothing\).
+
+\begin{proof}
+At a dyadic character of kernel order \(L\), divide the partial
+profiles by \(L\), and denote their difference and sum in section
+\(t\) by \(d_t\) and \(g_t\). The difference is exactly the stated
+signed indicator: larger fibers contribute zero to this character,
+smaller disputed fibers do not exist, and equal fibers cancel.
+The functions \(g_t\) take values in \(\mathbb Z[1/2]\). For a section
+vector \(u=(u_0,\ldots,u_a)\), put \(u_{a+1}=0\) and
+\begin{equation}
+T_k(u)=\sum_{i=0}^kp^i(u_i-u_{i+1})
+      =\sum_{i=0}^k\varphi(p^i)u_i-p^ku_{k+1}.
+\label{eq:primary-T}
+\end{equation}
+These are its Fourier rows on the \(p\)-axis, indexed by kernel
+order \(p^k\).
+
+Let \(j<a\) be the first change, so
+\(d_0=\cdots=d_j\ne d_{j+1}\), and let \(Z\) be the set of
+common zero conductors of all \(d_t\). At every residual conductor
+outside \(Z\), invertibility of the \(p\)-axis transform gives some
+nonzero row \(T_k(d)\). All rows below \(j\) vanish, hence \(k\ge j\).
+Homometry forces the corresponding row \(T_k(g)\) to vanish. Moreover
+\(T_k(g)\equiv T_j(g)\pmod{p^{j+1}}\). Thus the Fourier transform
+of \(T_j(g)\) vanishes modulo \(p^{j+1}\) outside \(Z\).
+Radial Fourier inversion on \(K\) uses integer Ramanujan sums and
+division by \(K\). Since \(p\nmid 2K\), it is valid modulo
+\(p^{j+1}\) in \(\mathbb Z[1/2]\). If \(Z\) were empty,
+\(T_j(g)\) would be zero modulo \(p^{j+1}\); if \(Z\) consisted
+only of the trivial conductor, \(T_j(g)\) would be constant modulo
+\(p^{j+1}\).
+
+We first record the argument when \(L\) is the only disputed size.
+Intersect both sets with the subgroup having dyadic order \(L\).
+Outside this subgroup the two sets agree, and shifts inside it
+preserve every exterior coset. Subtracting the equal exterior
+contributions proves that the restricted sets are homometric.
+In this paragraph, \(g_t\) denotes the normalized sum for the
+restricted pair at its trivial dyadic character; the functions \(d_t\)
+are unchanged. All its disputes still have size \(L\). Pure \(p\)-axis marginal
+balance now shows that every nonzero \(d_t\) has both signs and
+zero total population. At a shell where a size-\(L\) dispute
+disappears between \(j\) and \(j+1\), the sums through \(j\)
+are one and the next sum is zero. At a shell where a dispute appears,
+the preceding sums are two and the next sum is one. In either case
+\(T_j(g)=p^j\). If \(d_{j+1}\ne0\), its two signs force both
+restricted fibers at the residual origin to have size \(L\) through
+state \(j+1\), giving \(T_j(g)=0\) there. If \(d_{j+1}=0\),
+then \(d_0=d_j\ne0\), and its two signs force both fibers to be
+empty at the largest residual-order shell in every section, again
+giving \(T_j(g)=0\). These values are distinct modulo \(p^{j+1}\).
+The common zero set must therefore contain a nontrivial conductor.
+
+Return to the original profiles in the general case, allowing larger
+disputed sizes.
+Opposite signs cannot replace one another at a fixed residual shell.
+At a disappearing size-\(L\) dispute the same argument still gives
+\(T_j(g)=p^j\). At a newly appearing dispute the next sum is one.
+Before it, the occupied fiber has size at least \(L\). If its size
+exceeds \(L\), the other fiber is empty or has the same larger size,
+and their partial sum is zero. Once it has size \(L\), both fibers
+must have size \(L\), since \(d_0=\cdots=d_j\) is zero at this
+shell. Thus the preceding sums are a sequence of zeros followed by
+twos. Formula~\eqref{eq:primary-T} gives precisely the possibilities
+\begin{equation}
+p^j,\qquad -p^j,\qquad p^j-2p^b\quad(0\le b<j).
+\label{eq:primary-change-residues}
+\end{equation}
+All are nonzero modulo \(p^{j+1}\). Consequently \(Z\) is nonempty.
+
+Suppose for contradiction that \(Z\) contains only the trivial
+conductor. Each \(d_t\) then has zero total population. If
+\(d_0\ne0\), its two signs make both fibers empty at the largest
+residual-order shell from the first section onward. This gives
+\(T_j(g)=0\), contradicting the constant residue and
+\eqref{eq:primary-change-residues}. We therefore have
+\(d_0=\cdots=d_j=0\), while \(d_{j+1}\) has both signs.
+At the residual origin both fibers are nonempty and equal, of size at
+least \(L\), through state \(j+1\). Their partial sums are again
+zeros followed by twos. Their value of \(T_j(g)\) is either zero
+or \(-2p^c\) with \(0\le c\le j\).
+
+Compare these origin residues with \eqref{eq:primary-change-residues}.
+For \(b<j\), congruence of \(p^j-2p^b\) with \(-2p^c\)
+first forces \(b=c\) by valuation and then would force
+\(p^{j+1}\mid p^j\). Congruence of \(\pm p^j\) with
+\(-2p^c\) requires \(c=j\) and \(\pm1\equiv-2\pmod p\).
+The only possibility is \(p=3\) and the positive sign.
+In this exceptional case, the origin fibers exceed \(L\) through
+state \(j\) and first attain \(L\) at state \(j+1\); every newly
+disputed shell has both fibers equal to \(L\) at every earlier state.
+
+There can be no larger dispute in this exceptional case. At and after
+state \(j+1\) the origin bounds all fibers by \(L\). If an earlier
+section had a larger dispute at a residual shell \(s\), then all
+preceding occupied fibers there would be larger than \(L\) and all
+preceding partial sums would be zero. From that dispute to state
+\(j\), its empty side stays empty, and the other side is either
+larger than \(L\) or empty: a size-\(L\) dispute is excluded by
+\(d_0=\cdots=d_j=0\), and smaller disputes are excluded by minimality.
+Hence every partial sum through \(j\) at \(s\) is zero. At
+\(j+1\) the sum is zero or one, yielding \(T_j(g)=0\) or
+\(-p^j\). Neither is congruent to \(p^j\) modulo \(3^{j+1}\).
+Thus only one disputed size occurs, and the one-size case already
+proved gives the required contradiction.
+\end{proof}
+
+\begin{theorem}[An arbitrary odd prime power and three residual primes]
+\label{thm:primary-power-four-primes}
+Let \(p,q,r,s\) be pairwise distinct odd primes. For every
+\(a\ge1\) and \(e\ge0\), the modulus \(2^ep^aqrs\) is rigid
+among unions of subgroups.
+\end{theorem}
+
+\begin{proof}
+Suppose a distinct homometric pair exists. Index the residual primes
+\(q,r,s\) by \(1,2,3\), write \(u_i=q_i-1\), and label their
+shells by subsets \(S\subseteq\{1,2,3\}\). Let
+\(F_t(S)=h_A(t,S)-h_B(t,S)\), where the \(p\)-order is \(p^t\).
+For fixed \(S\), its nonzero values have one sign: once a fiber is
+empty it stays empty as \(t\) increases. Within any section \(t\),
+opposite signs cannot occur at comparable residual shells.
+Pure \(p\)-axis marginal balance gives
+\begin{equation}
+\sum_S\Bigl(\prod_{i\in S}u_i\Bigr)F_t(S)=0
+\quad\hbox{for every }t.
+\label{eq:primary-section-balance}
+\end{equation}
+Every disputed section therefore has both signs. Its bottom and top
+shells cannot be disputed, since each is comparable with every shell.
+
+Set
+\[
+W_S=\Bigl(\prod_{i\in S}u_i\Bigr)
+       \sum_{t=0}^a\varphi(p^t)F_t(S).
+\]
+Because the sign is fixed along the primary axis, \(W_S=0\) if and
+only if \(S\) is never disputed. Pure residual-axis marginals and
+total population balance give
+\(\sum_{S\ni i}W_S=0\) for each \(i\) and \(\sum_SW_S=0\).
+Only singleton and doubleton shells can contribute. Summing the three
+marginal equations and subtracting the total equation shows that the
+sum over doubletons is zero; the sum over singletons is then zero too.
+It follows that
+\begin{equation}
+W_{\{i\}}=W_{\{1,2,3\}\setminus\{i\}}.
+\label{eq:primary-complementary-signs}
+\end{equation}
+Thus each singleton and its complementary doubleton are either both
+inactive or have the same fixed sign.
+
+In any section, every disputed singleton has the same sign as every
+disputed doubleton: the two shells are either comparable or
+complementary. If both ranks occurred, all disputes in the section
+would have the same sign, contradicting
+\eqref{eq:primary-section-balance}. Every disputed section lies
+entirely in one rank and contains at most three disputed shells.
+
+Let \(L\) be the least disputed size and let \(d_t\) indicate its
+signed residual shells. These sections cannot all coincide. Otherwise
+some size-\(L\) shell would occur in every section, while its
+complementary shell must be disputed somewhere by
+\eqref{eq:primary-complementary-signs}. That section would contain
+both ranks. Lemma~\ref{lem:primary-common-zero} therefore supplies a
+common nontrivial residual Fourier zero for all \(d_t\).
+Write this character as \(\chi=\chi_1\otimes\chi_2\otimes\chi_3\),
+with conductor \(c\mid q_1q_2q_3\). The lemma gives \(c>1\).
+The local nonzero-shell sums are
+\[
+ x_i(c)=\sum_{z\in C_{q_i}\setminus\{0\}}\chi_i(z)
+ =\begin{cases}
+ q_i-1=u_i,&q_i\nmid c,\\
+ -1,&q_i\mid c.
+ \end{cases}
+\]
+For a nontrivial local character, the sum over the whole prime-order
+group is zero; removing its value one at the origin leaves \(-1\).
+Since \(c>1\), some \(q_i\mid c\), and hence some \(x_i=-1\).
+In kernel coordinates this is \(c=\prod_iq_i^{1-h_i}\) with some
+\(h_i=0\). The all-\(u_i\) evaluation occurs only at the trivial
+character, whose kernel vector is \((1,1,1)\); the preceding lemma
+explicitly excludes a common zero set consisting only of that character.
+A physical shell \(S\) contributes \(\prod_{i\in S}x_i(c)\), which
+is nonzero. Each section containing a size-\(L\) dispute must therefore
+contain at least two of them.
+
+Every such section must also contain a larger dispute. Indeed, suppose
+all its disputes had size \(L\). Two opposite terms cannot have equal
+population: the three shell populations within either rank are
+pairwise distinct. Thus all three shells would be disputed, with both
+signs. In rank one their polynomial is
+\(\sum_i\epsilon_ix_i\), with \(\epsilon_i\in\{-1,1\}\).
+At a nontrivial zero, parity forces exactly two coordinates to be
+\(-1\). If those two signs differ, their contributions cancel and
+the third is nonzero. If their signs agree, the third sign is opposite,
+so all three evaluated contributions have the same sign. Either way
+the polynomial cannot vanish. In rank two, divide by the nonzero
+product \(x_1x_2x_3\); the polynomial becomes
+\(\sum_i\epsilon_i/x_i\). With one coordinate equal to \(-1\),
+the other two reciprocal magnitudes sum to at most
+\(1/2+1/4<1\). With two such coordinates their signed sum is zero
+or has magnitude two, and the remaining term has magnitude in
+\((0,1/2]\). With three, the sum is an odd integer. This again
+contradicts the common nontrivial zero.
+
+Each section containing size \(L\) consequently has exactly two
+size-\(L\) shells and one larger disputed shell. The size-\(L\)
+shells have opposite signs. In rank one their polynomial is
+\(\pm x_i\pm x_j\); in rank two it is that expression multiplied
+by a common nonzero \(x_k\). A same-sign pair cannot vanish, since
+\(x_i+x_j\ne0\) when each entry is \(-1\) or a positive even
+integer.
+
+All three complementary shell pairs are active. Their three fixed
+signs include both signs, so exactly one sign is repeated. In every
+section containing size \(L\), its two size-\(L\) shells have
+opposite signs; the larger disputed shell therefore has the repeated
+sign, independently of the section and its rank. Equation
+\eqref{eq:primary-section-balance} forces the signed population of
+the size-\(L\) shells in that section to have the opposite sign.
+All nonzero such populations thus have the same sign. Their sum,
+weighted by the positive numbers \(\varphi(p^t)\), cannot be zero.
+This contradicts the exact-size population balance in
+Lemma~\ref{lem:common-dyadic-fibers}, conclusion 3.
+\end{proof}
+
+\paragraph{Proof status.}
+The preceding theorem is proved by the displayed arguments for every
+prime and exponent in its statement. It uses no finite enumeration.
+The hypothesis that the three residual primes have exponent one is
+essential to the proof's six-shell argument; no conclusion for four
+arbitrary prime-power axes is being inferred.

@@ -1,0 +1,194 @@
+% Source-independent fallback. This does not validate either unrecovered note.
+% Requires amsmath, amssymb, amsthm and theorem/corollary/proposition environments.
+\section{An exact modulus criterion by coefficient moments}
+\label{v2:sec:moments}
+
+The classification of the mates of a specified set and the classification of
+moduli have different quantifiers.  The following finite criterion addresses
+the latter directly.  Its proof is independent of the sign-graph theorem.  It
+is an exact enumeration and aggregation procedure, with exponential worst-case
+cost; no claim of a short arithmetic characterization is made.
+
+Write $\mathcal D_N=\{d:d\mid N\}$ and let $\mathcal J_N$ be the family of
+downward-closed subsets of $\mathcal D_N$, including the empty subset.  For
+$I\in\mathcal J_N$, put
+\[
+ A_I=\{x\in\mathbb Z_N:\operatorname{ord}(x)\in I\}.
+\]
+Thus $I\mapsto A_I$ is a bijection from $\mathcal J_N$ to subgroup unions.
+In this section every divisor indexing a physical shell denotes an
+\emph{element order}, not a subgroup index.  Define the integer Ramanujan sum
+\[
+ c_d(k)=\sum_{h\mid\gcd(d,k)}h\mu(d/h).
+\]
+The Fourier value at character conductor $c\mid N$ and its squared signature
+are
+\begin{equation}\label{eq:moment-signature}
+ F_I(c)=\sum_{d\in I}c_d(N/c),\qquad
+ \sigma(I)=\bigl(F_I(c)^2\bigr)_{c\mid N}.
+\end{equation}
+The character sum over the subgroup of order $d$ is $d$ when $d$ divides the frequency and zero otherwise. Subtracting the contributions of proper order shells, or equivalently applying divisor M\"obius inversion, gives the displayed formula for $c_d(k)$, where $\mu$ is the M\"obius function. Summing the shell contributions proves the first identity.
+Every $A_I$ is inversion symmetric, so Fourier inversion gives
+\begin{equation}\label{eq:moment-signature-equivalence}
+ C_{A_I}=C_{A_J}\quad\Longleftrightarrow\quad\sigma(I)=\sigma(J).
+\end{equation}
+This compares all conductors, including mixed conductors.
+
+For one indeterminate $z_c$ per $c\mid N$, use
+$z^v=\prod_{c\mid N}z_c^{v_c}$.  For a physical order $d\mid N$, set
+\begin{equation}\label{eq:cut-polynomials}
+ P_d^+(z)=\sum_{\substack{I\in\mathcal J_N\\d\in I}}z^{\sigma(I)},
+ \qquad
+ P_d^-(z)=\sum_{\substack{I\in\mathcal J_N\\d\notin I}}z^{\sigma(I)}.
+\end{equation}
+Their coefficients are nonnegative integers.  For a finite Laurent polynomial
+$P=\sum_v a_vz^v$, write $\|P\|_{\mathrm{coef}}^2=\sum_v a_v^2$ and
+let $[z^0]P$ denote its constant coefficient.
+
+\begin{theorem}[Cut coefficient criterion]\label{thm:cut-coefficient}
+For every positive integer $N$ and divisor $d\mid N$, the integer
+\begin{align}
+ K_d(N)&=[z^0]\bigl(P_d^+(z)P_d^-(z^{-1})\bigr)\label{eq:cut-moment}\\
+ &=\frac14\left(
+ \|P_d^++P_d^-\|_{\mathrm{coef}}^2-
+ \|P_d^+-P_d^-\|_{\mathrm{coef}}^2\right)\notag
+\end{align}
+is nonnegative.  It is positive if and only if there are homometric subgroup
+unions $A_I,A_J$ with $d\in I$ and $d\notin J$.  Consequently, $N$ is rigid
+among subgroup unions if and only if $K_d(N)=0$ for every $d\mid N$.
+A positive moment yields an explicit pair of distinct homometric subgroup
+unions.
+\end{theorem}
+\begin{proof}
+Let $a_v=[z^v]P_d^+$ and $b_v=[z^v]P_d^-$.  The constant coefficient in
+\eqref{eq:cut-moment} is $\sum_v a_vb_v$.  Each summand is nonnegative,
+and $(a_v+b_v)^2-(a_v-b_v)^2=4a_vb_v$ proves the second formula.
+Thus $K_d(N)>0$ precisely when one signature $v$ occurs in both cut classes.
+Choosing an ideal from each class gives two different ideals whose
+autocorrelations agree by \eqref{eq:moment-signature-equivalence}.
+Conversely, two different homometric ideals differ in membership at some
+$d\mid N$, and, after interchanging them if necessary, contribute a positive
+term to $K_d(N)$.  The constructions below retain witnesses for every
+nonzero coefficient, making the choice effective.
+\end{proof}
+
+The cuts with zero moment are exactly those order-shell memberships that are determined uniformly across every possible autocorrelation at the given modulus. For a specified signature, the same coefficient test can instead be restricted to that signature.  The sum of
+the $K_d(N)$ counts each unordered pair of distinct homometric ideals with
+weight $|I\mathbin\triangle J|$.  Thus the test concerns actual binary,
+divisor-closed sets throughout.  It does not replace those conditions by
+linear or rational relaxations.
+
+\subsection{A prime-factor transfer recurrence}
+
+We specify an exact way to form \eqref{eq:cut-polynomials}.  This avoids
+testing every pair of ideals for homometry, but it still represents the full
+finite ideal family and can require exponential resources.
+
+For $N>1$, choose a prime-power factorization $N=p^aM$ with
+$a\ge1$ and $\gcd(p,M)=1$; $M=1$ is allowed.  Each ideal $I\in\mathcal J_N$
+has unique sections
+\[
+ I_t=\{m\mid M:p^tm\in I\},\qquad 0\le t\le a,
+\]
+and downward closure is equivalent to
+\begin{equation}\label{eq:ideal-flag}
+ I_0\supseteq I_1\supseteq\cdots\supseteq I_a,
+ \qquad I_t\in\mathcal J_M.
+\end{equation}
+For $0\le j,t\le a$, define
+\[
+ r_{j,t}=c_{p^t}(p^{a-j}).
+\]
+For $t=0$ this is $1$; for $t\ge1$ it is $\varphi(p^t)$ if
+$j\le a-t$, is $-p^{t-1}$ if $j=a-t+1$, and is zero otherwise.
+For $J\in\mathcal J_M$, let the vector $V_t(J)$, indexed by
+$(j,c)\in\{0,\ldots,a\}\times\mathcal D_M$, be
+\begin{equation}\label{eq:factor-contribution}
+ V_t(J)_{j,c}=r_{j,t}\sum_{m\in J}c_m(M/c).
+\end{equation}
+Multiplicativity of Ramanujan sums, or a direct character calculation on
+$\mathbb Z_{p^a}\times\mathbb Z_M$, gives
+\begin{equation}\label{eq:factor-spectral-sum}
+ F_I(p^jc)=\sum_{t=0}^a V_t(I_t)_{j,c}.
+\end{equation}
+
+Fix a cut $d=p^sm$, with $m\mid M$, and $\epsilon\in\{0,1\}$.
+Put $b_t^{\epsilon}(J)=1$ except when $t=s$; at $t=s$ put
+$b_s^{\epsilon}(J)=1$ if $\mathbf1_J(m)=\epsilon$ and zero otherwise.
+Using Laurent monomials whose exponent vector is the \emph{unsquared}
+Fourier data, define
+\begin{align}
+ Q_0^{\epsilon}(J;z)&=b_0^{\epsilon}(J)z^{V_0(J)},\label{eq:transfer-start}\\
+ Q_t^{\epsilon}(J;z)&=b_t^{\epsilon}(J)z^{V_t(J)}
+          \sum_{\substack{K\in\mathcal J_M\\K\supseteq J}}
+                    Q_{t-1}^{\epsilon}(K;z),\qquad 1\le t\le a.
+ \label{eq:transfer-step}
+\end{align}
+Let $\mathsf{Sq}$ be the additive map on finite Laurent polynomials defined
+by $\mathsf{Sq}(z^v)=z^{(v_c^2)_c}$.  This map is not multiplicative: it
+must be applied only after all section contributions have been added.
+
+\begin{proposition}[Exact transfer and witness extraction]
+\label{prop:cut-transfer}
+With the foregoing definitions,
+\[
+ P_d^+=\mathsf{Sq}\left(\sum_{J\in\mathcal J_M}Q_a^1(J;z)\right),
+ \qquad
+ P_d^-=\mathsf{Sq}\left(\sum_{J\in\mathcal J_M}Q_a^0(J;z)\right).
+\]
+These formulas, followed by coefficient matching, decide rigidity of every
+factored modulus $N$ and construct a witnessing pair whenever $N$ is
+nonrigid.  If $L=\tau(N)$, a direct implementation has a finite bound
+$2^{O(L)}\operatorname{poly}(L,\log N)$ in bit operations.  This is not a
+polynomial bound in the binary input length $\log N$.
+\end{proposition}
+\begin{proof}
+Inductively, $Q_t^{\epsilon}(J;z)$ is the sum over all flags
+$I_0\supseteq\cdots\supseteq I_t=J$ satisfying the cut restriction if
+$s\le t$, with monomial exponent $\sum_{u=0}^t V_u(I_u)$.
+The claim for $t=0$ is \eqref{eq:transfer-start}.  Every flag of length
+$t+1$ has exactly one penultimate section $K\supseteq J$, proving the
+inductive step without omission or duplication.  At $t=a$, the flags
+are exactly all ideals of $\mathcal D_N$ by \eqref{eq:ideal-flag}.
+Equation \eqref{eq:factor-spectral-sum} identifies their exponents as
+their complete Fourier vectors.  Applying $\mathsf{Sq}$ therefore gives
+exactly the polynomials in \eqref{eq:cut-polynomials}.
+
+All coefficients remain nonnegative in this recurrence.  One may retain
+one generating flag for every nonzero coefficient.  When a squared
+signature occurs in both cut classes, its two stored flags explicitly
+give the required ideals and hence the sets $A_I,A_J$.  Alternatively,
+retain the corresponding unsquared Fourier vectors and apply
+\[
+ \mathbf1_{A_I}(N/d)=\frac1N\sum_{c\mid N}F_I(c)c_c(N/d),\qquad d\mid N.
+\]
+The retained vectors were generated from flags of ideals, so this inverse
+has binary entries and is downward closed; these properties are not being
+inferred merely from equality of squared signatures.
+
+For completeness, the state set $\mathcal J_M$ can be constructed by
+testing the $2^{\tau(M)}$ subsets for downward closure.  There are at most
+$2^{\tau(M)}$ states and $2^{2\tau(M)}$ transitions at any step, and
+at most $2^L$ monomials in a state.  All exponent vectors have length
+$L$.  Before squaring their coordinates have absolute value at most $N$,
+because they are Fourier values of the union formed by the retained
+sections; after squaring they are at most $N^2$.  Coefficients are bounded
+by $2^L$.  Exact sorting and addition of these integer vectors and
+coefficients, for at most $a+1\le L$ steps and $L$ cuts, gives the stated
+exponential bound.  The case $N=1$ consists of the two ideals
+$\varnothing$ and $\{1\}$ and is checked directly.
+\end{proof}
+
+\subsection{What the universal criterion does and does not classify}
+
+Theorem~\ref{thm:cut-coefficient} has no restriction on the number or size
+of the prime factors or on their exponents.  Its necessity, sufficiency,
+and witness extraction are proved above.  It provides a finite answer
+for each modulus once its factorization is supplied.  It does not bound
+the amount of computation by a practical polynomial, and it does not
+characterize the infinitely many rigid moduli by a concise set of
+prime-factor conditions.  The latter remains a separate arithmetic
+problem.  The transfer recurrence is a transparent universal baseline;
+the useful structural reductions elsewhere in the paper can substantially
+reduce the domain on which it would have to be run.
+

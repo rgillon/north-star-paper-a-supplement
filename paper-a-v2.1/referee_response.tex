@@ -1,0 +1,266 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,array,longtable,microtype}
+\usepackage{xurl,listings}
+\usepackage[hidelinks]{hyperref}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,keepspaces=true}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.35em}
+\setlength{\emergencystretch}{2em}
+\newcommand{\ind}{\mathbf 1}
+\newcommand{\ReleaseStatus}{Version 2.1 supplement:
+\url{https://github.com/rgillon/north-star-paper-a-supplement/tree/main/paper-a-v2.1}.
+The repository index links the revised documents and complete archive.}
+\hypersetup{pdftitle={North Star Paper A Version 2.1: Response to Referee Comments},
+pdfauthor={Robert Gillon}}
+\begin{document}
+\begin{center}
+{\Large\bfseries Response to Referee Comments}\\[.5em]
+{\large Reconstructing Unions of Subgroups\\
+from Cyclic Autocorrelation}\\[.4em]
+Robert Gillon\quad$\cdot$\quad Version 2.1\quad$\cdot$\quad 22 November 2026
+\end{center}
+
+\section*{Scope of this response}
+This response addresses the supplied Grok report and the subsequent
+verification-report summary headed \emph{HOLDS WITH FIXES}.
+The full attachment mentioned there was not among the supplied files;
+this response concerns the quoted reports.
+
+The comments prompted a fresh reading of the exact conductor argument,
+an independent exact check of both cited cancellation examples, and
+reproduction of the disputed supplement entries from a fresh extraction
+of the delivered review archive. The revisions clarify a consequential
+coordinate convention and correct genuine wording and invocation defects.
+They do not strengthen the hypotheses of Theorem 10.4.
+The set-level classification, exhaustive modulus criterion, and
+construction results retain their separately stated scopes.
+
+\section{The nontrivial-character condition in Theorem 10.4}
+The reported concern is that Lemma 10.3 might supply only a nonempty
+common zero set, permitting the all-\(u_i\) evaluations
+\[
+-2-4+6=0,\qquad
+\frac14-\frac16-\frac1{12}=0.
+\]
+These identities are valid. The distinction needed in the proof is
+between a \emph{nonempty common zero set} and a \emph{common zero at a
+nontrivial character}. Lemma 10.3 states and proves the latter.
+
+Let \(K=q_1q_2q_3\), put \(u_i=q_i-1\), and write a residual character as
+\(\chi=\chi_1\otimes\chi_2\otimes\chi_3\). Its conductor \(c\mid K\)
+means its character order. The local nonzero-shell sum is
+\[
+x_i(c)=\sum_{z\in C_{q_i}\setminus\{0\}}\chi_i(z)
+=\begin{cases}
+u_i,&q_i\nmid c,\\
+-1,&q_i\mid c.
+\end{cases}
+\]
+A trivial local character contributes \(q_i-1\). For a nontrivial
+local character, its sum over the whole group is zero and its value at
+the origin is one, leaving \(-1\) on the nonzero shell. Hence
+\[
+c>1\quad\Longleftrightarrow\quad
+\text{some }\chi_i\text{ is nontrivial}
+\quad\Longleftrightarrow\quad
+\text{some }x_i=-1.
+\]
+In the kernel-exponent convention of equation (10.1), \(h_i\in\{0,1\}\)
+and \(c=\prod_iq_i^{1-h_i}\). The trivial character has
+\(h=(1,1,1)\); a nontrivial character has some \(h_i=0\).
+Thus a \emph{zero coordinate} here means a zero \emph{kernel exponent},
+not a zero shell sum. The all-\(u_i\) evaluation is precisely the
+trivial character.
+
+The revision inserts this dictionary and its character-sum proof at the
+invocation of Lemma 10.3. It supplies an explicit justification of the
+implication used there without an additional existence assertion.
+
+\subsection*{Why Lemma 10.3 excludes the trivial-only case}
+Write \(Z\) for the common zero conductors of the least-size sections
+\(d_t\), and \(j\) for their first change on the primary axis.
+The proof shows that the Fourier transform of \(T_j(g)\) vanishes
+modulo \(p^{j+1}\) outside \(Z\). Inversion is legitimate because
+\(p\nmid 2K\). If \(Z=\varnothing\), the function is zero modulo
+\(p^{j+1}\); if \(Z=\{1\}\), it is constant modulo \(p^{j+1}\).
+
+At a changing shell the possible values are
+\[
+p^j,\quad -p^j,\quad p^j-2p^b\ (0\le b<j),
+\]
+all nonzero modulo \(p^{j+1}\). This excludes \(Z=\varnothing\).
+Under \(Z=\{1\}\), every \(d_t\) has zero population. If \(d_0\ne0\),
+its two signs give value zero at the top residual shell, contradicting
+constancy. Otherwise \(d_0=\cdots=d_j=0\), and the residual-origin
+values are zero or \(-2p^c\), \(0\le c\le j\).
+
+Comparison with the changing-shell values leaves only \(p=3\),
+\(c=j\), and the positive residue \(p^j\). In that case the origin
+fibers first reach size \(L\) at \(j+1\), bounding every later fiber
+by \(L\). An earlier larger dispute would have zero partial sums
+through \(j\), and sum zero or one at \(j+1\); it would give residue
+zero or \(-p^j\), a contradiction. Thus only one disputed size remains.
+Restricting to the dyadic subgroup of order \(L\) preserves homometry
+and all \(d_t\). Reapplying the modular argument to the restricted sums
+gives a changing-shell value \(p^j\) and a value zero at the residual
+origin or top. This excludes the final trivial-only possibility.
+
+Consequently \(Z\) contains a conductor \(c>1\). The remainder of
+Theorem 10.4 uses the printed rank-one/rank-two exclusions and
+exact-size population balance. No finite enumeration enters that proof.
+
+\subsection*{Exact checks of the two cited examples}
+Let \(T=\{i:q_i\mid c\}\). The table gives the complete spectra of
+\[
+P_1=-x_1-x_2+x_3
+\quad\text{at }(q_1,q_2,q_3)=(3,5,7),
+\]
+and
+\[
+P_2=x_2x_3-x_1x_3-x_1x_2
+\quad\text{at }(q_1,q_2,q_3)=(5,7,13).
+\]
+Dividing \(P_2\) by \(x_1x_2x_3\) gives the cited reciprocal expression.
+\begin{center}
+\begin{tabular}{@{}crrrr@{}}\toprule
+\(T\) & \(c\), first example & \(P_1\) & \(c\), second example & \(P_2\)\\\midrule
+\(\varnothing\)&1&0&1&0\\
+\(\{1\}\)&3&3&5&90\\
+\(\{2\}\)&5&5&7&-56\\
+\(\{3\}\)&7&-7&13&-26\\
+\(\{1,2\}\)&15&8&35&-1\\
+\(\{1,3\}\)&21&-4&65&-1\\
+\(\{2,3\}\)&35&-2&91&9\\
+\(\{1,2,3\}\)&105&1&455&-1\\\bottomrule
+\end{tabular}
+\end{center}
+Both polynomials vanish only at the trivial conductor.
+The separate exact script
+\path{verification/check_primary_conductor_coordinates.py} checks the shell-factor
+values against direct signed residue polynomials reduced modulo
+cyclotomic polynomials. This is a finite control of the reported
+examples; the general implication follows from the character calculation
+and the proof of Lemma 10.3.
+
+\section{Reconciliation of the computational and artifact comments}
+The delivered Version 2 archive contained 99 entries; all 98 files
+listed in its checksum manifest matched after fresh extraction.
+The following findings concern that archive. Accessibility at a public
+branch tip is a separate obligation.
+
+\subsection*{H100 height 3360 and the H99 target counts}
+The \emph{separate supplementary audit} exists as the combined program
+\path{verification/h99_independent_audit.py}.
+Its \path{H100_rank} result freshly reproduced 174 endpoint inequalities,
+435 actual grid targets, precision 3353, and maximum height 3360.
+Corollary 17.2 is revised to name this file and its output explicitly.
+
+Two programs explain the H99 counts. The original
+\path{experiments/ppi_99_prime_pair.py} completes
+\(3\cdot85=255\) reconstructions. The separate changed-data program
+completes \(5\cdot85=425\). For the supplied data, its five targets
+comprise both interval endpoints and three strictly interior grid points.
+Thus the earlier phrase \emph{425 interior grid targets} is inaccurate:
+the revision says \emph{425 actual dyadic-grid targets} and identifies
+the implementation. Correspondingly, the H100 changed-data audit's
+435 targets comprise 174 endpoints and 261 strict interior points.
+
+The changed-data program imports no construction-verifier module, but
+uses an independently checked H100 donor report as exact data. A fresh
+run using a freshly regenerated donor report reproduced its mathematical
+fields. The H99 error ratio is displayed as
+\(0.3387485931919912\); the certification compares the underlying
+rational exactly with \(339/1000<10/27\).
+The proof for every target remains the interval, denominator and
+parity argument, not the finite sample.
+
+\subsection*{Paths, commands and the cut-moment row}
+The explicit two-argument invocation succeeded. The separate audit's
+no-argument defaults were genuinely stale: they pointed into an earlier
+research directory and to the wrong donor-report directory.
+The revised defaults use the bundle's
+\path{experiments/} and \path{evidence/h100_independent.json}.
+The explicit invocation remains:
+\begin{lstlisting}
+python3 verification/h99_independent_audit.py \
+  experiments evidence/h100_independent.json
+\end{lstlisting}
+Section 11's command is changed from \texttt{python} to \texttt{python3}.
+
+The current cut-moment row is reproducible with
+\begin{quote}\small\ttfamily
+python3 verification/verify\_cut\_moments.py
+\end{quote}
+Its JSON output matched \path{evidence/cut_moment_results.json} exactly:
+85 moduli, 1,567 ideals, 503 membership cuts and 2,248 transfer
+comparisons. The script and evidence file are named beside the relevant
+claim. These bounded checks do not prove the universal theorem;
+Theorem 7.1 and Proposition 7.2 supply that proof.
+The older count of 73 comparisons, associated with an unrecovered
+source formulation, remains unverified and is not adopted.
+
+\subsection*{Software assumptions and the symbolic replay}
+Fixed construction checks use exact integers and rational arithmetic;
+decimal values are explanatory displays. The symbolic grid certificate
+uses bounded integer arrays, with the stated coefficient bound
+\(36\cdot13^6<2^{31}\), and exact rational nullspaces and polynomial
+factorization. The documented environment uses Python 3.12.14,
+NumPy 2.3.5 and SymPy 1.14.0, with assertions enabled.
+
+The later report records a complete successful 24-shape replay, every
+residual empty and all six table rows matched. That reported run is kept
+distinct from the archived preparation run. Section 11 remains
+\textsc{Computed}, because exhaustive implementation correctness is a
+dependency even after successful replay. Theorems 1.1 and 17.3 retain
+complete construction proofs with their explicitly identified fixed-data
+certificates.
+
+\section{Expository revisions requested in the Grok report}
+\textbf{Quantifiers.}
+The introduction makes explicit that individual rigidity fixes \(A\)
+and quantifies over its possible mates \(B\), while modulus rigidity
+quantifies over every admissible \(A\) and \(B\) at that modulus.
+The complete modulus procedure may enumerate exponentially many ideals.
+
+\textbf{Construction roadmap.}
+A short roadmap explains the successive roles: upper and lower donors
+supply complementary forced boundary values; modular helpers control
+denominators while preserving annihilation; damping blocks reduce
+interpolation errors; spectator factors realize the masses by actual
+binary nested sections; and rank-dependent precision reduces the
+required dyadic height. This separates the construction's logical
+architecture from its fixed numerical parameters.
+
+\textbf{Dyadic case and examples.}
+The marginal-defect proof explicitly notes that its middle term vanishes
+when \(p=2\), so the argument covers the dyadic axis. Section 8 directs
+readers to Proposition 4.2 for the translation/complementation
+interpretation of the radial examples.
+
+\textbf{Possible arithmetic invariants.}
+The open-question discussion identifies quantities suggested by the
+sign graph: prime support of unanchored conductors, forced patterns of
+Fourier zeros, and the prime-adic divisibility tests controlling adjacent
+edges. These are research directions, not an asserted classification
+by invariants of \(N\) alone. Structural arithmetic classification,
+minimal nonrigid moduli and exact dyadic thresholds remain open.
+
+\section{Supplement availability and review status}
+\ReleaseStatus
+
+The revised package assembles the original archive and the separately
+written Version 2 verifiers, with the named evidence files and a checksum
+manifest. The inspected initial public commit contained the earlier
+archive and README, but not the later verifier additions. This observation
+does not establish deletion. Public retrieval of the complete Version 2.1
+package is recorded separately, with a pinned commit.
+
+The initially requested generator-lattice rank and factor-cut moments
+source notes remain unrecovered and unverified. The paper certifies its
+printed conductor-grid rank theorem and exhaustive coefficient-moment
+criterion without importing a compressed-generator complexity claim from
+those notes.
+\end{document}

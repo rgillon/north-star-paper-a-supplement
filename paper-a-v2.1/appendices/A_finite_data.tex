@@ -1,0 +1,284 @@
+\section{Complete finite defining data}\label{v2:app:data}\label{vi:app:compute}
+This appendix makes the fixed constructions fully specified. The supplement
+contains the same arrays as executable data, exact verification programs and
+fresh output records. No discovery search or access to a research conversation
+is required. The finite primality, matrix, norm and interval checks are explicit
+computer-assisted obligations; the symbolic arguments in the main text cover
+all shifts, all free orders and all decoder targets.
+
+For a positive integer $n$, write $\operatorname{oddpart}(n)=n/2^{v_2(n)}$
+and $\operatorname{bitlength}(n)=1+\lfloor\log_2n\rfloor$.
+For a rational number, $\operatorname{den}$ means its positive denominator
+in lowest terms. All roundings below are exact rational roundings.
+
+\subsection{The upper and lower donors}
+The hidden order exponents are $(v_1,v_2,v_3,v_4)$ for
+$(5,11,13,17)$, with respective ranges $0\!:\!2,0\!:\!2,0\!:\!1,0\!:\!1$.
+A hidden mask has bit
+\[
+ v_1+3v_2+9v_3+18v_4
+\]
+set precisely at the included order. The first coordinate changes fastest.
+In the following table, the first column gives the signed quotient prime,
+the third its exponent, and the last the decimal hidden-upset mask.
+\begin{center}\small
+\begin{tabular}{rrrr}\toprule
+$s_ip_i$ & $b_i$ & $a_i$ & $F_i$\\\midrule
+-89 & 2 & 1 & 34359738368\\
+-103 & 2 & 1 & 38654853120\\
+67 & 4 & 2 & 67721379840\\
+241 & 1 & 1 & 67645734912\\
+-73 & 3 & 2 & 38730334208\\
+-257 & 1 & 2 & 68585517056\\
+53 & 5 & 1 & 67777855488\\
+-137 & 2 & 2 & 68717527040\\
+271 & 1 & 1 & 68660903936\\
+-131 & 2 & 1 & 67777855488\\
+-97 & 2 & 1 & 38654705664\\
+127 & 2 & 1 & 67645882368\\
+-251 & 1 & 2 & 67645865984\\
+-263 & 1 & 1 & 68717379584\\
+139 & 2 & 1 & 68712349696\\
+193 & 1 & 1 & 38654705664\\
+\bottomrule\end{tabular}\end{center}
+Conductor masks use this listed quotient-prime order, starting at bit zero.
+The fifteen upper masks, in their column order, are
+\[
+\begin{gathered}
+2656,\,960,\,16936,\,6528,\,11008,\,6852,\,32986,\,41062,\\
+43141,\,37652,\,57396,\,2980,\,52384,\,51746,\,19539. 
+\end{gathered}
+\]
+The fourteen signed lower primes, in row order, are
+\[
+\begin{gathered}
+59,\,61,\,163,\,173,\,223,\,233,\,281,\,293,\\
+-151,\,-199,\,-229,\,-277,\,-311,\,-317.
+\end{gathered}
+\]
+Their thirteen conductor masks, in column order and with bit zero for the
+first listed prime, are
+\[
+\begin{gathered}
+3095,\,4049,\,5687,\,6455,\,6743,\,8731,\,8743,\\
+8848,\,9044,\,12333,\,13427,\,13511,\,15486.
+\end{gathered}
+\]
+These arrays define the two rational coefficient vectors by the nonsingular
+minors described in Section~\ref{h100:interpolation}. In particular, there is
+no arbitrary choice of an element of a linear solution space.
+
+\subsection{Damping primes and the exact odd moduli}
+The twenty damping primes $p$, in order, are
+\[
+\begin{gathered}
+2097397,\,2097481,\,2097523,\,2097673,\,2097727,\\
+2098081,\,2098279,\,2098471,\,2099017,\,2099089,\\
+2099479,\,2099593,\,2099659,\,2100001,\,2100463,\\
+2100841,\,2101003,\,2101243,\,2101261,\,2101327.
+\end{gathered}
+\]
+For each one use $p^2q$, where $q=p(p-1)+1$.
+Let $\mathcal P$ denote this ordered list; let $\mathcal L$ be the absolute
+values of the signed lower primes above; let
+$\mathcal T=(776561,776563,881,883,29,31)$; and let $\mathcal H$
+be the eight helper primes defined in Section~\ref{h100:interpolation}.
+Then the precise odd integer used throughout the paper is
+\begin{equation}\label{v2:eq:M100}
+ M_{100}=5^2 11^2 13\cdot17
+ \left(\prod_{i=1}^{16}p_i^{a_i}\right)
+ \left(\prod_{p\in\mathcal L\cup\mathcal T\cup\mathcal H}p\right)
+ \left(\prod_{p\in\mathcal P}p^2[p(p-1)+1]\right)QBC,
+\end{equation}
+where $Q,B,C$ are given in Section~\ref{h100:spectator}. Every product is
+over distinct primes except for the displayed powers and the intentional
+kernel powers within $QBC$. This factorization is also supplied in
+\texttt{ppi\_100\_certificate.json}. The 99-prime odd modulus is obtained by
+removing the final $p^2q$ and multiplying by 65537.
+
+\subsection{Compact primality certificates}
+For completeness, the finite primality checks need only elementary modular
+arithmetic. We use the following criterion.
+\begin{lemma}[Pocklington certificate in the form used here]
+Let $n>1$ and let a fully factored integer $F\mid n-1$ satisfy $F>\sqrt n$.
+For every prime $r\mid F$, suppose an integer $a_r$ satisfies
+\[
+ a_r^{n-1}\equiv1\pmod n,\qquad
+ \gcd\bigl(a_r^{(n-1)/r}-1,n\bigr)=1.
+\]
+Then $n$ is prime.
+\end{lemma}
+\begin{proof}
+For every prime $\ell\mid n$, the order of $a_r$ modulo $\ell$ divides
+$n-1$ but does not divide $(n-1)/r$. Its $r$-part therefore contains
+$r^{v_r(n-1)}$, and hence at least the $r$-part of $F$. It follows that
+$F\mid\ell-1$ for every $\ell\mid n$. If $n$ were composite, one such
+$\ell$ would be at most $\sqrt n<F$, a contradiction.
+\end{proof}
+Write $Q(a)=1+ak$ with the integer $k$ defined in
+Section~\ref{h100:interpolation}. For these four upper primes, take
+$F=ak$. Its factorization is given by the displayed formula for $k$,
+$d_u=193\prod_i p_i$, and $249391=113\cdot2207$.
+The following table specifies all exceptional witnesses; every other prime
+factor of $F$ uses witness $2$.
+\begin{center}\small
+\begin{tabular}{rrrrr}\toprule
+$a$ & $v_2(F)$ & $v_3(F)$ & witness for $2$ & witness for $3$\\\midrule
+2 & 34 & 1 & 37 & 2\\
+3 & 33 & 2 & 41 & 5\\
+4 & 35 & 1 & 43 & 3\\
+12 & 35 & 2 & 37 & 5\\\bottomrule
+\end{tabular}\end{center}
+For each of the four lower helpers $q_i$, take $F=Q(2)$ and witness $2$.
+The identities $F\mid q_i-1$, inequalities $F^2>q_i$, and all modular
+conditions are checked exactly. Every remaining prime claim, including the
+prime factors of these $F$, the forty damping primes, and 65537, is verified
+by trial division through its integer square root. Thus the entire primality
+chain terminates in direct finite division, with no probable-prime assumption.
+The full decimal witnesses and results are reproduced in
+\texttt{evidence/h100\_independent.json}.
+
+\subsection{Ordinary-slot orderings}
+The following two lists specify the complete ordinary orderings.
+Read each row from left to right, then proceed to the next row.
+They are zero-based tag indices in increasing lexicographic order with
+the last exponent changing fastest; this convention differs from the
+hidden-mask convention above. An index can be decoded by successive division
+by the coordinate range sizes, starting with the last coordinate.
+For H100 the coordinate ranges have sizes
+$(6,4,3,3,3,3,2,2,2,2,2,2)$. For H99 append a final size $2$ for 65537.
+The list is data, not an unspecified permutation chosen by a search.
+
+\subsubsection*{H100: 614 ordinary slots}
+{\scriptsize\setlength{\tabcolsep}{5pt}\begin{longtable}{rrrrrrrrrr}
+\toprule\multicolumn{10}{c}{Slot indices in defining order}\\\midrule\endfirsthead
+\toprule\multicolumn{10}{c}{Slot indices (continued)}\\\midrule\endhead
+\bottomrule\endfoot
+20543 & 82351 & 82359 & 70847 & 19007 & 77758 & 97343 & 118975 & 117439 & 77755\\
+118079 & 82303 & 117499 & 103583 & 59903 & 103655 & 20703 & 57007 & 82687 & 82335\\
+101949 & 41469 & 81183 & 101950 & 103087 & 103423 & 118463 & 101919 & 91583 & 103611\\
+107135 & 71999 & 20671 & 103639 & 81023 & 96191 & 93119 & 103643 & 98494 & 117495\\
+103613 & 103607 & 103485 & 58751 & 79487 & 118847 & 119023 & 103095 & 108671 & 103102\\
+117471 & 103471 & 35711 & 103483 & 20731 & 56447 & 119007 & 34559 & 20159 & 10367\\
+118591 & 15551 & 20719 & 31103 & 41407 & 36287 & 40895 & 46655 & 118647 & 67391\\
+41455 & 56991 & 41279 & 62191 & 51839 & 77727 & 112319 & 80639 & 77183 & 101375\\
+118639 & 81199 & 119103 & 101935 & 96575 & 103479 & 39743 & 117311 & 82815 & 101759\\
+77743 & 103551 & 113855 & 56959 & 62205 & 77695 & 41467 & 62143 & 82927 & 62203\\
+114046 & 103101 & 103039 & 103659 & 55295 & 119230 & 81207 & 76031 & 95039 & 60479\\
+116927 & 115775 & 72575 & 100223 & 103099 & 103599 & 77757 & 101943 & 117487 & 98493\\
+88127 & 82941 & 103071 & 20727 & 98463 & 82175 & 103631 & 20735 & 41463 & 102911\\
+41470 & 82559 & 93247 & 103295 & 103645 & 62206 & 103677 & 82942 & 93307 & 119135\\
+108799 & 114043 & 103678 & 113983 & 96767 & 119229 & 118651 & 117503 & 57015 & 119151\\
+77751 & 62199 & 98487 & 82935 & 81151 & 119223 & 103671 & 101887 & 92735 & 82879\\
+93295 & 97919 & 108287 & 98479 & 108847 & 103663 & 118623 & 114031 & 119183 & 113471\\
+118655 & 119215 & 41439 & 119199 & 41471 & 93311 & 61055 & 62175 & 98431 & 81791\\
+81211 & 103615 & 82939 & 61631 & 102527 & 101947 & 82367 & 119167 & 81215 & 108863\\
+56831 & 103103 & 114047 & 77567 & 101951 & 62015 & 98303 & 57023 & 98491 & 77759\\
+98495 & 119227 & 82719 & 119039 & 62207 & 103455 & 119231 & 103675 & 82911 & 82751\\
+103487 & 103647 & 82943 & 103679 & 124145 & 124092 & 123737 & 120669 & 123237 & 122636\\
+121325 & 121485 & 120253 & 123812 & 123241 & 122648 & 123065 & 123577 & 123445 & 122660\\
+123196 & 123768 & 124005 & 122469 & 123256 & 124137 & 120948 & 120181 & 123996 & 122556\\
+124020 & 120637 & 123705 & 121532 & 122549 & 120829 & 121437 & 122365 & 123957 & 122588\\
+123193 & 123252 & 119797 & 123628 & 122089 & 121525 & 124017 & 122457 & 119789 & 124184\\
+123693 & 123580 & 120757 & 124252 & 120761 & 124152 & 122293 & 124061 & 124021 & 122041\\
+123165 & 120937 & 123225 & 123421 & 122428 & 123452 & 120285 & 124261 & 122488 & 124012\\
+120125 & 122601 & 123677 & 124268 & 123964 & 120509 & 120701 & 120889 & 124237 & 124077\\
+120173 & 121913 & 123213 & 120541 & 124297 & 122076 & 119773 & 122657 & 123228 & 123517\\
+120157 & 122541 & 123749 & 123249 & 121277 & 124089 & 123809 & 123189 & 120333 & 122397\\
+122061 & 120909 & 123725 & 124280 & 123597 & 124321 & 120733 & 121453 & 121517 & 122553\\
+120764 & 123573 & 123788 & 123761 & 122300 & 123633 & 122013 & 124300 & 123565 & 123621\\
+122073 & 124169 & 121405 & 122425 & 123133 & 122585 & 123005 & 121981 & 120892 & 123933\\
+122573 & 124109 & 123753 & 124301 & 120301 & 123769 & 120952 & 123993 & 122633 & 123800\\
+124024 & 120380 & 122484 & 122597 & 124028 & 123708 & 120924 & 121909 & 119613 & 123068\\
+122269 & 122100 & 123785 & 122097 & 124265 & 123789 & 123181 & 124269 & 123053 & 124312\\
+119741 & 124361 & 124376 & 120940 & 120956 & 122445 & 122421 & 122637 & 121309 & 123764\\
+123037 & 122085 & 124148 & 123813 & 123244 & 124121 & 123245 & 123549 & 122481 & 124273\\
+121901 & 123609 & 120885 & 122476 & 119801 & 123801 & 121149 & 119805 & 122092 & 123740\\
+122029 & 122877 & 121501 & 121885 & 120945 & 121916 & 122612 & 120921 & 123625 & 123229\\
+122672 & 120861 & 122485 & 123437 & 124085 & 123961 & 122676 & 124249 & 124153 & 124124\\
+124281 & 124313 & 121469 & 121341 & 124276 & 122609 & 122673 & 120877 & 124337 & 124324\\
+124340 & 123061 & 124284 & 123069 & 122649 & 123253 & 124125 & 122616 & 124344 & 123260\\
+123756 & 123197 & 123816 & 123757 & 121529 & 123817 & 124185 & 124193 & 124209 & 123389\\
+124377 & 123981 & 123997 & 124009 & 124385 & 123636 & 123637 & 123449 & 124316 & 124133\\
+122237 & 120373 & 124149 & 119997 & 122617 & 120189 & 122297 & 121725 & 124025 & 123741\\
+123453 & 123824 & 124400 & 120377 & 120953 & 123820 & 123828 & 121533 & 123825 & 124196\\
+124197 & 124329 & 124345 & 122525 & 124212 & 120365 & 124325 & 124253 & 124388 & 123629\\
+122589 & 120933 & 124317 & 124172 & 120949 & 124401 & 122557 & 124173 & 122661 & 122037\\
+124389 & 122093 & 122613 & 120317 & 120893 & 123949 & 123821 & 124364 & 124365 & 122460\\
+122461 & 120557 & 122492 & 123257 & 123261 & 122285 & 124013 & 120749 & 120573 & 124200\\
+120765 & 124213 & 122301 & 124404 & 122652 & 124140 & 124156 & 123640 & 124204 & 123641\\
+124216 & 123701 & 124277 & 123709 & 123765 & 123901 & 123965 & 121853 & 121917 & 123581\\
+124093 & 120349 & 120925 & 122077 & 122653 & 124029 & 124285 & 123612 & 123644 & 123613\\
+123645 & 122664 & 120381 & 123804 & 124188 & 122604 & 124189 & 122044 & 122668 & 122045\\
+124380 & 124220 & 120941 & 123772 & 122620 & 122473 & 123805 & 122665 & 122489 & 122413\\
+123773 & 122605 & 122477 & 124141 & 122669 & 122104 & 122108 & 122105 & 124341 & 120957\\
+122429 & 124381 & 122101 & 123832 & 124157 & 122493 & 123829 & 122677 & 123833 & 124405\\
+123836 & 122621 & 122109 & 124392 & 122680 & 124201 & 122681 & 124408 & 123837 & 122684\\
+124393 & 122685 & 124205 & 124332 & 124217 & 124348 & 124396 & 124409 & 124333 & 124412\\
+124397 & 124349 & 124221 & 124413 & & & & & &\\
+\end{longtable}}
+
+\subsubsection*{H99: 504 ordinary slots}
+{\scriptsize\setlength{\tabcolsep}{5pt}\begin{longtable}{rrrrrrrrrr}
+\toprule\multicolumn{10}{c}{Slot indices in defining order}\\\midrule\endfirsthead
+\toprule\multicolumn{10}{c}{Slot indices (continued)}\\\midrule\endhead
+\bottomrule\endfoot
+206191 & 164703 & 203895 & 162047 & 207103 & 206911 & 237695 & 38015 & 155517 & 234879\\
+234991 & 214271 & 234623 & 117503 & 192383 & 196989 & 163583 & 234943 & 206967 & 207199\\
+206943 & 206847 & 82939 & 205055 & 207279 & 82927 & 155503 & 206199 & 112895 & 207263\\
+164671 & 154367 & 207167 & 114015 & 207215 & 203899 & 164607 & 196975 & 155511 & 203519\\
+203901 & 186591 & 186239 & 228063 & 141695 & 124411 & 228087 & 233855 & 183167 & 124413\\
+206591 & 41343 & 203887 & 234975 & 20735 & 158975 & 165885 & 31103 & 62207 & 206175\\
+72575 & 206079 & 206143 & 93311 & 113983 & 237183 & 103679 & 162399 & 161279 & 227711\\
+202751 & 238447 & 206959 & 124399 & 113919 & 79487 & 206203 & 82815 & 165871 & 124287\\
+164351 & 113663 & 205823 & 155135 & 41439 & 236159 & 155391 & 82911 & 40319 & 81791\\
+224639 & 228093 & 238461 & 236927 & 123263 & 237279 & 162367 & 203839 & 110591 & 207343\\
+124383 & 152063 & 120959 & 164735 & 203871 & 190079 & 231551 & 196983 & 238455 & 155487\\
+134783 & 200447 & 196959 & 41407 & 207357 & 82879 & 124351 & 155455 & 176255 & 196927\\
+145151 & 162303 & 238431 & 203775 & 155515 & 185471 & 196987 & 165759 & 162431 & 165883\\
+195839 & 216575 & 217727 & 207355 & 226943 & 41087 & 41471 & 206207 & 237247 & 82935\\
+238399 & 196607 & 237311 & 124407 & 238079 & 165855 & 165879 & 207351 & 207327 & 82559\\
+82943 & 124031 & 193535 & 235007 & 203903 & 238459 & 114047 & 155519 & 124415 & 165823\\
+207295 & 186495 & 186623 & 196863 & 227967 & 228095 & 165503 & 165887 & 238335 & 196991\\
+207231 & 206975 & 207359 & 238463 & 246523 & 244219 & 247643 & 247611 & 248731 & 248667\\
+248427 & 245339 & 247547 & 247667 & 245355 & 248635 & 248411 & 248059 & 247291 & 241915\\
+248571 & 247673 & 248691 & 248779 & 247659 & 245307 & 245243 & 245363 & 248379 & 248763\\
+248315 & 248435 & 248819 & 248795 & 247675 & 248683 & 248699 & 248811 & 244987 & 248443\\
+240382 & 248732 & 241726 & 243454 & 244798 & 241846 & 247150 & 244918 & 243836 & 244854\\
+241884 & 246430 & 243038 & 244590 & 241518 & 246334 & 248316 & 246454 & 248436 & 248748\\
+247454 & 247390 & 241150 & 246110 & 248380 & 246390 & 245364 & 248422 & 241532 & 244126\\
+248684 & 248678 & 248804 & 248780 & 244988 & 247660 & 246270 & 246366 & 244062 & 246486\\
+244182 & 248742 & 247198 & 248572 & 246478 & 241774 & 243006 & 241894 & 247134 & 248692\\
+247358 & 241838 & 248060 & 248412 & 242942 & 244846 & 243062 & 248302 & 248636 & 245356\\
+248756 & 246078 & 244910 & 246134 & 245340 & 246014 & 241788 & 248428 & 244598 & 244030\\
+244478 & 244150 & 241406 & 245150 & 248774 & 241526 & 246494 & 241852 & 246446 & 244542\\
+243806 & 241470 & 244086 & 246894 & 248046 & 245102 & 248222 & 247806 & 247102 & 241870\\
+247222 & 240750 & 241902 & 248374 & 248668 & 246382 & 248788 & 246502 & 247668 & 248820\\
+240734 & 241662 & 243966 & 243822 & 245086 & 245166 & 244942 & 247158 & 248310 & 244974\\
+247870 & 242686 & 241782 & 243068 & 244734 & 247582 & 244574 & 244606 & 246878 & 240764\\
+241916 & 241502 & 244174 & 241534 & 248158 & 248542 & 247038 & 247518 & 247638 & 247470\\
+248622 & 246140 & 246524 & 247292 & 248444 & 239614 & 247246 & 247630 & 248398 & 246462\\
+243774 & 244156 & 247612 & 245308 & 248764 & 244894 & 244926 & 245758 & 243054 & 243070\\
+245174 & 248630 & 245302 & 246398 & 246518 & 248812 & 243830 & 244092 & 247548 & 244220\\
+245244 & 248700 & 245372 & 244830 & 244950 & 248406 & 244958 & 244982 & 243710 & 243838\\
+244862 & 244990 & 241822 & 240702 & 241854 & 247406 & 247422 & 248558 & 246126 & 246142\\
+246510 & 246526 & 245054 & 245182 & 241758 & 241878 & 245334 & 241886 & 240638 & 241790\\
+240758 & 240766 & 241910 & 241918 & 247966 & 248350 & 246846 & 247998 & 244190 & 244142\\
+244158 & 245262 & 245278 & 248718 & 245294 & 245310 & 245110 & 248566 & 245238 & 245118\\
+248126 & 248510 & 248254 & 248190 & 248574 & 248606 & 248726 & 248734 & 247486 & 248638\\
+247606 & 248758 & 245369 & 245371 & 248825 & 248827 & 247902 & 248286 & 248030 & 246782\\
+247166 & 247934 & 248318 & 246902 & 247286 & 246910 & 248054 & 248438 & 248062 & 244078\\
+244094 & 247534 & 244198 & 244214 & 247654 & 244206 & 244222 & 245350 & 245366 & 248806\\
+245198 & 245214 & 248654 & 245326 & 245342 & 245230 & 248782 & 245246 & 248686 & 245358\\
+247262 & 248414 & 247644 & 247646 & 248796 & 247676 & 248828 & 247214 & 247230 & 247598\\
+247614 & 247278 & 247294 & 248366 & 247662 & 248382 & 248750 & 248766 & 248430 & 248446\\
+248814 & 245374 & 248662 & 248670 & 248790 & 248798 & 247542 & 247550 & 247670 & 248694\\
+247678 & 248702 & 248822 & 248830 & & & & & &\\
+\end{longtable}}
+
+These data determine all baseline masses, slopes and intercepts by the
+formulas in the main text. The ordinary lists are intentionally longer than
+the used prefix: groups beyond $R+159$ are empty. The exact verifiers check
+every tag cover relation, including background and the empty tail, before
+the decoding argument is applied. No numerical optimization is part of
+verification.

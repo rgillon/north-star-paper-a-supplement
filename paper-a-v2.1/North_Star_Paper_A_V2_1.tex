@@ -1,0 +1,2739 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools,booktabs,array,longtable,enumitem,microtype,graphicx,xcolor,xurl}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!50!black,bookmarksnumbered]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\hypersetup{pdftitle={Reconstructing Unions of Subgroups from Cyclic Autocorrelation},pdfauthor={Robert Gillon},pdfsubject={Paper A Version 2.1: referee-revised exact mate classification and arithmetic obstructions}}
+\DeclareUrlCommand\file{\urlstyle{tt}}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{computation}[theorem]{Computation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Zn}{\mathbb Z_N}
+\newcommand{\F}{\widehat f}
+\newcommand{\C}{\mathcal C}
+\newcommand{\s}{\boldsymbol{s}}
+\newcommand{\rvec}{\boldsymbol{r}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\vv}{\boldsymbol{v}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\CT}{CT}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\footnotesize Cyclic autocorrelation and subgroup unions}
+\fancyhead[R]{\footnotesize R. Gillon\enspace |\enspace Version 2.1}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{.25pt}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false}
+\title{Reconstructing Unions of Subgroups\protect\\from Cyclic Autocorrelation\protect\\[.35em]\large Exact mate classification and arithmetic obstructions}
+\author{Robert Gillon}
+\date{Paper A, Version 2.1\enspace $\cdot$\enspace 22 November 2026\protect\\\small Referee-revised audited-source edition}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $A$ be a union of additive subgroups of a finite cyclic group. We classify all unions of subgroups with the same labeled cyclic autocorrelation as $A$. The nonzero integer Fourier coefficients form a graph whose edges encode the adjacent congruences for integral Fourier inversion. A connected component may be negated independently precisely when it contains neither the trivial character nor a pure prime-power conductor. If there are $u$ such components, exactly $2^u$ subgroup-union mates exist. The constructive converse uses equal mass and energy to force binary values, followed by a nonnegative marginal-autocorrelation defect to force divisor closure. This also yields an exact rational-rank criterion on the full conductor grid. A separate coefficient-moment construction gives a finite exhaustive modulus decision procedure and explicit witnesses; no polynomial-time or succinct arithmetic classification is claimed for it. We give complete proofs of rigidity at odd and twice-odd orders, a restricted height-two family, and the all-height family $2^e p^a qrs$ for distinct odd primes. Rational interpolation and nested divisor ideals yield nontranslated homometric subgroup unions, including a certified construction with 99 distinct odd prime divisors. Exact symbolic computations are separated from analytic proofs. The structural classification of rigid moduli from their prime factorizations remains open.
+\end{abstract}
+\vspace{.5em}
+\noindent\textbf{Keywords.} Homometry; cyclic autocorrelation; unions of subgroups; Ramanujan sums; Fourier sign ambiguity; divisor ideals.
+\clearpage
+\setcounter{tocdepth}{1}
+\tableofcontents
+\clearpage
+
+% BEGIN sections/01_introduction.tex
+\section{The reconstruction problem and the scope of the classification}\label{v2:sec:intro}
+For a positive integer $N$, write $C_N=\Z/N\Z$. The complete labeled cyclic autocorrelation of a subset $A\subseteq C_N$ is
+\begin{equation}\label{ii:eq:corr}
+ C_A(t)=\sum_{x\in C_N}\ind_A(x)\ind_A(x+t)
+       =\#\{x\in A:x+t\in A\},\qquad t\in C_N.
+\end{equation}
+Two sets are \emph{homometric} if these integers agree for every individual shift. We do not replace this condition by equality of multisets of values or by equality of selected marginals.
+
+Our comparison class consists of unions of additive subgroups,
+\begin{equation}\label{v2:eq:AD}
+ A_D=\bigcup_{d\in D}d\Z_N,\qquad D\subseteq\Div(N).
+\end{equation}
+In this notation $d$ is a subgroup \emph{index}, so $d\Z_N$ has order $N/d$. Removing every generator that is a multiple of another gives a unique divisibility antichain. An equivalent description uses element orders: if $I\subseteq\Div(N)$ is a downset, the set of all elements whose orders belong to $I$ is a subgroup union, called a \emph{divisor ideal}. Conversely every subgroup union has this form. Empty and full sets are allowed. Subgroup orders will always be stated explicitly when used instead of indices.
+
+Every such set is invariant under multiplication by every unit modulo $N$, hence under negation. A function with this invariance is called \emph{radial}; equivalently its value depends only on $\gcd(x,N)$, or on the additive order of $x$. Radiality implies inversion symmetry; the converse is not assumed. For even functions, the unnormalized convolution
+\[
+ (f*g)(t)=\sum_{x\in C_N}f(x)g(t-x)
+\]
+satisfies $C_f=f*f$. A subgroup union $A$ is \emph{rigid} if the only subgroup union homometric to it is $A$. A modulus $N$ is rigid if every subgroup union in $C_N$ is rigid. Thus set rigidity fixes $A$ and quantifies over its possible mates; modulus rigidity quantifies over every input $A$ as well. A theorem deciding a specified target does not by itself give a short arithmetic description of all rigid moduli.
+
+\subsection{Principal results}
+The central result is Theorem~\ref{ii:thm:subgroups}. For a specified $A$, integer conductor coefficients and local divisibility tests define a graph $\Gamma_A$. Let $u_{\rm div}(A)$ count its components disjoint from the root and from every pure prime-power conductor. All subgroup-union mates are obtained by independent sign changes on these components, and there are exactly $2^{u_{\rm div}(A)}$. The inverse transform is explicit. Theorem~\ref{v2:thm:rank} expresses the same classification as the nullity of a rational matrix with edge and anchor rows. The proof explains the Boolean structure of its kernel; it does not infer Boolean realizability from rank alone.
+
+Section~\ref{v2:sec:moments} answers the modulus question by a separate exhaustive finite procedure. A generating polynomial records the squared conductor spectrum of every divisor ideal. Separating membership cuts have nonnegative coefficient moments, and a positive moment is equivalent to a genuine distinct homometric pair. Both the complete finite search and its witness extraction are proved. The procedure may enumerate exponentially many order ideals. Its completeness is an exact logical conclusion, not an efficiency assertion or a structural prime-factor classification.
+
+The arithmetic results explain some of the rigidity forced by these criteria. We prove odd-order uniqueness even for arbitrary inversion-symmetric binary sets, twice-odd uniqueness for subgroup unions, and a height-two family subject to a precise congruence restriction. The common-fiber argument and primary-axis common-zero argument give rigidity for all
+\[
+ 2^e p^a qrs,\qquad e\ge0,\quad a\ge1,
+\]
+with $p,q,r,s$ distinct odd primes. The arbitrary-exponent two-axis and $p^a q^b r$ families are included as well. The exact symbolic certificate for $2^e p^2q^2rs$ is reported separately with its finite enumeration and proof obligations.
+
+Nonrigidity is not merely a possible output of the algorithm. The construction sections give actual binary divisor ideals with equal autocorrelation at every labeled shift. We retain the interpolation and nested-section proof for the original 100-prime construction, then explain the rank-dependent precision refinement and the 99-prime variant. The construction machinery and all finite data are supplied here or in the accompanying standalone verification files.
+
+\begin{theorem}[The reference nonrigid construction]\label{vi:th:main}
+The explicit odd integer $M_{100}$ specified by Appendix~\ref{v2:app:data} has exactly 100 distinct prime divisors. The cyclic group of order $2^{3446}M_{100}$ contains two distinct homometric subgroup unions, in different translation orbits. This modulus has 8,123 bits and 2,446 decimal digits.
+\end{theorem}
+The proof is given in Sections~\ref{vi:sec:reduce}--\ref{h100:mass}. Section~\ref{v2:sec:refined-constructions} improves the height and then reduces the odd-prime count. None of these examples is asserted to be minimal.
+
+\subsection{What is, and is not, certified in this version}
+Throughout, \textbf{PROVED} means that a complete mathematical argument is supplied, possibly using explicitly identified finite exact certificates for fixed data. \textbf{COMPUTED} identifies conclusions resting on finite symbolic enumeration or test coverage. \textbf{CONJECTURE} denotes a proposed mathematical statement without proof. \textbf{OPEN} denotes an unresolved question. A calculation on finitely many numerical moduli is never used to establish an unbounded family.
+
+\paragraph{Verification summary.}
+The analytic classification and the primary-axis rigidity theorem use no finite enumeration. The construction certificates use arbitrary-precision integers and exact rational arithmetic; their displayed decimals are not premises. The symbolic two-squared-axis calculation additionally uses bounded integer arrays, with the bound $36\cdot13^6<2^{31}$ justified in Section~\ref{subsec:terminal-grid-certificate}, and exact symbolic nullspaces and factorizations. The preparation used Python 3.12.14, NumPy 2.3.5 and SymPy 1.14.0, with assertions enabled. Appendix~\ref{v2:app:verification} and the referee guide identify each program, its data, output and logical role. The public supplement is at \url{https://github.com/rgillon/north-star-paper-a-supplement/tree/main/paper-a-v2.1}; the downloadable review package contains all required files and needs no research-repository access.
+
+The preliminary four-page Version 2 outline named two proposed source results, a \emph{generator-lattice rank theorem} and a \emph{factor-cut moments theorem}. Their full source files could not be recovered from the accessible revisions at this audit cutoff. Accordingly, this paper does not assert their specific generator-lattice compression, fixed-generator polynomial bit-time bound, or claimed avoidance of antichain backtracking. The conductor-grid rank theorem and the cut-polynomial theorem printed here are stated and proved independently at their explicit scopes. This is a disclosed change from the provisional outline, not a validation of its missing proofs. The separate referee guide records the source-access limitation and the exact claims deferred.
+
+\subsection{Relation to established work}
+Homometry arose prominently in crystallographic reconstruction and remains a basic phase-retrieval phenomenon \cite{Patterson1944,RosenblattSeymour1982,BendoryEdidinGonzalez2023}. The Fourier theory of radial, or $N$-even, arithmetic functions and its Ramanujan-sum formulation are classical \cite{TothHaukkanen2011}. Spectral units give a more general language for transformations preserving Fourier magnitudes \cite{Rosenblatt1984,Amiot2009}.
+
+The integer conductor-transform matrix of subgroup indicators identifies with a table of marks for the cyclic Burnside ring. Thus our integral inversion lemma is a concrete coordinate form of classical mark-image congruences, for which no novelty is claimed \cite{tomDieck1979,BoltjePfeiffer2008}. The specific reconstruction issue is the admissible sign group for one given spectrum, including its zero entries, followed by binary and order-ideal realizability. The mass--energy argument and marginal-defect identity supply those realization steps. The finite modulus-generating procedure is presented for completeness, without a claim that finite exhaustive decidability is itself a new general principle.
+
+\subsection{Notation guide}
+\begin{center}\small
+\begin{tabular}{@{}p{.22\linewidth}p{.71\linewidth}@{}}\toprule
+Notation & Meaning\\\midrule
+$d\Z_N$ & Additive subgroup of index $d$ and order $N/d$.\\
+$\Lambda_N=\prod_i\{0,\ldots,a_i\}$ & Valuation/conductor exponent grid for $N=\prod_i p_i^{a_i}$.\\
+$\rvec,\vv$ & Capped valuation vectors for physical elements; membership increases in these coordinates.\\
+$\s$, $c(\s)$ & Character conductor vector and its order $\prod_i p_i^{s_i}$.\\
+$F_A(\s)$ & Unnormalized real integer Fourier coefficient at that conductor.\\
+$\Gamma_A$, $u_{\rm div}(A)$ & Sign graph and number of its unanchored components.\\
+$R_A$ & Conductor-constraint matrix, with one column per nonzero conductor.\\
+$I\subseteq\Div(N)$ & Downward-closed family of physical element orders.\\
+$h_A(x)$ & Cardinality of the dyadic subgroup fiber over an odd point $x$.\\
+$\omega(M)$, $\Omega(M)$ & Number of distinct prime divisors, and prime factors counted with multiplicity.\\\bottomrule
+\end{tabular}
+\end{center}
+Physical order exponents equal $a_i-v_i$ and therefore reverse the valuation order. The transition to physical order shells in the arithmetic and construction sections is explicit; conductor exponents retain their usual character-order meaning.
+
+% END sections/01_introduction.tex
+
+
+% BEGIN sections/02_fourier_graph.tex
+\section{Valuation profiles and integral Fourier data}
+Let $N=\prod_{i=1}^h p_i^{a_i}$ with distinct primes $p_i$ and positive $a_i$.  We allow $h=0$ when $N=1$.  Via the Chinese remainder theorem, write $\mathbb Z_N\cong\prod_i\mathbb Z_{p_i^{a_i}}$ and let
+\[
+ \Lambda_N=\prod_{i=1}^h\{0,\ldots,a_i\},\qquad
+ v_i(x)=\min(a_i,v_{p_i}(x_i)),\quad v_{p_i}(0)=a_i.
+\]
+The order on $\Lambda_N$ is coordinatewise.  A function $f:\mathbb Z_N\to\mathbb Z$ is \emph{radial} if $f(x)=f(\vv(x))$ depends only on the capped valuation vector.  Its profile will be written $f(\rvec)$.  Put
+\[
+ H_{\rvec}=\prod_i p_i^{r_i}\mathbb Z_{p_i^{a_i}},\qquad
+ W_{\rvec}=|H_{\rvec}|=\prod_i p_i^{a_i-r_i}.
+\]
+Thus $H_{\rvec}$ consists of all points with valuation vector $\vv\ge\rvec$.  Fourier transforms are unnormalized:
+\[
+ \widehat f(\chi)=\sum_{x\in\mathbb Z_N} f(x)\overline{\chi(x)},
+ \qquad f(x)=N^{-1}\sum_{\chi}\widehat f(\chi)\chi(x).
+\]
+A character has \emph{conductor} $c(\s)=\prod_i p_i^{s_i}$ for a unique $\s\in\Lambda_N$.  A transform of a radial function is constant on each conductor class; we denote its value by $F(\s)$, or $F(c)$ if convenient.  There are exactly $\varphi(c(\s))$ characters in that class.
+
+\begin{lemma}[Subgroup-union profiles]\label{ii:lem:upset}
+A set $A\subseteq\mathbb Z_N$ is a union of additive subgroups if and only if its valuation profile is a $\{0,1\}$-valued increasing function on $\Lambda_N$.  The empty set and the full group are included.
+\end{lemma}
+\begin{proof}
+Each subgroup $H_{\rvec}$ is the upper principal set $\{\vv:\vv\ge\rvec\}$ in valuation space.  Their unions are increasing and binary.  Conversely, every increasing subset of the finite poset $\Lambda_N$ is a union of the principal upper sets generated by its minimal elements.  The Chinese remainder theorem identifies these with the additive subgroups $H_{\rvec}$.\qedhere
+\end{proof}
+
+\begin{lemma}[Integral conductor inversion]\label{ii:lem:integrality}
+An integer radial function $f$ admits a unique integral expansion
+\begin{equation}\label{ii:eq:alpha}
+ f=\sum_{\rvec\in\Lambda_N}\alpha_{\rvec}\one_{H_{\rvec}},\qquad
+ \alpha_{\rvec}=\sum_{J\subseteq\{i:r_i>0\}}(-1)^{|J|}f(\rvec-\one_J).
+\end{equation}
+Its conductor coefficients are integers and satisfy
+\begin{equation}\label{ii:eq:Fs}
+ F(\s)=\sum_{\rvec\ge\s}W_{\rvec}\alpha_{\rvec},
+ \qquad
+ F(\s)-F(\s+\e_i)\equiv0\pmod{p_i^{a_i-s_i}}
+ \quad(s_i<a_i).
+\end{equation}
+Conversely, an arbitrary integer array $G:\Lambda_N\to\mathbb Z$ is the conductor transform of an integer radial function if and only if it satisfies every adjacent congruence in \eqref{ii:eq:Fs}.  Its coefficients are explicitly
+\begin{equation}\label{ii:eq:inversealpha}
+ \alpha_{\rvec}=\frac{1}{W_{\rvec}}
+ \sum_{J\subseteq\{i:r_i<a_i\}}(-1)^{|J|}G(\rvec+\one_J).
+\end{equation}
+\end{lemma}
+\begin{proof}
+M\"obius inversion on the product of chains yields \eqref{ii:eq:alpha}, since $f(\vv)=\sum_{\rvec\le\vv}\alpha_{\rvec}$.  The transform of $\one_{H_{\rvec}}$ is $W_{\rvec}$ on characters trivial on $H_{\rvec}$, i.e., with conductor vector $\s\le\rvec$, and zero otherwise.  This gives the first formula in \eqref{ii:eq:Fs}.  Subtracting adjacent entries retains only the terms with $r_i=s_i$, each divisible by $p_i^{a_i-s_i}$.
+
+Conversely, repeated finite differences in the cumulative identity give \eqref{ii:eq:inversealpha}.  When $r_i<a_i$, group its numerator into differences along coordinate $i$; each difference is divisible by $p_i^{a_i-r_i}$.  This holds for every such $i$, and these prime-power divisors are pairwise coprime.  Therefore their product $W_{\rvec}$ divides the numerator, so each $\alpha_{\rvec}$ is integral.  The cumulative transform recovers $G$ exactly, and uniqueness follows from the inversion formula.  This also proves that there are no additional mixed-coordinate integrality conditions.\qedhere
+\end{proof}
+
+\begin{remark}[Connection to cyclic Burnside marks]\label{ii:rem:burnside}
+Regard $\widehat{\mathbb Z_N}$ as a cyclic group.  For $H_{\rvec}\le\mathbb Z_N$, the annihilator $H_{\rvec}^{\perp}$ is a subgroup of the dual group, and the transitive dual-group set $\widehat{\mathbb Z_N}/H_{\rvec}^{\perp}$ has $|H_{\rvec}|=W_{\rvec}$ points.  Its mark at the subgroup generated by a character of conductor $c(\s)$ is $W_{\rvec}$ when $\s\le\rvec$, and zero otherwise.  These are precisely the columns in \eqref{ii:eq:Fs}.  Therefore the converse in Lemma~\ref{ii:lem:integrality} describes the cyclic Burnside mark lattice in these coordinates; its local congruences are a prime-primary presentation of the classical mark-image congruences \cite{tomDieck1979,BoltjePfeiffer2008}.  We make no novelty claim for this integrality characterization.
+\end{remark}
+
+\begin{remark}\label{ii:rem:fourier}
+Every radial function is invariant under $x\mapsto-x$.  Its Fourier coefficients are therefore real.  For an integer radial function they are in fact integers by Lemma~\ref{ii:lem:integrality}.  The convolution identity gives $\widehat{C_f}(\chi)=|\widehat f(\chi)|^2$.  Thus two radial real functions have the same complete autocorrelation exactly when their conductor coefficient squares agree for every $\s$.  In Parseval's identity \emph{each conductor is repeated $\varphi(c(\s))$ times}.
+\end{remark}
+
+\section{Fourier sign graphs and exact radial reconstruction}
+Fix a nonempty radial binary set $A$ with conductor transform $F$.  Define the \emph{sign graph} $\Gamma_A$ as follows:
+\begin{itemize}[nosep]
+ \item Its vertices are exactly $V_A=\{\s\in\Lambda_N:F(\s)\ne0\}$.
+ \item Two vertices $\s$ and $\s+\e_i$ ($s_i<a_i$) are joined if
+ \begin{equation}\label{ii:eq:edge}
+ p_i^{a_i-s_i}\nmid 2F(\s).
+ \end{equation}
+\end{itemize}
+The test in \eqref{ii:eq:edge} is symmetric in the endpoints by \eqref{ii:eq:Fs}.  A vertex is \emph{root-marked} if $\s=\boldsymbol0$ and \emph{pure-prime-marked} if its conductor is a positive power of a single prime.  Components containing either kind of marked vertex are called \emph{divisor-anchored}.  Define
+\begin{align*}
+ u_{\rm rad}(A)&=\#\{\text{components not containing }\boldsymbol0\},\\
+ u_{\rm div}(A)&=\#\{\text{components containing no root or pure-prime mark}\}.
+\end{align*}
+The graph is formed from the \emph{actual} conductor coefficients of the specified $A$, not an abstract list of allowable signs.
+
+\begin{theorem}[Exact radial binary sign classification]\label{ii:thm:radial}
+Let $A$ be any nonempty radial binary subset of $\mathbb Z_N$.  Its radial binary homometric mates are in bijection with the subsets of the $u_{\rm rad}(A)$ non-root components of $\Gamma_A$.  The mate corresponding to a selection is obtained by replacing $F(\s)$ with $-F(\s)$ at every vertex in each selected component, preserving $F$ elsewhere, and applying Fourier inversion.  In particular the number of radial binary mates, including $A$, is exactly $2^{u_{\rm rad}(A)}$.
+\end{theorem}
+\begin{proof}
+For any radial binary mate $b$, \eqref{ii:eq:corr} fixes both its Fourier magnitudes and its cardinality.  Hence its integer conductor transform $G$ satisfies $G(\s)=\epsilon_{\s}F(\s)$ for $\s\in V_A$, with $\epsilon_{\s}\in\{\pm1\}$, and is zero off $V_A$.  Since $G(\boldsymbol0)=|A|=F(\boldsymbol0)>0$, the root sign is positive.  At adjacent nonzero vertices, the two congruences \eqref{ii:eq:Fs} for $F$ and $G$ show that opposite signs would require $p_i^{a_i-s_i}\mid2F(\s)$.  Thus the signs agree along each edge, and a mate determines a choice of non-root components.
+
+For the converse, flip any chosen non-root components and let $G$ be the resulting integer array.  We verify \eqref{ii:eq:Fs} for $G$ at every adjacent pair with modulus $m=p_i^{a_i-s_i}$.  If both entries are nonzero and the edge \eqref{ii:eq:edge} exists, their signs are the same.  If the edge does not exist, $m\mid2F(\s)$ and, by $F(\s)\equiv F(\s+\e_i)\pmod m$, also $m\mid2F(\s+\e_i)$; either sign choice preserves the congruence.  If exactly one entry is zero, the other entry was already divisible by $m$, so either sign is allowed.  Two zeros are automatic.  Lemma~\ref{ii:lem:integrality} therefore gives a unique \emph{integer radial} inverse $b$.
+
+Because the root sign was not changed,
+\begin{equation}\label{ii:eq:mass}
+ \sum_x b(x)=G(\boldsymbol0)=|A|.
+\end{equation}
+By Parseval, with the correct conductor multiplicities,
+\begin{equation}\label{ii:eq:energy}
+ \sum_x b(x)^2=\frac1N\sum_{\s\in\Lambda_N}
+ \varphi(c(\s))G(\s)^2
+ =\frac1N\sum_{\s}\varphi(c(\s))F(\s)^2=|A|.
+\end{equation}
+Subtracting \eqref{ii:eq:mass} from \eqref{ii:eq:energy} gives $\sum_x b(x)(b(x)-1)=0$.  Every integer $z$ satisfies $z(z-1)\ge0$, with equality exactly for $z\in\{0,1\}$, even when negative integers are allowed.  Thus $b$ is binary.  Its squared Fourier transform equals that of $\one_A$ at every character, so it is homometric to $A$.
+
+Two different component selections change at least one nonzero conductor coefficient, and therefore give different functions by Fourier uniqueness.  Necessity proved that every radial binary mate occurs.\qedhere
+\end{proof}
+
+\section{Odd-order uniqueness and trivial sign flips}
+
+\begin{proposition}[Symmetric sets at odd modulus]\label{ii:prop:odd}
+If $N$ is odd and two binary subsets $A,B\subseteq\mathbb Z_N$ satisfy $A=-A$, $B=-B$, and $C_A=C_B$, then $A=B$.  In particular $u_{\rm rad}(A)=0$ for every nonempty radial binary set of odd modulus.
+\end{proposition}
+\begin{proof}
+For a symmetric binary indicator $f$, $C_f=f*f$.  In $\mathbb F_2[\mathbb Z_N]$ the off-diagonal terms cancel in pairs $(x,y)$ and $(y,x)$, so
+\[
+ C_f(t)\equiv\sum_{2x=t}f(x)^2\equiv f(t/2)\pmod2.
+\]
+Doubling is bijective because $N$ is odd.  Thus the autocorrelation determines $f$.  The final assertion follows from Theorem~\ref{ii:thm:radial}, since distinct non-root component flips would give distinct radial binary mates.
+\end{proof}
+
+\begin{proposition}[Translation and complementation components]\label{ii:prop:symmetries}
+Let $A\subseteq\mathbb Z_N$ be nonempty and radial binary, with $u=u_{\rm rad}(A)$.  Let $d\mid N$ be its \emph{least positive period}, meaning $A+d=A$ and no smaller positive period exists.  Every radial binary mate has the same least period $d$.
+
+\begin{enumerate}[label=(\roman*),nosep]
+\item If $d$ is even, translation by $d/2$ maps each radial mate to a distinct radial mate and flips precisely the nonzero conductor coefficients for which $v_2(c)=v_2(d)$.  Those vertices form a nonempty union $T$ of non-root graph components.  If $d$ is odd, no nontrivial translation of a radial mate can be radial.
+\item When $N$ is even and $|A|=N/2$, complementation maps each radial mate to a distinct radial mate and flips \emph{all} non-root sign components.  Outside the half-size case, complementation does not preserve the given autocorrelation.
+\item Let $V\cong\mathbb F_2^u$ index the non-root sign components.  Write $\mathbf t\in V$ for the translation mask in (i), when $d$ is even, and $\mathbf1\in V$ for the full mask in (ii), when $|A|=N/2$.  The number of radial mates modulo translations, reflection, and (when homometric) complementation is exactly
+\begin{equation}\label{ii:eq:orbitcount}
+ 2^{u-r},\qquad r=\dim_{\mathbb F_2}\left\langle\;\mathbf t\ (d\text{ even}),\quad\mathbf1\ (|A|=N/2)\;\right\rangle.
+\end{equation}
+Omitted masks are not generators; thus $0\le r\le2$.  Reflection fixes every radial set.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+The set of translation periods is a subgroup of $\mathbb Z_N$, generated by $d$.  Fourier inversion shows it is determined by the nonzero Fourier support: a shift is a period if and only if every character with nonzero coefficient takes the value $1$ there.  All radial homometric mates have the same support and therefore the same $d$.
+
+If a translate $B+t$ of a radial mate $B$ is itself radial, then both $B$ and $B+t$ are invariant under negation.  Hence $B+t=B-t$, so $2t$ is a period, and $2t\equiv0\pmod d$.  Thus $t\equiv0\pmod d$ if $d$ is odd, and $t\equiv0,d/2\pmod d$ if $d$ is even.  Conversely, for even $d$, every unit $q$ modulo $N$ is odd; consequently $q(d/2)\equiv d/2\pmod d$.  Radiality and $d$-periodicity imply $B+d/2$ is radial.  Its Fourier coefficient at a character of conductor $c\mid d$ is multiplied by $\chi(d/2)$, equal to $-1$ exactly when $v_2(c)=v_2(d)$; all nonzero coefficients have $c\mid d$.  Since $d$ is the least period, some nonzero coefficient has this maximal $2$-adic conductor height.  Theorem~\ref{ii:thm:radial} then shows that the flip set $T$ must be a nonempty union of graph components, giving (i).  Independently of periodicity, no graph edge can cross from the penultimate to the top ambient $2$-adic conductor layer, because its modulus is $2$ and $2\mid2F(\s)$.  In particular, when $v_2(d)=v_2(N)$, the nonzero top ambient layer is a union of components and translation by $N/2$ flips precisely that layer.  If $d$ has smaller $2$-adic height, a smaller half-period, rather than $N/2$, is the relevant translation.
+
+For a set of size $k$, $C_{A^c}(t)=N-2k+C_A(t)$ for all $t\ne0$, and $C_{A^c}(0)=N-k$.  It has the same autocorrelation exactly when $k=N/2$.  Then its root coefficient remains $k$ and every other Fourier coefficient is negated.  This proves (ii).  Translation and complementation act on the bit vectors of component signs by addition of the indicated masks.  Their subgroup has order $2^r$ and acts freely on the $2^u$ selections.  Reflection acts trivially.  The orbit count follows.
+\end{proof}
+
+\section{Recovering the subgroup-union structure}
+The preceding theorem does \emph{not} guarantee that the radial binary inverse is increasing.  The next two lemmas provide the missing implication.
+
+\begin{lemma}[Pure-prime spectral positivity]\label{ii:lem:pure}
+If $A$ is a subgroup union and $p^a\Vert N$, then $F(p^j)\ge0$ for $0\le j\le a$.  Consequently every subgroup-union homometric mate has exactly the same coefficients at the root and every pure prime-power conductor.
+\end{lemma}
+\begin{proof}
+Write $\mathbb Z_N\cong\mathbb Z_{p^a}\times Y$.  For $y\in Y$, let $u_r(y)\in\{0,1\}$ be the value of $\one_A$ when the $p$ coordinate has valuation $r$, $0\le r\le a$.  Increasingness gives $u_0\le\cdots\le u_a$.  With $u_{-1}=0$ put $\eta_r=u_r-u_{r-1}\ge0$.  Telescoping expresses the $p$-fiber as $\sum_{r=0}^a\eta_r(y)\one_{p^r\mathbb Z_{p^a}}$.  At a character of conductor $p^j$ trivial on $Y$, the subgroup sum equals $p^{a-r}$ for $r\ge j$, and zero otherwise.  Hence
+\[
+ F(p^j)=\sum_{r=j}^a p^{a-r}\sum_{y\in Y}\eta_r(y)\ge0.
+\]
+The Fourier magnitudes of homometric subgroup unions agree.  A real, nonnegative coefficient with specified magnitude is uniquely determined, including when it is zero.\qedhere
+\end{proof}
+
+\begin{lemma}[Marginal-autocorrelation defect]\label{ii:lem:defect}
+Let $A$ be a subgroup union and $b$ a radial binary function homometric to $\one_A$ whose Fourier coefficients agree with those of $A$ at the root and every pure prime-power conductor.  Then $b$ is increasing in each valuation coordinate and hence is itself the indicator of a subgroup union.
+\end{lemma}
+\begin{proof}
+Fix $p^a\Vert N$ and set $Y=\prod_{q\ne p}\mathbb Z_{q^{a_q}}$.  For $0\le r\le a$ let $b_r(y)$ denote the value of $b$ on the $p$-shell with exact capped valuation $r$, and define $M_r(b)=\sum_y b_r(y)$.  The marginal $m_b(z)=\sum_y b(z,y)$ on $\mathbb Z_{p^a}$ has Fourier transform given by the root and the $p^j$ conductor values.  All of these agree with the corresponding values for $A$, so ordinary one-dimensional Fourier inversion gives $m_b=m_A$, and hence
+\begin{equation}\label{ii:eq:marginal}
+ M_r(b)=M_r(A)\quad(0\le r\le a).
+\end{equation}
+
+For $r<a$ write $w_r=(p-1)p^{a-r-1}$, the number of elements in the shell of valuation $r$, and put $w_a=1$.  The same-shell counts below use $b_r(y)^2=b_r(y)$, since the shell values are binary.  Fix a shift $t=(t_p,0)$ with $v_p(t_p)=s<a$.  In the ordered-pair count $C_b(t)$, for each $y$:
+\begin{enumerate}[label=(\roman*),nosep]
+ \item points of valuation $r<s$ remain in shell $r$, giving $w_rb_r(y)$;
+ \item points with both endpoints in shell $s$ number $(p-2)p^{a-s-1}$, giving $(p-2)p^{a-s-1}b_s(y)$ (this term is zero for $p=2$);
+ \item a pair with one endpoint in shell $s$ and the other in shell $r>s$ gives $2w_rb_s(y)b_r(y)$.
+\end{enumerate}
+There are no further possibilities: adding $t_p$ to a lower-valuation point retains its valuation, while adding it to a higher-valuation point lands in shell $s$.  Thus
+\begin{align}
+ C_b(t)&=\sum_{r<s}w_rM_r(b)+(p-2)p^{a-s-1}M_s(b)
+          +2\sum_{y\in Y}b_s(y)\sum_{r>s}w_rb_r(y).\label{ii:eq:shellcorr}
+\end{align}
+Since $\sum_{r>s}w_r=p^{a-s-1}$, rearranging gives the \emph{nonnegative defect identity}
+\begin{equation}\label{ii:eq:defect}
+ \underbrace{\left(\sum_{r<s}w_rM_r(b)+p^{a-s}M_s(b)-C_b(t)\right)}_{D_{p,s}(b)}
+ =2\sum_{y\in Y}b_s(y)\sum_{r>s}w_r\bigl(1-b_r(y)\bigr)\ge0.
+\end{equation}
+For $A$ the right side is zero, because every fiber is increasing.  By \eqref{ii:eq:marginal} and homometry, $D_{p,s}(b)=D_{p,s}(A)=0$.  Every summand on the right of \eqref{ii:eq:defect} is nonnegative and every $w_r>0$; therefore $b_s(y)=1$ implies $b_r(y)=1$ for every $r>s$.  This applies to each prime-power coordinate, including the dyadic coordinate. Thus the profile is coordinatewise increasing, and Lemma~\ref{ii:lem:upset} applies.\qedhere
+\end{proof}
+
+\begin{theorem}[Complete classification among subgroup unions]\label{ii:thm:subgroups}
+For every $N\ge1$ and every nonempty subgroup union $A\subseteq\mathbb Z_N$, its subgroup-union homometric mates are in bijection with the selections of components of $\Gamma_A$ containing no root or pure prime-power vertex.  In particular:
+\begin{enumerate}[label=(\alph*),nosep]
+\item every selection of these \emph{unanchored} components has a unique binary subgroup-union inverse with exactly the same complete autocorrelation;
+\item every subgroup-union homometric mate arises from exactly one such selection;
+\item $A$ is rigid among subgroup unions if and only if $u_{\rm div}(A)=0$, and the number of such mates including $A$ is $2^{u_{\rm div}(A)}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Every subgroup union is radial binary, so by Theorem~\ref{ii:thm:radial} its radial homometric mates can only differ through sign changes on non-root components.  Lemma~\ref{ii:lem:pure} forces all nonzero pure-prime Fourier signs to remain positive.  Thus only components disjoint from the root and all pure-prime marks may change.  Conversely, a selection of precisely these components satisfies Theorem~\ref{ii:thm:radial}, yielding a radial binary homometric inverse with unchanged root and pure-prime Fourier data.  Lemma~\ref{ii:lem:defect} makes that inverse increasing.  Lemma~\ref{ii:lem:upset} makes it a subgroup union.  Distinctness and exhaustiveness follow from the uniqueness of Fourier inversion.\qedhere
+\end{proof}
+
+\begin{remark}[Degenerate cases]\label{ii:rem:degenerate}
+The empty set is homometric only to itself, since $C_A(0)=|A|=0$; its graph has no vertices.  For $N=1$ the sole nonempty set is the singleton/full group; the sole conductor is the anchored root.  Zero Fourier coefficients are excluded from the vertex set but were explicitly covered in the adjacent-congruence proof.  Repeated prime factors and all dyadic heights are included in the modular exponents in \eqref{ii:eq:edge}.
+\end{remark}
+
+
+% END sections/02_fourier_graph.tex
+
+
+% BEGIN sections/03_rank.tex
+\section{A rank criterion on the conductor grid}\label{v2:sec:rank}
+The component classification has an exact rational-rank formulation. It is useful both as an alternative decision certificate and for clarifying why a power of two appears in the mate count.
+
+Fix a nonempty subgroup union $A$, let $V_A$ be the nonzero-conductor vertex set, and write $\delta_{\s}$ for the coordinate row vector indexed by $\s\in V_A$. Define $R_A$ over $\mathbb Q$ as follows: its columns are indexed by $V_A$; for each edge $\{\s,\mathbf t\}$ of $\Gamma_A$ include the row $\delta_{\s}-\delta_{\mathbf t}$; and for each root or pure-prime marked vertex $\s$ include the row $\delta_{\s}$. Any orientation of the edge rows gives the same rank. Repeated anchoring rows may be omitted.
+
+\begin{theorem}[Conductor-constraint rank criterion]\label{v2:thm:rank}
+For every positive integer $N$ and every nonempty subgroup union $A\subseteq\mathbb Z_N$,
+\[
+ \dim_{\mathbb Q}\ker R_A=u_{\rm div}(A).
+\]
+Moreover, $\ker R_A\cap\{0,1\}^{V_A}$ is in bijection with the subgroup-union homometric mates of $A$. For $z$ in this intersection, define
+\[
+ G(\s)=\begin{cases}
+       (1-2z_{\s})F(\s),&\s\in V_A,\\
+       0,&\s\notin V_A.
+       \end{cases}
+\]
+Equations~\eqref{ii:eq:inversealpha} and $b(\vv)=\sum_{\rvec\leq\vv}\alpha_{\rvec}$ construct the mate. Consequently
+\[
+ \#\{B:\ B\text{ is a subgroup union and }C_B=C_A\}
+   =2^{|V_A|-\operatorname{rank}_{\mathbb Q}R_A},
+\]
+and $A$ is rigid if and only if $R_A$ has full column rank.
+\end{theorem}
+\begin{proof}
+The edge rows say that a kernel vector is constant on every connected component. The marked rows say that this constant is zero on every anchored component. Conversely, every assignment of a rational constant to each unanchored component, and zero to each anchored component, satisfies all rows. The indicator vectors of the unanchored components therefore form a basis of the kernel. In particular the nullity is $u_{\rm div}(A)$.
+
+Intersecting with the binary cube permits exactly the independent choices zero or one on those components. The sign rule $1-2z_{\s}$ negates exactly the selected unanchored components. Theorem~\ref{ii:thm:subgroups} proves that each choice yields one binary subgroup-union mate, that every mate occurs, and that distinct choices have distinct inverses. This proves the bijection and the count.
+\end{proof}
+
+\begin{remark}[Scope and complexity]\label{v2:rem:rank-scope}
+The theorem concerns the explicitly defined \emph{conductor-constraint} matrix. Its binary kernel is a cube because of the component-indicator basis; a general rational nullspace does not have this property. No compression to a lattice generated by the maximal subgroup generators is asserted here.
+
+Given the prime factorization and an explicit binary valuation profile, the finite differences, cumulative sums, graph, and one selected inverse use $O(\omega(N)\tau(N))$ integer arithmetic operations. The rank can be read from the connected components without Gaussian elimination. This is an operation bound in the explicit valuation-grid representation, not a polynomial bit-time assertion for a succinct list of generators. Listing every mate necessarily includes the cost of writing all $2^{u_{\rm div}(A)}$ outputs.
+\end{remark}
+
+% END sections/03_rank.tex
+
+
+% BEGIN sections/03b_modulus_moments.tex
+% Source-independent fallback. This does not validate either unrecovered note.
+% Requires amsmath, amssymb, amsthm and theorem/corollary/proposition environments.
+\section{An exact modulus criterion by coefficient moments}
+\label{v2:sec:moments}
+
+The classification of the mates of a specified set and the classification of
+moduli have different quantifiers.  The following finite criterion addresses
+the latter directly.  Its proof is independent of the sign-graph theorem.  It
+is an exact enumeration and aggregation procedure, with exponential worst-case
+cost; no claim of a short arithmetic characterization is made.
+
+Write $\mathcal D_N=\{d:d\mid N\}$ and let $\mathcal J_N$ be the family of
+downward-closed subsets of $\mathcal D_N$, including the empty subset.  For
+$I\in\mathcal J_N$, put
+\[
+ A_I=\{x\in\mathbb Z_N:\operatorname{ord}(x)\in I\}.
+\]
+Thus $I\mapsto A_I$ is a bijection from $\mathcal J_N$ to subgroup unions.
+In this section every divisor indexing a physical shell denotes an
+\emph{element order}, not a subgroup index.  Define the integer Ramanujan sum
+\[
+ c_d(k)=\sum_{h\mid\gcd(d,k)}h\mu(d/h).
+\]
+The Fourier value at character conductor $c\mid N$ and its squared signature
+are
+\begin{equation}\label{eq:moment-signature}
+ F_I(c)=\sum_{d\in I}c_d(N/c),\qquad
+ \sigma(I)=\bigl(F_I(c)^2\bigr)_{c\mid N}.
+\end{equation}
+The character sum over the subgroup of order $d$ is $d$ when $d$ divides the frequency and zero otherwise. Subtracting the contributions of proper order shells, or equivalently applying divisor M\"obius inversion, gives the displayed formula for $c_d(k)$, where $\mu$ is the M\"obius function. Summing the shell contributions proves the first identity.
+Every $A_I$ is inversion symmetric, so Fourier inversion gives
+\begin{equation}\label{eq:moment-signature-equivalence}
+ C_{A_I}=C_{A_J}\quad\Longleftrightarrow\quad\sigma(I)=\sigma(J).
+\end{equation}
+This compares all conductors, including mixed conductors.
+
+For one indeterminate $z_c$ per $c\mid N$, use
+$z^v=\prod_{c\mid N}z_c^{v_c}$.  For a physical order $d\mid N$, set
+\begin{equation}\label{eq:cut-polynomials}
+ P_d^+(z)=\sum_{\substack{I\in\mathcal J_N\\d\in I}}z^{\sigma(I)},
+ \qquad
+ P_d^-(z)=\sum_{\substack{I\in\mathcal J_N\\d\notin I}}z^{\sigma(I)}.
+\end{equation}
+Their coefficients are nonnegative integers.  For a finite Laurent polynomial
+$P=\sum_v a_vz^v$, write $\|P\|_{\mathrm{coef}}^2=\sum_v a_v^2$ and
+let $[z^0]P$ denote its constant coefficient.
+
+\begin{theorem}[Cut coefficient criterion]\label{thm:cut-coefficient}
+For every positive integer $N$ and divisor $d\mid N$, the integer
+\begin{align}
+ K_d(N)&=[z^0]\bigl(P_d^+(z)P_d^-(z^{-1})\bigr)\label{eq:cut-moment}\\
+ &=\frac14\left(
+ \|P_d^++P_d^-\|_{\mathrm{coef}}^2-
+ \|P_d^+-P_d^-\|_{\mathrm{coef}}^2\right)\notag
+\end{align}
+is nonnegative.  It is positive if and only if there are homometric subgroup
+unions $A_I,A_J$ with $d\in I$ and $d\notin J$.  Consequently, $N$ is rigid
+among subgroup unions if and only if $K_d(N)=0$ for every $d\mid N$.
+A positive moment yields an explicit pair of distinct homometric subgroup
+unions.
+\end{theorem}
+\begin{proof}
+Let $a_v=[z^v]P_d^+$ and $b_v=[z^v]P_d^-$.  The constant coefficient in
+\eqref{eq:cut-moment} is $\sum_v a_vb_v$.  Each summand is nonnegative,
+and $(a_v+b_v)^2-(a_v-b_v)^2=4a_vb_v$ proves the second formula.
+Thus $K_d(N)>0$ precisely when one signature $v$ occurs in both cut classes.
+Choosing an ideal from each class gives two different ideals whose
+autocorrelations agree by \eqref{eq:moment-signature-equivalence}.
+Conversely, two different homometric ideals differ in membership at some
+$d\mid N$, and, after interchanging them if necessary, contribute a positive
+term to $K_d(N)$.  The constructions below retain witnesses for every
+nonzero coefficient, making the choice effective.
+\end{proof}
+
+The cuts with zero moment are exactly those order-shell memberships that are determined uniformly across every possible autocorrelation at the given modulus. For a specified signature, the same coefficient test can instead be restricted to that signature.  The sum of
+the $K_d(N)$ counts each unordered pair of distinct homometric ideals with
+weight $|I\mathbin\triangle J|$.  Thus the test concerns actual binary,
+divisor-closed sets throughout.  It does not replace those conditions by
+linear or rational relaxations.
+
+\subsection{A prime-factor transfer recurrence}
+
+We specify an exact way to form \eqref{eq:cut-polynomials}.  This avoids
+testing every pair of ideals for homometry, but it still represents the full
+finite ideal family and can require exponential resources.
+
+For $N>1$, choose a prime-power factorization $N=p^aM$ with
+$a\ge1$ and $\gcd(p,M)=1$; $M=1$ is allowed.  Each ideal $I\in\mathcal J_N$
+has unique sections
+\[
+ I_t=\{m\mid M:p^tm\in I\},\qquad 0\le t\le a,
+\]
+and downward closure is equivalent to
+\begin{equation}\label{eq:ideal-flag}
+ I_0\supseteq I_1\supseteq\cdots\supseteq I_a,
+ \qquad I_t\in\mathcal J_M.
+\end{equation}
+For $0\le j,t\le a$, define
+\[
+ r_{j,t}=c_{p^t}(p^{a-j}).
+\]
+For $t=0$ this is $1$; for $t\ge1$ it is $\varphi(p^t)$ if
+$j\le a-t$, is $-p^{t-1}$ if $j=a-t+1$, and is zero otherwise.
+For $J\in\mathcal J_M$, let the vector $V_t(J)$, indexed by
+$(j,c)\in\{0,\ldots,a\}\times\mathcal D_M$, be
+\begin{equation}\label{eq:factor-contribution}
+ V_t(J)_{j,c}=r_{j,t}\sum_{m\in J}c_m(M/c).
+\end{equation}
+Multiplicativity of Ramanujan sums, or a direct character calculation on
+$\mathbb Z_{p^a}\times\mathbb Z_M$, gives
+\begin{equation}\label{eq:factor-spectral-sum}
+ F_I(p^jc)=\sum_{t=0}^a V_t(I_t)_{j,c}.
+\end{equation}
+
+Fix a cut $d=p^sm$, with $m\mid M$, and $\epsilon\in\{0,1\}$.
+Put $b_t^{\epsilon}(J)=1$ except when $t=s$; at $t=s$ put
+$b_s^{\epsilon}(J)=1$ if $\mathbf1_J(m)=\epsilon$ and zero otherwise.
+Using Laurent monomials whose exponent vector is the \emph{unsquared}
+Fourier data, define
+\begin{align}
+ Q_0^{\epsilon}(J;z)&=b_0^{\epsilon}(J)z^{V_0(J)},\label{eq:transfer-start}\\
+ Q_t^{\epsilon}(J;z)&=b_t^{\epsilon}(J)z^{V_t(J)}
+          \sum_{\substack{K\in\mathcal J_M\\K\supseteq J}}
+                    Q_{t-1}^{\epsilon}(K;z),\qquad 1\le t\le a.
+ \label{eq:transfer-step}
+\end{align}
+Let $\mathsf{Sq}$ be the additive map on finite Laurent polynomials defined
+by $\mathsf{Sq}(z^v)=z^{(v_c^2)_c}$.  This map is not multiplicative: it
+must be applied only after all section contributions have been added.
+
+\begin{proposition}[Exact transfer and witness extraction]
+\label{prop:cut-transfer}
+With the foregoing definitions,
+\[
+ P_d^+=\mathsf{Sq}\left(\sum_{J\in\mathcal J_M}Q_a^1(J;z)\right),
+ \qquad
+ P_d^-=\mathsf{Sq}\left(\sum_{J\in\mathcal J_M}Q_a^0(J;z)\right).
+\]
+These formulas, followed by coefficient matching, decide rigidity of every
+factored modulus $N$ and construct a witnessing pair whenever $N$ is
+nonrigid.  If $L=\tau(N)$, a direct implementation has a finite bound
+$2^{O(L)}\operatorname{poly}(L,\log N)$ in bit operations.  This is not a
+polynomial bound in the binary input length $\log N$.
+\end{proposition}
+\begin{proof}
+Inductively, $Q_t^{\epsilon}(J;z)$ is the sum over all flags
+$I_0\supseteq\cdots\supseteq I_t=J$ satisfying the cut restriction if
+$s\le t$, with monomial exponent $\sum_{u=0}^t V_u(I_u)$.
+The claim for $t=0$ is \eqref{eq:transfer-start}.  Every flag of length
+$t+1$ has exactly one penultimate section $K\supseteq J$, proving the
+inductive step without omission or duplication.  At $t=a$, the flags
+are exactly all ideals of $\mathcal D_N$ by \eqref{eq:ideal-flag}.
+Equation \eqref{eq:factor-spectral-sum} identifies their exponents as
+their complete Fourier vectors.  Applying $\mathsf{Sq}$ therefore gives
+exactly the polynomials in \eqref{eq:cut-polynomials}.
+
+All coefficients remain nonnegative in this recurrence.  One may retain
+one generating flag for every nonzero coefficient.  When a squared
+signature occurs in both cut classes, its two stored flags explicitly
+give the required ideals and hence the sets $A_I,A_J$.  Alternatively,
+retain the corresponding unsquared Fourier vectors and apply
+\[
+ \mathbf1_{A_I}(N/d)=\frac1N\sum_{c\mid N}F_I(c)c_c(N/d),\qquad d\mid N.
+\]
+The retained vectors were generated from flags of ideals, so this inverse
+has binary entries and is downward closed; these properties are not being
+inferred merely from equality of squared signatures.
+
+For completeness, the state set $\mathcal J_M$ can be constructed by
+testing the $2^{\tau(M)}$ subsets for downward closure.  There are at most
+$2^{\tau(M)}$ states and $2^{2\tau(M)}$ transitions at any step, and
+at most $2^L$ monomials in a state.  All exponent vectors have length
+$L$.  Before squaring their coordinates have absolute value at most $N$,
+because they are Fourier values of the union formed by the retained
+sections; after squaring they are at most $N^2$.  Coefficients are bounded
+by $2^L$.  Exact sorting and addition of these integer vectors and
+coefficients, for at most $a+1\le L$ steps and $L$ cuts, gives the stated
+exponential bound.  The case $N=1$ consists of the two ideals
+$\varnothing$ and $\{1\}$ and is checked directly.
+\end{proof}
+
+\subsection{What the universal criterion does and does not classify}
+
+Theorem~\ref{thm:cut-coefficient} has no restriction on the number or size
+of the prime factors or on their exponents.  Its necessity, sufficiency,
+and witness extraction are proved above.  It provides a finite answer
+for each modulus once its factorization is supplied.  It does not bound
+the amount of computation by a practical polynomial, and it does not
+characterize the infinitely many rigid moduli by a concise set of
+prime-factor conditions.  The latter remains a separate arithmetic
+problem.  The transfer recurrence is a transparent universal baseline;
+the useful structural reductions elsewhere in the paper can substantially
+reduce the domain on which it would have to be run.
+
+
+% END sections/03b_modulus_moments.tex
+
+
+% BEGIN sections/04_examples.tex
+\section{Examples and the finite graph certificate}
+
+The examples distinguish radial mates from subgroup-union mates.
+Translation and complementation within the radial class are governed
+by Proposition~\ref{ii:prop:symmetries}; the orbit counts below use that
+proposition in addition to the conductor graph.
+
+\begin{example}[The classical four-set orbit at $N=12$]\label{ii:ex:12}
+Let $A=3\mathbb Z_{12}\cup4\mathbb Z_{12}=\{0,3,4,6,8,9\}$.  Its conductor marks are
+\[
+ \begin{array}{c|rrrrrr}
+ c&1&2&3&4&6&12\\\hline
+ F_A(c)&6&2&3&2&-1&-1
+ \end{array}.
+\]
+The graph components are $\{1\}$, $P=\{2,3,6\}$, and $T=\{4,12\}$.  All contain the root or a pure-prime conductor, so $u_{\rm div}=0$, whereas $u_{\rm rad}=2$.  The four radial mates are:
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}\toprule
+Sign flip & Resulting set and classical relation\\\midrule
+none & $A=\{0,3,4,6,8,9\}$\\
+$T$ & $A+6=\{0,2,3,6,9,10\}$\\
+$P$ & $A^c+6=\{1,4,5,7,8,11\}$\\
+$P,T$ & $A^c=\{1,2,5,7,10,11\}$\\\bottomrule
+\end{tabular}
+\end{center}
+They share the autocorrelation
+\[
+ (6,2,2,4,3,2,4,2,3,4,2,2).
+\]
+Here $|A|=6=N/2$, $d=12$, and the two free sign masks are precisely translation by $6$ and complementation.  There are two translation orbits represented here, those of $A$ and $A^c$. They are also distinct dihedral orbits, since $A=-A$ and no translate of $A$ equals $A^c$. Indeed $A$ contains a full coset of $4\mathbb Z_{12}$ and $A^c$ contains none. Allowing complementation as an additional equivalence identifies the two orbits, as counted by \eqref{ii:eq:orbitcount}.
+\end{example}
+
+\begin{example}[A non-dihedral radial mate at $N=24$]\label{ii:ex:24}
+Let
+\[
+ A=6\mathbb Z_{24}\cup8\mathbb Z_{24}=\{0,6,8,12,16,18\},
+ \quad B=\{2,8,10,14,16,22\}.
+\]
+For conductors $c=1,2,3,4,6,8,12,24$ the Fourier marks are
+\[
+\begin{array}{c|rrrrrrrr}
+ c&1&2&3&4&6&8&12&24\\\hline
+ F_A(c)&6&6&3&2&3&2&-1&-1\\
+ F_B(c)&6&6&-3&-2&-3&2&1&-1
+\end{array}.
+\]
+The graph components are $\{1,2\}$, $P=\{3,4,6,12\}$, and $T=\{8,24\}$.  Flipping $P$ gives $B$; flipping $T$ gives the translate by $12$.  Every Fourier magnitude agrees, hence $C_A=C_B$ at every shift.  Both sets are symmetric, so a dihedral equivalence would have to be a translation; checking the $24$ translations shows there is none.  Moreover $|A|=6\ne12$, so complementation is not a homometry.  Theorem~\ref{ii:thm:radial} therefore gives four radial mates and \eqref{ii:eq:orbitcount} gives \emph{two} classes modulo dihedral equivalence.
+
+This example is not primitive with respect to the ambient cyclic group: $A,B\subset2\mathbb Z_{24}$, and division by $2$ identifies them with a complementary-type construction in $\mathbb Z_{12}$.  Also, $B$ is not a subgroup union because $F_B(3)=-3$ violates Lemma~\ref{ii:lem:pure}.  It is an actual non-dihedral instance of the radial theorem, not an example of nonrigidity among subgroup unions.
+\end{example}
+
+\begin{corollary}[Finite graph certificate and complexity]\label{ii:cor:certificate}
+Let $A$ be a nonempty subgroup union.  One can determine whether $A$ has another subgroup-union homometric mate directly from its conductor marks, without searching through other subsets.  Writing $h=\omega(N)$ and $L=\tau(N)=|\Lambda_N|$, the differences, cumulative sums, and graph edges can be computed in $O(hL)$ integer arithmetic operations from the binary valuation profile.  The criterion is $u_{\rm div}(A)>0$; each selected flip has an explicit inverse given by \eqref{ii:eq:inversealpha}, then $f(\vv)=\sum_{\rvec\le\vv}\alpha_{\rvec}$.  Constructing all $2^{u_{\rm div}}$ mates necessarily has output-exponential cost.
+\end{corollary}
+\begin{proof}
+Apply finite differences and cumulative sums successively along each coordinate, costing $O(hL)$ arithmetic operations; the graph has at most $hL$ adjacent candidate edges.  Theorem~\ref{ii:thm:subgroups} and the inverse formulas prove the certificate and the reconstruction claim.
+\end{proof}
+
+\begin{corollary}[Prime powers and odd order]\label{ii:cor:primepower}
+Every subgroup union at a prime-power modulus is rigid among subgroup unions.  At every odd modulus, each inversion-symmetric binary subset is determined among inversion-symmetric binary subsets by its complete autocorrelation, and therefore every subgroup union is rigid.
+\end{corollary}
+\begin{proof}
+For $N=p^a$, the subgroups form a chain, so a union of subgroups is a single subgroup (or empty); its cardinality already determines it.  The odd-order assertion is Proposition~\ref{ii:prop:odd}.
+\end{proof}
+
+
+% END sections/04_examples.tex
+
+
+% BEGIN sections/05_low_height.tex
+\section{Low dyadic heights and separation of subgroup unions}
+Odd-order uniqueness follows from Proposition~\ref{ii:prop:odd}. We give the second low-height result directly. Write $C_m=\mathbb Z/m\mathbb Z$, $\ind_A=\mathbf1_A$, and use unnormalized convolution $(f*g)(z)=\sum_x f(x)g(z-x)$. For a divisor ideal $A$, inversion symmetry gives $C_A=\ind_A*\ind_A$.
+\begin{proposition}\label{vi:prop:twice}
+If $M$ is odd then any two homometric divisor ideals in $C_{2M}$ coincide.
+\end{proposition}
+\begin{proof}
+Identify $C_{2M}$ with $C_2\times C_M$. The two slices of an ideal have indicators $u,f$ at first coordinates $0,1$, respectively, with $f\le u$. Both are order functions. Put $T=u-f$, the indicator of singleton sections. The fixed points in the convolution square at $(0,2x)$ give $C_A(0,2x)\equiv u(x)+f(x)\equiv T(x)\pmod 2$. Thus a mate has the same $T$. Write $f'$ for its second slice. At shifts $(1,z)$ the two convolution squares give $2(f+T)*f=2(f'+T)*f'$. Subtract and factor:
+\[
+ (f-f')*(f+f'+T)=0.
+\]
+Suppose the ideals differ. Choose a divisibility-minimal order $d$ where $f\ne f'$. The two sections at $d$ are full and empty. Every divisor of $d$ has a full section on the full side, so $T$ vanishes at every order dividing $d$.
+
+Choose a character of $C_M$ as follows. On a factor $C_{p^b}$ with $p^j\parallel d$, $j>0$, use a frequency of valuation $j-1$. On primes absent from $d$ use the trivial character. On exact orders $p^k$, $k>0$, the character sum is $\varphi(p^k)$ if $p^k$ divides the frequency, $-p^{k-1}$ if its valuation is $k-1$, and zero otherwise. This follows by subtracting the sums on the subgroups of orders $p^k$ and $p^{k-1}$. The order-one sum is one. Since $p$ is odd, the shell weights of the product character are odd only on divisors of $d$, and the weight at $d$ is odd. Hence $\widehat{f-f'}$ is odd by minimality. The other factor has the same parity there because $T$ vanishes on those divisors and $2f'$ is even. Their product is a nonzero integer, contradicting the Fourier transform of the displayed identity.
+\end{proof}
+
+\begin{proposition}[A family at height two]\label{prop:four}
+Let $M$ be odd. If at most one distinct prime divisor of $M$ is $3\pmod4$, every subgroup union in $C_{4M}$ is determined among subgroup unions by its labeled autocorrelation.
+\end{proposition}
+\begin{proof}
+Over $x\in C_M$, the section in $C_4$ is empty or the subgroup of size $1,2,$ or $4$. Let $T,J,X$ indicate sections of these three positive sizes respectively. For a homometric union use primes on the corresponding indicators. The faithful $C_4$ character has partial transform $T$, so $C_T=C_{T'}$. The odd-order parity identity gives $T=T'$. The order-two character has partial transform $T+2J$. Equality of its squared Fourier magnitudes gives
+\[
+ (J-J')*(T+J+J')=0.
+\]
+If $J\ne J'$, select a divisibility-minimal odd order $d$ of disagreement. On the side with section size two at $d$, every smaller dividing order has section size at least two. Hence $T=0$ on all divisors of $d$, including $d$. The character used in Proposition~\ref{vi:prop:twice} gives an odd integer for each Fourier factor in the displayed identity, a contradiction. Thus $J=J'$.
+
+Write $Y=X'$, $D=X-Y$. The trivial $C_4$ character has partial transform $4X+2J+T$. Equality of the two convolution squares gives
+\[
+ D*\big(2(X+Y+J)+T\big)=0.
+\]
+Use the odd valuation coordinates $r=(v_{p_i}(x_i))_i$, truncated at $a_i=v_{p_i}(M)$. At a shell $r$ with $D(r)\ne0$, one side has a full section. Both $J$ and $T$ then vanish on every $v\ge r$. At this shell $D*(X+Y)\equiv D*D\equiv D(r)\equiv1\pmod2$; multiplication by $2$ permutes each odd valuation shell. Also $D*J(r)$ is even. To see this, expand in valuation shells: whenever the $J$ input has some valuation $v_i<r_i$, the other input has that same valuation, and the local coefficient is $(p_i-1)p_i^{a_i-v_i-1}$. This is even. These observations force $D*T(r)\equiv2\pmod4$.
+
+If every prime is $1\pmod4$, each such lowered coordinate contributes a multiple of four, making this impossible. Otherwise let $p$ be the unique prime $3\pmod4$ and choose a disagreement $r$ minimizing its $p$-valuation. Every nonzero contribution modulo four to $D*T(r)$ needs a lowered coordinate because $T$ vanishes on $v\ge r$. That coordinate must belong to $p$. But then the $D$ input has the same lowered $p$-valuation, contrary to minimality. This proves the result. The argument follows the project's mod-four reconstruction proof \cite{HeightFour}.
+\end{proof}
+\begin{proposition}[Translation and a single subgroup reflection]\label{bridge:separation}
+Let $A,B$ be subgroup unions in $C_N$. If $\ind_B$ is a translate of $R_H\ind_A$ for some subgroup $H$, where $R_H=2P_H-I$ and $P_H$ averages over $H$-cosets, then $A=B$. In particular two distinct subgroup unions are never translates.
+\end{proposition}
+\begin{proof}
+A period of a nonempty binary set is detected by $C_A(t)=|A|$. The operator $R_H$ has Fourier multiplier $+1$ on characters trivial on $H$ and $-1$ on the others. It preserves the autocorrelation. Thus $A$ and $B$ have the same periods. Quotient by their common period subgroup. The images are again unions of subgroups, and averaging over $H$ descends to averaging over its image $J$. We may therefore assume that the sets have no nonzero period. The empty set and the quotient of order one are immediate.
+
+For any primary factor $C_{p^a}$ of the quotient, each section obtained by fixing the remaining coordinates is empty or is a subgroup of $C_{p^a}$. Indeed a section is a union of subgroups in a chain. Some section is $\{0\}$, since otherwise adding the subgroup of order $p$ would preserve every section. At every character supported on this primary factor the Fourier coefficient of $\ind_A$ is strictly positive: each section contributes zero or its order, and the singleton contributes one. The same holds for $B$.
+
+Let the translation be $s$. At a pure character $\chi$, positivity forces $\chi(s)=1$ if $\chi$ is trivial on $J$, and $\chi(s)=-1$ otherwise. If an odd prime $p$ divided $|J|$, a faithful character on $C_{p^a}$ would have to take the value $-1$. This is impossible for a character of odd order. If $4\mid |J|$, a faithful character on the dyadic factor and its square would both be nontrivial on $J$. Their values at $s$ cannot both be $-1$. Hence $|J|\le2$. For $|J|=1$ the operator is the identity. For $|J|=2$ it is translation by the nonzero element of $J$. In either case $B$ is a translate of $A$. Pure faithful characters on each primary factor are positive on both indicators, so the translating element has every coordinate zero. Lifting gives $A=B$ in $C_N$.
+\end{proof}
+Thus the count $2^{u_{\rm div}}$ in Theorem~\ref{ii:thm:subgroups} also counts translation orbits represented by subgroup unions. Paired with Theorem~\ref{vi:th:main}, the proposition gives a binary mate that no translated single subgroup reflection can produce. Whether that target has a different mate produced by such a reflection is a separate question.
+
+More generally a target with $u$ free components already has $2^u$ binary translation classes represented by subgroup unions. Any genuine single-reflection witness supplies an additional class. In particular the constructed target either lacks a genuine single-reflection witness or has at least three binary translation classes.
+
+
+% END sections/05_low_height.tex
+
+
+% BEGIN sections/06_primary_rigidity.tex
+% Standalone mathematical section. Requires amsmath, amssymb, amsthm.
+% Proofs independently audited against pinned sources; no computed premise
+% occurs before the final subsection on the two-squared-axis certificate.
+\section{Rigidity from dyadic fibers and prime-axis measurements}
+\label{sec:primary-rigidity}
+
+Throughout this section, a divisor ideal in a cyclic group means a union
+of its subgroups. We use subgroup \emph{orders} when describing fibers.
+Write the ambient group as
+\[
+G=\mathbb Z_{2^e}\times \mathbb Z_M,
+\qquad M=\prod_{i=1}^n p_i^{a_i}\quad\hbox{odd}.
+\]
+The Chinese remainder theorem identifies this with the original labeled
+cyclic group. At an odd point \(y\), the fiber of a divisor ideal \(A\)
+is empty or a subgroup of \(\mathbb Z_{2^e}\): it is a union of members
+of a chain. Let \(h_A(y)\in\{0\}\cup\{2^j:0\le j\le e\}\)
+denote its size. If the odd
+order of \(y\) divides that of \(z\), then \(h_A(y)\ge h_A(z)\).
+Thus \(h_A\) is a nonincreasing function on the odd-order divisor lattice.
+For a shell with order exponents \(v=(v_i)\), its population is
+\(w(v)=\prod_i\varphi(p_i^{v_i})\).
+
+On a \(p^a\)-axis, index a character by the order \(p^k\) of its
+kernel. Its sum over the physical shell of order \(p^t\) is
+\begin{equation}
+R_p(k,t)=
+\begin{cases}
+\varphi(p^t),&t\le k,\\
+-p^k,&t=k+1,\\
+0,&t>k+1.
+\end{cases}
+\label{eq:primary-shell-row}
+\end{equation}
+For \(t=0\) the first line is one. This follows by subtracting the
+character sums over the subgroups of orders \(p^t\) and \(p^{t-1}\).
+Products of these rows compute all radial Fourier coefficients; in
+particular these coefficients are integers. We use the unnormalized
+Fourier transform throughout.
+
+\paragraph{Character order versus kernel order.}
+The character in~\eqref{eq:primary-shell-row} has conductor
+\(p^{a-k}\), not \(p^k\). On a squarefree residual axis \(C_q\),
+kernel exponent one means the trivial character and kernel exponent zero
+means a nontrivial character. Thus a residual character of conductor
+\(c>1\) has a zero kernel exponent on at least one axis. This convention
+will be used explicitly in the proof of Theorem~\ref{thm:primary-power-four-primes}.
+
+\begin{lemma}[Pure-axis measurements and common dyadic fibers]
+\label{lem:common-dyadic-fibers}
+Suppose that divisor ideals \(A,B\subseteq G\) have identical labeled
+autocorrelations. Then the following hold.
+\begin{enumerate}
+\item Every Fourier coefficient supported on a single prime-power axis
+is nonnegative, and it agrees for \(A\) and \(B\).
+Consequently, for each fixed physical state on any odd axis, the total
+signed population \(h_A-h_B\) over the complementary states is zero.
+\item Wherever both dyadic fibers are nonempty, they are equal.
+\item For every power of two \(L\), the number of odd points at which
+the fibers are \((L,0)\) equals the number at which they are \((0,L)\).
+Opposite signs of \(h_A-h_B\) cannot occur at comparable odd shells.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Fix all coordinates except one prime-power coordinate. The resulting
+section of a divisor ideal is empty or a subgroup of that cyclic
+prime-power group. Its character sum is either zero or the order of the
+subgroup. Summing over the fixed complementary coordinates proves
+nonnegativity. Since homometry equates the squares of the real Fourier
+coefficients, it equates these nonnegative coefficients themselves.
+Fourier inversion on the chosen axis gives the stated marginal equality.
+
+Fix an odd conductor \(c\). Let \(a_j(c)\) be the odd Fourier transform
+of the indicator of \(\{y:h_A(y)=2^j\}\), and define \(b_j(c)\)
+similarly. These are integers by \eqref{eq:primary-shell-row}. At a
+dyadic character with kernel order \(2^k\), the two full Fourier
+coefficients are
+\[
+P_k=\sum_{j=0}^k2^ja_j(c),\qquad
+P'_k=\sum_{j=0}^k2^jb_j(c).
+\]
+Put \(D_k=P_k-P'_k\) and \(S_k=P_k+P'_k\), with
+\(D_{-1}=S_{-1}=0\). Homometry says \(D_kS_k=0\) for every \(k\).
+If \(a_j(c)-b_j(c)\) is odd, both increments from step \(j-1\) to
+step \(j\) have exact 2-adic valuation \(j\). The incoming zero
+component cannot be accompanied by another zero component, since then
+both outgoing components would be nonzero. The incoming zero component
+therefore becomes nonzero with valuation \(j\); it remains nonzero at
+every later step, whose increments are divisible by \(2^{j+1}\).
+The other component must remain zero. No later odd increment is
+possible. Hence, at any fixed odd conductor, at most one size index
+\(j\) has \(a_j(c)-b_j(c)\) odd.
+
+If conclusion 2 failed, choose a minimal odd shell \(v\) with two
+nonempty, unequal fibers. Every strictly smaller shell has two
+nonempty equal fibers. On an axis with \(v_i>0\), choose kernel
+exponent \(v_i-1\); when \(v_i=0\), choose the trivial character.
+Modulo two, the product Fourier row is supported on the corners with
+each coordinate either zero or \(v_i\). This follows from
+\eqref{eq:primary-shell-row}, because \(p_i\) is odd and
+\(\varphi(p_i^t)\) is even for \(t>0\). Every corner except \(v\)
+has equal fibers. The two different nonzero sizes at \(v\) therefore
+give two odd values of \(a_j(c)-b_j(c)\), contradicting the preceding
+paragraph. This proves conclusion 2.
+
+At the trivial odd character all \(P_k,P'_k\) are nonnegative, so
+\(P_k=P'_k\). Subtract the equality at \(k-1\) from the equality
+at \(k\); the counts of fibers of each exact size agree. Cancel the
+common nonempty fibers using conclusion 2 to obtain conclusion 3.
+Finally, if \(h_B(v)=0<h_A(v)\), then \(h_B\) vanishes at every
+shell above \(v\), so an opposite discrepancy cannot occur there.
+Interchanging \(A,B\) handles the other sign.
+\end{proof}
+
+\begin{corollary}[Two odd axes and a three-axis family]
+\label{cor:two-odd-axes}
+Every \(2^ep^aq^b\) is rigid, where \(p,q\) are distinct odd primes
+and the exponents are nonnegative. Every \(2^ep^aq^br\) is rigid
+when \(p,q,r\) are distinct odd primes and \(a,b\ge1\).
+\end{corollary}
+
+\begin{proof}
+For two odd axes, fix an order state of the first axis. All states of
+the second axis are comparable, so all discrepancies in this section
+have the same sign by Lemma~\ref{lem:common-dyadic-fibers}. Their
+weighted sum is zero by the pure-axis marginal equality, so there are
+no discrepancies. The cases of fewer axes are included.
+
+For three axes write their order states as \((i,j,k)\), where the
+\(r\)-coordinate has \(k\in\{0,1\}\). Suppose a discrepancy exists
+and take the least \(j\) occurring in any discrepancy. If there were
+a discrepancy at \((i,j,0)\), marginal balance at the fixed state
+\(i\) would require an opposite discrepancy \((i,j',k')\).
+Comparability excludes \(k'=0\); with \(k'=1\), incomparability
+requires \(j'<j\), contradicting the choice of \(j\). Thus all
+discrepancies at this least \(j\) have \(k=1\). They form a chain
+in \(i\), have one sign, and contradict marginal balance at \(j\).
+\end{proof}
+
+We call a shell \emph{disputed} if its two fibers differ. By the lemma,
+exactly one fiber is then empty; its \emph{disputed size} is the size
+of the other fiber. The following lemma is the main additional ingredient.
+
+\begin{lemma}[Common zero along a changing primary axis]
+\label{lem:primary-common-zero}
+Let \(A,B\) be distinct homometric divisor ideals on
+\(\mathbb Z_{2^e}\times\mathbb Z_{p^a}\times\mathbb Z_K\), where
+\(K\) is odd, \(p\) is an odd prime, and \(p\nmid K\). Let \(L\)
+be the least disputed size. For each \(0\le t\le a\), let
+\(d_t:\mathbb Z_K\to\{-1,0,1\}\) indicate the signed size-\(L\)
+disputes in the physical \(p\)-order state \(p^t\). If the functions
+\(d_t\) are not all identical, their Fourier transforms have a common
+zero at a nontrivial conductor of \(K\).
+\end{lemma}
+
+Here ``nontrivial'' means conductor greater than one. If \(Z\) denotes
+the set of common zero conductors, the conclusion is
+\(Z\setminus\{1\}\ne\varnothing\), rather than merely
+\(Z\ne\varnothing\).
+
+\begin{proof}
+At a dyadic character of kernel order \(L\), divide the partial
+profiles by \(L\), and denote their difference and sum in section
+\(t\) by \(d_t\) and \(g_t\). The difference is exactly the stated
+signed indicator: larger fibers contribute zero to this character,
+smaller disputed fibers do not exist, and equal fibers cancel.
+The functions \(g_t\) take values in \(\mathbb Z[1/2]\). For a section
+vector \(u=(u_0,\ldots,u_a)\), put \(u_{a+1}=0\) and
+\begin{equation}
+T_k(u)=\sum_{i=0}^kp^i(u_i-u_{i+1})
+      =\sum_{i=0}^k\varphi(p^i)u_i-p^ku_{k+1}.
+\label{eq:primary-T}
+\end{equation}
+These are its Fourier rows on the \(p\)-axis, indexed by kernel
+order \(p^k\).
+
+Let \(j<a\) be the first change, so
+\(d_0=\cdots=d_j\ne d_{j+1}\), and let \(Z\) be the set of
+common zero conductors of all \(d_t\). At every residual conductor
+outside \(Z\), invertibility of the \(p\)-axis transform gives some
+nonzero row \(T_k(d)\). All rows below \(j\) vanish, hence \(k\ge j\).
+Homometry forces the corresponding row \(T_k(g)\) to vanish. Moreover
+\(T_k(g)\equiv T_j(g)\pmod{p^{j+1}}\). Thus the Fourier transform
+of \(T_j(g)\) vanishes modulo \(p^{j+1}\) outside \(Z\).
+Radial Fourier inversion on \(K\) uses integer Ramanujan sums and
+division by \(K\). Since \(p\nmid 2K\), it is valid modulo
+\(p^{j+1}\) in \(\mathbb Z[1/2]\). If \(Z\) were empty,
+\(T_j(g)\) would be zero modulo \(p^{j+1}\); if \(Z\) consisted
+only of the trivial conductor, \(T_j(g)\) would be constant modulo
+\(p^{j+1}\).
+
+We first record the argument when \(L\) is the only disputed size.
+Intersect both sets with the subgroup having dyadic order \(L\).
+Outside this subgroup the two sets agree, and shifts inside it
+preserve every exterior coset. Subtracting the equal exterior
+contributions proves that the restricted sets are homometric.
+In this paragraph, \(g_t\) denotes the normalized sum for the
+restricted pair at its trivial dyadic character; the functions \(d_t\)
+are unchanged. All its disputes still have size \(L\). Pure \(p\)-axis marginal
+balance now shows that every nonzero \(d_t\) has both signs and
+zero total population. At a shell where a size-\(L\) dispute
+disappears between \(j\) and \(j+1\), the sums through \(j\)
+are one and the next sum is zero. At a shell where a dispute appears,
+the preceding sums are two and the next sum is one. In either case
+\(T_j(g)=p^j\). If \(d_{j+1}\ne0\), its two signs force both
+restricted fibers at the residual origin to have size \(L\) through
+state \(j+1\), giving \(T_j(g)=0\) there. If \(d_{j+1}=0\),
+then \(d_0=d_j\ne0\), and its two signs force both fibers to be
+empty at the largest residual-order shell in every section, again
+giving \(T_j(g)=0\). These values are distinct modulo \(p^{j+1}\).
+The common zero set must therefore contain a nontrivial conductor.
+
+Return to the original profiles in the general case, allowing larger
+disputed sizes.
+Opposite signs cannot replace one another at a fixed residual shell.
+At a disappearing size-\(L\) dispute the same argument still gives
+\(T_j(g)=p^j\). At a newly appearing dispute the next sum is one.
+Before it, the occupied fiber has size at least \(L\). If its size
+exceeds \(L\), the other fiber is empty or has the same larger size,
+and their partial sum is zero. Once it has size \(L\), both fibers
+must have size \(L\), since \(d_0=\cdots=d_j\) is zero at this
+shell. Thus the preceding sums are a sequence of zeros followed by
+twos. Formula~\eqref{eq:primary-T} gives precisely the possibilities
+\begin{equation}
+p^j,\qquad -p^j,\qquad p^j-2p^b\quad(0\le b<j).
+\label{eq:primary-change-residues}
+\end{equation}
+All are nonzero modulo \(p^{j+1}\). Consequently \(Z\) is nonempty.
+
+Suppose for contradiction that \(Z\) contains only the trivial
+conductor. Each \(d_t\) then has zero total population. If
+\(d_0\ne0\), its two signs make both fibers empty at the largest
+residual-order shell from the first section onward. This gives
+\(T_j(g)=0\), contradicting the constant residue and
+\eqref{eq:primary-change-residues}. We therefore have
+\(d_0=\cdots=d_j=0\), while \(d_{j+1}\) has both signs.
+At the residual origin both fibers are nonempty and equal, of size at
+least \(L\), through state \(j+1\). Their partial sums are again
+zeros followed by twos. Their value of \(T_j(g)\) is either zero
+or \(-2p^c\) with \(0\le c\le j\).
+
+Compare these origin residues with \eqref{eq:primary-change-residues}.
+For \(b<j\), congruence of \(p^j-2p^b\) with \(-2p^c\)
+first forces \(b=c\) by valuation and then would force
+\(p^{j+1}\mid p^j\). Congruence of \(\pm p^j\) with
+\(-2p^c\) requires \(c=j\) and \(\pm1\equiv-2\pmod p\).
+The only possibility is \(p=3\) and the positive sign.
+In this exceptional case, the origin fibers exceed \(L\) through
+state \(j\) and first attain \(L\) at state \(j+1\); every newly
+disputed shell has both fibers equal to \(L\) at every earlier state.
+
+There can be no larger dispute in this exceptional case. At and after
+state \(j+1\) the origin bounds all fibers by \(L\). If an earlier
+section had a larger dispute at a residual shell \(s\), then all
+preceding occupied fibers there would be larger than \(L\) and all
+preceding partial sums would be zero. From that dispute to state
+\(j\), its empty side stays empty, and the other side is either
+larger than \(L\) or empty: a size-\(L\) dispute is excluded by
+\(d_0=\cdots=d_j=0\), and smaller disputes are excluded by minimality.
+Hence every partial sum through \(j\) at \(s\) is zero. At
+\(j+1\) the sum is zero or one, yielding \(T_j(g)=0\) or
+\(-p^j\). Neither is congruent to \(p^j\) modulo \(3^{j+1}\).
+Thus only one disputed size occurs, and the one-size case already
+proved gives the required contradiction.
+\end{proof}
+
+\begin{theorem}[An arbitrary odd prime power and three residual primes]
+\label{thm:primary-power-four-primes}
+Let \(p,q,r,s\) be pairwise distinct odd primes. For every
+\(a\ge1\) and \(e\ge0\), the modulus \(2^ep^aqrs\) is rigid
+among unions of subgroups.
+\end{theorem}
+
+\begin{proof}
+Suppose a distinct homometric pair exists. Index the residual primes
+\(q,r,s\) by \(1,2,3\), write \(u_i=q_i-1\), and label their
+shells by subsets \(S\subseteq\{1,2,3\}\). Let
+\(F_t(S)=h_A(t,S)-h_B(t,S)\), where the \(p\)-order is \(p^t\).
+For fixed \(S\), its nonzero values have one sign: once a fiber is
+empty it stays empty as \(t\) increases. Within any section \(t\),
+opposite signs cannot occur at comparable residual shells.
+Pure \(p\)-axis marginal balance gives
+\begin{equation}
+\sum_S\Bigl(\prod_{i\in S}u_i\Bigr)F_t(S)=0
+\quad\hbox{for every }t.
+\label{eq:primary-section-balance}
+\end{equation}
+Every disputed section therefore has both signs. Its bottom and top
+shells cannot be disputed, since each is comparable with every shell.
+
+Set
+\[
+W_S=\Bigl(\prod_{i\in S}u_i\Bigr)
+       \sum_{t=0}^a\varphi(p^t)F_t(S).
+\]
+Because the sign is fixed along the primary axis, \(W_S=0\) if and
+only if \(S\) is never disputed. Pure residual-axis marginals and
+total population balance give
+\(\sum_{S\ni i}W_S=0\) for each \(i\) and \(\sum_SW_S=0\).
+Only singleton and doubleton shells can contribute. Summing the three
+marginal equations and subtracting the total equation shows that the
+sum over doubletons is zero; the sum over singletons is then zero too.
+It follows that
+\begin{equation}
+W_{\{i\}}=W_{\{1,2,3\}\setminus\{i\}}.
+\label{eq:primary-complementary-signs}
+\end{equation}
+Thus each singleton and its complementary doubleton are either both
+inactive or have the same fixed sign.
+
+In any section, every disputed singleton has the same sign as every
+disputed doubleton: the two shells are either comparable or
+complementary. If both ranks occurred, all disputes in the section
+would have the same sign, contradicting
+\eqref{eq:primary-section-balance}. Every disputed section lies
+entirely in one rank and contains at most three disputed shells.
+
+Let \(L\) be the least disputed size and let \(d_t\) indicate its
+signed residual shells. These sections cannot all coincide. Otherwise
+some size-\(L\) shell would occur in every section, while its
+complementary shell must be disputed somewhere by
+\eqref{eq:primary-complementary-signs}. That section would contain
+both ranks. Lemma~\ref{lem:primary-common-zero} therefore supplies a
+common nontrivial residual Fourier zero for all \(d_t\).
+Write this character as \(\chi=\chi_1\otimes\chi_2\otimes\chi_3\),
+with conductor \(c\mid q_1q_2q_3\). The lemma gives \(c>1\).
+The local nonzero-shell sums are
+\[
+ x_i(c)=\sum_{z\in C_{q_i}\setminus\{0\}}\chi_i(z)
+ =\begin{cases}
+ q_i-1=u_i,&q_i\nmid c,\\
+ -1,&q_i\mid c.
+ \end{cases}
+\]
+For a nontrivial local character, the sum over the whole prime-order
+group is zero; removing its value one at the origin leaves \(-1\).
+Since \(c>1\), some \(q_i\mid c\), and hence some \(x_i=-1\).
+In kernel coordinates this is \(c=\prod_iq_i^{1-h_i}\) with some
+\(h_i=0\). The all-\(u_i\) evaluation occurs only at the trivial
+character, whose kernel vector is \((1,1,1)\); the preceding lemma
+explicitly excludes a common zero set consisting only of that character.
+A physical shell \(S\) contributes \(\prod_{i\in S}x_i(c)\), which
+is nonzero. Each section containing a size-\(L\) dispute must therefore
+contain at least two of them.
+
+Every such section must also contain a larger dispute. Indeed, suppose
+all its disputes had size \(L\). Two opposite terms cannot have equal
+population: the three shell populations within either rank are
+pairwise distinct. Thus all three shells would be disputed, with both
+signs. In rank one their polynomial is
+\(\sum_i\epsilon_ix_i\), with \(\epsilon_i\in\{-1,1\}\).
+At a nontrivial zero, parity forces exactly two coordinates to be
+\(-1\). If those two signs differ, their contributions cancel and
+the third is nonzero. If their signs agree, the third sign is opposite,
+so all three evaluated contributions have the same sign. Either way
+the polynomial cannot vanish. In rank two, divide by the nonzero
+product \(x_1x_2x_3\); the polynomial becomes
+\(\sum_i\epsilon_i/x_i\). With one coordinate equal to \(-1\),
+the other two reciprocal magnitudes sum to at most
+\(1/2+1/4<1\). With two such coordinates their signed sum is zero
+or has magnitude two, and the remaining term has magnitude in
+\((0,1/2]\). With three, the sum is an odd integer. This again
+contradicts the common nontrivial zero.
+
+Each section containing size \(L\) consequently has exactly two
+size-\(L\) shells and one larger disputed shell. The size-\(L\)
+shells have opposite signs. In rank one their polynomial is
+\(\pm x_i\pm x_j\); in rank two it is that expression multiplied
+by a common nonzero \(x_k\). A same-sign pair cannot vanish, since
+\(x_i+x_j\ne0\) when each entry is \(-1\) or a positive even
+integer.
+
+All three complementary shell pairs are active. Their three fixed
+signs include both signs, so exactly one sign is repeated. In every
+section containing size \(L\), its two size-\(L\) shells have
+opposite signs; the larger disputed shell therefore has the repeated
+sign, independently of the section and its rank. Equation
+\eqref{eq:primary-section-balance} forces the signed population of
+the size-\(L\) shells in that section to have the opposite sign.
+All nonzero such populations thus have the same sign. Their sum,
+weighted by the positive numbers \(\varphi(p^t)\), cannot be zero.
+This contradicts the exact-size population balance in
+Lemma~\ref{lem:common-dyadic-fibers}, conclusion 3.
+\end{proof}
+
+\paragraph{Proof status.}
+The preceding theorem is proved by the displayed arguments for every
+prime and exponent in its statement. It uses no finite enumeration.
+The hypothesis that the three residual primes have exponent one is
+essential to the proof's six-shell argument; no conclusion for four
+arbitrary prime-power axes is being inferred.
+
+% END sections/06_primary_rigidity.tex
+
+
+% BEGIN sections/07_computed_frontier.tex
+\section{An exact terminal test and the two-squared-axis certificate}
+\label{subsec:terminal-grid-certificate}
+
+The next criterion is a linear feasibility statement for a prescribed
+signed difference. Its use here is to exclude homometric divisor ideals.
+Feasibility alone does not construct such ideals.
+
+Let \(K=\prod_i p_i^{a_i}\) be odd, with physical order grid
+\(\mathcal G=\prod_i\{0,\ldots,a_i\}\). For a nonzero radial
+\(d:\mathbb Z_K\to\{-1,0,1\}\), let \(U\) be the upward closure
+of its support and \(Z\) its zero set of Fourier conductors. Index
+conductors by their coordinate kernel exponents \(h\in\mathcal G\).
+We call \(d\) \emph{terminally feasible} if a real radial function
+\(g\) satisfies
+\begin{equation}
+g(v)=|d(v)|\quad(v\in U),\qquad
+\widehat g(h)=0\quad(h\notin Z).
+\label{eq:terminal-feasibility}
+\end{equation}
+No binary or monotonicity condition is placed on \(g\).
+
+\begin{lemma}[Integer incidence test]
+\label{lem:terminal-incidence}
+Extend functions by zero beyond the top of the grid and put
+\[
+b_v=\sum_{\substack{\epsilon\in\{0,1\}^n\\v+\epsilon\in\mathcal G}}
+       (-1)^{|\epsilon|}|d(v+\epsilon)|,
+\qquad
+M_{vh}=\prod_i\bigl(\mathbf1_{h_i=v_i}-\mathbf1_{h_i=v_i-1}\bigr).
+\]
+Then \eqref{eq:terminal-feasibility} is feasible if and only if the
+real linear system
+\begin{equation}
+\frac{b_v}{K}\prod_i p_i^{v_i}
+       =\sum_{h\in Z}M_{vh}t_h\qquad(v\in U)
+\label{eq:terminal-incidence-system}
+\end{equation}
+is solvable. In particular, every integer left-null vector \(w\)
+of \(M\) imposes the necessary identity
+\[
+\sum_{v\in U}w_vb_v\prod_i p_i^{v_i}=0.
+\]
+\end{lemma}
+
+\begin{proof}
+On one axis, the inverse Fourier column indexed by kernel exponent
+\(h\) is the character sum \(I_h(v)\) over the characters of order
+\(p^{a-h}\) at a point of physical order \(p^v\). It has values
+\(\varphi(p^{a-h})\) for \(v\le h\),
+\(-p^{a-h-1}\) for \(v=h+1\), and zero for \(v>h+1\).
+For \(h=a\) it is identically one. Direct subtraction, including
+the top boundary with zero extension, gives
+\[
+I_h(v)-I_h(v+1)
+=p^{a-v}\bigl(\mathbf1_{h=v}-\mathbf1_{h=v-1}\bigr).
+\]
+Write the inverse transform as
+\(g(v)=\sum_{h\in Z}t_h\prod_i I_{h_i}(v_i)\), so
+\(t_h=\widehat g(h)/K\). Taking the product of the forward
+differences gives \eqref{eq:terminal-incidence-system} wherever
+\(g=|d|\) on all upper neighbors. This proves necessity because
+\(U\) is upward closed. Conversely, a solution defines a radial
+\(g\) with the required Fourier support. Its adjacent differences
+agree with those of \(|d|\) on \(U\). Recovering values from the
+top downward in this triangular difference system proves equality on
+\(U\). Multiplying the system by a left-null vector and then by
+\(K\) gives the final identity.
+\end{proof}
+
+\begin{lemma}[Why terminal exclusion implies rigidity]
+\label{lem:terminal-implies-rigidity}
+If every nonzero equal-population difference of two divisor downsets
+on \(K\) is terminally infeasible, then \(2^eK\) is rigid for
+every \(e\ge0\).
+\end{lemma}
+
+\begin{proof}
+For a purported pair take the least disputed dyadic size \(L\) and
+its signed indicator \(d\). Lemma~\ref{lem:common-dyadic-fibers}
+gives equal positive and negative populations. Its sign supports are
+mutually incomparable. Each is order-convex: between two same-sign
+size-\(L\) disputes the empty side stays empty and the occupied
+size, nonincreasing between equal endpoints, stays \(L\).
+Let \(D\) be the downward closure of both sign supports, and let
+\(P,Q\) denote the positive and negative supports. The downsets
+\(D\setminus\operatorname{Up}(Q)\) and
+\(D\setminus\operatorname{Up}(P)\) differ by exactly \(d\).
+Indeed, any point of \(D\) above a point of \(P\) lies below
+another point of \(P\), by cross-sign incomparability, and hence
+belongs to \(P\) by order convexity; similarly for \(Q\).
+
+At the dyadic character with kernel order \(L\), normalize the
+partial difference and sum by \(L\). The difference is \(d\),
+and call the sum \(g\). Homometry gives disjoint Fourier supports
+for \(d\) and \(g\). Above a size-\(L\) dispute one side stays
+empty and the other is empty or has size \(L\): a nonzero smaller
+size would be a smaller dispute. Thus \(g=|d|\) on the upward
+closure of the support. This is a terminal interpolant, contrary to
+the hypothesis.
+\end{proof}
+
+\paragraph{Computed result (all prime values).}
+The exact symbolic certificate described below excludes every nonzero
+equal-population downset difference for \(K=p^2q^2rs\), with
+\(p,q,r,s\) distinct odd primes. Together with
+Lemma~\ref{lem:terminal-implies-rigidity}, it establishes rigidity of
+\(2^ep^2q^2rs\) at every dyadic height, subject to correctness of the
+finite exhaustive implementation. We label this result \textsc{Computed}
+to keep that implementation dependency visible. It is an unbounded-prime
+symbolic certificate, not a test of finitely many numerical prime tuples.
+
+The grid has 36 cells. Enumerate its downsets in a linear extension and
+retain all two-sided differences up to overall sign. Each of the six
+placements of the two squared axes among increasing prime values gives
+11,194,933 distinct signed patterns. For a 36-cell downset with bits
+\(b_i\), the key \(\sum_i b_i3^i\) encodes its differences without
+loss by uniqueness of balanced ternary. Taking the absolute difference
+fixes the orientation; adding \((3^{36}-1)/2\) converts signed digits
+to ordinary ternary digits. This arithmetic fits signed 64-bit integers.
+
+For increasing primes use
+\(p_i=3+2i+g_0+\cdots+g_i\), with zero-based indices and
+nonnegative even gaps \(g_i\). The signed shell transforms are integer
+polynomials in these gaps. A polynomial with a nonzero constant and all
+coefficients of that weak sign cannot vanish; a polynomial with odd
+constant cannot vanish at even gaps. These tests leave a superset of
+the possible zero conductors. Population balance requires a possible
+zero at the trivial character.
+
+Two further tests exclude possible terminal interpolants. First, at a
+disputed shell \(v\), the difference of kernel rows \(v_i\) and
+\(v_i-1\), divided by \(p_i^{v_i}\), has coefficients one at
+physical order \(v_i\), minus one at \(v_i+1\), and zero elsewhere.
+Take their product over positive coordinates, and fix arbitrary single
+kernel rows in zero coordinates. This functional is supported in the
+prescribed upward region. Whenever its value on \(|d|\) is provably
+nonzero, at least one conductor of its row cube must be a possible
+Fourier zero. Second, compute the integer-scaled null vectors from
+Lemma~\ref{lem:terminal-incidence}. If an identity has exactly one
+nonzero term with least exponent on an axis, reduction modulo that
+axis prime is impossible when its nonzero integer coefficient has
+absolute value smaller than the least possible prime on that axis.
+
+The remaining polynomials are factored over the rationals. A factor is
+discarded as nonvanishing only when reduction modulo a selected prime
+is a nonzero power of two times a product of known units: other prime
+values and smaller prime predecessors. For reduction modulo the largest
+prime one may also use smaller-prime successors, which are strictly
+smaller than the largest odd prime. Removing such impossible Fourier
+zeros permits a further pass of the same necessary tests.
+
+The successive exclusion counts are as follows; omitted categories have
+count zero. The exponents are in increasing prime order.
+\begin{center}
+\small
+\begin{tabular}{lrrrrrr}
+\hline
+Shape & Root survivors & Cube & Incidence & Root factor & Row factor & Largest prime\\
+\hline
+\(1122\)&2915359&2914533&817&9&0&0\\
+\(1212\)&3743527&3742267&1248&12&0&0\\
+\(1221\)&4326542&4324839&1690&13&0&0\\
+\(2112\)&3772758&3771046&1688&24&0&0\\
+\(2121\)&4305351&4303010&2312&28&1&0\\
+\(2211\)&5166787&5163679&3072&31&4&1\\
+\hline
+\end{tabular}
+\end{center}
+For each row, the exclusions sum to the root survivors. The final
+pattern in shape \(2211\), with increasing primes \(p<q<r<s\),
+would require
+\[
+p^2q^2(r-s)-p^2rs+p^2s+q^2rs-q^2r=0.
+\]
+Modulo \(s\), this forces
+\(s\mid q^2r(p-1)(p+1)\), impossible because every displayed
+prime or linear factor is positive and smaller than \(s\).
+
+All finite-array coefficient sums are bounded by
+\(36\cdot13^6<2^{31}\). Nullspaces and factorizations use exact
+rational arithmetic. The supplementary verifier and its dependencies
+reproduce all six rows, as part of a 24-grid replay, with the command
+\begin{center}
+\small\texttt{python3 experiments/level1\_grid\_gap\_certificate.py}
+\end{center}
+The referee-support document records the pinned source version, runtime
+versions, completed checks, and exact output. No implication from a
+passing terminal interpolant to an actual mate is used.
+
+% END sections/07_computed_frontier.tex
+
+
+% BEGIN sections/08_constructions.tex
+\section{A section criterion for homometry}\label{vi:sec:reduce}
+
+\paragraph{Construction roadmap.}
+The construction has two tasks. First, on an odd core we build a signed
+discrepancy $e$ and a rational profile $w$ satisfying $e*w=0$, with
+specified values on the lower and upper closures of the signed support.
+Second, an auxiliary cyclic factor realizes every remaining density
+$w(x)/2$ by an actual divisor ideal, with the containments required as the
+core order increases. Lemma~\ref{vi:lem:sections} turns these objects into
+two binary subgroup unions and proves their homometry at every labeled
+shift. The ingredients below perform separate parts of these two tasks.
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.23\linewidth}
+                    >{\raggedright\arraybackslash}p{.69\linewidth}@{}}
+\toprule
+Ingredient & Role in the construction\\\midrule
+Upper and lower donors &
+Provide annihilating witnesses with the required boundary data on the
+respective closures. Three additional two-prime corrections reduce the
+upper witness's norm.\\[.35em]
+Modular helpers &
+Supply dyadic anchor profiles. A controlled final blend clears the odd
+denominators of the scaled section masses while preserving annihilation
+and the forced values.\\[.35em]
+Damping blocks &
+Balanced tensor factors reduce interpolation error geometrically, leaving
+room between the target intervals associated with successive ranks.\\[.35em]
+Rank and interpolation &
+An increasing rank orders those intervals; comparable equal-rank orders
+have identical profile data. The interpolant remains an annihilator and
+has the exact lower and upper boundary values.\\[.35em]
+Spectator primes &
+Guard, variable and control coordinates create admissible ordinary and
+fine slots. Their shell weights convert the required rational masses into
+exact subgroup sections.\\[.35em]
+Nesting and decoding &
+The ordinary greedy step and fine parity decoder realize every required
+grid target. The permitted heights ensure containment for every choice
+of digits, proving divisor closure.\\[.35em]
+Rank-dependent precision &
+Truncating the fine prefix separately at each rank lowers the necessary
+dyadic height. The 99-prime variant also removes one damping block and
+adds a new spectator guard.\\
+\bottomrule
+\end{tabular}
+\end{center}
+Section~\ref{h100:interpolation} constructs the core profile;
+Sections~\ref{h100:spectator}--\ref{h100:mass} supply the auxiliary
+sections and the exact decoder; Section~\ref{v2:sec:refined-constructions}
+changes their precision and prime budget. The symbolic arguments establish
+annihilation and universal decoding. The listed finite certificates check
+the fixed arrays, rational bounds, primality and containment data needed
+by those arguments.
+
+Let $H,S$ be cyclic of coprime orders, with $\abs H$ odd. For a signed shell function $e:H\to\{-1,0,1\}$ write $P=|e|$. Identify a family of shells with its indicator and put $D=\downarrow\!\operatorname{supp} e$, $U=\uparrow\!\operatorname{supp} e$. Assume that the two closures intersect exactly in the support: $D\cap U=\operatorname{supp}e$ as shell families, equivalently $DU=P$ for their indicators. Assume also that comparable support orders have the same sign. The remaining region $I=1-D-U+P$ consists of the orders incomparable with the support.
+
+\begin{lemma}\label{vi:lem:sections}
+Suppose $e\ne0$, $e*w=0$, $w=2-P$ on $D$, and $w=P$ on $U$. For each order $x$ in $I$, suppose there is a divisor ideal $J_x\subseteq S$ with density $w(x)/2$ such that $J_{x'}\subseteq J_x$ whenever $x\mid x'$ in $I$. Then $H\times S$ has homometric divisor ideals in different translation orbits.
+\end{lemma}
+\begin{proof}
+Prescribe the sections of $A,B$ by the following table.
+\[
+\begin{array}{c|cc}
+ H\text{-region} & A & B\\ \hline
+ D\setminus P&S&S\\ e=+1&S&\varnothing\\ e=-1&\varnothing&S\\
+ U\setminus P&\varnothing&\varnothing\\ I&J_x&J_x
+\end{array}
+\]
+Here a section is indexed by the order of the $H$ coordinate. The strict lower region is a downset since a support order below a strict lower order would put the latter in $D\cap U=P$. Dually, the strict upper region is an upset. Below a support order, another support order has the same sign. Below an incomparable order one can meet only the incomparable or strict lower region. These facts and the nesting prove downward closure in the product order lattice. Coprimality identifies it with the order lattice of a cyclic group.
+
+Write $f=\ind_A$, $g=\ind_B$. Their difference is $e(x)$ on every $(x,y)$ and $\sum_y(f+g)(x,y)=|S|w(x)$. Because $f,g$ are even, at every $(z,t)$,
+\[
+ C_A-C_B=((f-g)*(f+g))(z,t)
+ =\sum_x e(x)\sum_y(f+g)(z-x,t-y)=|S|(e*w)(z)=0,
+\]
+where the left side is evaluated at $(z,t)$. If $A,B$ were translates, their section-size profiles on $H$ would be translates by some $h$. Both profiles are even, hence $2h$ is a period of the first. As $h$ has odd order, $h$ is also a period. The profiles would agree, contradicting the different sections on the nonempty support.
+\end{proof}
+
+\section{An annihilating profile on the odd factor}
+\label{h100:interpolation}
+
+We give the local constructions needed for the 100-prime example.  All
+finite defining arrays are printed in Appendix~\ref{v2:app:data} and supplied
+as machine-readable certificate data \cite{ConstructionH100};
+they specify functions, rather than a search for functions.  The arithmetic
+checks are described explicitly so that the argument does not require any
+earlier counterexample construction.
+
+An \emph{order shell} in a cyclic group is the set of elements of one
+specified order.  For a signed, order-invariant function $e_i$ taking
+values in $\{-1,0,1\}$, write $P_i$ for its support indicator and $D_i,U_i$
+for the indicators of the lower and upper closures of its support in the
+divisibility order.  The local supports used here are order-convex, and
+comparable support orders have the same sign.  Their lower and upper
+closures therefore intersect exactly in the support.  In indicator
+notation this means
+\begin{equation}\label{h100:local-convexity}
+ D_iU_i=P_i.
+\end{equation}
+Tensor products preserve these properties.
+
+\paragraph{The original upper donor.}
+The hidden factor has order $5^2 11^2 13\cdot17$.  The certificate gives
+16 quadruples $(s_i p_i,b_i,a_i,F_i)$ in \texttt{ppi\_unbalanced\_pair.py}, where $s_i\in\{-1,1\}$,
+$a_i\in\{1,2\}$, and $F_i$ is an upset of hidden orders.  On quotient
+coordinate $i$, the $i$th coatom has order $p_i^{a_i-1}$, and every other
+quotient coordinate has full order.  Give this coatom sign $s_i$ over
+$F_i$, and put zero elsewhere.  The certificate verifies
+\begin{equation}\label{h100:upper-fibres}
+ |F_i|=2400 b_i\rho_i,\qquad
+ \rho_i=\begin{cases}p_i-1,&a_i=1,\\p_i,&a_i=2,\end{cases}
+ \qquad \sum_i s_i b_i=0.
+\end{equation}
+Here $|F_i|$ is its element mass, computed as a sum of Euler totients.
+Each one-step increase of a listed hidden order remains in $F_i$.
+Different quotient coatoms are incomparable, proving the asserted
+support convexity and sign condition.
+
+Consider characters trivial on the hidden factor and of conductor either
+1 or $p_i$ on quotient axis $i$.  Let $T$ be the set of nontrivial axes.
+The full-shell character sums are nonzero.  Dividing by their product
+reduces the Fourier transform of the signed donor to
+\begin{equation}\label{h100:upper-transform}
+ 2400\left(\sum_i s_i b_i-\sum_{i\in T}s_i b_i p_i\right).
+\end{equation}
+Indeed, replacing a full shell by the preceding shell contributes
+$1/\rho_i$ at the trivial character and $(1-p_i)/\rho_i$ at conductor
+$p_i$.  This also holds for $a_i=2$: the two character sums are $-p_i$
+and $p_i-1$.
+
+The 15 nonempty masks $T$ in the certificate satisfy
+$\sum_{i\in T}s_i b_i p_i=0$.  Define
+\[
+ t_T(x)=\prod_{i\in T}
+   \bigl(1-p_i\ind_{\{x_i\bmod p_i=0\}}\bigr).
+\]
+If $x_i$ has additive order $p_i^{v_i}$ in $C_{p_i^{a_i}}$, then
+$x_i\bmod p_i=0$ exactly when $v_i<a_i$.  Thus every packet depends
+only on which quotient coordinates have full order; all lower
+valuation levels of a nonfull coordinate give the same packet bit.
+Its Fourier support is precisely in the corresponding conductor packet,
+with trivial hidden character.  Thus each $t_T$, and the constant
+function, is annihilated by convolution with the donor.  The rational
+coefficients $\alpha_T$ are the unique solution of
+\[
+ \sum_{T\ni i}\alpha_T=-\frac1{p_i}\qquad(1\le i\le16),
+\]
+obtained using the minor formed by the first fifteen prime rows in the
+order of the \texttt{FIBERS} table.  Its determinant is 193, and the
+sixteenth equation follows as well: each incidence column is orthogonal
+to $(s_i b_i p_i)_i$, and the right-hand side is orthogonal to this
+vector because $\sum_i s_i b_i=0$. The residual of the first fifteen
+equations has only its final coordinate possibly nonzero, whereas
+$s_{16}b_{16}p_{16}\ne0$.  Put
+\begin{equation}\label{h100:upper-witness}
+ u_0=-\sum_T\alpha_T+\sum_T\alpha_T t_T.
+\end{equation}
+It equals 1 at every quotient coatom and 0 at full quotient order.
+The hidden upset property therefore gives $u_0=P_0$ on the upper
+closure of the original upper donor.  Its denominator divides
+\[
+ d_u=193\prod_{i=1}^{16}p_i
+ =3014022061265152916156802594989230493.
+\]
+Exact evaluation on all $2^{16}$ quotient reduction states gives
+$\|u_0\|_\infty<602953959432$.
+
+\paragraph{The lower donor.}
+The array \texttt{LOWER} in \texttt{ppi\_weighted\_fibers.py} supplies 14 signed distinct primes $s_i p_i$ and 13
+conductor masks.  Give singleton order $p_i$ sign $s_i$ and all other
+orders value zero.  Its transform at a conductor mask $T$ is
+\[
+ \sum_i s_i(p_i-1)-\sum_{i\in T}s_i p_i.
+\]
+The first sum and all 13 selected mask sums vanish.  Use normalized
+packets whose local factor is 1 at zero and $-1/(p_i-1)$ elsewhere.
+The incidence equations
+\[
+ \sum_{T\ni i}\beta_T=\frac{1-p_i}{p_i}
+\]
+and constant coefficient $-\sum_T\beta_T$ give an annihilator $l$ that
+is zero at the origin and one at every singleton order.  These are
+exactly the required values $P_L$ on its lower closure.
+The first thirteen rows of the $14\times13$ incidence matrix
+$(\mathbf1_{i\in T})_{i,T}$, in the listed prime order, have determinant
+$317$. Solve those rows to define $\beta$ uniquely. The last equation
+then follows without an additional choice: each column is orthogonal
+to $(s_ip_i)_i$, and so is the right-hand side, since
+$\sum_i s_ip_i(1-p_i)/p_i=-\sum_i s_i(p_i-1)=0$.
+The residual has only its last coordinate possibly nonzero, whereas
+$s_{14}p_{14}\ne0$, forcing that coordinate to vanish.
+
+A clearing
+denominator is
+\begin{align*}
+ d_l&=\operatorname{lcm}\left(
+       \operatorname{den}\Bigl(\sum_T\beta_T\Bigr),
+       \left\{\operatorname{den}(\beta_T)
+                   \prod_{i\in T}(p_i-1):T\right\}\right)\\
+    &=4235516862890801652238669870882885211295864374904382095360000,
+ \qquad v_2(d_l)=19.
+\end{align*}
+The exact $2^{14}$-state evaluation gives
+$\|l\|_\infty<2447/1000$.
+
+\paragraph{Three two-prime corrections.}
+On a block with distinct odd primes $p<q$, let $d$ have values $+1$ at
+order $p$, $-1$ at order $q$, and zero elsewhere.  Its total is $p-q$,
+which is nonzero.  Nevertheless, its transform vanishes when both
+character coordinates are nontrivial, because both singleton shells
+then have character sum $-1$.  Hence
+\[
+ T=(1-p\ind_{\{x_p=0\}})(1-q\ind_{\{x_q=0\}}),\qquad
+ v=-\gamma T
+\]
+annihilates $d$ for any positive dyadic $\gamma$.  Write $P_B$ for its support
+indicator and $Z=(p-1)(q-1)$.
+
+If $u$ annihilates an old discrepancy and equals its support indicator
+$P_A$ on the old upper closure, put
+\[
+ C(x)=\begin{cases}P_B(x)-v(x),&x\ne0,\\0,&x=0,\end{cases}
+ \qquad
+ u'=u\otimes C+P_A\otimes v.
+\]
+Each summand has an annihilating factor.  On the product upper closure,
+$u=P_A$ and $C+v=P_B$, so $u'=P_AP_B$.  Moreover,
+\begin{equation}\label{h100:partial-bound}
+ \|u'\|_\infty\le
+ \max\left\{1,\gamma Z,
+   \|u\|_\infty\max_{x\ne0}|P_B(x)+\gamma T(x)|\right\}.
+\end{equation}
+When $P_A=1$, the value is $P_B$ off the new origin and $-\gamma Z$
+at it; when $P_A=0$, only $u\otimes C$ remains.  This proves the bound
+without any mean-zero assumption on the added block.
+
+Apply this correction successively to
+\[
+ (776561,776563),\qquad(881,883),\qquad(29,31).
+\]
+For each pair, start with $B=\max|u_0|$ and then update $B$ to the
+exact maximum on the right side of~\eqref{h100:partial-bound} after
+each correction. For that current $B$, set
+\[
+ b=\operatorname{bitlength}(Z)+24,\qquad
+ a=\min\left\{\frac{2(p-1)(q-1)}{p+q-2},
+              \frac{B(q-1)}{B+q-1}\right\},\qquad
+ \gamma=2^{-b}\left\lfloor\frac{2^b a}{Z}\right\rfloor.
+\]
+The successive precisions are 64, 44 and 34.  Starting with the exact
+maximum absolute value among the $2^{16}$ values of $u_0$, evaluation of the three
+nonzero orders in each block in \eqref{h100:partial-bound} gives successive
+norm bounds below 776562, 882 and $6079/200$.  Denote the final upper witness
+by $u$, and the original upper donor together with these three pairs by
+$A$.  Its discrepancy remains balanced, since the original upper donor
+has total zero.  The last recursively certified bound is
+$\mathcal U=30.3949675245\ldots$.  With $\mathcal L=\|l\|_\infty$, we use
+\begin{equation}\label{h100:individual-bounds}
+ \|u\|_\infty\le\mathcal U<6079/200,\qquad
+ \|l\|_\infty\le\mathcal L<2447/1000.
+\end{equation}
+
+\paragraph{Dyadic anchors from two modular helpers.}
+Let $o=\operatorname{oddpart}(d_l)$ and
+\[
+ k=249391\,2^{32}\left(\prod_{p\le31,\ p\ {\rm prime}}p\right)d_u.
+\]
+The upper helper uses the primes
+$Q=(1+2k,1+12k,1+3k,1+4k)$ and signs $+,+,-,-$ on the respective
+coatoms.  Its total is zero because
+$1/2+1/12=1/3+1/4$, and its fully nontrivial Fourier packet vanishes
+because the signs sum to zero.  Set
+\[
+ T_u=\prod_i(1-Q_i\ind_{\{x_i=0\}}),\qquad V_u=1-T_u.
+\]
+Then $V_u$ annihilates this helper.  It equals 0 at full order and
+$Q_i\equiv1\pmod {d_u}$ at coatom $i$.  Therefore
+\[
+ C_u=\frac{P_{M_u}-V_u}{d_u} \text{on }U_{M_u},\qquad C_u=0
+ \ \text{elsewhere},\qquad
+ W_u=(d_u u_0)\otimes C_u+P_0\otimes V_u
+\]
+is an integral annihilator equal to $P_0P_{M_u}$ on the combined upper
+closure.
+
+For the lower helper, put $q_*=Q_1$, let $m_0$ be its least nonnegative
+inverse modulo $o$, and use the primes
+\[
+ q_i=1+q_*(m_0+j_i o),\qquad (j_1,j_2,j_3,j_4)=(304,328,170,462).
+\]
+Give their singleton shells signs $+,+,-,-$.  Its total and fully
+nontrivial Fourier packet are zero.  If
+\[
+ T_l=\prod_i(1-q_i\ind_{\{x_i=0\}}),\qquad
+ b_0=(-2)^{-1}\pmod o,\qquad V_l=b_0(T_l-T_l(0)),
+\]
+where $b_0$ is the least nonnegative residue. Then $V_l$ annihilates the helper, is zero at the origin, and is 1 modulo
+$o$ at each singleton.  Indeed every $q_i\equiv2\pmod o$, and the
+unscaled difference at singleton $i$ is
+$q_i\prod_{j\ne i}(1-q_j)\equiv-2\pmod o$.  Thus
+\[
+ C_l=\frac{P_{M_l}-V_l}{o}\ \text{on }D_{M_l},\qquad C_l=0
+ \ \text{elsewhere},\qquad
+ W_l=(o l)\otimes C_l+P_L\otimes V_l
+\]
+is a dyadic annihilator with the required lower-closure values.
+
+All helper primality claims have finite Pocklington certificates: enough
+certified prime-power factors of $N-1$ have product exceeding $\sqrt N$,
+and the requisite modular-power and gcd witnesses are checked.  Upper
+helper factors are certified by trial division; lower certificates use
+an already certified upper prime and small trial-divided primes.  These
+checks are implemented by \texttt{pocklington} in
+\texttt{ppi\_modular\_pair.py}, called through \texttt{assemble\_bounds}
+by the main verifier.  The eight helpers and all other fixed primes are
+distinct.
+
+For completeness, the norm-reducing dyadic blend is explicit.  For
+either $W_u$ or $W_l$, let $B$ be the bound obtained by evaluating $V,C$
+on all 16 helper activity states and applying
+\[
+ \|W\|_\infty\le B:=d\|v\|_\infty\|C\|_\infty+\|V\|_\infty,
+\]
+where $v=u_0,d=d_u$ or $v=l,d=o$, respectively.  Write $d_0=d_u$ or
+$d_l$ for the individual clearing denominator, and set
+\[
+ b=\operatorname{bitlength}\bigl(
+       \operatorname{oddpart}(d_0)(\lfloor B\rfloor+2)\bigr),
+ \qquad
+ \theta=\frac{\operatorname{oddpart}(d_0)
+        \lfloor2^b/\operatorname{oddpart}(d_0)\rfloor}{2^b}.
+\]
+Replace $W$ by $\theta(v\otimes P_M)+(1-\theta)W$.  Its boundary
+values and annihilation are unchanged; its norm is less than
+$\|v\|_\infty+1$, since $(1-\theta)B<1$.  It is dyadic of exponent
+at most $b+v_2(d_0)$.  Finally multiply the upper anchor by the support
+indicators of the three added pairs.  This preserves its annihilation,
+boundary values and norm, without requiring those pairs to be balanced.
+Call the resulting paired anchors $\widetilde u,\widetilde l$.  We may
+take their norm bounds to be
+$\mathcal U_*=\|u_0\|_\infty+1$ and $\mathcal L_*=\mathcal L+1$.
+Their certified dyadic exponents
+are at most
+\begin{equation}\label{h100:anchor-exponents}
+ e_u=967,\qquad e_l=1986.
+\end{equation}
+The original upper exponent is 964; the three additional bits in 967
+are a harmless allowance for the support extension.
+
+\paragraph{Damping and rank.}
+For each of the 20 primes in \texttt{PAD\_PRIMES} in \texttt{ppi\_100\_prime\_pair.py}, use the factor
+$C_{p^2}\times C_q$, where $q=p(p-1)+1$, with discrepancy $+1$ at
+order $p^2$ and $-1$ at order $q$.  Their masses both equal $p(p-1)$,
+so every damping discrepancy is balanced.  The certificate separately
+certifies all 40 primes by trial division and checks disjointness.
+Let $H$ be the product of the 48 fixed primary factors and these damping
+factors; let $e$ be the tensor product of their discrepancies.  Thus
+$H$ has 88 distinct odd prime factors.  Write $D,U,P$ for the global
+closure and support indicators.
+
+On the original upper donor take the number of full-order quotient
+coordinates plus $1-D_0+U_0$.  Add the activity count of each of the
+three pairs to obtain $r_A$.  On the lower donor and each modular helper
+use the activity count.  On each damping factor use $1-D_i+U_i$.
+Their sum $r$ is weakly increasing in the divisibility order and has
+bound
+\begin{equation}\label{h100:rank-bound}
+ R=(18+6)+14+4+4+20\cdot2=86.
+\end{equation}
+The aggregate upper rank is exactly $16+3=19$ on its support.
+
+If two orders are comparable and have equal rank, all their nonnegative
+local rank increments vanish.  In the original upper donor this preserves
+each full-order quotient indicator and both closure bits; it therefore
+preserves $P_0=D_0U_0$ and every quotient packet.  In the pairs, lower
+donor and helpers it preserves every activity bit.  In each damping
+factor it preserves $D_i,U_i,P_i$.  These data determine every witness,
+anchor and function below, including their dependence on hidden orders.
+Consequently all constructed profiles agree at comparable equal-rank
+orders.
+
+\paragraph{Product interpolation.}
+For $X=D,U,P$, factor $X=\prod_i X_i$ using the aggregate upper block,
+the lower donor, the two helpers and the 20 damping blocks.  Define
+\begin{equation}\label{h100:product-interpolation}
+ F(X)=X-\prod_i(X_i-a_i).
+\end{equation}
+On the upper block the approximants for $D,U,P$ are respectively
+$(u,1,u)$; on the lower block they are $(1,l,l)$.  The helper and damping
+approximants are $1/2$, except in $F(U)$ on the lower helper.  There put
+\[
+ a_{M_l}=1-\alpha T_l,\qquad
+ \alpha=2^{-2003}\left\lfloor\frac{2^{2003}}{T_l(0)}\right\rfloor,
+ \qquad \eta=\frac1{\min_i q_i-1}.
+\]
+This annihilates the helper and approximates its upper closure with
+error at most $\eta$.  At the origin the error is
+$1-\alpha T_l(0)\le\eta$, checked exactly; away from the origin,
+$|T_l(x)|/T_l(0)\le\eta$ and $\alpha T_l(0)\le1$.
+
+Every surviving term after expanding \eqref{h100:product-interpolation}
+contains an annihilating local factor.  Thus $e*F(X)=0$.  The upper and
+lower witnesses make at least one local subtraction vanish on each
+required global closure, giving exact interpolation there.
+
+For each local rank $r_j$, similarly define $G_j(X)$ by replacing the
+target on block $j$ with $r_jX_j$: if $Y_j=r_jX_j$ and
+$Y_i=X_i$ for $i\ne j$, then
+\[
+ G_j(X)=r_jX-\prod_i(Y_i-a_i).
+\]
+The grouping exception below uses the same formula on the grouped
+factors.  In these moving products every
+stationary helper uses $1/2$.  The moving approximants are as follows:
+on the lower donor use $l$ for all three targets; on a helper or damping
+factor use zero; on the aggregate upper block use $19u$ for $D,P$.
+For the remaining target, moving $r_AU$, group $A$ with its upper
+helper and use
+\[
+ Y=r_AU_AU_{M_u},\qquad a=r_A\otimes1.
+\]
+This grouped approximant annihilates the product discrepancy because
+the helper is balanced; it is exact on the joint upper closure and
+has error at most the upper rank bound.  This step avoids assuming
+that the three added pairs individually have zero mean.  The first
+lower donor still supplies exactness on the global lower closure.
+All these $G_j(X)$ annihilate $e$ and equal $r_jX$ on both forced
+closures.  Each bare $r_j$ is also annihilated, since another balanced
+factor is independent of it.
+
+For the positive parameters $c,\delta$ specified by the spectator
+certificate, set
+\begin{equation}\label{h100:rational-profile}
+ \begin{split}
+ w_r={}&c+(2-c)F(D)-cF(U)+(c-1)F(P)\\
+       &-\delta\sum_j\bigl[r_j-G_j(D)-G_j(U)+G_j(P)\bigr].
+ \end{split}
+\end{equation}
+Then $e*w_r=0$.  Using $DU=P$, its forced values are $2-P$ on $D$ and
+$P$ on $U$.  In particular they are 1 on support, 2 on the strict
+lower closure and 0 on the strict upper closure.
+
+For $0<c<2$, the stationary errors for $D,U,P$, after removing the
+common damping factor $2^{-20}$, are bounded by
+\[
+ \frac{1+\mathcal U}{4},\qquad
+ \frac{(1+\mathcal L)\eta}{2},\qquad
+ \frac{(1+\mathcal U)(1+\mathcal L)}4.
+\]
+Each moving product has error at most
+$m_j(1+\mathcal U)(1+\mathcal L)2^{-21}$, where $m_j$ is its rank
+bound.  Moving a helper or a damping factor removes at most one
+midpoint factor; the grouped upper/helper case satisfies the same
+bound.  Summing the three targets and $\sum_jm_j=R$ proves that, on
+every free order,
+\begin{equation}\label{h100:rational-error}
+ |w_r-(c-\delta r)|\le2^{-20}
+ \left[\frac{(1+\mathcal U)(3+\mathcal L)}4
+       +(1+\mathcal L)\eta
+       +\frac32R\delta(1+\mathcal U)(1+\mathcal L)\right].
+\end{equation}
+Denote this right-hand side by $\mathcal E_{\mathrm{rat}}$.  The exact
+spectator parameters in Section~\ref{h100:mass} satisfy
+$\delta>1697/10^7$, and the helper primes give $\eta<10^{-6}$.
+Substituting these rational bounds, \eqref{h100:individual-bounds}, and
+$R=86$ into \eqref{h100:rational-error} gives
+\[
+ \frac{\mathcal E_{\mathrm{rat}}}{\delta}
+ <\frac{90242379537969}{355886694400000}
+ <\frac{254}{1000}.
+\]
+
+\paragraph{Final dyadic profile and precision.}
+Construct $w_0=2F(D)-F(P)$ with the original upper donor, its helper
+and the three pairs grouped together, and the lower donor and its helper
+grouped together.  For the targets $D,P$ use respectively
+$(\widetilde u,\widetilde u)$ on the upper pair and
+$(1,\widetilde l)$ on the lower pair; every damping approximant is
+$1/2$.  The same product-subtraction formula applies.  This $w_0$ has
+the same annihilation and forced values, and
+\[
+ \|w_0\|_\infty\le2+3(1+\mathcal U_*)(1+\mathcal L_*).
+\]
+Let
+\[
+ E=\operatorname{oddpart}(d_ud_l),\qquad
+ \lambda=\frac{E\,\left\lfloor2^{367}/E\right\rfloor}{2^{367}},\qquad
+ w=\lambda w_r+(1-\lambda)w_0.
+\]
+The spectator parameters satisfy $0<c-R\delta<c<2$ and $0<\delta<1$. Together with the error bound and the forced values, these inequalities give $\|w_r\|_\infty<3$.
+The additional error from this blend is at most
+\[
+ \mathcal E_{\mathrm{blend}}=
+ (1-\lambda)\bigl[5+3(1+\mathcal U_*)(1+\mathcal L_*)\bigr].
+\]
+Indeed $E<2^{304}$, so $0\le1-\lambda<2^{-63}$, while the anchor
+bounds give $5+3(1+\mathcal U_*)(1+\mathcal L_*)<8.1\cdot10^{12}$.
+Thus, with $m=7/2$,
+\[
+ \frac{\mathcal E_{\mathrm{blend}}}{\delta}
+ <\frac{81\cdot10^{18}}{1697\cdot2^{63}}
+ <\frac{2}{231}=\frac1{33m}.
+\]
+The exact certificate evaluates the two bounds separately as
+$\mathcal E_{\mathrm{rat}}/\delta=0.2534210321\ldots$ and
+$\mathcal E_{\mathrm{blend}}/\delta=0.0005089276\ldots$; their sum
+$0.2539299597\ldots$ is the combined interpolation-error bound.
+Since $254/1000+1/(33m)=30337/115500<1/m$, every free order satisfies
+\begin{equation}\label{h100:final-profile}
+ e*w=0,\qquad |w-(c-\delta r)|<\delta/m.
+\end{equation}
+The forced values and equal-rank invariance are unchanged.
+
+We record the precision argument independently of any enumeration of
+free orders.  In the normalized spectator units used below, $K$ is an
+integer, $Kc$ has dyadic exponent at most 177 and $K\delta$ at most 161.
+The combined individual donor exponent is
+\[
+ d_y=19+64+44+34=161.
+\]
+Every product term uses each original individual donor at most once.
+Thus the odd denominator of $Kw_r$ divides $E$; the other operations
+introduce only dyadic denominators.  Counting both helper midpoint bits,
+the flat-helper exponent 2003, and all 20 damping bits gives the
+conservative bound
+\[
+ 177+161+2003+2+20=2363
+\]
+for its dyadic exponent before the final blend.  Moving terms need
+at most $161+161+2+20=344$.  The paired anchor has exponent at most
+$967+1986+20=2973$.  The numerator of $\lambda$ clears $E$, and its
+denominator costs 367 bits.  Hence $Kw$ is dyadic of exponent at most
+$3340$.  For the fine mass unit $M=64$, the exponent of $Kw/(2M)$ is
+at most $3347$.  The certificate uses the larger value
+\begin{equation}\label{h100:fine-precision}
+ A=367+20+
+ \max(177+161+2003+3,\ 161+161,\ 967+1986)+6+7=3353.
+\end{equation}
+This leaves six spare bits for the profile.  The ordinary-slot baseline
+precision is checked separately in the section decoder.  Division by
+$2^{\ell-R}$ multiplies by an integer for $0\le\ell\le R$, so cannot
+worsen the dyadic denominator.
+
+\section{The twelve spectator primes}\label{h100:spectator}
+
+The odd part of \(S\) projects onto a tag quotient of order \[
+ Q=3^5\,7^3\,19^2\,23^2\,37^2\,41^2\,43\,47\,71\,83\,113\,149 .
+\] Use this displayed prime order for tuples of projected order exponents. The guards are \(3,7,113\). The control primes are \(23,37,41\). The six remaining primes \(19,43,47,71,83,149\) carry additional kernel powers \((4,3,3,3,3,2)\) respectively, of product \(B\). The control primes each carry one additional kernel power, of product \(C=34891\). Thus \(|S|=QBC\,2^{3446}\). The map on odd parts is reduction onto \(C_Q\) with kernel of order \(BC\). Common prime factors of the kernel and quotient are included in these exponents.
+
+For tag \(v\) let \(V(v)=\prod_i\varphi(p_i^{v_i})\), with \(\varphi(1)=1\). The tag \(g\) having full exponents on the three guards and zero elsewhere has mass \(G=5334336=64h\), where \(h=83349=3^5 7^3\). Measure section sizes in units \(hC\,2^{3446}\). The full normalized mass is the integer \(K=QB/h\). An unrestricted odd preimage above tag \(v\) has normalized mass \(V(v)B/h\) at full dyadic height.
+
+A tag is early if either the 3 or 7 exponent is below its maximum. It is late if those two are full and the 113 exponent is below its maximum. In each class consider the tags with \(h\mid V(v)\). Take the 214 heaviest early tags and 400 heaviest late tags, resolving a tie by decreasing lexicographic order. Call these the ordinary slots. Fill every other early or late tag completely as the background. All tags with full guards outside \(g\) are empty. Above \(g\) use the fine slots below. The normalized background mass is \[
+ n=\frac Bh\sum_{v\text{ in background}} V(v).
+\] The verifier enumerates every tag and every immediate divisor, verifies the divisibility of this sum by \(h\), and checks that the background is downward closed and contains every strict divisor of \(g\). There are 124416 tags, of which 121210 belong to the background.
+
+\subsection{Ordinary slots}\label{ordinary-slots}
+
+Use the permutation in \texttt{ppi\_100\_slot\_order.json} in the electronic supplement. Its integers are zero-based indices into the tag tuples in increasing lexicographic order, so the last exponent changes fastest. Pair successive entries as groups numbered from zero. The verifier checks that this is precisely the chosen set, early first, and that every ordinary immediate divisor of an ordinary slot occurs earlier. Each immediate divisor either belongs to the background or is such an earlier slot. This also controls non-immediate divisors by induction. Thus the file fixes a linear extension of divisibility, with the early class first; the within-class order need not be decreasing by mass. All subsequent group sums and decoder parameters use this recorded order.
+
+Put \(W_i=V(v_i)B/h\). Take \(H_0=\lfloor 99 W_{\min,\mathrm{early}}/100\rfloor\). Let \(\beta_i\) be the unique integer power of two for which \(H_0/2<W_i\beta_i\le H_0\). Write \(z_i=W_i\beta_i\). For a used ordinary slot take the full odd preimage, with the dyadic subgroup at the height specified in Section~\ref{h100:nesting}. Thus \(\beta_i\) is its base relative height, possibly greater than one before the level scaling of a late slot.
+
+The first step on a prime axis multiplies shell mass by \(p-1\) and each subsequent step multiplies it by \(p\). Hence strict divisibility \(v_i<v_j\) implies \(W_j\ge 2W_i\). The common normalization interval then gives \(\beta_j\le\beta_i/2\). This allows the ordinary slots to be comparable even when their digits are selected independently.
+
+\subsection{Fine slots}\label{fine-slots}
+
+Above \(g\), the variable and control coordinates project to zero, so their allowed elements lie in the respective primary kernels. Use the 3840 possible variable kernel shell tuples \(v\), with each exponent running from zero to its additional kernel exponent. Set \[
+ V_v=G\prod_{p\ {\rm variable}}\varphi(p^{v_p}),\qquad
+ d_v=\prod_{p\ {\rm control}}p^{v_p(V_v)},\qquad
+ u_v=\operatorname{oddpart}(V_v)/(h d_v),
+\] where \(v_p(V_v)\) in the middle expression is the prime valuation. The checker verifies \(d_v\mid C\) for every \(v\). Use the subgroup of index \(d_v\) of the control kernel at this shell. If the nominal fine height is \(a\), take actual dyadic height \(aM/2^{v_2(V_v)}\) with \(M=64\). The physical odd mass is \(V_vC/d_v\), so the normalized contribution is exactly \(M u_v a\).
+
+Sort the slots by increasing \((u_v,\sum v_p,v)\) lexicographically. A strict divisor precedes its multiple, its control index divides that of its multiple, and its dyadic rescaling factor is at least that of its multiple. Indeed the shell mass divides the successor mass, and removing the control factors preserves divisibility of the odd weights. Ties in weight are resolved by increasing degree. The verifier checks these properties at every immediate divisor. Use the first \(A=3353\) slots and leave later ones empty. The first eight odd weights equal one. The exact tail bound is \(\sum_{j=9}^A u_j2^{-j}<1/4\), using one-based fine indices.
+
+\section{Nested sections and digit weights}\label{h100:nesting}
+
+At level \(l=R-r\), use ordinary groups \(k=0,\ldots,R+159\) inclusive. Later groups are empty. For \(k<l\) freeze the group at doubled base heights. For \(k\ge l\) use base heights divided by \(2^{k-l}\), with an independent option to double each height. Early doubled base heights are at most one. Late groups begin at index 107 and have \(k-l\ge21\) even at \(l=86\). The checker verifies that every late doubled height after this scaling is at most one.
+
+At each level the multiplier common to a group before digit selection decreases weakly with its group index, with the frozen groups already doubled. Together with \(\beta_j\le\beta_i/2\) on strict comparisons, the smallest allowed height at a divisor is at least the largest allowed at a multiple. The empty tail comes last. Every choice on the ordinary slots therefore respects divisibility.
+
+For fine slot \(j\) use nominal height \(2^{l-R-j}\) with an independent option to double. Along strict comparisons the index increases by at least one, which absorbs the optional doubling. The rescaling and control subgroup inclusion proved in Section~\ref{h100:spectator} preserve the containment in the odd and dyadic coordinates. Dividing an element while staying over \(g\) preserves these restrictions or goes to an earlier variable shell. Projecting to a strict divisor of \(g\) leads to the full background. Ordinary tags miss a full guard and cannot lie above \(g\). Any ordinary tag below \(g\) was excluded by the strict-divisor check. Thus every section is a downset. All heights exist on the cyclic dyadic factor. The largest required fine exponent is \(3353+86+7=3446\). The ordinary shifts and depths are smaller. Heights of zero specify the empty section.
+
+Increasing \(l\) by one makes the minimum allowed height at least the previous maximum on each variable slot, or keeps an already frozen slot at its fixed value. The control restrictions do not depend on \(l\). Consequently \textbf{every} decoded section at the higher level contains \textbf{every} decoded section at the preceding level.
+
+\section{Exact mass at each free order}\label{h100:mass}
+
+The file \texttt{ppi\_100\_certificate.json} gives \(s,b\) as integers divided by explicitly stated powers of two. Set \(c=2(n+b+Rs)/K\) and \(\delta=2s/K\), the parameters used in Section~\ref{h100:interpolation}. They can also be regenerated. Round twice the mean of the first 107 group sums of \(z_i\) to the nearest multiple of \(E/2^{161}\), with ties to even, to obtain \(s\). Let \(C_l\) be the ordinary minimum including frozen groups, and \(J_l\) the sum of the two base weights in group \(l\). Explicitly,
+\[
+ J_k=z_{2k}+z_{2k+1},\qquad
+ C_l=2\sum_{k<l}J_k+\sum_{k=l}^{R+159}2^{l-k}J_k.
+\]
+Write \(\lambda_l=2^{l-R}\). The number \(b\) is the midpoint of the intersection over \(l\) of the intervals \[
+ \left[C_l+5M\lambda_l/4-ls+s/m,\quad
+       C_l+5M\lambda_l/4-ls+J_l+H_0-s/m\right].
+\] The verifier regenerates both manifest rationals and checks the interval intersection is nonempty.
+
+On a free order of rank \(r\), the desired normalized section mass \(Kw/2\) belongs to \([n+b+ls-s/m,n+b+ls+s/m]\) by Section~\ref{h100:interpolation}. Write \(T=\sum_{j=1}^A u_j2^{-j}\). From the desired mass subtract \(n+C_l+M\lambda_l T+M\lambda_l/4\). At each of the 87 levels the verifier checks, at both endpoints, that the result lies in \([0,J_l+H_0]\). The subtraction is affine in the desired mass, so this holds throughout the interval.
+
+Visit the unfrozen ordinary groups in order and double each digit whose increment fits the remaining number. A skipped digit leaves a residual smaller than that digit. Taking both digits subtracts \(J_l\) from an input at most \(J_l+H_0\). Either way the first pair leaves at most \(H_0\). At depth \(j\ge1\) the input is at most \(2H_0/2^j\), the individual digits are at most \(H_0/2^j\), and their sum exceeds \(H_0/2^j\). The same argument bounds the output by \(H_0/2^j\). The final depth is \(159+R-l\), and \(H_0/2^{159}\le M/2\). Adding back the reserve \(M\lambda_l/4\) leaves the needed fine increment in \([M\lambda_l/4,3M\lambda_l/4]\).
+
+After division by \(M\lambda_l\), the fine increment lies on the grid \(2^{-A}\mathbb Z\), where \(A=3353\). Section~\ref{h100:interpolation} bounds the dyadic exponent of \(Kw/(2M)\) by 3347. The ordinary normalized weights have at most \(\operatorname{bitlength}(K)\) fractional bits at base height and a further \(159+R\) from depth. Even allowing five additional bits and \(\operatorname{bitlength}(M)=7\) for normalization, their precision bound is only \[
+ \operatorname{bitlength}(K)+159+86+5+7=436<3353.
+\] The background is integral, the reserve becomes \(1/4\), and the normalized fine baseline \(T=\sum_{j=1}^A u_j2^{-j}\) already lies on the grid. Division by \(\lambda_l=2^{l-R}\) multiplies by an integer. These estimates establish the grid condition for every actual free-order value.
+
+To decode the fine increment \(y\) now scaled to \([1/4,3/4]\), start with \(2^Ay\). For \(j=A,\ldots,9\) select the digit when the current integer is odd, subtract \(u_j\) if selected, and divide by two. Oddness of \(u_j\) makes each division exact. If \(\epsilon_j\) are the chosen tail bits and \(q_8\) is the integer after the final division, unwinding the recurrence gives \[
+ q_8=2^8\left(y-\sum_{j=9}^{A}\epsilon_j u_j2^{-j}\right).
+\] The selected tail is nonnegative and less than \(1/4\), while \(1/4\le y\le3/4\). Hence \(0\le q_8\le192<2^8\). Its eight binary digits select the first eight weights, all of which equal one. Doubling exactly those fine heights adds the prescribed mass. The uniform interval and grid proof covers all interior grid points. As supplementary arithmetic checks, the original verifier reconstructs 435 integer masses across the 87 levels, and the separate audit independently reconstructs 2,175 targets. The interval induction and parity identity above establish the universal claim; the samples are not its proof.
+
+
+\begin{proof}[Proof of Theorem~\ref{vi:th:main}]
+The product signed support is nonempty and satisfies the hypotheses of Lemma~\ref{vi:lem:sections}. The profile from Section~\ref{h100:interpolation} annihilates $e$ and has the required forced values. Sections~\ref{h100:spectator}--\ref{h100:mass} realize every free value as a divisor ideal of $S$. A comparable increase of the $H$-order decreases the level $l=R-r$, so the all-choice nesting gives the required inclusion. At comparable equal-rank orders the profile inputs and deterministic decoder agree. The lemma therefore constructs the two genuine subgroup unions and proves their equality of autocorrelation at every labeled shift and their nontranslation.
+
+The odd factors of $H$ and $S$ have disjoint prime sets, so $H\times S$ is cyclic. The prime budget is
+\[
+ \underbrace{26+14+8}_{48\ {\rm fixed}}
+ +\underbrace{20\cdot2}_{40\ {\rm damping}}
+ +\underbrace{12}_{\rm spectator}=100.
+\]
+The additional spectator kernel powers do not introduce any new primes. The independent certificate checks the resulting prime-power map against the manifest and computes the exact bit length 8,123 and decimal length 2,446 of $N=2^{3446}M_{100}$.
+\end{proof}
+
+
+% END sections/08_constructions.tex
+
+
+% BEGIN sections/09_refinements.tex
+\section{Rank dependent precision and a construction with 99 odd primes}
+\label{v2:sec:refined-constructions}
+The preceding construction separates two costs: absolute precision of the required masses and the scale associated with a rank level. These costs need not be added. Making the number of fine positions depend on the level improves the dyadic height; a further spectator guard permits one damping block to be removed.
+
+\begin{lemma}[Truncating the fine decoder]\label{v2:lem:rank-truncation}
+Use the ordinary and fine slots of Sections~\ref{h100:spectator}--\ref{h100:mass}, with rank bound $R$, fine unit $M_0$, and scale $\lambda_l=2^{l-R}$. Suppose the required mass, the background mass, and every ordinary contribution, each divided by $M_0$, have dyadic denominator exponent at most $A$. At level $l$ set
+\[
+ D_l=A-(R-l),\qquad T_l=\sum_{j=1}^{D_l}u_j2^{-j},
+\]
+and retain only the first $D_l$ fine slots. Assume $D_l\geq8$, the first eight $u_j$ equal one, and the full retained tail has sum less than $1/4$. Suppose that subtracting the new minimum and the reserve $M_0\lambda_l/4$ sends the entire target interval into $[0,J_l+H_0]$, and that the ordinary greedy bound leaves at most $M_0\lambda_l/2$. If the corrected depth of fine slot $j$ is $R-l+j+\epsilon_j$, with $0\leq\epsilon_j\leq E_0$, every target is exactly realizable at dyadic height $A+E_0$, provided the ordinary heights fit. All-choice nesting is preserved.
+\end{lemma}
+\begin{proof}
+Division by $\lambda_l$ multiplies by $2^{R-l}$. Thus each normalized target and ordinary contribution lies on the grid $2^{-D_l}\mathbb Z$. The changed fine baseline $T_l$ also lies on this grid. The ordinary greedy estimate, followed by restoring the reserve and dividing by $M_0\lambda_l$, leaves a fine increment in $[1/4,3/4]\cap2^{-D_l}\mathbb Z$. The reverse parity decoder of Section~\ref{h100:mass} applies with $D_l$ digits: oddness of each tail weight makes each division integral, and the tail bound leaves an integer in $[0,255]$ for the eight unit weights. It therefore gives the exact mass for every target on the required grid.
+
+Every corrected depth is at most $R-l+D_l+E_0=A+E_0$. A prefix of the fine ordering is downward closed because every strict divisor precedes its multiple. As $l$ increases, $D_l$ increases by one; the minimum height of every retained slot at the new level equals its previous maximum, and a newly included slot was previously empty. The unchanged control indices therefore preserve every required containment. Ordinary nesting is unchanged.
+\end{proof}
+
+\begin{corollary}[A smaller dyadic height for the same odd part]
+\label{v2:cor:h100-height}
+Let $M_{100}$ be the odd integer specified in Appendix~\ref{vi:app:compute}. There are distinct nontranslated homometric subgroup unions in
+$\mathbb Z_{2^{3360}M_{100}}$. In particular the earlier modulus
+$2^{3446}M_{100}$ is not divisibility-minimal.
+\end{corollary}
+\begin{proof}
+Keep the odd core, all spectator prime powers, the profile $w$, and the ordinary parameters of the preceding construction. Take $R=86$, $A=3353$, $M_0=64$, and $D_l=3353-(86-l)$. The precision estimate~\eqref{h100:fine-precision} bounds the required absolute precision before division by $\lambda_l$; the ordinary bound in Section~\ref{h100:mass} is smaller. The fine corrections lie between zero and seven, and the first eight weights and tail condition are unchanged.
+
+The exact finite check \file{experiments/ppi_100_rank_precision.py} verifies the new interval endpoints at all 87 levels and that all ordinary heights fit. These are rational inequalities, and the subtraction determining the starting residual is affine in the target, so the endpoint checks cover each entire interval. Lemma~\ref{v2:lem:rank-truncation} gives exact nested sections at height $3353+7=3360$. The signed profile and its convolution annihilation are unchanged, so Lemma~\ref{vi:lem:sections} proves labeled homometry and nontranslation. The separate implementation \file{verification/h99_independent_audit.py}, using the included data and an H100 donor report checked by the arithmetic audit, verifies all 174 changed endpoint inequalities and maximum depth 3360, and reconstructs 435 actual dyadic-grid targets. Its output is \file{evidence/h99_independent_results.json}, under \texttt{H100\_rank}.
+\end{proof}
+
+\begin{theorem}[A construction with 99 distinct odd primes]
+\label{v2:thm:h99}
+Put $p=2101327$ and $q=p(p-1)+1=4415573059603$, and define
+\[
+ M_{99}=\frac{65537M_{100}}{p^2q},\qquad N_{99}=2^{3408}M_{99}.
+\]
+There are distinct nontranslated subgroup unions in $\mathbb Z_{N_{99}}$ with identical autocorrelation at every labeled shift. The odd part $M_{99}$ has exactly 99 distinct prime divisors. The modulus $N_{99}$ has 8,017 bits. Consequently some divisibility-minimal nonrigid modulus has at most 99 distinct odd prime divisors.
+\end{theorem}
+\begin{proof}
+We give the modifications explicitly. The interpolation and realization arguments from the preceding sections then apply with the finite inequalities recorded below. All finite data and checkers are included in the electronic supplement.
+
+\paragraph{Odd core and interpolation.}
+Delete the last damping block $C_{p^2}\times C_q$ and retain the first 19. The fixed donor and helper factors, witnesses, and clearing factor $E$ are unchanged. All local support properties survive tensoring with these 19 factors; the rank bound is
+\[
+ R=46+2\cdot19=84.
+\]
+Use~\eqref{h100:rational-profile} with these blocks. Its error on free orders is bounded by
+\begin{equation}\label{v2:eq:h99-error}
+ \mathcal E_{19}=2^{-19}\left[
+ \frac{(1+\mathcal U)(3+\mathcal L)}4+(1+\mathcal L)\eta
+ +\frac32R\delta(1+\mathcal U)(1+\mathcal L)\right].
+\end{equation}
+The proof of~\eqref{h100:rational-error} uses one factor $1/2$ per stationary damping block, so replacing 20 by 19 gives precisely this estimate. The paired anchor uses the same 19 blocks. Blend with weight
+\[
+ \lambda=\frac{E\lfloor2^{400}/E\rfloor}{2^{400}}.
+\]
+Annihilation, boundary values, and invariance at comparable equal-rank orders are unchanged. The parameters below satisfy
+\begin{equation}\label{v2:eq:h99-error-check}
+ 0<c-R\delta<c<2,\qquad
+ \frac{\mathcal E_{19}+(1-\lambda)
+ [5+3(1+\mathcal U_*)(1+\mathcal L_*)]}{\delta}
+ <\frac{339}{1000}<\frac{10}{27}.
+\end{equation}
+The first inequality and the last bound are checked with rational arithmetic, using the donor values already specified in Section~\ref{h100:interpolation}. Thus the blended profile satisfies $e*w=0$ and
+$|w-(c-\delta r)|<\delta/m$ on free orders, where $m=27/10$.
+
+\paragraph{The additional spectator guard.}
+Append the prime 65537, to exponent one, as the last tag coordinate. Declare it a fourth guard. The other tag exponents, variable kernel $B$, control kernel $C=34891$, and common odd normalization $h=83349$ are unchanged. The distinguished tag $g$ has all four guards full and all other coordinates zero. Its shell mass is $65536$ times the previous one. Consequently
+\[
+ Q=65537Q_{100},\quad K=QB/h,\quad M_0=64\cdot65536=2^{22}.
+\]
+Section masses are measured in units $hC2^{3408}$; the full spectator has normalized mass $K$.
+
+The file \texttt{ppi\_99\_slot\_order.json} lists 504 distinct tags in the same increasing lexicographic indexing convention, with 65537 last. Every listed tag misses at least one guard. Fill every other tag missing a guard as background, and let $n$ be its normalized mass. All remaining tags outside $g$ are empty. The finite certificate checks all immediate divisor relations: the background is a downset; every proper subtag of $g$ belongs to it; and an ordinary tag has every immediate divisor in the background or earlier in the list. These checks also show that no ordinary tag is comparable with $g$. There are 248,832 tag tuples and 245,736 background tags.
+
+For ordinary slot $i$ put $W_i=V(v_i)B/h$. Let $H_0$ be the floor of $0.99$ times the least of the first 174 weights. Choose the unique power of two $\beta_i$ with $H_0/2<W_i\beta_i\leq H_0$, and pair successive slots. Use groups $0,\ldots,R+159$, with later groups empty. Use the same frozen and unfrozen level scaling as in Section~\ref{h100:nesting}. Strict divisibility multiplies an odd shell weight by at least two, hence divides its normalized base height by at least two. The recorded order therefore makes every choice of ordinary digits downward closed. The exact height inequalities check that all these subgroups exist at height 3408.
+
+\paragraph{Parameters and intervals.}
+Choose $s$ as the nearest multiple of $E/2^{192}$ to $130352847K/10^{12}$, with ties to even. Let $C_l$ be the ordinary minimum, including frozen groups, and $J_l$ the sum of the two unscaled digit weights in group $l$. With $\lambda_l=2^{l-R}$, let $b$ be the midpoint of the intersection, over $0\leq l\leq R$, of
+\[
+ \left[C_l+\frac54M_0\lambda_l-ls+\frac{s}{m},\quad
+ C_l+\frac54M_0\lambda_l-ls+J_l+H_0-\frac{s}{m}\right].
+\]
+This intersection has positive width. Set
+\[
+ \delta=2s/K,\qquad c=2(n+b+Rs)/K.
+\]
+The $s/m$ terms cancel between the maximal lower and minimal upper endpoints when forming the midpoint, so $b$ is dyadic. Although the interval endpoints need not be dyadic, the actual requested masses have the grid property proved next. Equation~\eqref{v2:eq:h99-error-check} puts every requested free mass $Kw/2$ in
+$[n+b+ls-s/m,n+b+ls+s/m]$.
+
+\paragraph{Absolute precision.}
+Multiplying the old guard mass by $2^{16}$ preserves every odd fine weight $u_j$ and control index. Let $d(x)$ denote the reduced denominator exponent of a dyadic rational. With the original donor precision parameters $d_y=161$, $e_u=967$, $e_l=1986$, and flat-helper precision $f=2003$, the product expansion gives the bound
+\begin{align*}
+ A_{\rm profile}={}&400+19+
+ \max\{d(Kc)+d_y+f+3,\ \max(d(s),d(K\delta))+d_y,\ e_u+e_l\}\\
+ &+6+\operatorname{bitlength}(M_0)=3401.
+\end{align*}
+Each original donor occurs at most once per monomial; the final blend numerator clears its odd denominator. Thus this is a bound on the dyadic denominator exponent of $Kw/(2M_0)$ before division by $\lambda_l$, not merely a check on sampled targets. The ordinary contributions have the smaller bound
+\[
+ \operatorname{bitlength}(K)+159+R+5+\operatorname{bitlength}(M_0)=466.
+\]
+Take $A=3401$ and $D_l=3401-(84-l)$. The correction depths still have maximum seven.
+
+\paragraph{Exact realization and nesting.}
+At every level retain the first $D_l$ fine slots and use their actual baseline
+$T_l=\sum_{j=1}^{D_l}u_j2^{-j}$. The finite certificate verifies, at both endpoints of the target interval, that subtracting $n+C_l+M_0\lambda_l(T_l+1/4)$ leaves a number in $[0,J_l+H_0]$. Affinity covers every interior target. It also verifies $H_0/2^{159}\leq M_0/2$, the first eight unit weights, the tail bound, and all ordinary heights. Lemma~\ref{v2:lem:rank-truncation} now realizes every actual free mass exactly at height $3401+7=3408$, with all-choice nesting. Comparable equal-rank orders have the same profile inputs and receive the same deterministic decoding.
+
+For clarity, these finite checks comprise 170 endpoint inequalities over 85 levels. The original program \file{experiments/ppi_99_prime_pair.py} reconstructs 255 targets. The separate implementation \file{verification/h99_independent_audit.py} imports no construction-verifier module and uses the checked H100 donor rationals as data. It reconstructs five actual dyadic-grid targets per level: both endpoints and three strict interior points, for 425 targets in total. It also reproduces the changed precision and error bounds. Its output is \file{evidence/h99_independent_results.json}, under \texttt{H99}. The proof for every actual target is the interval, denominator and parity argument above; the finite reconstructions are supplementary checks.
+
+On the signed support choose opposite full and empty sections; on the strict lower and upper closures choose common full and empty sections; elsewhere use the identical decoded sections. The support geometry and nesting make both sets divisor ideals. Lemma~\ref{vi:lem:sections} gives their homometry at every labeled shift and their nontranslation.
+
+The prime count is $48+38+13=99$, with all three prime sets disjoint. The original certificates prove all retained primality claims; trial division proves the additional prime 65537. The changed prime-power map is exactly $65537M_{100}/(p^2q)$, and exact integer arithmetic gives the stated bit length. Finally, choose a nonrigid divisor of $N_{99}$ minimal among its divisors. Any proper nonrigid divisor of that chosen number would also divide $N_{99}$, a contradiction. Such a modulus is therefore globally divisibility-minimal and has at most 99 odd prime divisors; neither its identity nor a lower bound of 99 is asserted.
+\end{proof}
+
+% END sections/09_refinements.tex
+
+
+% BEGIN sections/10_consequences.tex
+\section{Consequences, arithmetic boundaries and open questions}\label{v2:sec:consequences}
+
+\begin{corollary}[Closure under multiples]\label{vi:cor:lift}
+The set of nonrigid moduli is closed under taking multiples. For fixed odd $M$, the heights $e$ for which $2^eM$ is nonrigid form either the empty set or an upper interval beginning at some integer at least two.
+\end{corollary}
+\begin{proof}
+Let $A\ne B$ be homometric subgroup unions in $C_N$ and let $\pi:C_{kN}\to C_N$ be reduction. Preimages of subgroups are subgroups and
+\[
+ C_{\pi^{-1}A}(t)=kC_A(\pi(t))
+\]
+because every starting point downstairs has exactly $k$ lifts. The two preimages are distinct and homometric. A translation between them would project to a translation downstairs. The height assertion follows by taking $k=2$ and using odd-order and twice-odd rigidity.
+\end{proof}
+
+For an odd integer $M$ define
+\[
+ h(M)=\min\{e\ge0:2^eM\text{ is nonrigid}\},
+\]
+with value $\infty$ if this set is empty. The corollary gives $M\mid M'\Rightarrow h(M')\le h(M)$. The construction refinements give $h(M_{100})\le3360$ and the 99-prime odd part has $h(M_{99})\le3408$. These are sufficient construction heights, not values of $h$. The general lower bound is two; Proposition~\ref{prop:four} raises it to three for odd parts with at most one prime congruent to $3\pmod4$.
+
+\begin{corollary}[Minimal obstructions exist]\label{v2:cor:minimal}
+Every nonrigid modulus has a divisor that is divisibility-minimal among all nonrigid moduli. At least one such minimal modulus has at most 99 distinct odd prime divisors. Every such minimal modulus is divisible by four, has at least three distinct odd prime divisors, and does not divide any of the rigid families proved above.
+\end{corollary}
+\begin{proof}
+Choose a minimal nonrigid member of the finite set of divisors of a given nonrigid modulus. A proper nonrigid divisor of that member would also occur in this finite set, so it is globally divisibility-minimal. Apply this to the 99-prime example for the upper bound. The lower restrictions follow from odd and twice-odd rigidity and Corollary~\ref{cor:two-odd-axes}. If a nonrigid modulus divided a rigid member of one of the other families, closure under multiples would give a contradiction.
+\end{proof}
+This statement does not identify a minimal divisor or prove that 99 is the minimum number of odd primes. In particular an upper bound on the support of one construction is not an arithmetic classification of minimal obstructions.
+
+\begin{corollary}[A restriction can destroy uniqueness]
+Intersection with a union of subgroups of pairwise coprime prime-power indices can carry a rigid subgroup union to a nonrigid subgroup union.
+\end{corollary}
+\begin{proof}
+Start with the full group of a nonrigid construction, which is rigid because $C(0)=N$. For each minimal missing element order $d$ of its nonrigid ideal $A$, impose $d\nmid\ord(x)$. The solution set of this one condition is the union, over $p\mid d$, of the subgroups of indices $p^{v_p(N)-v_p(d)+1}$: at least one prime exponent of the element order must be too small for divisibility by $d$. The indices in this one union are pairwise coprime prime powers. Intersecting all the conditions gives $A$. Along any fixed ordering of the finitely many conditions, the first nonrigid intersection has a rigid predecessor.
+\end{proof}
+
+\subsection{The mathematical content of the algorithmic classification}
+The sign graph resolves three coupled constraints. First, it converts the full integral inversion problem into adjacent divisibility tests. Second, its permitted sign changes cannot create values outside $\{0,1\}$ because the total mass and energy are fixed. Third, preserving the primary Fourier values forces every nonnegative marginal defect to vanish, so divisor closure follows. These are the reasons that the mate space is a cube and that every unanchored component is an actual ambiguity. There is no further binary-feasibility condition to impose after the theorem.
+
+The coefficient-moment construction answers a different question. It gathers all possible subgroup unions at the modulus, retains every mixed Fourier coordinate, and detects whether any spectrum is shared across a membership cut. Its value is a precise universal decision and witness specification, with no hidden feasibility relaxation. Its potentially exponential enumeration is explicit. Since the prime factors, exponents, number of ideals, and conductor cancellations vary without a uniform small bound, neither procedure is presently a short arithmetic description of all rigid moduli.
+
+\paragraph{Invariants suggested by the sign graph.}
+The edge test has the arithmetic form
+\[
+ v_{p_i}\!\bigl(2F_A(\boldsymbol s)\bigr)<a_i-s_i
+\]
+for adjacent nonzero vertices $\boldsymbol s$ and
+$\boldsymbol s+\boldsymbol e_i$. This suggests studying the Fourier zero
+set together with these prime-adic divisibility thresholds and the sets
+of prime axes appearing in each connected component. For a specified
+set, the number of components avoiding the root and pure-axis anchors is
+already a complete rigidity invariant. A structural modulus theorem
+would have to control the zero and divisibility patterns realizable by
+\emph{every} divisor ideal, or construct one realizable unanchored
+pattern. Whether such control can be expressed by a useful collection
+of invariants depending only on the prime factorization of the modulus
+remains open; no sufficiency claim for a proposed smaller collection is
+made here.
+
+\subsection{Open questions and deferred claims}
+The following questions are \textbf{OPEN} at the scope of this manuscript.
+\begin{enumerate}[label=(\roman*)]
+\item Give a necessary-and-sufficient structural description of rigid moduli from their prime factors and exponents that avoids exhaustive ideal enumeration.
+\item Determine the divisibility-minimal nonrigid moduli, their minimum odd-prime count, and the possible values of $h(M)$. Is every $4M$ with $M$ odd rigid? Only the restricted family in Proposition~\ref{prop:four} is proved here.
+\item Extend the elementary common-zero proof from three squarefree residual axes to arbitrary prime-power residual axes. The full four-primary-axis problem is not resolved by Theorem~\ref{thm:primary-power-four-primes}.
+\item Give a useful representation-size bound for compressed generator-based certificates, or a direct arithmetic description of all realizable unanchored components.
+\item Determine the complete component count of the large constructed examples and whether substantially different construction methods yield smaller obstructions.
+\end{enumerate}
+No unsupported conjectural assertion is needed in any preceding proof. The two unavailable source formulations named in the provisional outline, and numerical claims tied only to them, remain \emph{unverified source claims}, not false theorems and not premises of this paper. Their verification requires the exact matrix/polynomial definitions, complete proofs and original certificates. The referee-support document specifies those missing obligations and separates them from the open mathematical problems above.
+
+% END sections/10_consequences.tex
+
+\appendix
+
+% BEGIN appendices/A_finite_data.tex
+\section{Complete finite defining data}\label{v2:app:data}\label{vi:app:compute}
+This appendix makes the fixed constructions fully specified. The supplement
+contains the same arrays as executable data, exact verification programs and
+fresh output records. No discovery search or access to a research conversation
+is required. The finite primality, matrix, norm and interval checks are explicit
+computer-assisted obligations; the symbolic arguments in the main text cover
+all shifts, all free orders and all decoder targets.
+
+For a positive integer $n$, write $\operatorname{oddpart}(n)=n/2^{v_2(n)}$
+and $\operatorname{bitlength}(n)=1+\lfloor\log_2n\rfloor$.
+For a rational number, $\operatorname{den}$ means its positive denominator
+in lowest terms. All roundings below are exact rational roundings.
+
+\subsection{The upper and lower donors}
+The hidden order exponents are $(v_1,v_2,v_3,v_4)$ for
+$(5,11,13,17)$, with respective ranges $0\!:\!2,0\!:\!2,0\!:\!1,0\!:\!1$.
+A hidden mask has bit
+\[
+ v_1+3v_2+9v_3+18v_4
+\]
+set precisely at the included order. The first coordinate changes fastest.
+In the following table, the first column gives the signed quotient prime,
+the third its exponent, and the last the decimal hidden-upset mask.
+\begin{center}\small
+\begin{tabular}{rrrr}\toprule
+$s_ip_i$ & $b_i$ & $a_i$ & $F_i$\\\midrule
+-89 & 2 & 1 & 34359738368\\
+-103 & 2 & 1 & 38654853120\\
+67 & 4 & 2 & 67721379840\\
+241 & 1 & 1 & 67645734912\\
+-73 & 3 & 2 & 38730334208\\
+-257 & 1 & 2 & 68585517056\\
+53 & 5 & 1 & 67777855488\\
+-137 & 2 & 2 & 68717527040\\
+271 & 1 & 1 & 68660903936\\
+-131 & 2 & 1 & 67777855488\\
+-97 & 2 & 1 & 38654705664\\
+127 & 2 & 1 & 67645882368\\
+-251 & 1 & 2 & 67645865984\\
+-263 & 1 & 1 & 68717379584\\
+139 & 2 & 1 & 68712349696\\
+193 & 1 & 1 & 38654705664\\
+\bottomrule\end{tabular}\end{center}
+Conductor masks use this listed quotient-prime order, starting at bit zero.
+The fifteen upper masks, in their column order, are
+\[
+\begin{gathered}
+2656,\,960,\,16936,\,6528,\,11008,\,6852,\,32986,\,41062,\\
+43141,\,37652,\,57396,\,2980,\,52384,\,51746,\,19539. 
+\end{gathered}
+\]
+The fourteen signed lower primes, in row order, are
+\[
+\begin{gathered}
+59,\,61,\,163,\,173,\,223,\,233,\,281,\,293,\\
+-151,\,-199,\,-229,\,-277,\,-311,\,-317.
+\end{gathered}
+\]
+Their thirteen conductor masks, in column order and with bit zero for the
+first listed prime, are
+\[
+\begin{gathered}
+3095,\,4049,\,5687,\,6455,\,6743,\,8731,\,8743,\\
+8848,\,9044,\,12333,\,13427,\,13511,\,15486.
+\end{gathered}
+\]
+These arrays define the two rational coefficient vectors by the nonsingular
+minors described in Section~\ref{h100:interpolation}. In particular, there is
+no arbitrary choice of an element of a linear solution space.
+
+\subsection{Damping primes and the exact odd moduli}
+The twenty damping primes $p$, in order, are
+\[
+\begin{gathered}
+2097397,\,2097481,\,2097523,\,2097673,\,2097727,\\
+2098081,\,2098279,\,2098471,\,2099017,\,2099089,\\
+2099479,\,2099593,\,2099659,\,2100001,\,2100463,\\
+2100841,\,2101003,\,2101243,\,2101261,\,2101327.
+\end{gathered}
+\]
+For each one use $p^2q$, where $q=p(p-1)+1$.
+Let $\mathcal P$ denote this ordered list; let $\mathcal L$ be the absolute
+values of the signed lower primes above; let
+$\mathcal T=(776561,776563,881,883,29,31)$; and let $\mathcal H$
+be the eight helper primes defined in Section~\ref{h100:interpolation}.
+Then the precise odd integer used throughout the paper is
+\begin{equation}\label{v2:eq:M100}
+ M_{100}=5^2 11^2 13\cdot17
+ \left(\prod_{i=1}^{16}p_i^{a_i}\right)
+ \left(\prod_{p\in\mathcal L\cup\mathcal T\cup\mathcal H}p\right)
+ \left(\prod_{p\in\mathcal P}p^2[p(p-1)+1]\right)QBC,
+\end{equation}
+where $Q,B,C$ are given in Section~\ref{h100:spectator}. Every product is
+over distinct primes except for the displayed powers and the intentional
+kernel powers within $QBC$. This factorization is also supplied in
+\texttt{ppi\_100\_certificate.json}. The 99-prime odd modulus is obtained by
+removing the final $p^2q$ and multiplying by 65537.
+
+\subsection{Compact primality certificates}
+For completeness, the finite primality checks need only elementary modular
+arithmetic. We use the following criterion.
+\begin{lemma}[Pocklington certificate in the form used here]
+Let $n>1$ and let a fully factored integer $F\mid n-1$ satisfy $F>\sqrt n$.
+For every prime $r\mid F$, suppose an integer $a_r$ satisfies
+\[
+ a_r^{n-1}\equiv1\pmod n,\qquad
+ \gcd\bigl(a_r^{(n-1)/r}-1,n\bigr)=1.
+\]
+Then $n$ is prime.
+\end{lemma}
+\begin{proof}
+For every prime $\ell\mid n$, the order of $a_r$ modulo $\ell$ divides
+$n-1$ but does not divide $(n-1)/r$. Its $r$-part therefore contains
+$r^{v_r(n-1)}$, and hence at least the $r$-part of $F$. It follows that
+$F\mid\ell-1$ for every $\ell\mid n$. If $n$ were composite, one such
+$\ell$ would be at most $\sqrt n<F$, a contradiction.
+\end{proof}
+Write $Q(a)=1+ak$ with the integer $k$ defined in
+Section~\ref{h100:interpolation}. For these four upper primes, take
+$F=ak$. Its factorization is given by the displayed formula for $k$,
+$d_u=193\prod_i p_i$, and $249391=113\cdot2207$.
+The following table specifies all exceptional witnesses; every other prime
+factor of $F$ uses witness $2$.
+\begin{center}\small
+\begin{tabular}{rrrrr}\toprule
+$a$ & $v_2(F)$ & $v_3(F)$ & witness for $2$ & witness for $3$\\\midrule
+2 & 34 & 1 & 37 & 2\\
+3 & 33 & 2 & 41 & 5\\
+4 & 35 & 1 & 43 & 3\\
+12 & 35 & 2 & 37 & 5\\\bottomrule
+\end{tabular}\end{center}
+For each of the four lower helpers $q_i$, take $F=Q(2)$ and witness $2$.
+The identities $F\mid q_i-1$, inequalities $F^2>q_i$, and all modular
+conditions are checked exactly. Every remaining prime claim, including the
+prime factors of these $F$, the forty damping primes, and 65537, is verified
+by trial division through its integer square root. Thus the entire primality
+chain terminates in direct finite division, with no probable-prime assumption.
+The full decimal witnesses and results are reproduced in
+\texttt{evidence/h100\_independent.json}.
+
+\subsection{Ordinary-slot orderings}
+The following two lists specify the complete ordinary orderings.
+Read each row from left to right, then proceed to the next row.
+They are zero-based tag indices in increasing lexicographic order with
+the last exponent changing fastest; this convention differs from the
+hidden-mask convention above. An index can be decoded by successive division
+by the coordinate range sizes, starting with the last coordinate.
+For H100 the coordinate ranges have sizes
+$(6,4,3,3,3,3,2,2,2,2,2,2)$. For H99 append a final size $2$ for 65537.
+The list is data, not an unspecified permutation chosen by a search.
+
+\subsubsection*{H100: 614 ordinary slots}
+{\scriptsize\setlength{\tabcolsep}{5pt}\begin{longtable}{rrrrrrrrrr}
+\toprule\multicolumn{10}{c}{Slot indices in defining order}\\\midrule\endfirsthead
+\toprule\multicolumn{10}{c}{Slot indices (continued)}\\\midrule\endhead
+\bottomrule\endfoot
+20543 & 82351 & 82359 & 70847 & 19007 & 77758 & 97343 & 118975 & 117439 & 77755\\
+118079 & 82303 & 117499 & 103583 & 59903 & 103655 & 20703 & 57007 & 82687 & 82335\\
+101949 & 41469 & 81183 & 101950 & 103087 & 103423 & 118463 & 101919 & 91583 & 103611\\
+107135 & 71999 & 20671 & 103639 & 81023 & 96191 & 93119 & 103643 & 98494 & 117495\\
+103613 & 103607 & 103485 & 58751 & 79487 & 118847 & 119023 & 103095 & 108671 & 103102\\
+117471 & 103471 & 35711 & 103483 & 20731 & 56447 & 119007 & 34559 & 20159 & 10367\\
+118591 & 15551 & 20719 & 31103 & 41407 & 36287 & 40895 & 46655 & 118647 & 67391\\
+41455 & 56991 & 41279 & 62191 & 51839 & 77727 & 112319 & 80639 & 77183 & 101375\\
+118639 & 81199 & 119103 & 101935 & 96575 & 103479 & 39743 & 117311 & 82815 & 101759\\
+77743 & 103551 & 113855 & 56959 & 62205 & 77695 & 41467 & 62143 & 82927 & 62203\\
+114046 & 103101 & 103039 & 103659 & 55295 & 119230 & 81207 & 76031 & 95039 & 60479\\
+116927 & 115775 & 72575 & 100223 & 103099 & 103599 & 77757 & 101943 & 117487 & 98493\\
+88127 & 82941 & 103071 & 20727 & 98463 & 82175 & 103631 & 20735 & 41463 & 102911\\
+41470 & 82559 & 93247 & 103295 & 103645 & 62206 & 103677 & 82942 & 93307 & 119135\\
+108799 & 114043 & 103678 & 113983 & 96767 & 119229 & 118651 & 117503 & 57015 & 119151\\
+77751 & 62199 & 98487 & 82935 & 81151 & 119223 & 103671 & 101887 & 92735 & 82879\\
+93295 & 97919 & 108287 & 98479 & 108847 & 103663 & 118623 & 114031 & 119183 & 113471\\
+118655 & 119215 & 41439 & 119199 & 41471 & 93311 & 61055 & 62175 & 98431 & 81791\\
+81211 & 103615 & 82939 & 61631 & 102527 & 101947 & 82367 & 119167 & 81215 & 108863\\
+56831 & 103103 & 114047 & 77567 & 101951 & 62015 & 98303 & 57023 & 98491 & 77759\\
+98495 & 119227 & 82719 & 119039 & 62207 & 103455 & 119231 & 103675 & 82911 & 82751\\
+103487 & 103647 & 82943 & 103679 & 124145 & 124092 & 123737 & 120669 & 123237 & 122636\\
+121325 & 121485 & 120253 & 123812 & 123241 & 122648 & 123065 & 123577 & 123445 & 122660\\
+123196 & 123768 & 124005 & 122469 & 123256 & 124137 & 120948 & 120181 & 123996 & 122556\\
+124020 & 120637 & 123705 & 121532 & 122549 & 120829 & 121437 & 122365 & 123957 & 122588\\
+123193 & 123252 & 119797 & 123628 & 122089 & 121525 & 124017 & 122457 & 119789 & 124184\\
+123693 & 123580 & 120757 & 124252 & 120761 & 124152 & 122293 & 124061 & 124021 & 122041\\
+123165 & 120937 & 123225 & 123421 & 122428 & 123452 & 120285 & 124261 & 122488 & 124012\\
+120125 & 122601 & 123677 & 124268 & 123964 & 120509 & 120701 & 120889 & 124237 & 124077\\
+120173 & 121913 & 123213 & 120541 & 124297 & 122076 & 119773 & 122657 & 123228 & 123517\\
+120157 & 122541 & 123749 & 123249 & 121277 & 124089 & 123809 & 123189 & 120333 & 122397\\
+122061 & 120909 & 123725 & 124280 & 123597 & 124321 & 120733 & 121453 & 121517 & 122553\\
+120764 & 123573 & 123788 & 123761 & 122300 & 123633 & 122013 & 124300 & 123565 & 123621\\
+122073 & 124169 & 121405 & 122425 & 123133 & 122585 & 123005 & 121981 & 120892 & 123933\\
+122573 & 124109 & 123753 & 124301 & 120301 & 123769 & 120952 & 123993 & 122633 & 123800\\
+124024 & 120380 & 122484 & 122597 & 124028 & 123708 & 120924 & 121909 & 119613 & 123068\\
+122269 & 122100 & 123785 & 122097 & 124265 & 123789 & 123181 & 124269 & 123053 & 124312\\
+119741 & 124361 & 124376 & 120940 & 120956 & 122445 & 122421 & 122637 & 121309 & 123764\\
+123037 & 122085 & 124148 & 123813 & 123244 & 124121 & 123245 & 123549 & 122481 & 124273\\
+121901 & 123609 & 120885 & 122476 & 119801 & 123801 & 121149 & 119805 & 122092 & 123740\\
+122029 & 122877 & 121501 & 121885 & 120945 & 121916 & 122612 & 120921 & 123625 & 123229\\
+122672 & 120861 & 122485 & 123437 & 124085 & 123961 & 122676 & 124249 & 124153 & 124124\\
+124281 & 124313 & 121469 & 121341 & 124276 & 122609 & 122673 & 120877 & 124337 & 124324\\
+124340 & 123061 & 124284 & 123069 & 122649 & 123253 & 124125 & 122616 & 124344 & 123260\\
+123756 & 123197 & 123816 & 123757 & 121529 & 123817 & 124185 & 124193 & 124209 & 123389\\
+124377 & 123981 & 123997 & 124009 & 124385 & 123636 & 123637 & 123449 & 124316 & 124133\\
+122237 & 120373 & 124149 & 119997 & 122617 & 120189 & 122297 & 121725 & 124025 & 123741\\
+123453 & 123824 & 124400 & 120377 & 120953 & 123820 & 123828 & 121533 & 123825 & 124196\\
+124197 & 124329 & 124345 & 122525 & 124212 & 120365 & 124325 & 124253 & 124388 & 123629\\
+122589 & 120933 & 124317 & 124172 & 120949 & 124401 & 122557 & 124173 & 122661 & 122037\\
+124389 & 122093 & 122613 & 120317 & 120893 & 123949 & 123821 & 124364 & 124365 & 122460\\
+122461 & 120557 & 122492 & 123257 & 123261 & 122285 & 124013 & 120749 & 120573 & 124200\\
+120765 & 124213 & 122301 & 124404 & 122652 & 124140 & 124156 & 123640 & 124204 & 123641\\
+124216 & 123701 & 124277 & 123709 & 123765 & 123901 & 123965 & 121853 & 121917 & 123581\\
+124093 & 120349 & 120925 & 122077 & 122653 & 124029 & 124285 & 123612 & 123644 & 123613\\
+123645 & 122664 & 120381 & 123804 & 124188 & 122604 & 124189 & 122044 & 122668 & 122045\\
+124380 & 124220 & 120941 & 123772 & 122620 & 122473 & 123805 & 122665 & 122489 & 122413\\
+123773 & 122605 & 122477 & 124141 & 122669 & 122104 & 122108 & 122105 & 124341 & 120957\\
+122429 & 124381 & 122101 & 123832 & 124157 & 122493 & 123829 & 122677 & 123833 & 124405\\
+123836 & 122621 & 122109 & 124392 & 122680 & 124201 & 122681 & 124408 & 123837 & 122684\\
+124393 & 122685 & 124205 & 124332 & 124217 & 124348 & 124396 & 124409 & 124333 & 124412\\
+124397 & 124349 & 124221 & 124413 & & & & & &\\
+\end{longtable}}
+
+\subsubsection*{H99: 504 ordinary slots}
+{\scriptsize\setlength{\tabcolsep}{5pt}\begin{longtable}{rrrrrrrrrr}
+\toprule\multicolumn{10}{c}{Slot indices in defining order}\\\midrule\endfirsthead
+\toprule\multicolumn{10}{c}{Slot indices (continued)}\\\midrule\endhead
+\bottomrule\endfoot
+206191 & 164703 & 203895 & 162047 & 207103 & 206911 & 237695 & 38015 & 155517 & 234879\\
+234991 & 214271 & 234623 & 117503 & 192383 & 196989 & 163583 & 234943 & 206967 & 207199\\
+206943 & 206847 & 82939 & 205055 & 207279 & 82927 & 155503 & 206199 & 112895 & 207263\\
+164671 & 154367 & 207167 & 114015 & 207215 & 203899 & 164607 & 196975 & 155511 & 203519\\
+203901 & 186591 & 186239 & 228063 & 141695 & 124411 & 228087 & 233855 & 183167 & 124413\\
+206591 & 41343 & 203887 & 234975 & 20735 & 158975 & 165885 & 31103 & 62207 & 206175\\
+72575 & 206079 & 206143 & 93311 & 113983 & 237183 & 103679 & 162399 & 161279 & 227711\\
+202751 & 238447 & 206959 & 124399 & 113919 & 79487 & 206203 & 82815 & 165871 & 124287\\
+164351 & 113663 & 205823 & 155135 & 41439 & 236159 & 155391 & 82911 & 40319 & 81791\\
+224639 & 228093 & 238461 & 236927 & 123263 & 237279 & 162367 & 203839 & 110591 & 207343\\
+124383 & 152063 & 120959 & 164735 & 203871 & 190079 & 231551 & 196983 & 238455 & 155487\\
+134783 & 200447 & 196959 & 41407 & 207357 & 82879 & 124351 & 155455 & 176255 & 196927\\
+145151 & 162303 & 238431 & 203775 & 155515 & 185471 & 196987 & 165759 & 162431 & 165883\\
+195839 & 216575 & 217727 & 207355 & 226943 & 41087 & 41471 & 206207 & 237247 & 82935\\
+238399 & 196607 & 237311 & 124407 & 238079 & 165855 & 165879 & 207351 & 207327 & 82559\\
+82943 & 124031 & 193535 & 235007 & 203903 & 238459 & 114047 & 155519 & 124415 & 165823\\
+207295 & 186495 & 186623 & 196863 & 227967 & 228095 & 165503 & 165887 & 238335 & 196991\\
+207231 & 206975 & 207359 & 238463 & 246523 & 244219 & 247643 & 247611 & 248731 & 248667\\
+248427 & 245339 & 247547 & 247667 & 245355 & 248635 & 248411 & 248059 & 247291 & 241915\\
+248571 & 247673 & 248691 & 248779 & 247659 & 245307 & 245243 & 245363 & 248379 & 248763\\
+248315 & 248435 & 248819 & 248795 & 247675 & 248683 & 248699 & 248811 & 244987 & 248443\\
+240382 & 248732 & 241726 & 243454 & 244798 & 241846 & 247150 & 244918 & 243836 & 244854\\
+241884 & 246430 & 243038 & 244590 & 241518 & 246334 & 248316 & 246454 & 248436 & 248748\\
+247454 & 247390 & 241150 & 246110 & 248380 & 246390 & 245364 & 248422 & 241532 & 244126\\
+248684 & 248678 & 248804 & 248780 & 244988 & 247660 & 246270 & 246366 & 244062 & 246486\\
+244182 & 248742 & 247198 & 248572 & 246478 & 241774 & 243006 & 241894 & 247134 & 248692\\
+247358 & 241838 & 248060 & 248412 & 242942 & 244846 & 243062 & 248302 & 248636 & 245356\\
+248756 & 246078 & 244910 & 246134 & 245340 & 246014 & 241788 & 248428 & 244598 & 244030\\
+244478 & 244150 & 241406 & 245150 & 248774 & 241526 & 246494 & 241852 & 246446 & 244542\\
+243806 & 241470 & 244086 & 246894 & 248046 & 245102 & 248222 & 247806 & 247102 & 241870\\
+247222 & 240750 & 241902 & 248374 & 248668 & 246382 & 248788 & 246502 & 247668 & 248820\\
+240734 & 241662 & 243966 & 243822 & 245086 & 245166 & 244942 & 247158 & 248310 & 244974\\
+247870 & 242686 & 241782 & 243068 & 244734 & 247582 & 244574 & 244606 & 246878 & 240764\\
+241916 & 241502 & 244174 & 241534 & 248158 & 248542 & 247038 & 247518 & 247638 & 247470\\
+248622 & 246140 & 246524 & 247292 & 248444 & 239614 & 247246 & 247630 & 248398 & 246462\\
+243774 & 244156 & 247612 & 245308 & 248764 & 244894 & 244926 & 245758 & 243054 & 243070\\
+245174 & 248630 & 245302 & 246398 & 246518 & 248812 & 243830 & 244092 & 247548 & 244220\\
+245244 & 248700 & 245372 & 244830 & 244950 & 248406 & 244958 & 244982 & 243710 & 243838\\
+244862 & 244990 & 241822 & 240702 & 241854 & 247406 & 247422 & 248558 & 246126 & 246142\\
+246510 & 246526 & 245054 & 245182 & 241758 & 241878 & 245334 & 241886 & 240638 & 241790\\
+240758 & 240766 & 241910 & 241918 & 247966 & 248350 & 246846 & 247998 & 244190 & 244142\\
+244158 & 245262 & 245278 & 248718 & 245294 & 245310 & 245110 & 248566 & 245238 & 245118\\
+248126 & 248510 & 248254 & 248190 & 248574 & 248606 & 248726 & 248734 & 247486 & 248638\\
+247606 & 248758 & 245369 & 245371 & 248825 & 248827 & 247902 & 248286 & 248030 & 246782\\
+247166 & 247934 & 248318 & 246902 & 247286 & 246910 & 248054 & 248438 & 248062 & 244078\\
+244094 & 247534 & 244198 & 244214 & 247654 & 244206 & 244222 & 245350 & 245366 & 248806\\
+245198 & 245214 & 248654 & 245326 & 245342 & 245230 & 248782 & 245246 & 248686 & 245358\\
+247262 & 248414 & 247644 & 247646 & 248796 & 247676 & 248828 & 247214 & 247230 & 247598\\
+247614 & 247278 & 247294 & 248366 & 247662 & 248382 & 248750 & 248766 & 248430 & 248446\\
+248814 & 245374 & 248662 & 248670 & 248790 & 248798 & 247542 & 247550 & 247670 & 248694\\
+247678 & 248702 & 248822 & 248830 & & & & & &\\
+\end{longtable}}
+
+These data determine all baseline masses, slopes and intercepts by the
+formulas in the main text. The ordinary lists are intentionally longer than
+the used prefix: groups beyond $R+159$ are empty. The exact verifiers check
+every tag cover relation, including background and the empty tail, before
+the decoding argument is applied. No numerical optimization is part of
+verification.
+
+% END appendices/A_finite_data.tex
+
+
+% BEGIN appendices/B_verification.tex
+\section{Verification scope and reproducible evidence}\label{v2:app:verification}
+The accompanying archive is a self-contained verification package. The
+manuscript's general proofs do not call a repository theorem as a black box.
+The programs check their finite data or provide finite regression tests,
+with the following distinct logical roles.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.27\linewidth}>{\raggedright\arraybackslash}p{.64\linewidth}@{}}\toprule
+Check & Scope of completed exact verification\\\midrule
+Conductor sign graph &
+All radial profiles for $1\le N\le60$: 8,182 profiles, including
+465 subgroup unions; 8,122 nonempty radial mate-count checks and
+405 nonempty subgroup-union mate-count checks. Direct cyclic
+autocorrelation is also checked on 980 nonempty profiles for $N\le30$.\\
+Cut moments and factor transfer &
+85 moduli, 1,567 divisor ideals, 503 membership cuts and 2,248
+factor-transfer comparisons. Spectral signatures are compared with
+direct labeled autocorrelation and inverse reconstruction.\\
+H100 arithmetic &
+The donor minors, rational norms, all 100 odd prime factors, prime-power
+map, interpolation bounds, precision and decoder parameters. The eight
+large helper primes use Pocklington certificates; the others use trial
+division.\\
+H100 nesting and decoding &
+902,016 tag cover checks, 14,517 used-fine-slot cover checks,
+291,711 fine height ranges, 42,804 ordinary height ranges and 2,175
+separately decoded targets.\\
+Rank truncation and H99 &
+All 174 H100 and 170 H99 endpoint inequalities; 435 and 425
+actual dyadic-grid targets respectively, including those endpoints;
+the changed absolute precision,
+nesting, error bound and prime-power map.\\
+Two squared axes &
+The six symbolic 36-cell grids and their exact exclusion counts in
+Section~\ref{subsec:terminal-grid-certificate}, within a completed 24-grid replay: every residual list was empty and
+all six rows matched. See the referee guide for the dated run record.\\\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Exact program and evidence locations.}
+Run \file{python3 verification/verify_cut_moments.py} from the bundle
+root to reproduce \file{evidence/cut_moment_results.json}: 85 moduli,
+1,567 ideals, 503 cuts and 2,248 transfer comparisons. This verifies the
+printed criterion on its stated finite domain; it does not certify the
+unrecovered outline's separate claim of 73 comparisons.
+The combined changed-data program is
+\file{verification/h99_independent_audit.py}; it records the 435 H100
+and 425 H99 targets in \file{evidence/h99_independent_results.json}.
+For H100 these comprise 174 endpoints and 261 strict interior targets;
+for H99, 170 endpoints and 255 strict interior targets. The original
+programs \file{experiments/ppi_100_rank_precision.py} and
+\file{experiments/ppi_99_prime_pair.py} instead reconstruct 261 and
+255 targets. The referee guide gives a fresh dependency-chain invocation
+of the separate audit and distinguishes it from these original programs.
+
+The referee revision also includes
+\file{verification/independent_primary_conductor_check.py} and
+\file{verification/check_primary_conductor_coordinates.py}.
+Their exact eight-conductor checks of the two cited cancellation examples
+are controls for the conductor convention, not a finite proof of
+Theorem~\ref{thm:primary-power-four-primes}. That theorem uses the
+nontrivial common character furnished by
+Lemma~\ref{lem:primary-common-zero}.
+
+The first two rows are finite checks of the universal formulas, not proofs
+by bounded experimentation. Likewise, sampled construction targets do not
+establish universal mass realization. That conclusion follows from the
+interval containment, denominator bound and reverse-parity induction in
+the main text. In contrast, the exact symbolic enumeration is a proof
+dependency of the result explicitly labeled \textsc{Computed}.
+
+\subsection{Source provenance and boundary of the audit}
+The recovered sources are pinned to these full repository commit identifiers:
+\begin{quote}\small
+Referee-response manuscript:\\
+\texttt{79350cb7bb6032df7637dcfd3e2bd029e6362a85}\\[.4em]
+New arithmetic, H100-height and H99 results:\\
+\texttt{20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25}\\[.4em]
+Common-dyadic-fiber source:\\
+\texttt{0930c856256add528c967cd1b35c742f88b4cf95}
+\end{quote}
+The original H100 certificate lineage is recorded by
+\cite{ConstructionH100,ReviewPackageH100}. The archive contains the relevant
+source files and a per-file provenance and checksum record.
+
+The files \texttt{LEVEL1\_GENERATOR\_LATTICE\_RANK.md} and
+\texttt{LEVEL1\_FACTOR\_CUT\_MOMENTS.md} were requested as central sources
+but were not recovered from the accessible repository revisions or supplied
+materials. Their absence prevents certification of their exact hypotheses,
+necessity, sufficiency and complexity assertions. It is not evidence that
+the proposed statements are false. This edition instead proves the full-grid
+rank and exhaustive coefficient-cut results at their stated scopes.
+No generator-compressed polynomial-time theorem is inferred from them.
+
+\subsection{How to inspect the package}
+The archive includes the modular and single-file \LaTeX{} sources,
+\texttt{experiments/} with all import dependencies,
+\texttt{verification/} with separate audit implementations, and
+\texttt{evidence/} with the exact outputs. The referee guide gives the full
+command sequence, software versions, expected counts, proof-dependency map
+and adversarial checklist. Every documented verification command runs on
+the included files without GitHub or research-conversation access.
+Python assertions must remain enabled; do not invoke Python with
+\texttt{-O}.
+
+The standalone mathematical proof obligations still deserving independent
+scrutiny are the binary-to-monotone realization after conductor sign changes;
+the least-disputed-fiber and $p=3$ boundary cases; the completeness and integer
+bounds of the symbolic enumeration; the grouped upper-helper interpolation;
+and the absolute precision and all-choice nesting of the changed H99 decoder.
+This edition provides arguments and evidence for them but does not replace
+independent external refereeing or formal verification.
+
+% END appendices/B_verification.tex
+
+
+% BEGIN appendices/C_squarefree_damping.tex
+\section{Balanced squarefree blocks and tensor damping}
+\label{v2:app:squarefree-damping}
+
+This appendix retains a local interpolation mechanism from the squarefree
+construction program.  It supplies exact annihilators and quantitative error
+bounds.  These statements alone do not construct a homometric pair: a
+subsequent construction must still realize the interpolants as compatible
+binary subgroup sections with the required boundary values and nesting.
+
+Let $m=p_1\cdots p_k$ be squarefree and odd.  Choose signs
+$\epsilon_i\in\{-1,1\}$ satisfying the population balance
+\begin{equation}\label{v2:eq:balanced-singletons}
+ \sum_{i=1}^k\epsilon_i(p_i-1)=0.
+\end{equation}
+On $C_m$, define the radial function $\delta$ to equal $\epsilon_i$ on
+the shell of exact element order $p_i$, and zero on every other shell.
+Let $\mathcal S=\{p_1,\ldots,p_k\}$ be its order support.  In the divisor
+poset of $m$, let $D$ and $U$ denote the indicators of the downward and
+upward closures of $\mathcal S$, respectively, and put $P=DU$.
+The same letters denote the corresponding radial functions on $C_m$.
+
+\begin{lemma}[A balanced singleton block]\label{v2:lem:balanced-block}
+The functions just defined have the following properties.
+\begin{enumerate}
+\item $\delta$ is the difference of two binary divisor ideals of equal
+population, and $P=|\delta|$.
+\item The constant function $q=1/2$ satisfies $\delta*q=0$ and
+\[
+ \|D-q\|_\infty=\|U-q\|_\infty=\|P-q\|_\infty=1/2.
+\]
+\item The function $\rho=1-D+U$ is increasing in physical order under
+divisibility and takes values in $\{0,1,2\}$.  If $d\mid e$ and
+$\rho(d)=\rho(e)$, then $D(d)=D(e)$, $U(d)=U(e)$ and $P(d)=P(e)$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+The positive and negative signs are both present by
+\eqref{v2:eq:balanced-singletons}, since every $p_i-1$ is positive.
+The two order ideals
+\[
+ I_+=\{1\}\cup\{p_i:\epsilon_i=1\},\qquad
+ I_-=\{1\}\cup\{p_i:\epsilon_i=-1\}
+\]
+give indicator difference $\delta$.  The shell of order $p_i$ contains
+$p_i-1$ elements, so \eqref{v2:eq:balanced-singletons} says
+$\sum_x\delta(x)=0$ and $|A_{I_+}|=|A_{I_-}|$.
+Since $\mathcal S$ is an antichain, a divisor both above and below
+$\mathcal S$ must belong to $\mathcal S$: if $s\mid d\mid t$ with
+$s,t\in\mathcal S$, then $s=t=d$.  Therefore $DU=|\delta|$.
+
+For every $x$, $(\delta*q)(x)=\tfrac12\sum_y\delta(y)=0$.
+Each of $D,U,P$ is binary, proving the three exact error bounds.
+If $d\mid e$, then $D(d)\ge D(e)$ and $U(d)\le U(e)$, and hence
+\[
+ \rho(e)-\rho(d)=D(d)-D(e)+U(e)-U(d)\ge0.
+\]
+Equality forces both nonnegative terms to vanish and consequently also
+preserves their product.  The possible values of $1-D+U$ are $0,1,2$.
+\end{proof}
+
+Examples of \eqref{v2:eq:balanced-singletons} are the signed triples
+$+3,+5,-7$ and $+11,+13,-23$, and the signed quartet
+$+5,+13,-7,-11$.  For example, the first has populations
+$2+4-6=0$.  Equal population is only an ingredient; it is not a claim
+of homometry for these two small divisor ideals.  Indeed, in $C_{105}$
+the order ideals $\{1,3,5\}$ and $\{1,7\}$ both have population $7$,
+but their autocorrelations at the shift $35$ are $3$ and $0$, respectively.
+
+\begin{lemma}[Tensor error cancellation]\label{v2:lem:tensor-damping}
+For $1\le i\le t$, let $G_i$ be a finite abelian group, let
+$\delta_i:G_i\to\mathbb Q$, and let $b_i,q_i:G_i\to\mathbb Q$ satisfy
+$\delta_i*q_i=0$.  On $G=\prod_iG_i$, put
+\[
+ \Delta(x)=\prod_{i=1}^t\delta_i(x_i),\qquad
+ B(x)=\prod_{i=1}^tb_i(x_i),\qquad
+ W(x)=B(x)-\prod_{i=1}^t\bigl(b_i(x_i)-q_i(x_i)\bigr).
+\]
+Then $\Delta*W=0$ and
+\begin{equation}\label{v2:eq:damping-error}
+ \|W-B\|_\infty\le
+       \prod_{i=1}^t\|b_i-q_i\|_\infty.
+\end{equation}
+In particular, for pairwise coprime balanced singleton blocks and any
+independent choices $b_i\in\{D_i,U_i,P_i\}$, the choice $q_i=1/2$ gives
+an exact rational annihilator $W$ with
+$\|W-B\|_\infty=2^{-t}$.  Its values lie in $2^{-t}\mathbb Z$.
+\end{lemma}
+\begin{proof}
+For tensor functions, finite summation gives
+\[
+ (\Delta*\textstyle\prod_i f_i)(x)
+      =\prod_i(\delta_i*f_i)(x_i).
+\]
+Expanding the second product in the definition of $W$ cancels the term
+$\prod_i b_i$.  Every remaining term contains $q_i$ in at least one
+coordinate, so its convolution with $\Delta$ vanishes by the displayed
+factorization.  Summing proves $\Delta*W=0$.  The error is exactly
+$-\prod_i(b_i-q_i)$, proving \eqref{v2:eq:damping-error}.
+For the balanced blocks, every factor $b_i-1/2$ is $1/2$ or $-1/2$ at
+every point, so the error has absolute value exactly $2^{-t}$.
+Its dyadic denominator and the integer values of $B$ prove the final
+claim.  Pairwise coprimality identifies the product of the cyclic blocks
+with a cyclic group of squarefree odd order.
+\end{proof}
+
+For tensor products of the order antichains, the downward closure,
+upward closure and support indicators are respectively
+$\prod_iD_i$, $\prod_iU_i$ and $\prod_iP_i$.  Thus the preceding lemma
+simultaneously supplies the three approximate boundary indicators used
+in interpolation.  A fixed extra factor with error at most $\eta$ gives
+error at most $\eta2^{-t}$ by the same lemma, provided its proposed
+approximant also satisfies the stated annihilation equation.
+
+\begin{proposition}[Ranks and omitted error factors]
+\label{v2:prop:damping-rank}
+On a product of $t$ balanced singleton blocks, set
+$R=\sum_i\rho_i$.  Then $R$ is increasing, lies in $\{0,\ldots,2t\}$,
+and comparable points of equal rank have the same values of every
+$D_i,U_i,P_i$.  Consequently every function of this full collection of
+indicators, including every $W$ in Lemma~\ref{v2:lem:tensor-damping},
+is constant on comparable points of equal rank.
+
+If $S\subseteq\{1,\ldots,t\}$ and $|a_i|\le A_i$ for $i\in S$, then
+for arbitrary choices $b_i\in\{D_i,U_i,P_i\}$,
+\begin{equation}\label{v2:eq:omitted-factor}
+ \left\|\prod_{i\in S}a_i\prod_{i\notin S}(b_i-1/2)\right\|_\infty
+ \le \left(\prod_{i\in S}A_i\right)2^{-(t-|S|)}.
+\end{equation}
+Thus omitting one half-error factor costs exactly a factor of two in the
+product bound before accounting for the replacement's size.
+\end{proposition}
+\begin{proof}
+Along a comparable pair each $\rho_i$ has a nonnegative increment.
+Equality of their sum forces equality of each increment, so
+Lemma~\ref{v2:lem:balanced-block} preserves all the listed indicators.
+The assertion about their functions follows immediately.  Each retained
+error factor has absolute value $1/2$; multiplication proves
+\eqref{v2:eq:omitted-factor}.
+\end{proof}
+
+The rank property is a useful compatibility condition when decoding
+interpolated sizes into nested sections.  It does not imply that an
+arbitrary annihilator $W$ is itself binary, positive, or monotone, nor
+that multiplication of $W$ by a rank function preserves annihilation.
+Such additional conclusions require separate arguments.  In particular,
+the lemmas in this appendix do not certify the larger 196-prime
+squarefree construction or its spectator decoder; those require the
+additional exact parameters and realization dependencies identified in
+the referee guide.
+
+% END appendices/C_squarefree_damping.tex
+
+\section*{Acknowledgment and review status}
+OpenAI ChatGPT and Codex assisted with mathematical development, exposition and exact computations. Earlier drafts received AI-generated reports from Claude, Muse, Grok and Gemini. This version includes adversarial reconstruction of the recovered proofs and separate implementations of several finite checks. The parallel audit tasks in this preparation shared model family, parent context and source material; they are not independent external refereeing. No principal result is claimed to have been formalized in Lean. Responsibility for the statements and their scope remains with the author; independent mathematical review is invited.
+\clearpage
+\addcontentsline{toc}{section}{References}
+\begingroup\raggedright\small
+\begin{thebibliography}{10}
+
+\bibitem{Amiot2009}
+Emmanuel Amiot.
+\newblock On the group of rational spectral units with finite order, 2009.
+\newblock arXiv:0907.0857. \url{https://arxiv.org/abs/0907.0857}.
+
+\bibitem{BendoryEdidinGonzalez2023}
+Tamir Bendory, Dan Edidin, and Ivan Gonzalez.
+\newblock Finite alphabet phase retrieval.
+\newblock {\em Applied and Computational Harmonic Analysis}, 66:151--160, 2023.
+\newblock DOI: \url{https://doi.org/10.1016/j.acha.2023.04.005}.
+
+\bibitem{BoltjePfeiffer2008}
+Robert Boltje and G{\"o}tz Pfeiffer.
+\newblock An algorithm for the unit group of the {Burnside} ring of a finite
+  group.
+\newblock In C.~M. Campbell, M.~R. Quick, E.~F. Robertson, and G.~C. Smith,
+  editors, {\em Groups St Andrews 2005, Volume 1}, volume 339 of {\em London
+  Mathematical Society Lecture Note Series}, pages 230--236. Cambridge
+  University Press, 2007.
+\newblock DOI: \url{https://doi.org/10.1017/CBO9780511721212.015}.
+
+\bibitem{Patterson1944}
+A.~L. Patterson.
+\newblock Ambiguities in the {X}-ray analysis of crystal structures.
+\newblock {\em Physical Review}, 65:195--201, 1944.
+\newblock DOI: \url{https://doi.org/10.1103/PhysRev.65.195}.
+
+\bibitem{ReviewPackageH100}
+North~Star project.
+\newblock Complete {Paper A} certificate and graph-control sources, 2026.
+\newblock Source snapshot 2ddc150f363da5ae410ed4ac1de573e7cbd7bb80, inspected
+  and replayed 21 November. H100 programs are in experiments/; graph controls
+  are in manuscript/paper-a/graph-controls/.
+  \url{https://github.com/rgillon/north-star-math/tree/2ddc150f363da5ae410ed4ac1de573e7cbd7bb80}.
+
+\bibitem{ConstructionH100}
+North~Star project.
+\newblock A level 1 counterexample on 100 distinct odd primes, 2026.
+\newblock Proof and exact certificate, commit
+  09d77232d96df1e16ef52917ddf46ccff90deb0b, 20 November.
+  \url{https://github.com/rgillon/north-star-math/blob/09d77232d96df1e16ef52917ddf46ccff90deb0b/proofs/PPI_100_PRIME_PAIR.md}.
+
+\bibitem{HeightFour}
+North~Star project.
+\newblock Penultimate dyadic connectivity and a mod-four rigidity obstruction,
+  2026.
+\newblock Research note, November 10, Part II.
+  \url{https://github.com/rgillon/north-star-math/blob/6c48b58a866ea0833bc85a49e8171ca7336098c4/proofs/PENULTIMATE_BAND_AND_MOD4_RIGIDITY.md}.
+
+\bibitem{Rosenblatt1984}
+Joseph Rosenblatt.
+\newblock Phase retrieval.
+\newblock {\em Communications in Mathematical Physics}, 95:317--343, 1984.
+\newblock DOI: \url{https://doi.org/10.1007/BF01212402}.
+
+\bibitem{RosenblattSeymour1982}
+Joseph Rosenblatt and Paul~D. Seymour.
+\newblock The structure of homometric sets.
+\newblock {\em SIAM Journal on Algebraic and Discrete Methods}, 3(3):343--350,
+  1982.
+\newblock DOI: \url{https://doi.org/10.1137/0603035}.
+
+\bibitem{tomDieck1979}
+Tammo tom Dieck.
+\newblock {\em Transformation Groups and Representation Theory}, volume 766 of
+  {\em Lecture Notes in Mathematics}.
+\newblock Springer, 1979.
+\newblock DOI: \url{https://doi.org/10.1007/BFb0085965}.
+
+\bibitem{TothHaukkanen2011}
+L{\'a}szl{\'o} T{\'o}th and Pentti Haukkanen.
+\newblock The discrete fourier transform of {$r$}-even functions.
+\newblock {\em Acta Universitatis Sapientiae, Mathematica}, 3(1):5--25, 2011.
+\newblock arXiv:1009.5281. \url{https://arxiv.org/abs/1009.5281}.
+
+\end{thebibliography}
+
+\endgroup
+\end{document}

@@ -1,0 +1,620 @@
+\section{A section criterion for homometry}\label{vi:sec:reduce}
+
+\paragraph{Construction roadmap.}
+The construction has two tasks. First, on an odd core we build a signed
+discrepancy $e$ and a rational profile $w$ satisfying $e*w=0$, with
+specified values on the lower and upper closures of the signed support.
+Second, an auxiliary cyclic factor realizes every remaining density
+$w(x)/2$ by an actual divisor ideal, with the containments required as the
+core order increases. Lemma~\ref{vi:lem:sections} turns these objects into
+two binary subgroup unions and proves their homometry at every labeled
+shift. The ingredients below perform separate parts of these two tasks.
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.23\linewidth}
+                    >{\raggedright\arraybackslash}p{.69\linewidth}@{}}
+\toprule
+Ingredient & Role in the construction\\\midrule
+Upper and lower donors &
+Provide annihilating witnesses with the required boundary data on the
+respective closures. Three additional two-prime corrections reduce the
+upper witness's norm.\\[.35em]
+Modular helpers &
+Supply dyadic anchor profiles. A controlled final blend clears the odd
+denominators of the scaled section masses while preserving annihilation
+and the forced values.\\[.35em]
+Damping blocks &
+Balanced tensor factors reduce interpolation error geometrically, leaving
+room between the target intervals associated with successive ranks.\\[.35em]
+Rank and interpolation &
+An increasing rank orders those intervals; comparable equal-rank orders
+have identical profile data. The interpolant remains an annihilator and
+has the exact lower and upper boundary values.\\[.35em]
+Spectator primes &
+Guard, variable and control coordinates create admissible ordinary and
+fine slots. Their shell weights convert the required rational masses into
+exact subgroup sections.\\[.35em]
+Nesting and decoding &
+The ordinary greedy step and fine parity decoder realize every required
+grid target. The permitted heights ensure containment for every choice
+of digits, proving divisor closure.\\[.35em]
+Rank-dependent precision &
+Truncating the fine prefix separately at each rank lowers the necessary
+dyadic height. The 99-prime variant also removes one damping block and
+adds a new spectator guard.\\
+\bottomrule
+\end{tabular}
+\end{center}
+Section~\ref{h100:interpolation} constructs the core profile;
+Sections~\ref{h100:spectator}--\ref{h100:mass} supply the auxiliary
+sections and the exact decoder; Section~\ref{v2:sec:refined-constructions}
+changes their precision and prime budget. The symbolic arguments establish
+annihilation and universal decoding. The listed finite certificates check
+the fixed arrays, rational bounds, primality and containment data needed
+by those arguments.
+
+Let $H,S$ be cyclic of coprime orders, with $\abs H$ odd. For a signed shell function $e:H\to\{-1,0,1\}$ write $P=|e|$. Identify a family of shells with its indicator and put $D=\downarrow\!\operatorname{supp} e$, $U=\uparrow\!\operatorname{supp} e$. Assume that the two closures intersect exactly in the support: $D\cap U=\operatorname{supp}e$ as shell families, equivalently $DU=P$ for their indicators. Assume also that comparable support orders have the same sign. The remaining region $I=1-D-U+P$ consists of the orders incomparable with the support.
+
+\begin{lemma}\label{vi:lem:sections}
+Suppose $e\ne0$, $e*w=0$, $w=2-P$ on $D$, and $w=P$ on $U$. For each order $x$ in $I$, suppose there is a divisor ideal $J_x\subseteq S$ with density $w(x)/2$ such that $J_{x'}\subseteq J_x$ whenever $x\mid x'$ in $I$. Then $H\times S$ has homometric divisor ideals in different translation orbits.
+\end{lemma}
+\begin{proof}
+Prescribe the sections of $A,B$ by the following table.
+\[
+\begin{array}{c|cc}
+ H\text{-region} & A & B\\ \hline
+ D\setminus P&S&S\\ e=+1&S&\varnothing\\ e=-1&\varnothing&S\\
+ U\setminus P&\varnothing&\varnothing\\ I&J_x&J_x
+\end{array}
+\]
+Here a section is indexed by the order of the $H$ coordinate. The strict lower region is a downset since a support order below a strict lower order would put the latter in $D\cap U=P$. Dually, the strict upper region is an upset. Below a support order, another support order has the same sign. Below an incomparable order one can meet only the incomparable or strict lower region. These facts and the nesting prove downward closure in the product order lattice. Coprimality identifies it with the order lattice of a cyclic group.
+
+Write $f=\ind_A$, $g=\ind_B$. Their difference is $e(x)$ on every $(x,y)$ and $\sum_y(f+g)(x,y)=|S|w(x)$. Because $f,g$ are even, at every $(z,t)$,
+\[
+ C_A-C_B=((f-g)*(f+g))(z,t)
+ =\sum_x e(x)\sum_y(f+g)(z-x,t-y)=|S|(e*w)(z)=0,
+\]
+where the left side is evaluated at $(z,t)$. If $A,B$ were translates, their section-size profiles on $H$ would be translates by some $h$. Both profiles are even, hence $2h$ is a period of the first. As $h$ has odd order, $h$ is also a period. The profiles would agree, contradicting the different sections on the nonempty support.
+\end{proof}
+
+\section{An annihilating profile on the odd factor}
+\label{h100:interpolation}
+
+We give the local constructions needed for the 100-prime example.  All
+finite defining arrays are printed in Appendix~\ref{v2:app:data} and supplied
+as machine-readable certificate data \cite{ConstructionH100};
+they specify functions, rather than a search for functions.  The arithmetic
+checks are described explicitly so that the argument does not require any
+earlier counterexample construction.
+
+An \emph{order shell} in a cyclic group is the set of elements of one
+specified order.  For a signed, order-invariant function $e_i$ taking
+values in $\{-1,0,1\}$, write $P_i$ for its support indicator and $D_i,U_i$
+for the indicators of the lower and upper closures of its support in the
+divisibility order.  The local supports used here are order-convex, and
+comparable support orders have the same sign.  Their lower and upper
+closures therefore intersect exactly in the support.  In indicator
+notation this means
+\begin{equation}\label{h100:local-convexity}
+ D_iU_i=P_i.
+\end{equation}
+Tensor products preserve these properties.
+
+\paragraph{The original upper donor.}
+The hidden factor has order $5^2 11^2 13\cdot17$.  The certificate gives
+16 quadruples $(s_i p_i,b_i,a_i,F_i)$ in \texttt{ppi\_unbalanced\_pair.py}, where $s_i\in\{-1,1\}$,
+$a_i\in\{1,2\}$, and $F_i$ is an upset of hidden orders.  On quotient
+coordinate $i$, the $i$th coatom has order $p_i^{a_i-1}$, and every other
+quotient coordinate has full order.  Give this coatom sign $s_i$ over
+$F_i$, and put zero elsewhere.  The certificate verifies
+\begin{equation}\label{h100:upper-fibres}
+ |F_i|=2400 b_i\rho_i,\qquad
+ \rho_i=\begin{cases}p_i-1,&a_i=1,\\p_i,&a_i=2,\end{cases}
+ \qquad \sum_i s_i b_i=0.
+\end{equation}
+Here $|F_i|$ is its element mass, computed as a sum of Euler totients.
+Each one-step increase of a listed hidden order remains in $F_i$.
+Different quotient coatoms are incomparable, proving the asserted
+support convexity and sign condition.
+
+Consider characters trivial on the hidden factor and of conductor either
+1 or $p_i$ on quotient axis $i$.  Let $T$ be the set of nontrivial axes.
+The full-shell character sums are nonzero.  Dividing by their product
+reduces the Fourier transform of the signed donor to
+\begin{equation}\label{h100:upper-transform}
+ 2400\left(\sum_i s_i b_i-\sum_{i\in T}s_i b_i p_i\right).
+\end{equation}
+Indeed, replacing a full shell by the preceding shell contributes
+$1/\rho_i$ at the trivial character and $(1-p_i)/\rho_i$ at conductor
+$p_i$.  This also holds for $a_i=2$: the two character sums are $-p_i$
+and $p_i-1$.
+
+The 15 nonempty masks $T$ in the certificate satisfy
+$\sum_{i\in T}s_i b_i p_i=0$.  Define
+\[
+ t_T(x)=\prod_{i\in T}
+   \bigl(1-p_i\ind_{\{x_i\bmod p_i=0\}}\bigr).
+\]
+If $x_i$ has additive order $p_i^{v_i}$ in $C_{p_i^{a_i}}$, then
+$x_i\bmod p_i=0$ exactly when $v_i<a_i$.  Thus every packet depends
+only on which quotient coordinates have full order; all lower
+valuation levels of a nonfull coordinate give the same packet bit.
+Its Fourier support is precisely in the corresponding conductor packet,
+with trivial hidden character.  Thus each $t_T$, and the constant
+function, is annihilated by convolution with the donor.  The rational
+coefficients $\alpha_T$ are the unique solution of
+\[
+ \sum_{T\ni i}\alpha_T=-\frac1{p_i}\qquad(1\le i\le16),
+\]
+obtained using the minor formed by the first fifteen prime rows in the
+order of the \texttt{FIBERS} table.  Its determinant is 193, and the
+sixteenth equation follows as well: each incidence column is orthogonal
+to $(s_i b_i p_i)_i$, and the right-hand side is orthogonal to this
+vector because $\sum_i s_i b_i=0$. The residual of the first fifteen
+equations has only its final coordinate possibly nonzero, whereas
+$s_{16}b_{16}p_{16}\ne0$.  Put
+\begin{equation}\label{h100:upper-witness}
+ u_0=-\sum_T\alpha_T+\sum_T\alpha_T t_T.
+\end{equation}
+It equals 1 at every quotient coatom and 0 at full quotient order.
+The hidden upset property therefore gives $u_0=P_0$ on the upper
+closure of the original upper donor.  Its denominator divides
+\[
+ d_u=193\prod_{i=1}^{16}p_i
+ =3014022061265152916156802594989230493.
+\]
+Exact evaluation on all $2^{16}$ quotient reduction states gives
+$\|u_0\|_\infty<602953959432$.
+
+\paragraph{The lower donor.}
+The array \texttt{LOWER} in \texttt{ppi\_weighted\_fibers.py} supplies 14 signed distinct primes $s_i p_i$ and 13
+conductor masks.  Give singleton order $p_i$ sign $s_i$ and all other
+orders value zero.  Its transform at a conductor mask $T$ is
+\[
+ \sum_i s_i(p_i-1)-\sum_{i\in T}s_i p_i.
+\]
+The first sum and all 13 selected mask sums vanish.  Use normalized
+packets whose local factor is 1 at zero and $-1/(p_i-1)$ elsewhere.
+The incidence equations
+\[
+ \sum_{T\ni i}\beta_T=\frac{1-p_i}{p_i}
+\]
+and constant coefficient $-\sum_T\beta_T$ give an annihilator $l$ that
+is zero at the origin and one at every singleton order.  These are
+exactly the required values $P_L$ on its lower closure.
+The first thirteen rows of the $14\times13$ incidence matrix
+$(\mathbf1_{i\in T})_{i,T}$, in the listed prime order, have determinant
+$317$. Solve those rows to define $\beta$ uniquely. The last equation
+then follows without an additional choice: each column is orthogonal
+to $(s_ip_i)_i$, and so is the right-hand side, since
+$\sum_i s_ip_i(1-p_i)/p_i=-\sum_i s_i(p_i-1)=0$.
+The residual has only its last coordinate possibly nonzero, whereas
+$s_{14}p_{14}\ne0$, forcing that coordinate to vanish.
+
+A clearing
+denominator is
+\begin{align*}
+ d_l&=\operatorname{lcm}\left(
+       \operatorname{den}\Bigl(\sum_T\beta_T\Bigr),
+       \left\{\operatorname{den}(\beta_T)
+                   \prod_{i\in T}(p_i-1):T\right\}\right)\\
+    &=4235516862890801652238669870882885211295864374904382095360000,
+ \qquad v_2(d_l)=19.
+\end{align*}
+The exact $2^{14}$-state evaluation gives
+$\|l\|_\infty<2447/1000$.
+
+\paragraph{Three two-prime corrections.}
+On a block with distinct odd primes $p<q$, let $d$ have values $+1$ at
+order $p$, $-1$ at order $q$, and zero elsewhere.  Its total is $p-q$,
+which is nonzero.  Nevertheless, its transform vanishes when both
+character coordinates are nontrivial, because both singleton shells
+then have character sum $-1$.  Hence
+\[
+ T=(1-p\ind_{\{x_p=0\}})(1-q\ind_{\{x_q=0\}}),\qquad
+ v=-\gamma T
+\]
+annihilates $d$ for any positive dyadic $\gamma$.  Write $P_B$ for its support
+indicator and $Z=(p-1)(q-1)$.
+
+If $u$ annihilates an old discrepancy and equals its support indicator
+$P_A$ on the old upper closure, put
+\[
+ C(x)=\begin{cases}P_B(x)-v(x),&x\ne0,\\0,&x=0,\end{cases}
+ \qquad
+ u'=u\otimes C+P_A\otimes v.
+\]
+Each summand has an annihilating factor.  On the product upper closure,
+$u=P_A$ and $C+v=P_B$, so $u'=P_AP_B$.  Moreover,
+\begin{equation}\label{h100:partial-bound}
+ \|u'\|_\infty\le
+ \max\left\{1,\gamma Z,
+   \|u\|_\infty\max_{x\ne0}|P_B(x)+\gamma T(x)|\right\}.
+\end{equation}
+When $P_A=1$, the value is $P_B$ off the new origin and $-\gamma Z$
+at it; when $P_A=0$, only $u\otimes C$ remains.  This proves the bound
+without any mean-zero assumption on the added block.
+
+Apply this correction successively to
+\[
+ (776561,776563),\qquad(881,883),\qquad(29,31).
+\]
+For each pair, start with $B=\max|u_0|$ and then update $B$ to the
+exact maximum on the right side of~\eqref{h100:partial-bound} after
+each correction. For that current $B$, set
+\[
+ b=\operatorname{bitlength}(Z)+24,\qquad
+ a=\min\left\{\frac{2(p-1)(q-1)}{p+q-2},
+              \frac{B(q-1)}{B+q-1}\right\},\qquad
+ \gamma=2^{-b}\left\lfloor\frac{2^b a}{Z}\right\rfloor.
+\]
+The successive precisions are 64, 44 and 34.  Starting with the exact
+maximum absolute value among the $2^{16}$ values of $u_0$, evaluation of the three
+nonzero orders in each block in \eqref{h100:partial-bound} gives successive
+norm bounds below 776562, 882 and $6079/200$.  Denote the final upper witness
+by $u$, and the original upper donor together with these three pairs by
+$A$.  Its discrepancy remains balanced, since the original upper donor
+has total zero.  The last recursively certified bound is
+$\mathcal U=30.3949675245\ldots$.  With $\mathcal L=\|l\|_\infty$, we use
+\begin{equation}\label{h100:individual-bounds}
+ \|u\|_\infty\le\mathcal U<6079/200,\qquad
+ \|l\|_\infty\le\mathcal L<2447/1000.
+\end{equation}
+
+\paragraph{Dyadic anchors from two modular helpers.}
+Let $o=\operatorname{oddpart}(d_l)$ and
+\[
+ k=249391\,2^{32}\left(\prod_{p\le31,\ p\ {\rm prime}}p\right)d_u.
+\]
+The upper helper uses the primes
+$Q=(1+2k,1+12k,1+3k,1+4k)$ and signs $+,+,-,-$ on the respective
+coatoms.  Its total is zero because
+$1/2+1/12=1/3+1/4$, and its fully nontrivial Fourier packet vanishes
+because the signs sum to zero.  Set
+\[
+ T_u=\prod_i(1-Q_i\ind_{\{x_i=0\}}),\qquad V_u=1-T_u.
+\]
+Then $V_u$ annihilates this helper.  It equals 0 at full order and
+$Q_i\equiv1\pmod {d_u}$ at coatom $i$.  Therefore
+\[
+ C_u=\frac{P_{M_u}-V_u}{d_u} \text{on }U_{M_u},\qquad C_u=0
+ \ \text{elsewhere},\qquad
+ W_u=(d_u u_0)\otimes C_u+P_0\otimes V_u
+\]
+is an integral annihilator equal to $P_0P_{M_u}$ on the combined upper
+closure.
+
+For the lower helper, put $q_*=Q_1$, let $m_0$ be its least nonnegative
+inverse modulo $o$, and use the primes
+\[
+ q_i=1+q_*(m_0+j_i o),\qquad (j_1,j_2,j_3,j_4)=(304,328,170,462).
+\]
+Give their singleton shells signs $+,+,-,-$.  Its total and fully
+nontrivial Fourier packet are zero.  If
+\[
+ T_l=\prod_i(1-q_i\ind_{\{x_i=0\}}),\qquad
+ b_0=(-2)^{-1}\pmod o,\qquad V_l=b_0(T_l-T_l(0)),
+\]
+where $b_0$ is the least nonnegative residue. Then $V_l$ annihilates the helper, is zero at the origin, and is 1 modulo
+$o$ at each singleton.  Indeed every $q_i\equiv2\pmod o$, and the
+unscaled difference at singleton $i$ is
+$q_i\prod_{j\ne i}(1-q_j)\equiv-2\pmod o$.  Thus
+\[
+ C_l=\frac{P_{M_l}-V_l}{o}\ \text{on }D_{M_l},\qquad C_l=0
+ \ \text{elsewhere},\qquad
+ W_l=(o l)\otimes C_l+P_L\otimes V_l
+\]
+is a dyadic annihilator with the required lower-closure values.
+
+All helper primality claims have finite Pocklington certificates: enough
+certified prime-power factors of $N-1$ have product exceeding $\sqrt N$,
+and the requisite modular-power and gcd witnesses are checked.  Upper
+helper factors are certified by trial division; lower certificates use
+an already certified upper prime and small trial-divided primes.  These
+checks are implemented by \texttt{pocklington} in
+\texttt{ppi\_modular\_pair.py}, called through \texttt{assemble\_bounds}
+by the main verifier.  The eight helpers and all other fixed primes are
+distinct.
+
+For completeness, the norm-reducing dyadic blend is explicit.  For
+either $W_u$ or $W_l$, let $B$ be the bound obtained by evaluating $V,C$
+on all 16 helper activity states and applying
+\[
+ \|W\|_\infty\le B:=d\|v\|_\infty\|C\|_\infty+\|V\|_\infty,
+\]
+where $v=u_0,d=d_u$ or $v=l,d=o$, respectively.  Write $d_0=d_u$ or
+$d_l$ for the individual clearing denominator, and set
+\[
+ b=\operatorname{bitlength}\bigl(
+       \operatorname{oddpart}(d_0)(\lfloor B\rfloor+2)\bigr),
+ \qquad
+ \theta=\frac{\operatorname{oddpart}(d_0)
+        \lfloor2^b/\operatorname{oddpart}(d_0)\rfloor}{2^b}.
+\]
+Replace $W$ by $\theta(v\otimes P_M)+(1-\theta)W$.  Its boundary
+values and annihilation are unchanged; its norm is less than
+$\|v\|_\infty+1$, since $(1-\theta)B<1$.  It is dyadic of exponent
+at most $b+v_2(d_0)$.  Finally multiply the upper anchor by the support
+indicators of the three added pairs.  This preserves its annihilation,
+boundary values and norm, without requiring those pairs to be balanced.
+Call the resulting paired anchors $\widetilde u,\widetilde l$.  We may
+take their norm bounds to be
+$\mathcal U_*=\|u_0\|_\infty+1$ and $\mathcal L_*=\mathcal L+1$.
+Their certified dyadic exponents
+are at most
+\begin{equation}\label{h100:anchor-exponents}
+ e_u=967,\qquad e_l=1986.
+\end{equation}
+The original upper exponent is 964; the three additional bits in 967
+are a harmless allowance for the support extension.
+
+\paragraph{Damping and rank.}
+For each of the 20 primes in \texttt{PAD\_PRIMES} in \texttt{ppi\_100\_prime\_pair.py}, use the factor
+$C_{p^2}\times C_q$, where $q=p(p-1)+1$, with discrepancy $+1$ at
+order $p^2$ and $-1$ at order $q$.  Their masses both equal $p(p-1)$,
+so every damping discrepancy is balanced.  The certificate separately
+certifies all 40 primes by trial division and checks disjointness.
+Let $H$ be the product of the 48 fixed primary factors and these damping
+factors; let $e$ be the tensor product of their discrepancies.  Thus
+$H$ has 88 distinct odd prime factors.  Write $D,U,P$ for the global
+closure and support indicators.
+
+On the original upper donor take the number of full-order quotient
+coordinates plus $1-D_0+U_0$.  Add the activity count of each of the
+three pairs to obtain $r_A$.  On the lower donor and each modular helper
+use the activity count.  On each damping factor use $1-D_i+U_i$.
+Their sum $r$ is weakly increasing in the divisibility order and has
+bound
+\begin{equation}\label{h100:rank-bound}
+ R=(18+6)+14+4+4+20\cdot2=86.
+\end{equation}
+The aggregate upper rank is exactly $16+3=19$ on its support.
+
+If two orders are comparable and have equal rank, all their nonnegative
+local rank increments vanish.  In the original upper donor this preserves
+each full-order quotient indicator and both closure bits; it therefore
+preserves $P_0=D_0U_0$ and every quotient packet.  In the pairs, lower
+donor and helpers it preserves every activity bit.  In each damping
+factor it preserves $D_i,U_i,P_i$.  These data determine every witness,
+anchor and function below, including their dependence on hidden orders.
+Consequently all constructed profiles agree at comparable equal-rank
+orders.
+
+\paragraph{Product interpolation.}
+For $X=D,U,P$, factor $X=\prod_i X_i$ using the aggregate upper block,
+the lower donor, the two helpers and the 20 damping blocks.  Define
+\begin{equation}\label{h100:product-interpolation}
+ F(X)=X-\prod_i(X_i-a_i).
+\end{equation}
+On the upper block the approximants for $D,U,P$ are respectively
+$(u,1,u)$; on the lower block they are $(1,l,l)$.  The helper and damping
+approximants are $1/2$, except in $F(U)$ on the lower helper.  There put
+\[
+ a_{M_l}=1-\alpha T_l,\qquad
+ \alpha=2^{-2003}\left\lfloor\frac{2^{2003}}{T_l(0)}\right\rfloor,
+ \qquad \eta=\frac1{\min_i q_i-1}.
+\]
+This annihilates the helper and approximates its upper closure with
+error at most $\eta$.  At the origin the error is
+$1-\alpha T_l(0)\le\eta$, checked exactly; away from the origin,
+$|T_l(x)|/T_l(0)\le\eta$ and $\alpha T_l(0)\le1$.
+
+Every surviving term after expanding \eqref{h100:product-interpolation}
+contains an annihilating local factor.  Thus $e*F(X)=0$.  The upper and
+lower witnesses make at least one local subtraction vanish on each
+required global closure, giving exact interpolation there.
+
+For each local rank $r_j$, similarly define $G_j(X)$ by replacing the
+target on block $j$ with $r_jX_j$: if $Y_j=r_jX_j$ and
+$Y_i=X_i$ for $i\ne j$, then
+\[
+ G_j(X)=r_jX-\prod_i(Y_i-a_i).
+\]
+The grouping exception below uses the same formula on the grouped
+factors.  In these moving products every
+stationary helper uses $1/2$.  The moving approximants are as follows:
+on the lower donor use $l$ for all three targets; on a helper or damping
+factor use zero; on the aggregate upper block use $19u$ for $D,P$.
+For the remaining target, moving $r_AU$, group $A$ with its upper
+helper and use
+\[
+ Y=r_AU_AU_{M_u},\qquad a=r_A\otimes1.
+\]
+This grouped approximant annihilates the product discrepancy because
+the helper is balanced; it is exact on the joint upper closure and
+has error at most the upper rank bound.  This step avoids assuming
+that the three added pairs individually have zero mean.  The first
+lower donor still supplies exactness on the global lower closure.
+All these $G_j(X)$ annihilate $e$ and equal $r_jX$ on both forced
+closures.  Each bare $r_j$ is also annihilated, since another balanced
+factor is independent of it.
+
+For the positive parameters $c,\delta$ specified by the spectator
+certificate, set
+\begin{equation}\label{h100:rational-profile}
+ \begin{split}
+ w_r={}&c+(2-c)F(D)-cF(U)+(c-1)F(P)\\
+       &-\delta\sum_j\bigl[r_j-G_j(D)-G_j(U)+G_j(P)\bigr].
+ \end{split}
+\end{equation}
+Then $e*w_r=0$.  Using $DU=P$, its forced values are $2-P$ on $D$ and
+$P$ on $U$.  In particular they are 1 on support, 2 on the strict
+lower closure and 0 on the strict upper closure.
+
+For $0<c<2$, the stationary errors for $D,U,P$, after removing the
+common damping factor $2^{-20}$, are bounded by
+\[
+ \frac{1+\mathcal U}{4},\qquad
+ \frac{(1+\mathcal L)\eta}{2},\qquad
+ \frac{(1+\mathcal U)(1+\mathcal L)}4.
+\]
+Each moving product has error at most
+$m_j(1+\mathcal U)(1+\mathcal L)2^{-21}$, where $m_j$ is its rank
+bound.  Moving a helper or a damping factor removes at most one
+midpoint factor; the grouped upper/helper case satisfies the same
+bound.  Summing the three targets and $\sum_jm_j=R$ proves that, on
+every free order,
+\begin{equation}\label{h100:rational-error}
+ |w_r-(c-\delta r)|\le2^{-20}
+ \left[\frac{(1+\mathcal U)(3+\mathcal L)}4
+       +(1+\mathcal L)\eta
+       +\frac32R\delta(1+\mathcal U)(1+\mathcal L)\right].
+\end{equation}
+Denote this right-hand side by $\mathcal E_{\mathrm{rat}}$.  The exact
+spectator parameters in Section~\ref{h100:mass} satisfy
+$\delta>1697/10^7$, and the helper primes give $\eta<10^{-6}$.
+Substituting these rational bounds, \eqref{h100:individual-bounds}, and
+$R=86$ into \eqref{h100:rational-error} gives
+\[
+ \frac{\mathcal E_{\mathrm{rat}}}{\delta}
+ <\frac{90242379537969}{355886694400000}
+ <\frac{254}{1000}.
+\]
+
+\paragraph{Final dyadic profile and precision.}
+Construct $w_0=2F(D)-F(P)$ with the original upper donor, its helper
+and the three pairs grouped together, and the lower donor and its helper
+grouped together.  For the targets $D,P$ use respectively
+$(\widetilde u,\widetilde u)$ on the upper pair and
+$(1,\widetilde l)$ on the lower pair; every damping approximant is
+$1/2$.  The same product-subtraction formula applies.  This $w_0$ has
+the same annihilation and forced values, and
+\[
+ \|w_0\|_\infty\le2+3(1+\mathcal U_*)(1+\mathcal L_*).
+\]
+Let
+\[
+ E=\operatorname{oddpart}(d_ud_l),\qquad
+ \lambda=\frac{E\,\left\lfloor2^{367}/E\right\rfloor}{2^{367}},\qquad
+ w=\lambda w_r+(1-\lambda)w_0.
+\]
+The spectator parameters satisfy $0<c-R\delta<c<2$ and $0<\delta<1$. Together with the error bound and the forced values, these inequalities give $\|w_r\|_\infty<3$.
+The additional error from this blend is at most
+\[
+ \mathcal E_{\mathrm{blend}}=
+ (1-\lambda)\bigl[5+3(1+\mathcal U_*)(1+\mathcal L_*)\bigr].
+\]
+Indeed $E<2^{304}$, so $0\le1-\lambda<2^{-63}$, while the anchor
+bounds give $5+3(1+\mathcal U_*)(1+\mathcal L_*)<8.1\cdot10^{12}$.
+Thus, with $m=7/2$,
+\[
+ \frac{\mathcal E_{\mathrm{blend}}}{\delta}
+ <\frac{81\cdot10^{18}}{1697\cdot2^{63}}
+ <\frac{2}{231}=\frac1{33m}.
+\]
+The exact certificate evaluates the two bounds separately as
+$\mathcal E_{\mathrm{rat}}/\delta=0.2534210321\ldots$ and
+$\mathcal E_{\mathrm{blend}}/\delta=0.0005089276\ldots$; their sum
+$0.2539299597\ldots$ is the combined interpolation-error bound.
+Since $254/1000+1/(33m)=30337/115500<1/m$, every free order satisfies
+\begin{equation}\label{h100:final-profile}
+ e*w=0,\qquad |w-(c-\delta r)|<\delta/m.
+\end{equation}
+The forced values and equal-rank invariance are unchanged.
+
+We record the precision argument independently of any enumeration of
+free orders.  In the normalized spectator units used below, $K$ is an
+integer, $Kc$ has dyadic exponent at most 177 and $K\delta$ at most 161.
+The combined individual donor exponent is
+\[
+ d_y=19+64+44+34=161.
+\]
+Every product term uses each original individual donor at most once.
+Thus the odd denominator of $Kw_r$ divides $E$; the other operations
+introduce only dyadic denominators.  Counting both helper midpoint bits,
+the flat-helper exponent 2003, and all 20 damping bits gives the
+conservative bound
+\[
+ 177+161+2003+2+20=2363
+\]
+for its dyadic exponent before the final blend.  Moving terms need
+at most $161+161+2+20=344$.  The paired anchor has exponent at most
+$967+1986+20=2973$.  The numerator of $\lambda$ clears $E$, and its
+denominator costs 367 bits.  Hence $Kw$ is dyadic of exponent at most
+$3340$.  For the fine mass unit $M=64$, the exponent of $Kw/(2M)$ is
+at most $3347$.  The certificate uses the larger value
+\begin{equation}\label{h100:fine-precision}
+ A=367+20+
+ \max(177+161+2003+3,\ 161+161,\ 967+1986)+6+7=3353.
+\end{equation}
+This leaves six spare bits for the profile.  The ordinary-slot baseline
+precision is checked separately in the section decoder.  Division by
+$2^{\ell-R}$ multiplies by an integer for $0\le\ell\le R$, so cannot
+worsen the dyadic denominator.
+
+\section{The twelve spectator primes}\label{h100:spectator}
+
+The odd part of \(S\) projects onto a tag quotient of order \[
+ Q=3^5\,7^3\,19^2\,23^2\,37^2\,41^2\,43\,47\,71\,83\,113\,149 .
+\] Use this displayed prime order for tuples of projected order exponents. The guards are \(3,7,113\). The control primes are \(23,37,41\). The six remaining primes \(19,43,47,71,83,149\) carry additional kernel powers \((4,3,3,3,3,2)\) respectively, of product \(B\). The control primes each carry one additional kernel power, of product \(C=34891\). Thus \(|S|=QBC\,2^{3446}\). The map on odd parts is reduction onto \(C_Q\) with kernel of order \(BC\). Common prime factors of the kernel and quotient are included in these exponents.
+
+For tag \(v\) let \(V(v)=\prod_i\varphi(p_i^{v_i})\), with \(\varphi(1)=1\). The tag \(g\) having full exponents on the three guards and zero elsewhere has mass \(G=5334336=64h\), where \(h=83349=3^5 7^3\). Measure section sizes in units \(hC\,2^{3446}\). The full normalized mass is the integer \(K=QB/h\). An unrestricted odd preimage above tag \(v\) has normalized mass \(V(v)B/h\) at full dyadic height.
+
+A tag is early if either the 3 or 7 exponent is below its maximum. It is late if those two are full and the 113 exponent is below its maximum. In each class consider the tags with \(h\mid V(v)\). Take the 214 heaviest early tags and 400 heaviest late tags, resolving a tie by decreasing lexicographic order. Call these the ordinary slots. Fill every other early or late tag completely as the background. All tags with full guards outside \(g\) are empty. Above \(g\) use the fine slots below. The normalized background mass is \[
+ n=\frac Bh\sum_{v\text{ in background}} V(v).
+\] The verifier enumerates every tag and every immediate divisor, verifies the divisibility of this sum by \(h\), and checks that the background is downward closed and contains every strict divisor of \(g\). There are 124416 tags, of which 121210 belong to the background.
+
+\subsection{Ordinary slots}\label{ordinary-slots}
+
+Use the permutation in \texttt{ppi\_100\_slot\_order.json} in the electronic supplement. Its integers are zero-based indices into the tag tuples in increasing lexicographic order, so the last exponent changes fastest. Pair successive entries as groups numbered from zero. The verifier checks that this is precisely the chosen set, early first, and that every ordinary immediate divisor of an ordinary slot occurs earlier. Each immediate divisor either belongs to the background or is such an earlier slot. This also controls non-immediate divisors by induction. Thus the file fixes a linear extension of divisibility, with the early class first; the within-class order need not be decreasing by mass. All subsequent group sums and decoder parameters use this recorded order.
+
+Put \(W_i=V(v_i)B/h\). Take \(H_0=\lfloor 99 W_{\min,\mathrm{early}}/100\rfloor\). Let \(\beta_i\) be the unique integer power of two for which \(H_0/2<W_i\beta_i\le H_0\). Write \(z_i=W_i\beta_i\). For a used ordinary slot take the full odd preimage, with the dyadic subgroup at the height specified in Section~\ref{h100:nesting}. Thus \(\beta_i\) is its base relative height, possibly greater than one before the level scaling of a late slot.
+
+The first step on a prime axis multiplies shell mass by \(p-1\) and each subsequent step multiplies it by \(p\). Hence strict divisibility \(v_i<v_j\) implies \(W_j\ge 2W_i\). The common normalization interval then gives \(\beta_j\le\beta_i/2\). This allows the ordinary slots to be comparable even when their digits are selected independently.
+
+\subsection{Fine slots}\label{fine-slots}
+
+Above \(g\), the variable and control coordinates project to zero, so their allowed elements lie in the respective primary kernels. Use the 3840 possible variable kernel shell tuples \(v\), with each exponent running from zero to its additional kernel exponent. Set \[
+ V_v=G\prod_{p\ {\rm variable}}\varphi(p^{v_p}),\qquad
+ d_v=\prod_{p\ {\rm control}}p^{v_p(V_v)},\qquad
+ u_v=\operatorname{oddpart}(V_v)/(h d_v),
+\] where \(v_p(V_v)\) in the middle expression is the prime valuation. The checker verifies \(d_v\mid C\) for every \(v\). Use the subgroup of index \(d_v\) of the control kernel at this shell. If the nominal fine height is \(a\), take actual dyadic height \(aM/2^{v_2(V_v)}\) with \(M=64\). The physical odd mass is \(V_vC/d_v\), so the normalized contribution is exactly \(M u_v a\).
+
+Sort the slots by increasing \((u_v,\sum v_p,v)\) lexicographically. A strict divisor precedes its multiple, its control index divides that of its multiple, and its dyadic rescaling factor is at least that of its multiple. Indeed the shell mass divides the successor mass, and removing the control factors preserves divisibility of the odd weights. Ties in weight are resolved by increasing degree. The verifier checks these properties at every immediate divisor. Use the first \(A=3353\) slots and leave later ones empty. The first eight odd weights equal one. The exact tail bound is \(\sum_{j=9}^A u_j2^{-j}<1/4\), using one-based fine indices.
+
+\section{Nested sections and digit weights}\label{h100:nesting}
+
+At level \(l=R-r\), use ordinary groups \(k=0,\ldots,R+159\) inclusive. Later groups are empty. For \(k<l\) freeze the group at doubled base heights. For \(k\ge l\) use base heights divided by \(2^{k-l}\), with an independent option to double each height. Early doubled base heights are at most one. Late groups begin at index 107 and have \(k-l\ge21\) even at \(l=86\). The checker verifies that every late doubled height after this scaling is at most one.
+
+At each level the multiplier common to a group before digit selection decreases weakly with its group index, with the frozen groups already doubled. Together with \(\beta_j\le\beta_i/2\) on strict comparisons, the smallest allowed height at a divisor is at least the largest allowed at a multiple. The empty tail comes last. Every choice on the ordinary slots therefore respects divisibility.
+
+For fine slot \(j\) use nominal height \(2^{l-R-j}\) with an independent option to double. Along strict comparisons the index increases by at least one, which absorbs the optional doubling. The rescaling and control subgroup inclusion proved in Section~\ref{h100:spectator} preserve the containment in the odd and dyadic coordinates. Dividing an element while staying over \(g\) preserves these restrictions or goes to an earlier variable shell. Projecting to a strict divisor of \(g\) leads to the full background. Ordinary tags miss a full guard and cannot lie above \(g\). Any ordinary tag below \(g\) was excluded by the strict-divisor check. Thus every section is a downset. All heights exist on the cyclic dyadic factor. The largest required fine exponent is \(3353+86+7=3446\). The ordinary shifts and depths are smaller. Heights of zero specify the empty section.
+
+Increasing \(l\) by one makes the minimum allowed height at least the previous maximum on each variable slot, or keeps an already frozen slot at its fixed value. The control restrictions do not depend on \(l\). Consequently \textbf{every} decoded section at the higher level contains \textbf{every} decoded section at the preceding level.
+
+\section{Exact mass at each free order}\label{h100:mass}
+
+The file \texttt{ppi\_100\_certificate.json} gives \(s,b\) as integers divided by explicitly stated powers of two. Set \(c=2(n+b+Rs)/K\) and \(\delta=2s/K\), the parameters used in Section~\ref{h100:interpolation}. They can also be regenerated. Round twice the mean of the first 107 group sums of \(z_i\) to the nearest multiple of \(E/2^{161}\), with ties to even, to obtain \(s\). Let \(C_l\) be the ordinary minimum including frozen groups, and \(J_l\) the sum of the two base weights in group \(l\). Explicitly,
+\[
+ J_k=z_{2k}+z_{2k+1},\qquad
+ C_l=2\sum_{k<l}J_k+\sum_{k=l}^{R+159}2^{l-k}J_k.
+\]
+Write \(\lambda_l=2^{l-R}\). The number \(b\) is the midpoint of the intersection over \(l\) of the intervals \[
+ \left[C_l+5M\lambda_l/4-ls+s/m,\quad
+       C_l+5M\lambda_l/4-ls+J_l+H_0-s/m\right].
+\] The verifier regenerates both manifest rationals and checks the interval intersection is nonempty.
+
+On a free order of rank \(r\), the desired normalized section mass \(Kw/2\) belongs to \([n+b+ls-s/m,n+b+ls+s/m]\) by Section~\ref{h100:interpolation}. Write \(T=\sum_{j=1}^A u_j2^{-j}\). From the desired mass subtract \(n+C_l+M\lambda_l T+M\lambda_l/4\). At each of the 87 levels the verifier checks, at both endpoints, that the result lies in \([0,J_l+H_0]\). The subtraction is affine in the desired mass, so this holds throughout the interval.
+
+Visit the unfrozen ordinary groups in order and double each digit whose increment fits the remaining number. A skipped digit leaves a residual smaller than that digit. Taking both digits subtracts \(J_l\) from an input at most \(J_l+H_0\). Either way the first pair leaves at most \(H_0\). At depth \(j\ge1\) the input is at most \(2H_0/2^j\), the individual digits are at most \(H_0/2^j\), and their sum exceeds \(H_0/2^j\). The same argument bounds the output by \(H_0/2^j\). The final depth is \(159+R-l\), and \(H_0/2^{159}\le M/2\). Adding back the reserve \(M\lambda_l/4\) leaves the needed fine increment in \([M\lambda_l/4,3M\lambda_l/4]\).
+
+After division by \(M\lambda_l\), the fine increment lies on the grid \(2^{-A}\mathbb Z\), where \(A=3353\). Section~\ref{h100:interpolation} bounds the dyadic exponent of \(Kw/(2M)\) by 3347. The ordinary normalized weights have at most \(\operatorname{bitlength}(K)\) fractional bits at base height and a further \(159+R\) from depth. Even allowing five additional bits and \(\operatorname{bitlength}(M)=7\) for normalization, their precision bound is only \[
+ \operatorname{bitlength}(K)+159+86+5+7=436<3353.
+\] The background is integral, the reserve becomes \(1/4\), and the normalized fine baseline \(T=\sum_{j=1}^A u_j2^{-j}\) already lies on the grid. Division by \(\lambda_l=2^{l-R}\) multiplies by an integer. These estimates establish the grid condition for every actual free-order value.
+
+To decode the fine increment \(y\) now scaled to \([1/4,3/4]\), start with \(2^Ay\). For \(j=A,\ldots,9\) select the digit when the current integer is odd, subtract \(u_j\) if selected, and divide by two. Oddness of \(u_j\) makes each division exact. If \(\epsilon_j\) are the chosen tail bits and \(q_8\) is the integer after the final division, unwinding the recurrence gives \[
+ q_8=2^8\left(y-\sum_{j=9}^{A}\epsilon_j u_j2^{-j}\right).
+\] The selected tail is nonnegative and less than \(1/4\), while \(1/4\le y\le3/4\). Hence \(0\le q_8\le192<2^8\). Its eight binary digits select the first eight weights, all of which equal one. Doubling exactly those fine heights adds the prescribed mass. The uniform interval and grid proof covers all interior grid points. As supplementary arithmetic checks, the original verifier reconstructs 435 integer masses across the 87 levels, and the separate audit independently reconstructs 2,175 targets. The interval induction and parity identity above establish the universal claim; the samples are not its proof.
+
+
+\begin{proof}[Proof of Theorem~\ref{vi:th:main}]
+The product signed support is nonempty and satisfies the hypotheses of Lemma~\ref{vi:lem:sections}. The profile from Section~\ref{h100:interpolation} annihilates $e$ and has the required forced values. Sections~\ref{h100:spectator}--\ref{h100:mass} realize every free value as a divisor ideal of $S$. A comparable increase of the $H$-order decreases the level $l=R-r$, so the all-choice nesting gives the required inclusion. At comparable equal-rank orders the profile inputs and deterministic decoder agree. The lemma therefore constructs the two genuine subgroup unions and proves their equality of autocorrelation at every labeled shift and their nontranslation.
+
+The odd factors of $H$ and $S$ have disjoint prime sets, so $H\times S$ is cyclic. The prime budget is
+\[
+ \underbrace{26+14+8}_{48\ {\rm fixed}}
+ +\underbrace{20\cdot2}_{40\ {\rm damping}}
+ +\underbrace{12}_{\rm spectator}=100.
+\]
+The additional spectator kernel powers do not introduce any new primes. The independent certificate checks the resulting prime-power map against the manifest and computes the exact bit length 8,123 and decimal length 2,446 of $N=2^{3446}M_{100}$.
+\end{proof}
+

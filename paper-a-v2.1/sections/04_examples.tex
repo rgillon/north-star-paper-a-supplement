@@ -1,0 +1,65 @@
+\section{Examples and the finite graph certificate}
+
+The examples distinguish radial mates from subgroup-union mates.
+Translation and complementation within the radial class are governed
+by Proposition~\ref{ii:prop:symmetries}; the orbit counts below use that
+proposition in addition to the conductor graph.
+
+\begin{example}[The classical four-set orbit at $N=12$]\label{ii:ex:12}
+Let $A=3\mathbb Z_{12}\cup4\mathbb Z_{12}=\{0,3,4,6,8,9\}$.  Its conductor marks are
+\[
+ \begin{array}{c|rrrrrr}
+ c&1&2&3&4&6&12\\\hline
+ F_A(c)&6&2&3&2&-1&-1
+ \end{array}.
+\]
+The graph components are $\{1\}$, $P=\{2,3,6\}$, and $T=\{4,12\}$.  All contain the root or a pure-prime conductor, so $u_{\rm div}=0$, whereas $u_{\rm rad}=2$.  The four radial mates are:
+\begin{center}\small
+\begin{tabular}{@{}ll@{}}\toprule
+Sign flip & Resulting set and classical relation\\\midrule
+none & $A=\{0,3,4,6,8,9\}$\\
+$T$ & $A+6=\{0,2,3,6,9,10\}$\\
+$P$ & $A^c+6=\{1,4,5,7,8,11\}$\\
+$P,T$ & $A^c=\{1,2,5,7,10,11\}$\\\bottomrule
+\end{tabular}
+\end{center}
+They share the autocorrelation
+\[
+ (6,2,2,4,3,2,4,2,3,4,2,2).
+\]
+Here $|A|=6=N/2$, $d=12$, and the two free sign masks are precisely translation by $6$ and complementation.  There are two translation orbits represented here, those of $A$ and $A^c$. They are also distinct dihedral orbits, since $A=-A$ and no translate of $A$ equals $A^c$. Indeed $A$ contains a full coset of $4\mathbb Z_{12}$ and $A^c$ contains none. Allowing complementation as an additional equivalence identifies the two orbits, as counted by \eqref{ii:eq:orbitcount}.
+\end{example}
+
+\begin{example}[A non-dihedral radial mate at $N=24$]\label{ii:ex:24}
+Let
+\[
+ A=6\mathbb Z_{24}\cup8\mathbb Z_{24}=\{0,6,8,12,16,18\},
+ \quad B=\{2,8,10,14,16,22\}.
+\]
+For conductors $c=1,2,3,4,6,8,12,24$ the Fourier marks are
+\[
+\begin{array}{c|rrrrrrrr}
+ c&1&2&3&4&6&8&12&24\\\hline
+ F_A(c)&6&6&3&2&3&2&-1&-1\\
+ F_B(c)&6&6&-3&-2&-3&2&1&-1
+\end{array}.
+\]
+The graph components are $\{1,2\}$, $P=\{3,4,6,12\}$, and $T=\{8,24\}$.  Flipping $P$ gives $B$; flipping $T$ gives the translate by $12$.  Every Fourier magnitude agrees, hence $C_A=C_B$ at every shift.  Both sets are symmetric, so a dihedral equivalence would have to be a translation; checking the $24$ translations shows there is none.  Moreover $|A|=6\ne12$, so complementation is not a homometry.  Theorem~\ref{ii:thm:radial} therefore gives four radial mates and \eqref{ii:eq:orbitcount} gives \emph{two} classes modulo dihedral equivalence.
+
+This example is not primitive with respect to the ambient cyclic group: $A,B\subset2\mathbb Z_{24}$, and division by $2$ identifies them with a complementary-type construction in $\mathbb Z_{12}$.  Also, $B$ is not a subgroup union because $F_B(3)=-3$ violates Lemma~\ref{ii:lem:pure}.  It is an actual non-dihedral instance of the radial theorem, not an example of nonrigidity among subgroup unions.
+\end{example}
+
+\begin{corollary}[Finite graph certificate and complexity]\label{ii:cor:certificate}
+Let $A$ be a nonempty subgroup union.  One can determine whether $A$ has another subgroup-union homometric mate directly from its conductor marks, without searching through other subsets.  Writing $h=\omega(N)$ and $L=\tau(N)=|\Lambda_N|$, the differences, cumulative sums, and graph edges can be computed in $O(hL)$ integer arithmetic operations from the binary valuation profile.  The criterion is $u_{\rm div}(A)>0$; each selected flip has an explicit inverse given by \eqref{ii:eq:inversealpha}, then $f(\vv)=\sum_{\rvec\le\vv}\alpha_{\rvec}$.  Constructing all $2^{u_{\rm div}}$ mates necessarily has output-exponential cost.
+\end{corollary}
+\begin{proof}
+Apply finite differences and cumulative sums successively along each coordinate, costing $O(hL)$ arithmetic operations; the graph has at most $hL$ adjacent candidate edges.  Theorem~\ref{ii:thm:subgroups} and the inverse formulas prove the certificate and the reconstruction claim.
+\end{proof}
+
+\begin{corollary}[Prime powers and odd order]\label{ii:cor:primepower}
+Every subgroup union at a prime-power modulus is rigid among subgroup unions.  At every odd modulus, each inversion-symmetric binary subset is determined among inversion-symmetric binary subsets by its complete autocorrelation, and therefore every subgroup union is rigid.
+\end{corollary}
+\begin{proof}
+For $N=p^a$, the subgroups form a chain, so a union of subgroups is a single subgroup (or empty); its cardinality already determines it.  The odd-order assertion is Proposition~\ref{ii:prop:odd}.
+\end{proof}
+

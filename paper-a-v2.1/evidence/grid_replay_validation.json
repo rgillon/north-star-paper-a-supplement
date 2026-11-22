@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "complete_rows": 24,
+  "residual_patterns": 0,
+  "all_exclusion_counts_balance": true,
+  "two_squared_rows_match_source": 6,
+  "elapsed_seconds": 1039.8021971950002,
+  "elapsed_minutes": 17.33003661991667,
+  "selected_rows": [
+    {
+      "shape": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "counts": {
+        "total": 11194933,
+        "root": 2915359,
+        "cube": 2914533,
+        "incidence": 817,
+        "root_factor": 9
+      },
+      "residual": [],
+      "seconds": 118.77767478199996
+    },
+    {
+      "shape": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "counts": {
+        "total": 11194933,
+        "root": 3743527,
+        "cube": 3742267,
+        "incidence": 1248,
+        "root_factor": 12
+      },
+      "residual": [],
+      "seconds": 145.056632132
+    },
+    {
+      "shape": [
+        1,
+        2,
+        2,
+        1
+      ],
+      "counts": {
+        "total": 11194933,
+        "root": 4326542,
+        "cube": 4324839,
+        "incidence": 1690,
+        "root_factor": 13
+      },
+      "residual": [],
+      "seconds": 163.60086402599995
+    },
+    {
+      "shape": [
+        2,
+        1,
+        1,
+        2
+      ],
+      "counts": {
+        "total": 11194933,
+        "root": 3772758,
+        "cube": 3771046,
+        "incidence": 1688,
+        "root_factor": 24
+      },
+      "residual": [],
+      "seconds": 148.58570535
+    },
+    {
+      "shape": [
+        2,
+        1,
+        2,
+        1
+      ],
+      "counts": {
+        "total": 11194933,
+        "root": 4305351,
+        "cube": 4303010,
+        "incidence": 2312,
+        "root_factor": 28,
+        "row_factor": 1
+      },
+      "residual": [],
+      "seconds": 168.97084048500005
+    },
+    {
+      "shape": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "counts": {
+        "total": 11194933,
+        "root": 5166787,
+        "cube": 5163679,
+        "incidence": 3072,
+        "root_factor": 31,
+        "row_factor": 4,
+        "largest_prime": 1
+      },
+      "residual": [],
+      "seconds": 198.7117791390001
+    }
+  ]
+}

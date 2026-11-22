@@ -1,0 +1,55 @@
+{
+  "edition": "Paper A Version 2.1",
+  "date": "2026-11-22",
+  "review_scope": "Supplied Grok report and subsequent HOLDS WITH FIXES report summary. Full latter attachment was not supplied.",
+  "previous_delivered_archive_sha256": "88d8caa73419bfd461a6109ba2150dc086b1cd403296f3130a122091c99796a0",
+  "public_base_commit": "bd54a4c2186f300c65ee133be0fb9ed2bda515dd",
+  "theorem_10_4": "Retained analytically with original hypotheses; explicit character/conductor/kernel convention; Lemma10.3 excludes Z={1}. No finite search premise.",
+  "unrecovered_source_claims": [
+    "LEVEL1_GENERATOR_LATTICE_RANK.md",
+    "LEVEL1_FACTOR_CUT_MOMENTS.md"
+  ],
+  "unverified_outline_counts": [
+    191,
+    2741,
+    73
+  ],
+  "historical_receipts": "Files in evidence/referee_revision/fresh and fresh_run_receipt.json replay the prior delivered archive. The corrected default script was tested separately and matches the revised file byte for byte.",
+  "h99_corrected_script_sha256": "0d64cdd201057a51e52e4bae35609d87c87bfe981a329e44df6e644fae0d253b",
+  "documents": [
+    {
+      "file": "North_Star_Paper_A_V2_1.pdf",
+      "sha256": "828796fc2a92d9b9ce0012f3ce38aa51a98f7eae65dca4336501107fd33c7e35",
+      "pages": 50
+    },
+    {
+      "file": "North_Star_Paper_A_V2_1.tex",
+      "sha256": "f00d874536b06efb5fe305f18ed9f27fddc91f01653af1dfbd40b967c4606f38",
+      "pages": null
+    },
+    {
+      "file": "North_Star_Paper_A_V2_1_Referee_Support.pdf",
+      "sha256": "f504b5a060b74555d28fda6ecc32ef816a22e7271e9975be01d10fb13efc24e6",
+      "pages": 10
+    },
+    {
+      "file": "North_Star_Paper_A_V2_1_Changes_and_Gaps.pdf",
+      "sha256": "49aaae796112e9c830d0451df3ec73f665882abec05cf0b6171773e0e03ec50f",
+      "pages": 4
+    },
+    {
+      "file": "North_Star_Paper_A_V2_1_Referee_Response.pdf",
+      "sha256": "c24d099d88ae13e1288173f283614797321361572890354a915a305b76193a49",
+      "pages": 4
+    }
+  ],
+  "validation": {
+    "compilations": "All successful; no undefined references or overfull boxes.",
+    "standalone_matches_modular_page_text": true,
+    "frozen_manuscript_references_unchanged": 17,
+    "visual_review": "All manuscript pages reviewed in contact sheets; revised theorem, roadmap and companion layouts additionally inspected.",
+    "new_conductor_checks": "Two exact implementations, both PASS; only conductor1 vanishes in each cited example.",
+    "targeted_replays": "Five fresh commands exited0; corrected no-argument defaults also passed.",
+    "grid": "Archived complete24-grid replay retained; no new grid run claimed for V2.1."
+  }
+}

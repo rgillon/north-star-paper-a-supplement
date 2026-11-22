@@ -1,0 +1,76 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "archive_sha256": "88d8caa73419bfd461a6109ba2150dc086b1cd403296f3130a122091c99796a0",
+  "runs": [
+    {
+      "name": "cut_moments",
+      "command": [
+        "python3",
+        "verification/verify_cut_moments.py"
+      ],
+      "cwd": "extracted/North_Star_Paper_A_V2",
+      "exit_code": 0,
+      "seconds": 0.999151245000121,
+      "stdout": "fresh/cut_moments.stdout",
+      "stderr": "fresh/cut_moments.stderr"
+    },
+    {
+      "name": "h100_arithmetic",
+      "command": [
+        "python3",
+        "experiments/ppi_h100_independent_audit.py",
+        "experiments"
+      ],
+      "cwd": "extracted/North_Star_Paper_A_V2",
+      "exit_code": 0,
+      "seconds": 1.351415653999993,
+      "stdout": "fresh/h100_arithmetic.stdout",
+      "stderr": "fresh/h100_arithmetic.stderr"
+    },
+    {
+      "name": "h100_rank_original",
+      "command": [
+        "python3",
+        "experiments/ppi_100_rank_precision.py"
+      ],
+      "cwd": "extracted/North_Star_Paper_A_V2",
+      "exit_code": 0,
+      "seconds": 1.7857009029999062,
+      "stdout": "fresh/h100_rank_original.stdout",
+      "stderr": "fresh/h100_rank_original.stderr"
+    },
+    {
+      "name": "h99_original",
+      "command": [
+        "python3",
+        "experiments/ppi_99_prime_pair.py"
+      ],
+      "cwd": "extracted/North_Star_Paper_A_V2",
+      "exit_code": 0,
+      "seconds": 3.060084876000019,
+      "stdout": "fresh/h99_original.stdout",
+      "stderr": "fresh/h99_original.stderr"
+    },
+    {
+      "name": "h99_changed_independent",
+      "command": [
+        "python3",
+        "verification/h99_independent_audit.py",
+        "experiments",
+        "/workspace/scratch/060e9f471065/revision_audit/repro/fresh/h100_arithmetic.stdout"
+      ],
+      "cwd": "extracted/North_Star_Paper_A_V2",
+      "exit_code": 0,
+      "seconds": 38.64000880699996,
+      "stdout": "fresh/h99_changed_independent.stdout",
+      "stderr": "fresh/h99_changed_independent.stderr"
+    }
+  ],
+  "arithmetic_versions": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "numpy": "2.3.5",
+    "sympy": "1.14.0",
+    "exact_arithmetic": "Python integers and fractions.Fraction; symbolic source programs use SymPy exact rationals; floating decimals are display only."
+  }
+}

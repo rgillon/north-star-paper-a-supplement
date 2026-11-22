@@ -1,0 +1,738 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=.88in]{geometry}
+\usepackage{amsmath,amssymb,booktabs,longtable,array,enumitem,microtype}
+\usepackage{listings,fancyhdr,xcolor,xurl}
+\usepackage[colorlinks=true,linkcolor=black,urlcolor=blue!50!black]{hyperref}
+% Frozen from the final manuscript auxiliary file; this source has no external-reference dependency.
+\expandafter\def\csname MRef@ii:lem:integrality\endcsname{2.2}
+\expandafter\def\csname MRef@ii:thm:radial\endcsname{3.1}
+\expandafter\def\csname MRef@ii:thm:subgroups\endcsname{5.3}
+\expandafter\def\csname MRef@v2:thm:rank\endcsname{6.1}
+\expandafter\def\csname MRef@thm:cut-coefficient\endcsname{7.1}
+\expandafter\def\csname MRef@prop:cut-transfer\endcsname{7.2}
+\expandafter\def\csname MRef@ii:prop:odd\endcsname{4.1}
+\expandafter\def\csname MRef@vi:prop:twice\endcsname{9.1}
+\expandafter\def\csname MRef@prop:four\endcsname{9.2}
+\expandafter\def\csname MRef@lem:common-dyadic-fibers\endcsname{10.1}
+\expandafter\def\csname MRef@lem:primary-common-zero\endcsname{10.3}
+\expandafter\def\csname MRef@thm:primary-power-four-primes\endcsname{10.4}
+\expandafter\def\csname MRef@lem:terminal-incidence\endcsname{11.1}
+\expandafter\def\csname MRef@lem:terminal-implies-rigidity\endcsname{11.2}
+\expandafter\def\csname MRef@vi:th:main\endcsname{1.1}
+\expandafter\def\csname MRef@v2:cor:h100-height\endcsname{17.2}
+\expandafter\def\csname MRef@v2:thm:h99\endcsname{17.3}
+\newcommand{\mclaim}[2]{\textit{#2} (\csname MRef@#1\endcsname)}
+\newcommand{\GridReplayStatus}{Completed: 24 of 24 ordered grids, all residual lists empty, all exclusion totals balanced; process exit code 0. Recorded wall time: 1,039.802 seconds (17 minutes 19.8 seconds). The receipt is \file{evidence/grid_replay_validation.json}.}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\ind}{\mathbf1}
+\DeclareUrlCommand\file{\urlstyle{tt}}
+\newcommand{\proved}{\textsc{Proved}}
+\newcommand{\computed}{\textsc{Computed}}
+\newcommand{\open}{\textsc{Open}}
+\setlength{\emergencystretch}{2em}
+\setlength{\headheight}{14pt}
+\setlength{\parskip}{.35em}
+\setlist{nosep,leftmargin=1.5em,topsep=.35em}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Paper A Version 2.1: referee support}
+\fancyhead[R]{\small 22 November 2026}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{.25pt}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,
+        keepspaces=true,showstringspaces=false,frame=single,framerule=.2pt}
+\hypersetup{pdftitle={North Star Paper A Version 2.1: Referee Support and Verification},
+ pdfauthor={Robert Gillon},pdfsubject={Proof dependencies, reproducible certificates, and unresolved verification obligations}}
+\begin{document}
+\begin{center}
+{\LARGE\bfseries Referee Support and Verification\par}
+\vspace{.45em}
+{\large North Star Paper A, Version 2.1\par}
+{\large Robert Gillon\par}
+\vspace{.3em}
+22 November 2026
+\end{center}
+
+\section{Purpose and the exact review question}
+
+This document accompanies \textit{Reconstructing Unions of Subgroups from
+Cyclic Autocorrelation}. It identifies the logical dependencies of the
+principal claims, the exact role of each computation, and the commands
+needed to reproduce the supplied finite evidence. The manuscript contains
+the mathematical proofs; this guide does not replace a missing argument
+with a repository reference. The supplied source and data are sufficient
+for the review procedures below without access to research conversations
+or a private GitHub account.
+
+The primary question is whether, for every fixed modulus $N$ and every
+specified union of subgroups $A\subseteq\Z/N\Z$, the stated Fourier graph
+classifies \emph{all} subgroup unions $B$ satisfying
+\[
+ C_A(t)=C_B(t)\qquad\text{for every individually labeled }t\in\Z/N\Z.
+\]
+The separate modulus procedure asks whether any distinct pair exists at
+that modulus. It is exhaustive and may require exponential resources.
+Neither statement is a concise arithmetic description of all rigid moduli.
+
+\subsection*{Review status}
+The preparation included source reconstruction, adversarial mathematical
+checks, separately written implementations of selected finite checks, and
+replays of the original construction programs. The parallel audit tasks
+shared model family, parent context, workspace and source material. They
+are \emph{not} independent external refereeing. No principal theorem is
+claimed to have been formalized or checked in Lean.
+
+This revision responds to the supplied Grok report and the subsequent
+\textit{Holds with fixes} report summary. The separate referee-response
+document records the resolution of each reported issue. Theorem 10.4
+retains its original hypotheses: the added calculation identifies exactly
+why a nontrivial residual character has a local shell factor $-1$.
+
+Within the stated scope, the preparation audits found no unresolved
+analytic gap in the principal printed proofs. The numerical constructions
+retain explicit finite arithmetic dependencies. The symbolic terminal-grid
+result retains an exhaustive implementation dependency. These are the
+objects to scrutinize, not reasons to presume correctness from a successful
+program exit or an earlier research-status label.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.17\linewidth}>{\raggedright\arraybackslash}p{.76\linewidth}@{}}
+\toprule
+Status & Meaning in this package\\\midrule
+\proved & A complete argument is printed. A construction may additionally
+use explicitly specified finite exact certificates for fixed data.\\
+\computed & The conclusion depends on an identified finite symbolic
+enumeration or a stated finite test domain. These two kinds of evidence
+are distinguished throughout.\\
+\open & The mathematical question is unresolved at this manuscript's
+scope. It is not used as a premise.\\
+Unverified source & A proposed earlier formulation was not recovered in
+full and therefore was neither certified nor refuted.\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection*{Suggested order}
+Review the graph converse and its monotonicity argument first; then the
+independent modulus criterion; then the analytic rigidity theorems; and
+finally the construction and symbolic-certificate branches. The four
+branches can be examined separately. A flaw in a later arithmetic extension
+does not automatically invalidate the graph theorem or the independent
+modulus decision procedure.
+
+\newpage
+\section{Proof dependency map}
+
+Parenthetical numbers refer to results in the accompanying manuscript.
+They are frozen in this guide so its source compiles independently; the
+titles also identify each result.
+
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.29\linewidth}>{\raggedright\arraybackslash}p{.34\linewidth}>{\raggedright\arraybackslash}p{.29\linewidth}@{}}
+\toprule
+Claim or mechanism & Necessary inputs & Kind of verification\\\midrule
+\endhead
+\mclaim{ii:lem:integrality}{Integral conductor inversion}
+& Integer radial profiles; subgroup-indicator basis; product-of-chains
+finite differences; coprime primary factors.
+& Complete algebraic proof; no search premise.\\[.5em]
+\mclaim{ii:thm:radial}{Radial binary sign classification}
+& Integral inversion; adjacent sign congruences; fixed root; Parseval.
+& Integrality, mass and energy force every inverse value into $\{0,1\}$.\\[.5em]
+\mclaim{ii:thm:subgroups}{Classification among subgroup unions}
+& Radial classification; pure-axis positivity; one-coordinate marginal
+inversion; nonnegative marginal--autocorrelation defect.
+& The defect proves divisor closure of every allowed flip.\\[.5em]
+\mclaim{v2:thm:rank}{Conductor-constraint rank criterion}
+& The complete subgroup-union graph theorem; edge and anchor rows.
+& Kernel basis consists of unanchored component indicators.\\[.5em]
+\mclaim{thm:cut-coefficient}{Cut coefficient criterion} and
+\mclaim{prop:cut-transfer}{exact transfer}
+& Downward-closed order sets; complete squared Fourier signatures;
+nested primary sections; nonnegative coefficient counting.
+& Independent of the graph theorem; finite constructive procedure.\\[.5em]
+\mclaim{ii:prop:odd}{Odd-order rigidity};
+\mclaim{vi:prop:twice}{twice-odd rigidity};
+\mclaim{prop:four}{restricted height-two family}
+& Symmetry and parity; odd shell transforms; the stated congruence
+restriction for the height-two theorem.
+& Analytic proofs; the height-two result is not universal $4M$ rigidity.\\[.5em]
+\mclaim{lem:common-dyadic-fibers}{Common dyadic fibers};
+\mclaim{lem:primary-common-zero}{primary common zero}
+& Pure-axis positivity; integer dyadic increments; shell-corner parity;
+least disputed size; valid inversion modulo an odd prime power.
+& Analytic, including the exceptional prime $3$.\\[.5em]
+\mclaim{thm:primary-power-four-primes}{Rigidity of $2^ep^aqrs$}
+& Common fibers and common zero; signed complementary marginals on the
+three residual prime axes.
+& Arbitrary $e,a$ and all distinct odd $p,q,r,s$; no grid computation.\\[.5em]
+\mclaim{lem:terminal-incidence}{Terminal incidence test};
+\mclaim{lem:terminal-implies-rigidity}{terminal exclusion}
+& Inverse shell columns; upward-closed boundary; least-size class as a
+downset difference; common-fiber balance.
+& Printed analytic reduction; $p^2q^2rs$ exclusion is \computed.\\[.5em]
+\mclaim{vi:th:main}{H100 construction}
+& Section homometry lemma; donor interpolation; exact fixed arrays;
+all-choice nesting; universal mass-grid decoder; finite prime and
+inequality certificates.
+& Mathematical construction plus supplied exact arithmetic.\\[.5em]
+\mclaim{v2:cor:h100-height}{H100 height refinement};
+\mclaim{v2:thm:h99}{99-prime construction}
+& H100 machinery; truncated level baselines; changed slot order and
+guard; precision of the scaled physical masses.
+& Complete refinement arguments plus changed-data arithmetic checks.\\
+\bottomrule
+\end{longtable}
+\normalsize
+The squarefree damping appendix proves a local balanced-block and tensor
+annihilation method. It is not a premise of H100, H99, or the universal
+classification and does not assert the unaudited full squarefree example.
+
+\newpage
+\section{Adversarial targets in the universal theorems}
+
+\subsection{Graph classification and rank}
+The delicate direction is \emph{sufficiency}: a permitted sign choice must
+give an actual subgroup union. Checking only the original target's signs
+would not establish this. A referee should verify the following chain.
+
+\begin{enumerate}
+\item Adjacent conductor congruences imply every \emph{mixed}
+finite-difference numerator is divisible by its subgroup order. The
+argument groups that numerator along each coordinate and then uses
+coprimality of the primary factors. No omitted integrality condition
+should be supplied by an implicit numerical test.
+\item Sign changes constant on the prescribed components preserve these
+congruences, including pairs with a zero Fourier entry. The graph uses
+only nonzero coefficients; a zero cannot introduce a fictitious sign bit.
+\item Root preservation and Parseval give
+\[
+ \sum_x b(x)=|A|,\qquad \sum_x b(x)^2=|A|.
+\]
+Once $b(x)$ is integral, each $b(x)(b(x)-1)$ is nonnegative, so their
+zero sum forces binary values. This also excludes negative integers.
+\item Pure-prime coefficients are nonnegative for subgroup unions because
+each primary fiber is empty or a subgroup. Preserving these coefficients
+preserves the one-coordinate marginals.
+\item The marginal--autocorrelation defect is a sum of nonnegative terms
+proportional to $b_s(y)(1-b_r(y))$ for $r>s$. The target's zero defect
+therefore forces the reconstructed binary profile to increase in
+valuation coordinates, equivalently to decrease in element-order
+coordinates. This is the actual proof of divisor closure.
+\item Different component choices change a nonzero Fourier coefficient,
+so the reconstruction is injective; every mate yields such a choice,
+so it is exhaustive. The empty set and $N=1$ must remain covered.
+\end{enumerate}
+
+For the rank formulation, the matrix has rows $e_u-e_v$ for edges and
+$e_b$ for anchors. Its kernel is constant on components and zero on
+anchored components. The component-indicator basis, not rational nullity
+alone, proves the $2^{\text{nullity}}$ count. An arbitrary rational matrix
+need not have that many binary kernel vectors. The claimed arithmetic
+operation count assumes an explicit conductor/profile grid and a supplied
+factorization; it is not a polynomial bit-time result for a short
+generator list.
+
+\subsection{Independent modulus procedure}
+Every monomial records the \emph{entire} squared conductor signature of an
+actual binary divisor ideal. At cut $d$, with coefficient counts $a_v,b_v$,
+\[
+ K_d=\sum_v a_vb_v\ge0,
+ \qquad 4K_d=\|P_d^++P_d^-\|^2-\|P_d^+-P_d^-\|^2.
+\]
+Nonnegativity comes from the first expression, not a general assertion
+about differences of squared norms. A positive term must retain an ideal
+on each side of the cut, which guarantees distinctness.
+
+The transfer recurrence represents every nested primary flag exactly
+once. Squaring its exponent vector is an \emph{additive, nonmultiplicative}
+operation and must occur after adding all linear Fourier contributions.
+Squaring individual factors early would lose mixed terms. The recurrence
+does not relax binary membership or downward closure. Its exponential
+state growth is an explicit limitation, not a missing proof obligation.
+
+\newpage
+\section{Arithmetic proofs and the symbolic terminal certificate}
+
+\subsection{The analytic family}
+For common dyadic fibers, challenge the claim that a fixed odd conductor
+can have at most one odd exact-size coefficient difference. The incoming
+zero component of the difference/sum pair acquires a fixed 2-adic
+valuation and cannot return to zero through larger divisible increments.
+At a minimal unequal nonempty shell, the selected odd Fourier row sees
+exactly its corners modulo two and gives two such odd coefficients, a
+contradiction. Mixed Fourier coefficients are not assumed nonnegative.
+
+In the primary common-zero lemma, the normalized sum lies in
+$\Z[1/2]$. Inversion modulo $p^{j+1}$ is legitimate because the residual
+order and $2$ are units modulo the odd prime $p$. The three changing-shell
+residues are $p^j$, $-p^j$, and $p^j-2p^b$ for $b<j$. Verify the
+exceptional $p=3$ comparison: it must force the absence of larger
+disputes and then reduce to the separately proved one-size case. A proof
+only for $p\ge5$ would not justify the stated theorem.
+
+For $2^ep^aqrs$, aggregate equality of complementary residual-shell
+masses supplies fixed signs because a discrepancy cannot reverse sign
+along the primary axis. Verify that inference before the single-rank
+argument. The final contradiction uses the independently established
+balance of each exact dyadic size. No five-factor terminal theorem or
+finite exponent-grid premise is needed for this analytic family.
+
+The conductor convention is a particular adversarial target. On
+$C_{q_1}\times C_{q_2}\times C_{q_3}$, a character of conductor $c$
+has local nonzero-shell sums $x_i=q_i-1$ if $q_i\nmid c$ and
+$x_i=-1$ if $q_i\mid c$. Its kernel exponents satisfy
+$c=\prod_iq_i^{1-h_i}$. Thus $c>1$ forces some $h_i=0$ and
+some $x_i=-1$. The all-positive evaluation is exactly conductor one.
+Lemma 10.3 explicitly excludes a common zero set consisting only of
+conductor one, including its exceptional prime-$3$ branch. The two
+reported cancellation examples vanish only at that trivial conductor;
+the exact controls below illustrate this distinction without replacing
+the analytic proof.
+
+\subsection{What terminal feasibility means}
+The terminal interpolation problem asks for a \emph{real radial} $g$ with
+$g=|d|$ on the upward closure $U$ of the signed support and Fourier
+support inside the zero set $Z$ of $\widehat d$. It is not a binary-set
+existence criterion. Its incidence equivalence is exact:
+\[
+ \frac{b_v}{K}\prod_i p_i^{v_i}
+    =\sum_{h\in Z}M_{vh}t_h\quad(v\in U),\qquad
+ M_{vh}=\prod_i(\ind_{h_i=v_i}-\ind_{h_i=v_i-1}).
+\]
+Check the top boundary in the inverse-column difference and the
+normalization $t_h=\widehat g(h)/K$. Sufficiency follows by triangular
+inversion on the upward-closed region. The conversion from an actual
+least disputed class to a balanced downset difference requires its
+order-convex, mutually incomparable sign supports. Excluding every such
+interpolant rules out a pair; finding one does not construct a pair.
+
+\subsection{The finite implementation obligation}
+The $p^2q^2rs$ certificate ranges over six placements of the squared axes
+among increasing primes. Each has 36 cells and 11,194,933 two-sided
+signed patterns up to global sign. The larger replay has 24 ordered
+exponent grids. These are \emph{symbolic grids for all prime values}, not
+24 numerical prime tuples.
+
+Challenge completeness of downset enumeration, lossless balanced-ternary
+encoding, and each conservative rejection rule. Possible Fourier zeros
+are retained as a superset; exclusion with that superset is safe. For
+$p_i=3+2i+g_0+\cdots+g_i$, the gaps are nonnegative and even. A nonzero
+weak-sign polynomial or an odd constant on even gaps gives the stated
+nonvanishing test. Cube and integer left-null tests must use the
+prescribed upward region. Modular factor rejection must use only known
+units. The array bound is $36\cdot13^6<2^{31}$; nullspaces and
+factorizations use exact arithmetic.
+
+\newpage
+\section{Adversarial targets in the constructions}
+
+\subsection{H100: from a signed profile to actual sets}
+The section lemma is the bridge from interpolation to homometry. Check
+that the proposed difference is spectator-constant and that the
+spectator average of the proposed sum is the annihilating profile.
+Convolving difference with sum then gives zero at every labeled shift.
+Equal populations, marginal cancellation, or an annihilating rational
+vector alone would not suffice.
+
+\begin{enumerate}
+\item \textbf{Exact donor data.} Verify hidden-shell masks, totient
+populations, signed-mask relations, and incidence minors $193$ and $317$.
+The omitted final equation in each overdetermined packet system must
+follow from the printed linear relation, not a silent solver choice.
+\item \textbf{All-character annihilation.} Check each local tensor
+identity and every moving-rank correction. A balanced factor can
+annihilate a term, but multiplying by an arbitrary rank function need
+not preserve that property.
+\item \textbf{Bounds and denominators.} Keep the rational and blend
+errors separate before summing them. The independently reconstructed
+total H100 error divided by the step is approximately $0.2539299597$,
+strictly below $2/7$ by exact rational comparison. Decimal displays are
+not the certification.
+\item \textbf{Binary realization.} Every specified section is a
+subgroup union. Every divisor comparison, including ordinary/fine tag
+comparisons, respects nesting. Equal-rank comparable core orders must
+receive identical deterministic decoding inputs.
+\item \textbf{Universal decoder.} The interval and parity arguments
+must cover every permitted grid target. Replaying 435 or 2,175 selected
+targets is a regression test, not a substitute for that proof.
+\item \textbf{Nontriviality.} Check a genuinely differing boundary
+fiber and the translation argument. A distinct subgroup-union mate is
+not manufactured by an unnoticed symmetry outside the stated class.
+\end{enumerate}
+
+\subsection{H100 height 3360 and the H99 refinement}
+At level $\ell$, set $b=R-\ell$. The fine-grid precision becomes
+$D_\ell=A-b$, and its baseline must also be truncated to those
+$D_\ell$ positions. At the next level, each old minimum equals its
+previous maximum and the new slot was previously empty. This proves
+all-choice containment; monotonicity of arbitrary greedy digit strings
+is not assumed.
+
+The H99 construction removes one damping block, adds spectator guard
+$65537$, and uses the supplied 504-slot ordering. The modulus is
+\[
+ N_{99}=2^{3408}\,\frac{65537M_{100}}
+ {2101327^2\,4415573059603}.
+\]
+It has 99 distinct odd prime divisors and 8,017 bits. This is not a
+divisor of H100, because it introduces a new prime. The height-3360
+H100 refinement, in contrast, has the identical odd part.
+
+The precision statement is about the scaled profile $Kw$ and the actual
+physical target $Kw/2$, not necessarily $w$ itself. Multiplication by
+$K$ and the final blend clear the relevant odd denominators. Verify
+absolute precision $3401$ before reducing it by $84-\ell$. The endpoint
+inequalities certify range containment; the denominator argument places
+every required target on the dyadic grid. For these fixed parameters the
+endpoints themselves are on that grid. The exact combined error is below
+$339/1000<10/27$.
+None of these constructions asserts a minimum prime count or height.
+
+\newpage
+\section{Source provenance and the deferred source claims}
+
+\subsection{Pinned inputs}
+The starting PDF was the four-page provisional
+\file{North_Star_Paper_A_V2_Referee_Draft(1).pdf}. The earlier circulated
+manuscript was \file{Paper_A_Updated_Public_GitHub_2026-11-21.pdf}.
+The repository is \file{rgillon/north-star-math}. Its inspected main
+branch was older than the working research branches; it was not used as
+a synonym for the latest mathematical state.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.30\linewidth}>{\raggedright\arraybackslash}p{.64\linewidth}@{}}
+\toprule
+Material & Exact revision\\\midrule
+Referee-response manuscript &
+\path{79350cb7bb6032df7637dcfd3e2bd029e6362a85}\\[.45em]
+Arithmetic and construction snapshot &
+\path{20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25}\\[.45em]
+Common-fiber source explicitly cited by that snapshot &
+\path{0930c856256add528c967cd1b35c742f88b4cf95}\\[.45em]
+Original H100 construction provenance &
+\path{09d77232d96df1e16ef52917ddf46ccff90deb0b}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The manuscript reconstructs the proofs at their stated scopes. The
+electronic package preserves executable data and evidence. Historical
+searches that discovered the fixed arrays are not additional oracles
+required to verify them. H99's changed-data verifier deliberately imports
+the exact H100 donor report as \emph{data}; it does not independently
+re-prove the original donor arithmetic. The H100 verifier must therefore
+also be run.
+
+\subsection{The two unrecovered universal notes}
+The provisional draft named
+\begin{quote}\ttfamily\small
+LEVEL1\_GENERATOR\_LATTICE\_RANK.md\\
+LEVEL1\_FACTOR\_CUT\_MOMENTS.md
+\end{quote}
+Their full sources were not recovered in the inspected repository
+revisions or saved materials. Targeted branch-tree, commit, PR and
+Library searches did not locate them. Such nonresults do not prove that
+the files never existed. The correct verdict is \emph{unverified source
+claim}, not a discovered counterexample or a demonstrated proof gap.
+
+The paper consequently does not claim to certify their specific compact
+generator-lattice matrix, a polynomial bit-time bound for fixed generator
+count, or an original factor-cut procedure avoiding antichain backtracking.
+The reported counts 191, 2,741 and 73 tied to those missing sources have
+not been reproduced and are not evidence for the printed theorems.
+
+Instead, Version 2 proves two explicitly identified formulations: the
+conductor-constraint rank corollary of the audited graph theorem, and the
+independent cut-coefficient modulus procedure with its exhaustive transfer
+recurrence. This substitution is disclosed in the manuscript. It should
+not be described as recovery or certification of the missing notes.
+
+\subsection{What changed from the earlier paper}
+The revision separates target and modulus quantifiers; supplies the full
+graph realization arguments and precise rank scope; adds the explicit
+modulus recurrence; integrates the audited primary-axis family and the
+separately labeled symbolic certificate; preserves the H100 construction
+and proves its height and 99-prime refinements. It also preserves the
+balanced squarefree damping method at its local proved scope and resolves
+the earlier PDF's incomplete reference fields. No universal $4M$ theorem
+or unaudited 196-prime construction is added.
+
+\newpage
+\section{Reproduction from the bundle root}
+
+All commands in this guide are run from the directory containing
+\file{main.tex}, \file{experiments/}, \file{verification/} and
+\file{evidence/}. The evidence directory contains the preparation outputs;
+write a fresh replay to a separate directory. Assertions must remain
+enabled: do not use Python's \file{-O} option or set
+\file{PYTHONOPTIMIZE}.
+
+The preparation used Python 3.12.14, NumPy 2.3.5 and SymPy 1.14.0. The
+graph, cut-moment and independently written construction checks use the
+standard library; the original programs and symbolic checks require the
+supplied modules and the stated numerical/symbolic libraries. A clean
+optional environment can be prepared with:
+\begin{lstlisting}
+python3 -m venv .venv
+. .venv/bin/activate
+python3 -m pip install numpy==2.3.5 sympy==1.14.0
+mkdir -p replay
+python3 --version
+\end{lstlisting}
+Installing packages is unnecessary when those versions are already
+available. The full symbolic enumeration may require substantially more
+time and memory than the other checks. No runtime bound is part of its
+mathematical conclusion.
+
+\subsection{Universal formulas and bounded controls}
+\begin{lstlisting}
+python3 verification/verify_sign_graph_independent.py 60 \
+  > replay/sign_graph_independent_results.json
+python3 verification/verify_cut_moments.py \
+  > replay/cut_moment_results.json
+\end{lstlisting}
+The graph output must report \file{PASS}: 60 moduli, 8,182 radial
+profiles, 465 subgroup unions, and 980 complete direct time-domain
+profiles. It compares exact mate counts and sign masks, not merely an
+absence of small counterexamples.
+
+The cut output must report \file{PASS}: 85 moduli, 1,567 ideals,
+503 cut moments and 2,248 transfer comparisons. It compares full
+spectral dictionaries with an independent ideal enumeration and literal
+residue-pair autocorrelation. Its separately labeled radial positive
+control at $N=12$ is not a subgroup-union counterexample.
+
+\subsection{Original H100 and independent arithmetic}
+\begin{lstlisting}
+python3 experiments/ppi_100_prime_pair.py \
+  > replay/h100_original.log
+python3 experiments/ppi_h100_independent_audit.py experiments \
+  > replay/h100_independent.json
+python3 experiments/ppi_h100_decoder_audit.py experiments \
+  > replay/h100_decoder.json
+\end{lstlisting}
+The original program reports 435 target reconstructions across 87 levels.
+Both independent JSON reports must have a successful result/status.
+The arithmetic report checks the donor packets, prime certificates,
+modulus and rational budget; the decoder report checks every tag cover
+and the stated finite targets. They have separate scopes and neither
+substitutes for the universal decoder proof in the manuscript.
+
+\subsection{Build the printed documents}
+With a conventional TeX installation containing the packages declared in
+the sources, run:
+\begin{lstlisting}
+latexmk -pdf -halt-on-error -interaction=nonstopmode \
+  main.tex referee_support.tex changes_and_gaps.tex \
+  referee_response.tex
+\end{lstlisting}
+
+
+\newpage
+\section{Refinement and symbolic-certificate commands}
+
+\subsection{The changed construction data}
+\begin{lstlisting}
+python3 experiments/ppi_100_rank_precision.py \
+  > replay/h100_rank_original.log
+python3 experiments/ppi_99_prime_pair.py \
+  > replay/h99_original.log
+python3 verification/h99_independent_audit.py \
+  experiments replay/h100_independent.json \
+  > replay/h99_independent_results.json
+\end{lstlisting}
+The last command uses the newly generated H100 donor report from the
+preceding arithmetic check. To compare against the supplied pinned
+report instead, use \file{evidence/h100_independent.json}. With no
+arguments, the separate script now resolves both \file{experiments/}
+and that pinned report relative to its own package location.
+Exact mathematical fields must agree; source-report byte hashes and
+timing fields may differ.
+
+The original height-refinement program reports 261 reconstructions at
+87 levels and maximum height 3360; the original H99 program performs
+255 reconstructions at 85 levels. The independent changed-data check
+must report \file{PASS}, with 435 H100-refinement and 425 H99 exact
+grid reconstructions, 87 and 85 levels, heights 3360 and 3408, and
+99 odd primes for H99. Its H100 total is 174 endpoints plus 261 strict
+interior targets; its H99 total is 170 endpoints plus 255 strict interior
+targets. These target samples test the implementation;
+the proof for all actual targets is the precision and nesting argument.
+
+\subsection{Controls for the conductor convention}
+\begin{lstlisting}
+python3 verification/independent_primary_conductor_check.py \
+  > replay/independent_primary_conductor_check.json
+python3 verification/check_primary_conductor_coordinates.py \
+  > replay/primary_conductor_coordinates.json
+\end{lstlisting}
+Both programs must report \file{PASS}, with zero-conductor list
+\file{[1]} for each example. They compare literal cyclic residue
+polynomials reduced modulo cyclotomic polynomials with the shell-factor
+formula. The first uses only the Python standard library; the second
+uses SymPy for the polynomial reduction. These are sixteen exact
+conductor checks, not an exhaustive search for homometric pairs.
+
+\subsection{Terminal-grid replay}
+\begin{lstlisting}
+python3 verification/check_last_squared_pattern.py \
+  > replay/check_last_squared_pattern.json
+python3 verification/replay_grid_certificate.py \
+  --experiments experiments \
+  --checkpoint replay/grid_checkpoint.json \
+  > replay/grid_replay.json 2> replay/grid_replay.log
+\end{lstlisting}
+The first command is an independently implemented check of the last
+published 36-cell pattern. It verifies the two downset differences,
+the population polynomial, and the residue
+$q^2r(p-1)(p+1)$ modulo the largest prime. It also writes a same-named
+JSON file beside its script. It does not certify the preceding enumeration.
+
+The second command wraps the original exhaustive verifier with its
+supplied dependencies; it is not a separate mathematical implementation.
+A successful full run produces 24 rows, each with an empty residual list,
+balanced exclusion totals, and a final \file{complete: true} flag, then
+exits without an exception. A successful prefix or the last-pattern
+check cannot substitute for all 24 results. The six new shapes are
+\[
+1122,\quad1212,\quad1221,\quad2112,\quad2121,\quad2211.
+\]
+The program treats all increasing odd prime values symbolically. Each
+of these six shapes starts from 11,194,933 signed patterns; the
+manuscript prints their exclusion totals and the final modular argument.
+For the original text-only entry point, run
+\begin{lstlisting}
+python3 experiments/level1_grid_gap_certificate.py \
+  > replay/grid_original.log
+\end{lstlisting}
+
+\noindent\textbf{Preparation-session full replay status:}\quad
+\GridReplayStatus
+
+\section{Evidence inventory and practical interpretation}
+
+\small
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.29\linewidth}>{\raggedright\arraybackslash}p{.42\linewidth}>{\raggedright\arraybackslash}p{.20\linewidth}@{}}
+\toprule
+Evidence file in \file{evidence/} & Checked invariant or domain & Scope\\\midrule
+\endhead
+\file{sign_graph_independent_results.json}
+& 60 moduli; 8,182 radial profiles; exact graph counts and masks;
+980 full residue correlations.
+& Bounded regression; universal proof is analytic.\\[.6em]
+\file{cut_moment_results.json}
+& 85 moduli; 1,567 ideals; 503 moments; 2,248 factor/cut/side
+transfer comparisons; full inversions.
+& Bounded regression of the independently printed recurrence.\\[.6em]
+\file{h100_original.log}
+& Original construction parameters; 435 targets; 87 levels;
+height 3446.
+& Original implementation, exact arithmetic.\\[.6em]
+\file{h100_independent.json}
+& Packet minors and norms; all 100 odd prime certificates; modulus
+8,123 bits; exact error below $2/7$.
+& Separate arithmetic implementation using fixed source data.\\[.6em]
+\file{h100_decoder.json}
+& 902,016 tag covers; 14,517 used fine covers; all 87 levels;
+2,175 deterministic targets.
+& Separate finite nesting/decoder implementation; universal
+coverage proved mathematically.\\[.6em]
+\file{h99_independent_results.json}
+& H100 and H99 truncations; 174 and 170 endpoint checks; 435 and
+425 target reconstructions; exact changed precision.
+& Separate changed-data implementation; H100 donor arithmetic
+is an explicit imported dependency.\\[.6em]
+\file{check_last_squared_pattern.json}
+& Signed masks; two downsets; exact population polynomial and
+largest-prime modular obstruction.
+& One symbolic pattern, not the exhaustive search.\\[.6em]
+\file{grid_replay.json}, \file{grid_replay.log}, \file{grid_replay_validation.json}
+& Per-grid counts and residuals; completion field in the preparation
+receipt; original verifier output.
+& Full status is stated on the previous page.\\
+\bottomrule
+\end{longtable}
+\normalsize
+
+\subsection*{How to compare a replay}
+Compare integer counts, rational numerators/denominators, parameter
+maps, successful assertions and empty residuals. Do not expect elapsed
+times, Python build strings or hashes of newly generated report bytes to
+match. The inputs themselves must match the supplied pinned data.
+Fractions are checked exactly; decimal convenience fields need not be
+used in any proof or comparison.
+
+The archived original and independent implementations reduce the risk of
+a shared coding error, but neither makes the proof infallible. Some
+independent checks use the same mathematical formulas and fixed arrays.
+A valuable referee contribution would be a separate implementation of
+the exhaustive grid enumerator or a small independently checked kernel
+for its rejection certificates.
+
+The guide's preparation audits are retained as source notes. In
+particular, the graph audit identifies the integral/binary/monotonic
+converse; the rigidity audit isolates the prime-$3$ case; the terminal
+cross-audit reconstructs the scaling and upward-region inversion; and
+the H99 audit distinguishes $Kw$ precision from an unsupported precision
+claim about $w$.
+
+\section{Unresolved questions and requested referee response}
+
+\subsection{Items not certified by this version}
+\begin{enumerate}
+\item The exact formulations and proofs of the two unrecovered source
+notes, their compactness and complexity claims, and their reported
+191/2,741/73 computational counts remain unverified. Their absence is
+a provenance limitation, not a proof that either mathematical claim is
+false. Neither is a premise of the printed replacements.
+\item Exhaustive symbolic implementation correctness is a distinct
+verification obligation even after a complete successful replay. The
+terminal-grid result is kept \computed for that reason. The analytic
+$2^ep^aqrs$ theorem does not depend on this enumeration.
+\item No principal theorem has a supplied replayable Lean
+formalization. An earlier ``Lean status'' report is not a Lean proof,
+and no successful proof-assistant build is claimed here.
+\item This edition does not claim the broader linked localization,
+finiteness or squarefree-construction theorems unless their complete
+arguments are explicitly printed. In particular it makes no general
+$\Omega(M)\le5$ theorem or full 196-prime construction claim. The
+squarefree appendix proves only its stated local mechanism.
+\end{enumerate}
+
+\subsection{Mathematical questions that remain open}
+\begin{enumerate}
+\item A useful necessary-and-sufficient prime-factor description of rigid
+moduli that avoids exhaustive ideal enumeration.
+\item Identification of the divisibility-minimal nonrigid moduli and the
+minimum odd-prime count. The 99-prime construction supplies an upper
+bound for some obstruction; it does not establish minimality.
+\item The actual threshold $h(M)$ for general odd $M$, including whether
+every $4M$ is rigid. Only the explicitly restricted height-two family
+is proved in that direction.
+\item The full arbitrary-exponent four-primary-axis problem beyond the
+analytic and computed families printed here, and practical bounds for
+compressed generator-based certificates.
+\end{enumerate}
+
+These are unresolved research objectives, not hidden assumptions.
+
+\subsection{How to report a potential gap}
+For each principal theorem, please distinguish correctness, exposition,
+computational completeness and novelty. A useful adverse report should
+name the exact statement and first unsupported inference; preserve all
+its original hypotheses; and supply either a counterexample satisfying
+those hypotheses or a precise missing lemma. A marginal collision or
+rationally feasible terminal interpolant is not a homometric divisor-ideal
+pair. A purported counterexample must have binary downward-closed
+membership and identical autocorrelation at every labeled shift.
+
+The most valuable first checks are the graph's monotonicity converse,
+the common-zero argument at $p=3$, the all-choice decoder nesting and
+scaled denominator budget, and exhaustive completeness of the symbolic
+grid program. A polished presentation, a successful regression suite, or
+agreement among related AI reviewers should not replace those checks.
+
+\end{document}

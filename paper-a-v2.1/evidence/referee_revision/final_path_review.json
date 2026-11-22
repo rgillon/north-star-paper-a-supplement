@@ -1,0 +1,530 @@
+{
+  "status": "PASS_WITH_MINOR_EDITORIAL_OBSERVATIONS",
+  "scope": "Read-only source, artifact-name and local-input path consistency review; no long grid replay and no manuscript edits.",
+  "timestamp_utc": "2026-11-22T21:13:13.715721+00:00",
+  "reviewed_package": "/workspace/scratch/060e9f471065/output/North_Star_Paper_A_V2_1",
+  "files_reviewed": [
+    {
+      "path": "main.tex",
+      "sha256": "69c079649fe3e7dad7edf132ba8145bdde3861193419460cc40f0a267d5dc2b5"
+    },
+    {
+      "path": "sections/01_introduction.tex",
+      "sha256": "fb3a6c503a24b05a1890935df83205e84dd9fa4d71c2800a3980bfe5cd6bf590"
+    },
+    {
+      "path": "appendices/B_verification.tex",
+      "sha256": "ba1f27e97cea175be47a8be77e2cde11d48ede65bcabcf6a916d404e0a578cba"
+    },
+    {
+      "path": "sections/09_refinements.tex",
+      "sha256": "c15444d69e77a7123f10e6dddd5660a1027ed9c73dcd13b0cf0fe4c9bfb27700"
+    },
+    {
+      "path": "referee_support.tex",
+      "sha256": "2304a1b70b610681d8bfdcdf7ba90facfb1641e29a66415c4cf4812211758538"
+    },
+    {
+      "path": "README.md",
+      "sha256": "2928c8c7f8aa20b4d48c6564c96d394784d1cb7548c83625f2e83aefffe0d6e2"
+    }
+  ],
+  "h99_default_path_fix": {
+    "matches_successfully_tested_script_byte_for_byte": true,
+    "sha256": "0d64cdd201057a51e52e4bae35609d87c87bfe981a329e44df6e644fae0d253b",
+    "experiment_default": "ROOT.parent/'experiments'",
+    "donor_default": "ROOT.parent/'evidence/h100_independent.json'",
+    "prior_validation": "revision_audit/repro/fresh/h99_fixed_defaults.stdout; exit 0; JSON equal to archived evidence report"
+  },
+  "path_checks": [
+    {
+      "path": "evidence/cut_moment_results.json",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "evidence/grid_replay_validation.json",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "evidence/h100_independent.json",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "evidence/h99_independent_results.json",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "evidence/source_provenance.json",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "experiments/level1_grid_gap_certificate.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "experiments/ppi_100_prime_pair.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "experiments/ppi_100_rank_precision.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "experiments/ppi_99_prime_pair.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "experiments/ppi_h100_decoder_audit.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "experiments/ppi_h100_independent_audit.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "replay/check_last_squared_pattern.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/cut_moment_results.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/cut_moments.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/grid_checkpoint.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/grid_original.log",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/grid_replay.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/grid_replay.log",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h100_decoder.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h100_independent.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h100_original.log",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h100_rank_original.log",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h100_rank_precision.log",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h99_independent.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h99_independent_results.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/h99_original.log",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/independent_primary_conductor_check.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/last_squared_pattern.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/primary_conductor_coordinates.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/sign_graph.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "replay/sign_graph_independent_results.json",
+      "exists": false,
+      "role": "generated_replay_output"
+    },
+    {
+      "path": "verification/check_last_squared_pattern.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "verification/check_primary_conductor_coordinates.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "verification/h99_independent_audit.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "verification/independent_primary_conductor_check.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "verification/replay_grid_certificate.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "verification/verify_cut_moments.py",
+      "exists": true,
+      "role": "packaged_input"
+    },
+    {
+      "path": "verification/verify_sign_graph_independent.py",
+      "exists": true,
+      "role": "packaged_input"
+    }
+  ],
+  "missing_packaged_inputs": [],
+  "python_commands": [
+    {
+      "source": "referee_support.tex",
+      "line": 479,
+      "command": "python3 -m venv .venv",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 481,
+      "command": "python3 -m pip install numpy==2.3.5 sympy==1.14.0",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 483,
+      "command": "python3 --version",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 492,
+      "command": "python3 verification/verify_sign_graph_independent.py 60 \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 494,
+      "command": "python3 verification/verify_cut_moments.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 510,
+      "command": "python3 experiments/ppi_100_prime_pair.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 512,
+      "command": "python3 experiments/ppi_h100_independent_audit.py experiments \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 514,
+      "command": "python3 experiments/ppi_h100_decoder_audit.py experiments \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 539,
+      "command": "python3 experiments/ppi_100_rank_precision.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 541,
+      "command": "python3 experiments/ppi_99_prime_pair.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 543,
+      "command": "python3 verification/h99_independent_audit.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 567,
+      "command": "python3 verification/independent_primary_conductor_check.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 569,
+      "command": "python3 verification/check_primary_conductor_coordinates.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 581,
+      "command": "python3 verification/check_last_squared_pattern.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 583,
+      "command": "python3 verification/replay_grid_certificate.py \\",
+      "python3": true
+    },
+    {
+      "source": "referee_support.tex",
+      "line": 608,
+      "command": "python3 experiments/level1_grid_gap_certificate.py \\",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 40,
+      "command": "python3 -m venv .venv",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 42,
+      "command": "python3 -m pip install -r requirements.txt",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 49,
+      "command": "python3 verification/verify_sign_graph_independent.py 60 > replay/sign_graph.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 50,
+      "command": "python3 verification/verify_cut_moments.py > replay/cut_moments.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 51,
+      "command": "python3 verification/independent_primary_conductor_check.py > replay/independent_primary_conductor_check.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 52,
+      "command": "python3 verification/check_primary_conductor_coordinates.py > replay/primary_conductor_coordinates.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 54,
+      "command": "python3 experiments/ppi_100_prime_pair.py > replay/h100_original.log",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 55,
+      "command": "python3 experiments/ppi_h100_independent_audit.py experiments > replay/h100_independent.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 56,
+      "command": "python3 experiments/ppi_h100_decoder_audit.py experiments > replay/h100_decoder.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 58,
+      "command": "python3 experiments/ppi_100_rank_precision.py > replay/h100_rank_precision.log",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 59,
+      "command": "python3 experiments/ppi_99_prime_pair.py > replay/h99_original.log",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 60,
+      "command": "python3 verification/h99_independent_audit.py experiments replay/h100_independent.json > replay/h99_independent.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 62,
+      "command": "python3 verification/check_last_squared_pattern.py > replay/last_squared_pattern.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 63,
+      "command": "python3 verification/replay_grid_certificate.py --experiments experiments --checkpoint replay/grid_checkpoint.json > replay/grid_replay.json",
+      "python3": true
+    },
+    {
+      "source": "README.md",
+      "line": 71,
+      "command": "python3 experiments/level1_grid_gap_certificate.py > replay/grid_replay.log",
+      "python3": true
+    }
+  ],
+  "all_documented_python_commands_use_python3": true,
+  "h100_report_commands": {
+    "arithmetic_script": "experiments/ppi_h100_independent_audit.py",
+    "decoder_script": "experiments/ppi_h100_decoder_audit.py",
+    "consistent_data_argument": "experiments",
+    "changed_data_donor_argument": "replay/h100_independent.json",
+    "dependency_order_correct": true
+  },
+  "validated_counts": {
+    "cut_moments": {
+      "moduli": 85,
+      "ideals": 1567,
+      "membership_cuts": 503,
+      "transfer_comparisons": 2248,
+      "original_outline_73_comparison_claim": "UNVERIFIED; separately and correctly disclosed"
+    },
+    "original_H100_rank": {
+      "levels": 87,
+      "completed_reconstructions": 261,
+      "height": 3360
+    },
+    "original_H99": {
+      "levels": 85,
+      "completed_reconstructions": 255,
+      "nondyadic_skips": 0,
+      "height": 3408
+    },
+    "separate_H100_rank": {
+      "targets": 435,
+      "endpoints": 174,
+      "strict_interior": 261
+    },
+    "separate_H99": {
+      "targets": 425,
+      "endpoints": 170,
+      "strict_interior": 255
+    }
+  },
+  "primary_control_scripts": {
+    "both_files_present": true,
+    "source_claims_match": true,
+    "cases": 2,
+    "conductors_per_case": 8,
+    "expected_zero_conductors_per_case": [
+      1
+    ],
+    "first_uses_standard_library_only": true,
+    "second_uses_sympy": true,
+    "role_correctly_limited": "Examples illustrating the conductor convention; not a finite proof of universal rigidity."
+  },
+  "public_supplement": {
+    "consistent_url": "https://github.com/rgillon/north-star-paper-a-supplement/tree/main/paper-a-v2.1",
+    "present_in": [
+      "README.md",
+      "sections/01_introduction.tex"
+    ],
+    "live_hosting_verified_by_this_review": false,
+    "action": "Parent agent handles live public repository verification."
+  },
+  "editorial_observations": [
+    {
+      "severity": "minor",
+      "source": "referee_support.tex",
+      "lines_at_review": [
+        555,
+        557
+      ],
+      "finding": "Original H99 program performs 255 reconstructions but its stdout does not report the count. It prints ranks 0..84, precision, heights, error statement and background size.",
+      "suggested_change": "Replace original H99 program reports 255 reconstructions with original H99 program performs 255 reconstructions."
+    },
+    {
+      "severity": "minor",
+      "source": "README.md",
+      "lines_at_review": [
+        98,
+        106
+      ],
+      "finding": "Build commands omit new referee_response.tex companion despite listing its editable source.",
+      "suggested_change": "Add two pdflatex passes for referee_response.tex to the companion build block."
+    },
+    {
+      "severity": "informational",
+      "source": "README.md versus referee_support.tex",
+      "finding": "README redirects changed-data output to replay/h99_independent.json; referee guide uses replay/h99_independent_results.json. Both are valid generated output names, with the latter matching packaged evidence naming.",
+      "suggested_change": "Optional: unify output filename for editorial consistency."
+    },
+    {
+      "severity": "informational",
+      "source": "experiments/ppi_h100_independent_audit.py:27",
+      "finding": "Preserved original script has stale exceptional usage string naming python certificate_independent_check.py [repository_root]. Documented package commands use the correct filename and python3; supplied arguments/default discovery never enter this usage branch.",
+      "suggested_change": "Optional: correct only if changing preserved source script is acceptable; no runtime or documented-command defect."
+    }
+  ],
+  "excluded_false_positives": [
+    "Generated replay/ outputs need not preexist.",
+    "Historical V2 draft filename in provenance is intentional.",
+    "Older output artifacts awaiting parent rebuild were excluded."
+  ],
+  "unresolved_local_blockers": [],
+  "prior_execution_evidence": [
+    "revision_audit/repro/fresh_run_receipt.json",
+    "revision_audit/repro/reconciliation_summary.json",
+    "revision_audit/repro/original_h99_target_counts.json",
+    "revision_audit/repro/grid_target_categories.json"
+  ],
+  "final_root_corrections": [
+    "H99 program performs 255 targets; output-count wording corrected.",
+    "Added referee_response.tex compilation commands to README and guide.",
+    "Unified generated H99 output name as replay/h99_independent_results.json."
+  ]
+}

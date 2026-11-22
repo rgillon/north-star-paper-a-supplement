@@ -1,0 +1,47 @@
+\section{Low dyadic heights and separation of subgroup unions}
+Odd-order uniqueness follows from Proposition~\ref{ii:prop:odd}. We give the second low-height result directly. Write $C_m=\mathbb Z/m\mathbb Z$, $\ind_A=\mathbf1_A$, and use unnormalized convolution $(f*g)(z)=\sum_x f(x)g(z-x)$. For a divisor ideal $A$, inversion symmetry gives $C_A=\ind_A*\ind_A$.
+\begin{proposition}\label{vi:prop:twice}
+If $M$ is odd then any two homometric divisor ideals in $C_{2M}$ coincide.
+\end{proposition}
+\begin{proof}
+Identify $C_{2M}$ with $C_2\times C_M$. The two slices of an ideal have indicators $u,f$ at first coordinates $0,1$, respectively, with $f\le u$. Both are order functions. Put $T=u-f$, the indicator of singleton sections. The fixed points in the convolution square at $(0,2x)$ give $C_A(0,2x)\equiv u(x)+f(x)\equiv T(x)\pmod 2$. Thus a mate has the same $T$. Write $f'$ for its second slice. At shifts $(1,z)$ the two convolution squares give $2(f+T)*f=2(f'+T)*f'$. Subtract and factor:
+\[
+ (f-f')*(f+f'+T)=0.
+\]
+Suppose the ideals differ. Choose a divisibility-minimal order $d$ where $f\ne f'$. The two sections at $d$ are full and empty. Every divisor of $d$ has a full section on the full side, so $T$ vanishes at every order dividing $d$.
+
+Choose a character of $C_M$ as follows. On a factor $C_{p^b}$ with $p^j\parallel d$, $j>0$, use a frequency of valuation $j-1$. On primes absent from $d$ use the trivial character. On exact orders $p^k$, $k>0$, the character sum is $\varphi(p^k)$ if $p^k$ divides the frequency, $-p^{k-1}$ if its valuation is $k-1$, and zero otherwise. This follows by subtracting the sums on the subgroups of orders $p^k$ and $p^{k-1}$. The order-one sum is one. Since $p$ is odd, the shell weights of the product character are odd only on divisors of $d$, and the weight at $d$ is odd. Hence $\widehat{f-f'}$ is odd by minimality. The other factor has the same parity there because $T$ vanishes on those divisors and $2f'$ is even. Their product is a nonzero integer, contradicting the Fourier transform of the displayed identity.
+\end{proof}
+
+\begin{proposition}[A family at height two]\label{prop:four}
+Let $M$ be odd. If at most one distinct prime divisor of $M$ is $3\pmod4$, every subgroup union in $C_{4M}$ is determined among subgroup unions by its labeled autocorrelation.
+\end{proposition}
+\begin{proof}
+Over $x\in C_M$, the section in $C_4$ is empty or the subgroup of size $1,2,$ or $4$. Let $T,J,X$ indicate sections of these three positive sizes respectively. For a homometric union use primes on the corresponding indicators. The faithful $C_4$ character has partial transform $T$, so $C_T=C_{T'}$. The odd-order parity identity gives $T=T'$. The order-two character has partial transform $T+2J$. Equality of its squared Fourier magnitudes gives
+\[
+ (J-J')*(T+J+J')=0.
+\]
+If $J\ne J'$, select a divisibility-minimal odd order $d$ of disagreement. On the side with section size two at $d$, every smaller dividing order has section size at least two. Hence $T=0$ on all divisors of $d$, including $d$. The character used in Proposition~\ref{vi:prop:twice} gives an odd integer for each Fourier factor in the displayed identity, a contradiction. Thus $J=J'$.
+
+Write $Y=X'$, $D=X-Y$. The trivial $C_4$ character has partial transform $4X+2J+T$. Equality of the two convolution squares gives
+\[
+ D*\big(2(X+Y+J)+T\big)=0.
+\]
+Use the odd valuation coordinates $r=(v_{p_i}(x_i))_i$, truncated at $a_i=v_{p_i}(M)$. At a shell $r$ with $D(r)\ne0$, one side has a full section. Both $J$ and $T$ then vanish on every $v\ge r$. At this shell $D*(X+Y)\equiv D*D\equiv D(r)\equiv1\pmod2$; multiplication by $2$ permutes each odd valuation shell. Also $D*J(r)$ is even. To see this, expand in valuation shells: whenever the $J$ input has some valuation $v_i<r_i$, the other input has that same valuation, and the local coefficient is $(p_i-1)p_i^{a_i-v_i-1}$. This is even. These observations force $D*T(r)\equiv2\pmod4$.
+
+If every prime is $1\pmod4$, each such lowered coordinate contributes a multiple of four, making this impossible. Otherwise let $p$ be the unique prime $3\pmod4$ and choose a disagreement $r$ minimizing its $p$-valuation. Every nonzero contribution modulo four to $D*T(r)$ needs a lowered coordinate because $T$ vanishes on $v\ge r$. That coordinate must belong to $p$. But then the $D$ input has the same lowered $p$-valuation, contrary to minimality. This proves the result. The argument follows the project's mod-four reconstruction proof \cite{HeightFour}.
+\end{proof}
+\begin{proposition}[Translation and a single subgroup reflection]\label{bridge:separation}
+Let $A,B$ be subgroup unions in $C_N$. If $\ind_B$ is a translate of $R_H\ind_A$ for some subgroup $H$, where $R_H=2P_H-I$ and $P_H$ averages over $H$-cosets, then $A=B$. In particular two distinct subgroup unions are never translates.
+\end{proposition}
+\begin{proof}
+A period of a nonempty binary set is detected by $C_A(t)=|A|$. The operator $R_H$ has Fourier multiplier $+1$ on characters trivial on $H$ and $-1$ on the others. It preserves the autocorrelation. Thus $A$ and $B$ have the same periods. Quotient by their common period subgroup. The images are again unions of subgroups, and averaging over $H$ descends to averaging over its image $J$. We may therefore assume that the sets have no nonzero period. The empty set and the quotient of order one are immediate.
+
+For any primary factor $C_{p^a}$ of the quotient, each section obtained by fixing the remaining coordinates is empty or is a subgroup of $C_{p^a}$. Indeed a section is a union of subgroups in a chain. Some section is $\{0\}$, since otherwise adding the subgroup of order $p$ would preserve every section. At every character supported on this primary factor the Fourier coefficient of $\ind_A$ is strictly positive: each section contributes zero or its order, and the singleton contributes one. The same holds for $B$.
+
+Let the translation be $s$. At a pure character $\chi$, positivity forces $\chi(s)=1$ if $\chi$ is trivial on $J$, and $\chi(s)=-1$ otherwise. If an odd prime $p$ divided $|J|$, a faithful character on $C_{p^a}$ would have to take the value $-1$. This is impossible for a character of odd order. If $4\mid |J|$, a faithful character on the dyadic factor and its square would both be nontrivial on $J$. Their values at $s$ cannot both be $-1$. Hence $|J|\le2$. For $|J|=1$ the operator is the identity. For $|J|=2$ it is translation by the nonzero element of $J$. In either case $B$ is a translate of $A$. Pure faithful characters on each primary factor are positive on both indicators, so the translating element has every coordinate zero. Lifting gives $A=B$ in $C_N$.
+\end{proof}
+Thus the count $2^{u_{\rm div}}$ in Theorem~\ref{ii:thm:subgroups} also counts translation orbits represented by subgroup unions. Paired with Theorem~\ref{vi:th:main}, the proposition gives a binary mate that no translated single subgroup reflection can produce. Whether that target has a different mate produced by such a reflection is a separate question.
+
+More generally a target with $u$ free components already has $2^u$ binary translation classes represented by subgroup unions. Any genuine single-reflection witness supplies an additional class. In particular the constructed target either lacks a genuine single-reflection witness or has at least three binary translation classes.
+

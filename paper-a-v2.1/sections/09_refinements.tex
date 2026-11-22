@@ -1,0 +1,112 @@
+\section{Rank dependent precision and a construction with 99 odd primes}
+\label{v2:sec:refined-constructions}
+The preceding construction separates two costs: absolute precision of the required masses and the scale associated with a rank level. These costs need not be added. Making the number of fine positions depend on the level improves the dyadic height; a further spectator guard permits one damping block to be removed.
+
+\begin{lemma}[Truncating the fine decoder]\label{v2:lem:rank-truncation}
+Use the ordinary and fine slots of Sections~\ref{h100:spectator}--\ref{h100:mass}, with rank bound $R$, fine unit $M_0$, and scale $\lambda_l=2^{l-R}$. Suppose the required mass, the background mass, and every ordinary contribution, each divided by $M_0$, have dyadic denominator exponent at most $A$. At level $l$ set
+\[
+ D_l=A-(R-l),\qquad T_l=\sum_{j=1}^{D_l}u_j2^{-j},
+\]
+and retain only the first $D_l$ fine slots. Assume $D_l\geq8$, the first eight $u_j$ equal one, and the full retained tail has sum less than $1/4$. Suppose that subtracting the new minimum and the reserve $M_0\lambda_l/4$ sends the entire target interval into $[0,J_l+H_0]$, and that the ordinary greedy bound leaves at most $M_0\lambda_l/2$. If the corrected depth of fine slot $j$ is $R-l+j+\epsilon_j$, with $0\leq\epsilon_j\leq E_0$, every target is exactly realizable at dyadic height $A+E_0$, provided the ordinary heights fit. All-choice nesting is preserved.
+\end{lemma}
+\begin{proof}
+Division by $\lambda_l$ multiplies by $2^{R-l}$. Thus each normalized target and ordinary contribution lies on the grid $2^{-D_l}\mathbb Z$. The changed fine baseline $T_l$ also lies on this grid. The ordinary greedy estimate, followed by restoring the reserve and dividing by $M_0\lambda_l$, leaves a fine increment in $[1/4,3/4]\cap2^{-D_l}\mathbb Z$. The reverse parity decoder of Section~\ref{h100:mass} applies with $D_l$ digits: oddness of each tail weight makes each division integral, and the tail bound leaves an integer in $[0,255]$ for the eight unit weights. It therefore gives the exact mass for every target on the required grid.
+
+Every corrected depth is at most $R-l+D_l+E_0=A+E_0$. A prefix of the fine ordering is downward closed because every strict divisor precedes its multiple. As $l$ increases, $D_l$ increases by one; the minimum height of every retained slot at the new level equals its previous maximum, and a newly included slot was previously empty. The unchanged control indices therefore preserve every required containment. Ordinary nesting is unchanged.
+\end{proof}
+
+\begin{corollary}[A smaller dyadic height for the same odd part]
+\label{v2:cor:h100-height}
+Let $M_{100}$ be the odd integer specified in Appendix~\ref{vi:app:compute}. There are distinct nontranslated homometric subgroup unions in
+$\mathbb Z_{2^{3360}M_{100}}$. In particular the earlier modulus
+$2^{3446}M_{100}$ is not divisibility-minimal.
+\end{corollary}
+\begin{proof}
+Keep the odd core, all spectator prime powers, the profile $w$, and the ordinary parameters of the preceding construction. Take $R=86$, $A=3353$, $M_0=64$, and $D_l=3353-(86-l)$. The precision estimate~\eqref{h100:fine-precision} bounds the required absolute precision before division by $\lambda_l$; the ordinary bound in Section~\ref{h100:mass} is smaller. The fine corrections lie between zero and seven, and the first eight weights and tail condition are unchanged.
+
+The exact finite check \file{experiments/ppi_100_rank_precision.py} verifies the new interval endpoints at all 87 levels and that all ordinary heights fit. These are rational inequalities, and the subtraction determining the starting residual is affine in the target, so the endpoint checks cover each entire interval. Lemma~\ref{v2:lem:rank-truncation} gives exact nested sections at height $3353+7=3360$. The signed profile and its convolution annihilation are unchanged, so Lemma~\ref{vi:lem:sections} proves labeled homometry and nontranslation. The separate implementation \file{verification/h99_independent_audit.py}, using the included data and an H100 donor report checked by the arithmetic audit, verifies all 174 changed endpoint inequalities and maximum depth 3360, and reconstructs 435 actual dyadic-grid targets. Its output is \file{evidence/h99_independent_results.json}, under \texttt{H100\_rank}.
+\end{proof}
+
+\begin{theorem}[A construction with 99 distinct odd primes]
+\label{v2:thm:h99}
+Put $p=2101327$ and $q=p(p-1)+1=4415573059603$, and define
+\[
+ M_{99}=\frac{65537M_{100}}{p^2q},\qquad N_{99}=2^{3408}M_{99}.
+\]
+There are distinct nontranslated subgroup unions in $\mathbb Z_{N_{99}}$ with identical autocorrelation at every labeled shift. The odd part $M_{99}$ has exactly 99 distinct prime divisors. The modulus $N_{99}$ has 8,017 bits. Consequently some divisibility-minimal nonrigid modulus has at most 99 distinct odd prime divisors.
+\end{theorem}
+\begin{proof}
+We give the modifications explicitly. The interpolation and realization arguments from the preceding sections then apply with the finite inequalities recorded below. All finite data and checkers are included in the electronic supplement.
+
+\paragraph{Odd core and interpolation.}
+Delete the last damping block $C_{p^2}\times C_q$ and retain the first 19. The fixed donor and helper factors, witnesses, and clearing factor $E$ are unchanged. All local support properties survive tensoring with these 19 factors; the rank bound is
+\[
+ R=46+2\cdot19=84.
+\]
+Use~\eqref{h100:rational-profile} with these blocks. Its error on free orders is bounded by
+\begin{equation}\label{v2:eq:h99-error}
+ \mathcal E_{19}=2^{-19}\left[
+ \frac{(1+\mathcal U)(3+\mathcal L)}4+(1+\mathcal L)\eta
+ +\frac32R\delta(1+\mathcal U)(1+\mathcal L)\right].
+\end{equation}
+The proof of~\eqref{h100:rational-error} uses one factor $1/2$ per stationary damping block, so replacing 20 by 19 gives precisely this estimate. The paired anchor uses the same 19 blocks. Blend with weight
+\[
+ \lambda=\frac{E\lfloor2^{400}/E\rfloor}{2^{400}}.
+\]
+Annihilation, boundary values, and invariance at comparable equal-rank orders are unchanged. The parameters below satisfy
+\begin{equation}\label{v2:eq:h99-error-check}
+ 0<c-R\delta<c<2,\qquad
+ \frac{\mathcal E_{19}+(1-\lambda)
+ [5+3(1+\mathcal U_*)(1+\mathcal L_*)]}{\delta}
+ <\frac{339}{1000}<\frac{10}{27}.
+\end{equation}
+The first inequality and the last bound are checked with rational arithmetic, using the donor values already specified in Section~\ref{h100:interpolation}. Thus the blended profile satisfies $e*w=0$ and
+$|w-(c-\delta r)|<\delta/m$ on free orders, where $m=27/10$.
+
+\paragraph{The additional spectator guard.}
+Append the prime 65537, to exponent one, as the last tag coordinate. Declare it a fourth guard. The other tag exponents, variable kernel $B$, control kernel $C=34891$, and common odd normalization $h=83349$ are unchanged. The distinguished tag $g$ has all four guards full and all other coordinates zero. Its shell mass is $65536$ times the previous one. Consequently
+\[
+ Q=65537Q_{100},\quad K=QB/h,\quad M_0=64\cdot65536=2^{22}.
+\]
+Section masses are measured in units $hC2^{3408}$; the full spectator has normalized mass $K$.
+
+The file \texttt{ppi\_99\_slot\_order.json} lists 504 distinct tags in the same increasing lexicographic indexing convention, with 65537 last. Every listed tag misses at least one guard. Fill every other tag missing a guard as background, and let $n$ be its normalized mass. All remaining tags outside $g$ are empty. The finite certificate checks all immediate divisor relations: the background is a downset; every proper subtag of $g$ belongs to it; and an ordinary tag has every immediate divisor in the background or earlier in the list. These checks also show that no ordinary tag is comparable with $g$. There are 248,832 tag tuples and 245,736 background tags.
+
+For ordinary slot $i$ put $W_i=V(v_i)B/h$. Let $H_0$ be the floor of $0.99$ times the least of the first 174 weights. Choose the unique power of two $\beta_i$ with $H_0/2<W_i\beta_i\leq H_0$, and pair successive slots. Use groups $0,\ldots,R+159$, with later groups empty. Use the same frozen and unfrozen level scaling as in Section~\ref{h100:nesting}. Strict divisibility multiplies an odd shell weight by at least two, hence divides its normalized base height by at least two. The recorded order therefore makes every choice of ordinary digits downward closed. The exact height inequalities check that all these subgroups exist at height 3408.
+
+\paragraph{Parameters and intervals.}
+Choose $s$ as the nearest multiple of $E/2^{192}$ to $130352847K/10^{12}$, with ties to even. Let $C_l$ be the ordinary minimum, including frozen groups, and $J_l$ the sum of the two unscaled digit weights in group $l$. With $\lambda_l=2^{l-R}$, let $b$ be the midpoint of the intersection, over $0\leq l\leq R$, of
+\[
+ \left[C_l+\frac54M_0\lambda_l-ls+\frac{s}{m},\quad
+ C_l+\frac54M_0\lambda_l-ls+J_l+H_0-\frac{s}{m}\right].
+\]
+This intersection has positive width. Set
+\[
+ \delta=2s/K,\qquad c=2(n+b+Rs)/K.
+\]
+The $s/m$ terms cancel between the maximal lower and minimal upper endpoints when forming the midpoint, so $b$ is dyadic. Although the interval endpoints need not be dyadic, the actual requested masses have the grid property proved next. Equation~\eqref{v2:eq:h99-error-check} puts every requested free mass $Kw/2$ in
+$[n+b+ls-s/m,n+b+ls+s/m]$.
+
+\paragraph{Absolute precision.}
+Multiplying the old guard mass by $2^{16}$ preserves every odd fine weight $u_j$ and control index. Let $d(x)$ denote the reduced denominator exponent of a dyadic rational. With the original donor precision parameters $d_y=161$, $e_u=967$, $e_l=1986$, and flat-helper precision $f=2003$, the product expansion gives the bound
+\begin{align*}
+ A_{\rm profile}={}&400+19+
+ \max\{d(Kc)+d_y+f+3,\ \max(d(s),d(K\delta))+d_y,\ e_u+e_l\}\\
+ &+6+\operatorname{bitlength}(M_0)=3401.
+\end{align*}
+Each original donor occurs at most once per monomial; the final blend numerator clears its odd denominator. Thus this is a bound on the dyadic denominator exponent of $Kw/(2M_0)$ before division by $\lambda_l$, not merely a check on sampled targets. The ordinary contributions have the smaller bound
+\[
+ \operatorname{bitlength}(K)+159+R+5+\operatorname{bitlength}(M_0)=466.
+\]
+Take $A=3401$ and $D_l=3401-(84-l)$. The correction depths still have maximum seven.
+
+\paragraph{Exact realization and nesting.}
+At every level retain the first $D_l$ fine slots and use their actual baseline
+$T_l=\sum_{j=1}^{D_l}u_j2^{-j}$. The finite certificate verifies, at both endpoints of the target interval, that subtracting $n+C_l+M_0\lambda_l(T_l+1/4)$ leaves a number in $[0,J_l+H_0]$. Affinity covers every interior target. It also verifies $H_0/2^{159}\leq M_0/2$, the first eight unit weights, the tail bound, and all ordinary heights. Lemma~\ref{v2:lem:rank-truncation} now realizes every actual free mass exactly at height $3401+7=3408$, with all-choice nesting. Comparable equal-rank orders have the same profile inputs and receive the same deterministic decoding.
+
+For clarity, these finite checks comprise 170 endpoint inequalities over 85 levels. The original program \file{experiments/ppi_99_prime_pair.py} reconstructs 255 targets. The separate implementation \file{verification/h99_independent_audit.py} imports no construction-verifier module and uses the checked H100 donor rationals as data. It reconstructs five actual dyadic-grid targets per level: both endpoints and three strict interior points, for 425 targets in total. It also reproduces the changed precision and error bounds. Its output is \file{evidence/h99_independent_results.json}, under \texttt{H99}. The proof for every actual target is the interval, denominator and parity argument above; the finite reconstructions are supplementary checks.
+
+On the signed support choose opposite full and empty sections; on the strict lower and upper closures choose common full and empty sections; elsewhere use the identical decoded sections. The support geometry and nesting make both sets divisor ideals. Lemma~\ref{vi:lem:sections} gives their homometry at every labeled shift and their nontranslation.
+
+The prime count is $48+38+13=99$, with all three prime sets disjoint. The original certificates prove all retained primality claims; trial division proves the additional prime 65537. The changed prime-power map is exactly $65537M_{100}/(p^2q)$, and exact integer arithmetic gives the stated bit length. Finally, choose a nonrigid divisor of $N_{99}$ minimal among its divisors. Any proper nonrigid divisor of that chosen number would also divide $N_{99}$, a contradiction. Such a modulus is therefore globally divisibility-minimal and has at most 99 odd prime divisors; neither its identity nor a lower bound of 99 is asserted.
+\end{proof}

@@ -1,0 +1,434 @@
+{
+  "status": "PASS",
+  "method": "Exhaustive physical-order-shell enumeration with exact Ramanujan transforms; direct cyclic autocorrelation on every nonempty radial profile for N<=30.",
+  "totals": {
+    "moduli": 60,
+    "radial_profiles": 8182,
+    "subgroup_unions": 465,
+    "direct_time_profiles": 980,
+    "radial_count_checks": 8122,
+    "subgroup_count_checks": 405
+  },
+  "per_modulus": [
+    {
+      "N": 1,
+      "radial": 2,
+      "ideal": 2,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 2,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 3,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 4,
+      "radial": 8,
+      "ideal": 4,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 5,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 6,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 7,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 8,
+      "radial": 16,
+      "ideal": 5,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 9,
+      "radial": 8,
+      "ideal": 4,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 10,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 11,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 12,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 4,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 13,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 14,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 15,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 16,
+      "radial": 32,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 17,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 18,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 19,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 20,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 21,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 22,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 23,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 24,
+      "radial": 256,
+      "ideal": 15,
+      "largest_radial_mate_family": 4,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 25,
+      "radial": 8,
+      "ideal": 4,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 26,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 27,
+      "radial": 16,
+      "ideal": 5,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 28,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 29,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 30,
+      "radial": 256,
+      "ideal": 20,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 31,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 32,
+      "radial": 64,
+      "ideal": 7,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 33,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 34,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 35,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 36,
+      "radial": 512,
+      "ideal": 20,
+      "largest_radial_mate_family": 4,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 37,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 38,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 39,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 40,
+      "radial": 256,
+      "ideal": 15,
+      "largest_radial_mate_family": 4,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 41,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 42,
+      "radial": 256,
+      "ideal": 20,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 43,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 44,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 45,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 46,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 47,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 48,
+      "radial": 1024,
+      "ideal": 21,
+      "largest_radial_mate_family": 4,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 49,
+      "radial": 8,
+      "ideal": 4,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 50,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 51,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 52,
+      "radial": 64,
+      "ideal": 10,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 53,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 54,
+      "radial": 256,
+      "ideal": 15,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 55,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 56,
+      "radial": 256,
+      "ideal": 15,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 57,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 58,
+      "radial": 16,
+      "ideal": 6,
+      "largest_radial_mate_family": 2,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 59,
+      "radial": 4,
+      "ideal": 3,
+      "largest_radial_mate_family": 1,
+      "largest_ideal_mate_family": 1
+    },
+    {
+      "N": 60,
+      "radial": 4096,
+      "ideal": 50,
+      "largest_radial_mate_family": 4,
+      "largest_ideal_mate_family": 1
+    }
+  ]
+}

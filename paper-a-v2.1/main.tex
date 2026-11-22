@@ -1,0 +1,84 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{amsmath,amsthm,amssymb,mathtools,booktabs,array,longtable,enumitem,microtype,graphicx,xcolor,xurl}
+\usepackage[colorlinks=true,linkcolor=black,citecolor=black,urlcolor=blue!50!black,bookmarksnumbered]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\hypersetup{pdftitle={Reconstructing Unions of Subgroups from Cyclic Autocorrelation},pdfauthor={Robert Gillon},pdfsubject={Paper A Version 2.1: referee-revised exact mate classification and arithmetic obstructions}}
+\DeclareUrlCommand\file{\urlstyle{tt}}
+\setlength{\headheight}{14pt}
+\setlength{\emergencystretch}{2em}
+\allowdisplaybreaks
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{computation}[theorem]{Computation}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\Zn}{\mathbb Z_N}
+\newcommand{\F}{\widehat f}
+\newcommand{\C}{\mathcal C}
+\newcommand{\s}{\boldsymbol{s}}
+\newcommand{\rvec}{\boldsymbol{r}}
+\newcommand{\e}{\boldsymbol{e}}
+\newcommand{\vv}{\boldsymbol{v}}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\ind}{\mathbf1}
+\newcommand{\abs}[1]{\lvert #1\rvert}
+\DeclareMathOperator{\Div}{Div}
+\DeclareMathOperator{\CT}{CT}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\footnotesize Cyclic autocorrelation and subgroup unions}
+\fancyhead[R]{\footnotesize R. Gillon\enspace |\enspace Version 2.1}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{.25pt}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,keepspaces=true,showstringspaces=false}
+\title{Reconstructing Unions of Subgroups\protect\\from Cyclic Autocorrelation\protect\\[.35em]\large Exact mate classification and arithmetic obstructions}
+\author{Robert Gillon}
+\date{Paper A, Version 2.1\enspace $\cdot$\enspace 22 November 2026\protect\\\small Referee-revised audited-source edition}
+\begin{document}
+\maketitle
+\begin{abstract}
+Let $A$ be a union of additive subgroups of a finite cyclic group. We classify all unions of subgroups with the same labeled cyclic autocorrelation as $A$. The nonzero integer Fourier coefficients form a graph whose edges encode the adjacent congruences for integral Fourier inversion. A connected component may be negated independently precisely when it contains neither the trivial character nor a pure prime-power conductor. If there are $u$ such components, exactly $2^u$ subgroup-union mates exist. The constructive converse uses equal mass and energy to force binary values, followed by a nonnegative marginal-autocorrelation defect to force divisor closure. This also yields an exact rational-rank criterion on the full conductor grid. A separate coefficient-moment construction gives a finite exhaustive modulus decision procedure and explicit witnesses; no polynomial-time or succinct arithmetic classification is claimed for it. We give complete proofs of rigidity at odd and twice-odd orders, a restricted height-two family, and the all-height family $2^e p^a qrs$ for distinct odd primes. Rational interpolation and nested divisor ideals yield nontranslated homometric subgroup unions, including a certified construction with 99 distinct odd prime divisors. Exact symbolic computations are separated from analytic proofs. The structural classification of rigid moduli from their prime factorizations remains open.
+\end{abstract}
+\vspace{.5em}
+\noindent\textbf{Keywords.} Homometry; cyclic autocorrelation; unions of subgroups; Ramanujan sums; Fourier sign ambiguity; divisor ideals.
+\clearpage
+\setcounter{tocdepth}{1}
+\tableofcontents
+\clearpage
+\input{sections/01_introduction}
+\input{sections/02_fourier_graph}
+\input{sections/03_rank}
+\input{sections/03b_modulus_moments}
+\input{sections/04_examples}
+\input{sections/05_low_height}
+\input{sections/06_primary_rigidity}
+\input{sections/07_computed_frontier}
+\input{sections/08_constructions}
+\input{sections/09_refinements}
+\input{sections/10_consequences}
+\appendix
+\input{appendices/A_finite_data}
+\input{appendices/B_verification}
+\input{appendices/C_squarefree_damping}
+\section*{Acknowledgment and review status}
+OpenAI ChatGPT and Codex assisted with mathematical development, exposition and exact computations. Earlier drafts received AI-generated reports from Claude, Muse, Grok and Gemini. This version includes adversarial reconstruction of the recovered proofs and separate implementations of several finite checks. The parallel audit tasks in this preparation shared model family, parent context and source material; they are not independent external refereeing. No principal result is claimed to have been formalized in Lean. Responsibility for the statements and their scope remains with the author; independent mathematical review is invited.
+\clearpage
+\addcontentsline{toc}{section}{References}
+\begingroup\raggedright\small
+\bibliographystyle{plain}
+\bibliography{references}
+\endgroup
+\end{document}

@@ -1,0 +1,188 @@
+\section{An exact terminal test and the two-squared-axis certificate}
+\label{subsec:terminal-grid-certificate}
+
+The next criterion is a linear feasibility statement for a prescribed
+signed difference. Its use here is to exclude homometric divisor ideals.
+Feasibility alone does not construct such ideals.
+
+Let \(K=\prod_i p_i^{a_i}\) be odd, with physical order grid
+\(\mathcal G=\prod_i\{0,\ldots,a_i\}\). For a nonzero radial
+\(d:\mathbb Z_K\to\{-1,0,1\}\), let \(U\) be the upward closure
+of its support and \(Z\) its zero set of Fourier conductors. Index
+conductors by their coordinate kernel exponents \(h\in\mathcal G\).
+We call \(d\) \emph{terminally feasible} if a real radial function
+\(g\) satisfies
+\begin{equation}
+g(v)=|d(v)|\quad(v\in U),\qquad
+\widehat g(h)=0\quad(h\notin Z).
+\label{eq:terminal-feasibility}
+\end{equation}
+No binary or monotonicity condition is placed on \(g\).
+
+\begin{lemma}[Integer incidence test]
+\label{lem:terminal-incidence}
+Extend functions by zero beyond the top of the grid and put
+\[
+b_v=\sum_{\substack{\epsilon\in\{0,1\}^n\\v+\epsilon\in\mathcal G}}
+       (-1)^{|\epsilon|}|d(v+\epsilon)|,
+\qquad
+M_{vh}=\prod_i\bigl(\mathbf1_{h_i=v_i}-\mathbf1_{h_i=v_i-1}\bigr).
+\]
+Then \eqref{eq:terminal-feasibility} is feasible if and only if the
+real linear system
+\begin{equation}
+\frac{b_v}{K}\prod_i p_i^{v_i}
+       =\sum_{h\in Z}M_{vh}t_h\qquad(v\in U)
+\label{eq:terminal-incidence-system}
+\end{equation}
+is solvable. In particular, every integer left-null vector \(w\)
+of \(M\) imposes the necessary identity
+\[
+\sum_{v\in U}w_vb_v\prod_i p_i^{v_i}=0.
+\]
+\end{lemma}
+
+\begin{proof}
+On one axis, the inverse Fourier column indexed by kernel exponent
+\(h\) is the character sum \(I_h(v)\) over the characters of order
+\(p^{a-h}\) at a point of physical order \(p^v\). It has values
+\(\varphi(p^{a-h})\) for \(v\le h\),
+\(-p^{a-h-1}\) for \(v=h+1\), and zero for \(v>h+1\).
+For \(h=a\) it is identically one. Direct subtraction, including
+the top boundary with zero extension, gives
+\[
+I_h(v)-I_h(v+1)
+=p^{a-v}\bigl(\mathbf1_{h=v}-\mathbf1_{h=v-1}\bigr).
+\]
+Write the inverse transform as
+\(g(v)=\sum_{h\in Z}t_h\prod_i I_{h_i}(v_i)\), so
+\(t_h=\widehat g(h)/K\). Taking the product of the forward
+differences gives \eqref{eq:terminal-incidence-system} wherever
+\(g=|d|\) on all upper neighbors. This proves necessity because
+\(U\) is upward closed. Conversely, a solution defines a radial
+\(g\) with the required Fourier support. Its adjacent differences
+agree with those of \(|d|\) on \(U\). Recovering values from the
+top downward in this triangular difference system proves equality on
+\(U\). Multiplying the system by a left-null vector and then by
+\(K\) gives the final identity.
+\end{proof}
+
+\begin{lemma}[Why terminal exclusion implies rigidity]
+\label{lem:terminal-implies-rigidity}
+If every nonzero equal-population difference of two divisor downsets
+on \(K\) is terminally infeasible, then \(2^eK\) is rigid for
+every \(e\ge0\).
+\end{lemma}
+
+\begin{proof}
+For a purported pair take the least disputed dyadic size \(L\) and
+its signed indicator \(d\). Lemma~\ref{lem:common-dyadic-fibers}
+gives equal positive and negative populations. Its sign supports are
+mutually incomparable. Each is order-convex: between two same-sign
+size-\(L\) disputes the empty side stays empty and the occupied
+size, nonincreasing between equal endpoints, stays \(L\).
+Let \(D\) be the downward closure of both sign supports, and let
+\(P,Q\) denote the positive and negative supports. The downsets
+\(D\setminus\operatorname{Up}(Q)\) and
+\(D\setminus\operatorname{Up}(P)\) differ by exactly \(d\).
+Indeed, any point of \(D\) above a point of \(P\) lies below
+another point of \(P\), by cross-sign incomparability, and hence
+belongs to \(P\) by order convexity; similarly for \(Q\).
+
+At the dyadic character with kernel order \(L\), normalize the
+partial difference and sum by \(L\). The difference is \(d\),
+and call the sum \(g\). Homometry gives disjoint Fourier supports
+for \(d\) and \(g\). Above a size-\(L\) dispute one side stays
+empty and the other is empty or has size \(L\): a nonzero smaller
+size would be a smaller dispute. Thus \(g=|d|\) on the upward
+closure of the support. This is a terminal interpolant, contrary to
+the hypothesis.
+\end{proof}
+
+\paragraph{Computed result (all prime values).}
+The exact symbolic certificate described below excludes every nonzero
+equal-population downset difference for \(K=p^2q^2rs\), with
+\(p,q,r,s\) distinct odd primes. Together with
+Lemma~\ref{lem:terminal-implies-rigidity}, it establishes rigidity of
+\(2^ep^2q^2rs\) at every dyadic height, subject to correctness of the
+finite exhaustive implementation. We label this result \textsc{Computed}
+to keep that implementation dependency visible. It is an unbounded-prime
+symbolic certificate, not a test of finitely many numerical prime tuples.
+
+The grid has 36 cells. Enumerate its downsets in a linear extension and
+retain all two-sided differences up to overall sign. Each of the six
+placements of the two squared axes among increasing prime values gives
+11,194,933 distinct signed patterns. For a 36-cell downset with bits
+\(b_i\), the key \(\sum_i b_i3^i\) encodes its differences without
+loss by uniqueness of balanced ternary. Taking the absolute difference
+fixes the orientation; adding \((3^{36}-1)/2\) converts signed digits
+to ordinary ternary digits. This arithmetic fits signed 64-bit integers.
+
+For increasing primes use
+\(p_i=3+2i+g_0+\cdots+g_i\), with zero-based indices and
+nonnegative even gaps \(g_i\). The signed shell transforms are integer
+polynomials in these gaps. A polynomial with a nonzero constant and all
+coefficients of that weak sign cannot vanish; a polynomial with odd
+constant cannot vanish at even gaps. These tests leave a superset of
+the possible zero conductors. Population balance requires a possible
+zero at the trivial character.
+
+Two further tests exclude possible terminal interpolants. First, at a
+disputed shell \(v\), the difference of kernel rows \(v_i\) and
+\(v_i-1\), divided by \(p_i^{v_i}\), has coefficients one at
+physical order \(v_i\), minus one at \(v_i+1\), and zero elsewhere.
+Take their product over positive coordinates, and fix arbitrary single
+kernel rows in zero coordinates. This functional is supported in the
+prescribed upward region. Whenever its value on \(|d|\) is provably
+nonzero, at least one conductor of its row cube must be a possible
+Fourier zero. Second, compute the integer-scaled null vectors from
+Lemma~\ref{lem:terminal-incidence}. If an identity has exactly one
+nonzero term with least exponent on an axis, reduction modulo that
+axis prime is impossible when its nonzero integer coefficient has
+absolute value smaller than the least possible prime on that axis.
+
+The remaining polynomials are factored over the rationals. A factor is
+discarded as nonvanishing only when reduction modulo a selected prime
+is a nonzero power of two times a product of known units: other prime
+values and smaller prime predecessors. For reduction modulo the largest
+prime one may also use smaller-prime successors, which are strictly
+smaller than the largest odd prime. Removing such impossible Fourier
+zeros permits a further pass of the same necessary tests.
+
+The successive exclusion counts are as follows; omitted categories have
+count zero. The exponents are in increasing prime order.
+\begin{center}
+\small
+\begin{tabular}{lrrrrrr}
+\hline
+Shape & Root survivors & Cube & Incidence & Root factor & Row factor & Largest prime\\
+\hline
+\(1122\)&2915359&2914533&817&9&0&0\\
+\(1212\)&3743527&3742267&1248&12&0&0\\
+\(1221\)&4326542&4324839&1690&13&0&0\\
+\(2112\)&3772758&3771046&1688&24&0&0\\
+\(2121\)&4305351&4303010&2312&28&1&0\\
+\(2211\)&5166787&5163679&3072&31&4&1\\
+\hline
+\end{tabular}
+\end{center}
+For each row, the exclusions sum to the root survivors. The final
+pattern in shape \(2211\), with increasing primes \(p<q<r<s\),
+would require
+\[
+p^2q^2(r-s)-p^2rs+p^2s+q^2rs-q^2r=0.
+\]
+Modulo \(s\), this forces
+\(s\mid q^2r(p-1)(p+1)\), impossible because every displayed
+prime or linear factor is positive and smaller than \(s\).
+
+All finite-array coefficient sums are bounded by
+\(36\cdot13^6<2^{31}\). Nullspaces and factorizations use exact
+rational arithmetic. The supplementary verifier and its dependencies
+reproduce all six rows, as part of a 24-grid replay, with the command
+\begin{center}
+\small\texttt{python3 experiments/level1\_grid\_gap\_certificate.py}
+\end{center}
+The referee-support document records the pinned source version, runtime
+versions, completed checks, and exact output. No implication from a
+passing terminal interpolant to an actual mate is used.

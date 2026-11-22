@@ -1,0 +1,286 @@
+{
+  "status": "PASS",
+  "python": "3.12.14",
+  "sympy": "1.14.0",
+  "scope": "Exact eight-conductor controls for the two referee cancellations; not an exhaustive rigidity search.",
+  "cases": [
+    {
+      "case": "rank_one",
+      "primes": [
+        3,
+        5,
+        7
+      ],
+      "modulus": 105,
+      "signed_shell_masks": {
+        "1": -1,
+        "2": -1,
+        "4": 1
+      },
+      "zero_conductors": [
+        1
+      ],
+      "conductors": [
+        {
+          "conductor": 1,
+          "kernel_exponents": [
+            1,
+            1,
+            1
+          ],
+          "local_shell_factors": [
+            2,
+            4,
+            6
+          ],
+          "exact_fourier_value": 0,
+          "direct_cyclotomic_remainder": "0"
+        },
+        {
+          "conductor": 3,
+          "kernel_exponents": [
+            0,
+            1,
+            1
+          ],
+          "local_shell_factors": [
+            -1,
+            4,
+            6
+          ],
+          "exact_fourier_value": 3,
+          "direct_cyclotomic_remainder": "3"
+        },
+        {
+          "conductor": 5,
+          "kernel_exponents": [
+            1,
+            0,
+            1
+          ],
+          "local_shell_factors": [
+            2,
+            -1,
+            6
+          ],
+          "exact_fourier_value": 5,
+          "direct_cyclotomic_remainder": "5"
+        },
+        {
+          "conductor": 15,
+          "kernel_exponents": [
+            0,
+            0,
+            1
+          ],
+          "local_shell_factors": [
+            -1,
+            -1,
+            6
+          ],
+          "exact_fourier_value": 8,
+          "direct_cyclotomic_remainder": "8"
+        },
+        {
+          "conductor": 7,
+          "kernel_exponents": [
+            1,
+            1,
+            0
+          ],
+          "local_shell_factors": [
+            2,
+            4,
+            -1
+          ],
+          "exact_fourier_value": -7,
+          "direct_cyclotomic_remainder": "-7"
+        },
+        {
+          "conductor": 21,
+          "kernel_exponents": [
+            0,
+            1,
+            0
+          ],
+          "local_shell_factors": [
+            -1,
+            4,
+            -1
+          ],
+          "exact_fourier_value": -4,
+          "direct_cyclotomic_remainder": "-4"
+        },
+        {
+          "conductor": 35,
+          "kernel_exponents": [
+            1,
+            0,
+            0
+          ],
+          "local_shell_factors": [
+            2,
+            -1,
+            -1
+          ],
+          "exact_fourier_value": -2,
+          "direct_cyclotomic_remainder": "-2"
+        },
+        {
+          "conductor": 105,
+          "kernel_exponents": [
+            0,
+            0,
+            0
+          ],
+          "local_shell_factors": [
+            -1,
+            -1,
+            -1
+          ],
+          "exact_fourier_value": 1,
+          "direct_cyclotomic_remainder": "1"
+        }
+      ]
+    },
+    {
+      "case": "rank_two",
+      "primes": [
+        5,
+        7,
+        13
+      ],
+      "modulus": 455,
+      "signed_shell_masks": {
+        "6": 1,
+        "5": -1,
+        "3": -1
+      },
+      "zero_conductors": [
+        1
+      ],
+      "conductors": [
+        {
+          "conductor": 1,
+          "kernel_exponents": [
+            1,
+            1,
+            1
+          ],
+          "local_shell_factors": [
+            4,
+            6,
+            12
+          ],
+          "exact_fourier_value": 0,
+          "direct_cyclotomic_remainder": "0"
+        },
+        {
+          "conductor": 5,
+          "kernel_exponents": [
+            0,
+            1,
+            1
+          ],
+          "local_shell_factors": [
+            -1,
+            6,
+            12
+          ],
+          "exact_fourier_value": 90,
+          "direct_cyclotomic_remainder": "90"
+        },
+        {
+          "conductor": 7,
+          "kernel_exponents": [
+            1,
+            0,
+            1
+          ],
+          "local_shell_factors": [
+            4,
+            -1,
+            12
+          ],
+          "exact_fourier_value": -56,
+          "direct_cyclotomic_remainder": "-56"
+        },
+        {
+          "conductor": 35,
+          "kernel_exponents": [
+            0,
+            0,
+            1
+          ],
+          "local_shell_factors": [
+            -1,
+            -1,
+            12
+          ],
+          "exact_fourier_value": -1,
+          "direct_cyclotomic_remainder": "-1"
+        },
+        {
+          "conductor": 13,
+          "kernel_exponents": [
+            1,
+            1,
+            0
+          ],
+          "local_shell_factors": [
+            4,
+            6,
+            -1
+          ],
+          "exact_fourier_value": -26,
+          "direct_cyclotomic_remainder": "-26"
+        },
+        {
+          "conductor": 65,
+          "kernel_exponents": [
+            0,
+            1,
+            0
+          ],
+          "local_shell_factors": [
+            -1,
+            6,
+            -1
+          ],
+          "exact_fourier_value": -1,
+          "direct_cyclotomic_remainder": "-1"
+        },
+        {
+          "conductor": 91,
+          "kernel_exponents": [
+            1,
+            0,
+            0
+          ],
+          "local_shell_factors": [
+            4,
+            -1,
+            -1
+          ],
+          "exact_fourier_value": 9,
+          "direct_cyclotomic_remainder": "9"
+        },
+        {
+          "conductor": 455,
+          "kernel_exponents": [
+            0,
+            0,
+            0
+          ],
+          "local_shell_factors": [
+            -1,
+            -1,
+            -1
+          ],
+          "exact_fourier_value": -1,
+          "direct_cyclotomic_remainder": "-1"
+        }
+      ]
+    }
+  ]
+}

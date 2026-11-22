@@ -1,0 +1,110 @@
+{
+  "positive_mask": 18258070720,
+  "negative_mask": 9296846848,
+  "positive_shells": [
+    [
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      1
+    ],
+    [
+      0,
+      2,
+      1,
+      0
+    ],
+    [
+      0,
+      2,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      1,
+      0
+    ],
+    [
+      1,
+      2,
+      1,
+      0
+    ],
+    [
+      2,
+      1,
+      1,
+      0
+    ],
+    [
+      2,
+      2,
+      1,
+      0
+    ]
+  ],
+  "negative_shells": [
+    [
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      2,
+      0,
+      1
+    ],
+    [
+      2,
+      0,
+      0,
+      1
+    ],
+    [
+      2,
+      0,
+      1,
+      1
+    ],
+    [
+      2,
+      1,
+      0,
+      1
+    ],
+    [
+      2,
+      2,
+      0,
+      1
+    ]
+  ],
+  "positive_ideal_cells": 24,
+  "negative_ideal_cells": 24,
+  "population_polynomial": "p**2*q**2*r - p**2*q**2*s - p**2*r*s + p**2*s + q**2*r*s - q**2*r",
+  "residue_mod_largest_prime": "q**2*r*(p - 1)*(p + 1)",
+  "passed": true,
+  "scope": "One last-pattern symbolic check, not exhaustive enumeration"
+}

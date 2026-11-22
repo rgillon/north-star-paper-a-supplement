@@ -1,0 +1,382 @@
+{
+  "status": "PASS",
+  "scope": "Two explicit dangerous triples, all eight conductor classes each; literal cyclic residue polynomials checked exactly by cyclotomic reduction.",
+  "third_party_imports": false,
+  "examples": [
+    {
+      "primes": [
+        3,
+        5,
+        7
+      ],
+      "modulus": 105,
+      "rank": 1,
+      "signs_by_singleton_or_missing_axis": [
+        -1,
+        -1,
+        1
+      ],
+      "physical_shell_profile": {
+        "3": -1,
+        "5": -1,
+        "7": 1
+      },
+      "zero_conductors": [
+        1
+      ],
+      "rows": [
+        {
+          "conductor": 1,
+          "nontrivial_axis_primes": [],
+          "kernel_exponents": [
+            1,
+            1,
+            1
+          ],
+          "singleton_shell_sums": [
+            2,
+            4,
+            6
+          ],
+          "Fourier_value": 0,
+          "literal_cyclotomic_remainder": [
+            0
+          ]
+        },
+        {
+          "conductor": 3,
+          "nontrivial_axis_primes": [
+            3
+          ],
+          "kernel_exponents": [
+            0,
+            1,
+            1
+          ],
+          "singleton_shell_sums": [
+            -1,
+            4,
+            6
+          ],
+          "Fourier_value": 3,
+          "literal_cyclotomic_remainder": [
+            3
+          ]
+        },
+        {
+          "conductor": 5,
+          "nontrivial_axis_primes": [
+            5
+          ],
+          "kernel_exponents": [
+            1,
+            0,
+            1
+          ],
+          "singleton_shell_sums": [
+            2,
+            -1,
+            6
+          ],
+          "Fourier_value": 5,
+          "literal_cyclotomic_remainder": [
+            5
+          ]
+        },
+        {
+          "conductor": 7,
+          "nontrivial_axis_primes": [
+            7
+          ],
+          "kernel_exponents": [
+            1,
+            1,
+            0
+          ],
+          "singleton_shell_sums": [
+            2,
+            4,
+            -1
+          ],
+          "Fourier_value": -7,
+          "literal_cyclotomic_remainder": [
+            -7
+          ]
+        },
+        {
+          "conductor": 15,
+          "nontrivial_axis_primes": [
+            3,
+            5
+          ],
+          "kernel_exponents": [
+            0,
+            0,
+            1
+          ],
+          "singleton_shell_sums": [
+            -1,
+            -1,
+            6
+          ],
+          "Fourier_value": 8,
+          "literal_cyclotomic_remainder": [
+            8
+          ]
+        },
+        {
+          "conductor": 21,
+          "nontrivial_axis_primes": [
+            3,
+            7
+          ],
+          "kernel_exponents": [
+            0,
+            1,
+            0
+          ],
+          "singleton_shell_sums": [
+            -1,
+            4,
+            -1
+          ],
+          "Fourier_value": -4,
+          "literal_cyclotomic_remainder": [
+            -4
+          ]
+        },
+        {
+          "conductor": 35,
+          "nontrivial_axis_primes": [
+            5,
+            7
+          ],
+          "kernel_exponents": [
+            1,
+            0,
+            0
+          ],
+          "singleton_shell_sums": [
+            2,
+            -1,
+            -1
+          ],
+          "Fourier_value": -2,
+          "literal_cyclotomic_remainder": [
+            -2
+          ]
+        },
+        {
+          "conductor": 105,
+          "nontrivial_axis_primes": [
+            3,
+            5,
+            7
+          ],
+          "kernel_exponents": [
+            0,
+            0,
+            0
+          ],
+          "singleton_shell_sums": [
+            -1,
+            -1,
+            -1
+          ],
+          "Fourier_value": 1,
+          "literal_cyclotomic_remainder": [
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "primes": [
+        5,
+        7,
+        13
+      ],
+      "modulus": 455,
+      "rank": 2,
+      "signs_by_singleton_or_missing_axis": [
+        1,
+        -1,
+        -1
+      ],
+      "physical_shell_profile": {
+        "91": 1,
+        "65": -1,
+        "35": -1
+      },
+      "zero_conductors": [
+        1
+      ],
+      "rows": [
+        {
+          "conductor": 1,
+          "nontrivial_axis_primes": [],
+          "kernel_exponents": [
+            1,
+            1,
+            1
+          ],
+          "singleton_shell_sums": [
+            4,
+            6,
+            12
+          ],
+          "Fourier_value": 0,
+          "literal_cyclotomic_remainder": [
+            0
+          ]
+        },
+        {
+          "conductor": 5,
+          "nontrivial_axis_primes": [
+            5
+          ],
+          "kernel_exponents": [
+            0,
+            1,
+            1
+          ],
+          "singleton_shell_sums": [
+            -1,
+            6,
+            12
+          ],
+          "Fourier_value": 90,
+          "literal_cyclotomic_remainder": [
+            90
+          ]
+        },
+        {
+          "conductor": 7,
+          "nontrivial_axis_primes": [
+            7
+          ],
+          "kernel_exponents": [
+            1,
+            0,
+            1
+          ],
+          "singleton_shell_sums": [
+            4,
+            -1,
+            12
+          ],
+          "Fourier_value": -56,
+          "literal_cyclotomic_remainder": [
+            -56
+          ]
+        },
+        {
+          "conductor": 13,
+          "nontrivial_axis_primes": [
+            13
+          ],
+          "kernel_exponents": [
+            1,
+            1,
+            0
+          ],
+          "singleton_shell_sums": [
+            4,
+            6,
+            -1
+          ],
+          "Fourier_value": -26,
+          "literal_cyclotomic_remainder": [
+            -26
+          ]
+        },
+        {
+          "conductor": 35,
+          "nontrivial_axis_primes": [
+            5,
+            7
+          ],
+          "kernel_exponents": [
+            0,
+            0,
+            1
+          ],
+          "singleton_shell_sums": [
+            -1,
+            -1,
+            12
+          ],
+          "Fourier_value": -1,
+          "literal_cyclotomic_remainder": [
+            -1
+          ]
+        },
+        {
+          "conductor": 65,
+          "nontrivial_axis_primes": [
+            5,
+            13
+          ],
+          "kernel_exponents": [
+            0,
+            1,
+            0
+          ],
+          "singleton_shell_sums": [
+            -1,
+            6,
+            -1
+          ],
+          "Fourier_value": -1,
+          "literal_cyclotomic_remainder": [
+            -1
+          ]
+        },
+        {
+          "conductor": 91,
+          "nontrivial_axis_primes": [
+            7,
+            13
+          ],
+          "kernel_exponents": [
+            1,
+            0,
+            0
+          ],
+          "singleton_shell_sums": [
+            4,
+            -1,
+            -1
+          ],
+          "Fourier_value": 9,
+          "literal_cyclotomic_remainder": [
+            9
+          ]
+        },
+        {
+          "conductor": 455,
+          "nontrivial_axis_primes": [
+            5,
+            7,
+            13
+          ],
+          "kernel_exponents": [
+            0,
+            0,
+            0
+          ],
+          "singleton_shell_sums": [
+            -1,
+            -1,
+            -1
+          ],
+          "Fourier_value": -1,
+          "literal_cyclotomic_remainder": [
+            -1
+          ]
+        }
+      ]
+    }
+  ],
+  "conclusion": "Both displayed cancellations occur only at conductor 1, the trivial character. Every nontrivial conductor has a singleton-shell sum -1 and a nonzero displayed polynomial."
+}

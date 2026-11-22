@@ -1,0 +1,15 @@
+{
+  "scope": "Line-count instrumentation of unmodified original H99 program; ordinary assertions remain enabled.",
+  "script": "experiments/ppi_99_prime_pair.py",
+  "lines": {
+    "candidate_targets": 130,
+    "nondyadic_skips": 142,
+    "completed_exact_reconstructions": 153
+  },
+  "counts": {
+    "candidate_targets": 255,
+    "nondyadic_skips": 0,
+    "completed_exact_reconstructions": 255
+  },
+  "original_stdout": "99 odd primes; ranks 0..84; ordinary depth 159; fine precision 3401; dyadic exponent 3408.\nError including blend < 10/27 steps; 245736 background tags.\n"
+}

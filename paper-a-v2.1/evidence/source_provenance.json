@@ -1,0 +1,436 @@
+{
+  "repository": "rgillon/north-star-math",
+  "audit_date": "2026-11-22",
+  "files": [
+    {
+      "bundle_path": "experiments/ppi_rank_box_pair.py",
+      "repository_path": "experiments/ppi_rank_box_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "d748ed131971a25134f6881d06a57ff4a1fa0193",
+      "sha256": "a93a14207f830a9981b3a5b9c6d40299688392c12478410f042bc8a8f9d8969d",
+      "bytes": 3493,
+      "upstream_git_blob_sha1": "d748ed131971a25134f6881d06a57ff4a1fa0193",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/level1_three_axis_terminal.py",
+      "repository_path": "experiments/level1_three_axis_terminal.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "7ca6dae5db119fe3a2fbf2e54c52585d8fcb17af",
+      "sha256": "dd7c6a18159161def4cd4479e2b816beedb382b0e977bb49106b09fae6a192f9",
+      "bytes": 4583,
+      "upstream_git_blob_sha1": "7f1c3cccfc3325f56c00a2bab03e740fbc603add",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_modular_pair.py",
+      "repository_path": "experiments/ppi_modular_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "5f9cf2f48c0ad65d45babf0dd413897a718b6a13",
+      "sha256": "b9c8ec5b57bf7e9615674a1fb74bbc6c6dc854761b647abfaea3378129c74c38",
+      "bytes": 3365,
+      "upstream_git_blob_sha1": "5f9cf2f48c0ad65d45babf0dd413897a718b6a13",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/level1_grid_gap_certificate.py",
+      "repository_path": "experiments/level1_grid_gap_certificate.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "a797ffc85dc6652bbbcef961aad4a568ee49379e",
+      "sha256": "99ba9d5b8e98aae1f90f6139174addc9f8885ab84fe099f28e1d7ce32c1fce44",
+      "bytes": 8174,
+      "upstream_git_blob_sha1": "3e66586e39bc2bc29d01ed4c0346d3663bb205cf",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_mixed_slots.py",
+      "repository_path": "experiments/ppi_mixed_slots.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "6d8e5c8d8dee33ac66f2b617a8b91c0956ed1d22",
+      "sha256": "38f338e2c196478274f9ce607d18e291b6f081a118e3274cd90b0ffaed1c697d",
+      "bytes": 8781,
+      "upstream_git_blob_sha1": "5b7d34c127a0d0d2d7089db7040a563b1943609e",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_two_prime_damping.py",
+      "repository_path": "experiments/ppi_two_prime_damping.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "43f7c3dc7caac1f75f7797424d3b88220107daed",
+      "sha256": "408e31f6c3f5820b3cae416176c0698daf9e92596b72c32710a7dfb191b0a908",
+      "bytes": 654,
+      "upstream_git_blob_sha1": "43f7c3dc7caac1f75f7797424d3b88220107daed",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_100_rank_precision.py",
+      "repository_path": "experiments/ppi_100_rank_precision.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "71edc36bf8aa6f5e8ee1008ea976e576faa12a08",
+      "sha256": "47cc7add498da8e0e68b51db03f4864df2624fd84f1fb4817b842b18e3d495fe",
+      "bytes": 3636,
+      "upstream_git_blob_sha1": "4b36beb284324d2e8d83b7491451698d39862a8b",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/level1_four_prime_symbolic_exclusion.py",
+      "repository_path": "experiments/level1_four_prime_symbolic_exclusion.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "6937f527a416dfeab85b1d51cedf02bc9e8954eb",
+      "sha256": "c2a3eab95e5fff33b453708f25570b9ff1499d09b14770ed9850509bfd1f3ef0",
+      "bytes": 5059,
+      "upstream_git_blob_sha1": "0cc787484237bb03076907a5b32a2e5711d37640",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_weighted_digits.py",
+      "repository_path": "experiments/ppi_weighted_digits.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "e826681fe5b6dae013bc52c6ea6eaef9b6705d35",
+      "sha256": "fe237f6c91771c3810e2d81e143f9f13c95166679b853a42031fc649d581d656",
+      "bytes": 3837,
+      "upstream_git_blob_sha1": "e826681fe5b6dae013bc52c6ea6eaef9b6705d35",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_coarse_pair.py",
+      "repository_path": "experiments/ppi_coarse_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "ff3290867e3febb867dcd985076c478d1c26ac2a",
+      "sha256": "a3e3db3df8c211f7948313990962bcb192804bd657e3494abfd85c92d3513f18",
+      "bytes": 6856,
+      "upstream_git_blob_sha1": "ff3290867e3febb867dcd985076c478d1c26ac2a",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_weighted_fibers.py",
+      "repository_path": "experiments/ppi_weighted_fibers.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "f0fcd264464c1cbbb4ee7b09a32477f5d9445b7a",
+      "sha256": "e1d54d6821fc0d5d5f29f845e63184cb2fd0f36d1b38be33e3dffb00cee2698d",
+      "bytes": 7240,
+      "upstream_git_blob_sha1": "f0fcd264464c1cbbb4ee7b09a32477f5d9445b7a",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/level1_five_core_general.py",
+      "repository_path": "experiments/level1_five_core_general.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "eb5119820f98fb46b0e13f9983d10afea8d42638",
+      "sha256": "06cbfeb8f1b19358e992c7e2ae726919b7091cfea3734f65a1dca34a1915c86e",
+      "bytes": 4942,
+      "upstream_git_blob_sha1": "ddd9debdf1801f8d411d1ae6eeb74ee535c06e32",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_99_prime_pair.py",
+      "repository_path": "experiments/ppi_99_prime_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "cb8eb423ccbbb925a475ddcf9d8f12733324e89b",
+      "sha256": "1fa87951de72d25e2432cd4711e95d6cbfb3c5ec134abb5aac24c8e3685909dc",
+      "bytes": 6916,
+      "upstream_git_blob_sha1": "43bb419a959149c8eeb938478d51b7a19e5256e0",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_reduced_upper.py",
+      "repository_path": "experiments/ppi_reduced_upper.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "ef9b914d45ec0912c63c85e365042bad6e96c7e6",
+      "sha256": "eea2b4130f993db3a65a2024e55d4c8ea63eb3d7d96e6762d99345ddc771e4ca",
+      "bytes": 2088,
+      "upstream_git_blob_sha1": "ef9b914d45ec0912c63c85e365042bad6e96c7e6",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_reallocated_donors.py",
+      "repository_path": "experiments/ppi_reallocated_donors.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "c584151582a98fd28a2deeae968666e73a7b1abd",
+      "sha256": "096a522e496f2eb32a74e691ca443f962f1889346979a829dec708429e8bbcc4",
+      "bytes": 3616,
+      "upstream_git_blob_sha1": "c584151582a98fd28a2deeae968666e73a7b1abd",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_100_prime_pair.py",
+      "repository_path": "experiments/ppi_100_prime_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "0f2905454695fd3501f8fe8d500e889c6548044f",
+      "sha256": "a41a69c683841276183189d7c42f3d1b8a40e4a32268eb6b4ff34d397fc4c30c",
+      "bytes": 11280,
+      "upstream_git_blob_sha1": "0f2905454695fd3501f8fe8d500e889c6548044f",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/level1_four_prime_arm_sieve.py",
+      "repository_path": "experiments/level1_four_prime_arm_sieve.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "681efa9496f5aadc4cd41d1a6e450ae3b723e157",
+      "sha256": "5ccee0eff41744c2cd9a122e80e480fa2b9dc4e33587e9de47f46242094c3992",
+      "bytes": 2620,
+      "upstream_git_blob_sha1": "57905e2ebbb7d9d37a492748ca91378999f7357e",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_99_slot_order.json",
+      "repository_path": "experiments/ppi_99_slot_order.json",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "559b2bb8fa5e7b4a37cec31a9ef8d5a08631e2ab",
+      "sha256": "734941fa0779a5e9402603a24a5714e91acfaddf9bae8551faf476be8ee2b7ac",
+      "bytes": 4012,
+      "upstream_git_blob_sha1": "5714613bf40239eb3a46e92ded17b7ea9c94b0f9",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_100_slot_order.json",
+      "repository_path": "experiments/ppi_100_slot_order.json",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "bc0f5d145c0f42469c30554d6a065aae0c099301",
+      "sha256": "33c2e65af3e2f15788948b9a9c9ff02a4dd5e49b9bebf858a7e3e28931f77a82",
+      "bytes": 4902,
+      "upstream_git_blob_sha1": "bc0f5d145c0f42469c30554d6a065aae0c099301",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/level1_four_prime_terminal.py",
+      "repository_path": "experiments/level1_four_prime_terminal.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "29f3b701f06710fde23b30df7ebb4efd07bc54b5",
+      "sha256": "3cc5fbded8163a616fcfc4d893dfd7f99c11b12bda17bdc8b0cef5e607f52579",
+      "bytes": 3230,
+      "upstream_git_blob_sha1": "8311afb25e2a8a9cf7df5371cd2fc0e1aa1e3991",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_partial_upper_pair.py",
+      "repository_path": "experiments/ppi_partial_upper_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "62017b2443882c224e53d0ff1cc3af488e261961",
+      "sha256": "a7a70c552c6da8f4c7471d27de6480df8324ef227315c275d1807ce63ff45732",
+      "bytes": 3104,
+      "upstream_git_blob_sha1": "62017b2443882c224e53d0ff1cc3af488e261961",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_h100_independent_audit.py",
+      "repository_path": "experiments/ppi_h100_independent_audit.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "99eea99d87262493949ed8fd2d230785cbb7e298",
+      "sha256": "78562703c27dae3303872188fa7254ab4e1d57760b4d711c879bef6152712aff",
+      "bytes": 18596,
+      "upstream_git_blob_sha1": "99eea99d87262493949ed8fd2d230785cbb7e298",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/level1_squarefree_star_pair.py",
+      "repository_path": "experiments/level1_squarefree_star_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "b0bc9603851d3b24c0fe81cd265de15d17500337",
+      "sha256": "ca870a1e891bfddbaa0fbe756f9d41697b3beb1a2f3115978612a14ec9451377",
+      "bytes": 2787,
+      "upstream_git_blob_sha1": "7ab440dbca938db983fa3f5a552547840febc67e",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "experiments/ppi_h100_decoder_audit.py",
+      "repository_path": "experiments/ppi_h100_decoder_audit.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "afea7659c3925cfa204b37d0b702243b89f1a94e",
+      "sha256": "cb04e1d8f0519d884743df2be22518cfc0982aa13bfff3c4e17a7739644e0f16",
+      "bytes": 12300,
+      "upstream_git_blob_sha1": "afea7659c3925cfa204b37d0b702243b89f1a94e",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_shared_marginal_code.py",
+      "repository_path": "experiments/ppi_shared_marginal_code.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "a6cadf24b989071d609221c1c12436bffdbdfab3",
+      "sha256": "7635f91b0fc5a667fcb8e0cabe9a400d6fa79f9522304b7a728d6c4b341f2730",
+      "bytes": 3841,
+      "upstream_git_blob_sha1": "a6cadf24b989071d609221c1c12436bffdbdfab3",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_coprime_spectator.py",
+      "repository_path": "experiments/ppi_coprime_spectator.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "d13d5c389243bcf461a8f496ff9f78866de3fc91",
+      "sha256": "2d53dfeb64bfbca96ebb4372400989a1233d39d27e48d431ed07d72466554782",
+      "bytes": 1150,
+      "upstream_git_blob_sha1": "d13d5c389243bcf461a8f496ff9f78866de3fc91",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_unbalanced_pair.py",
+      "repository_path": "experiments/ppi_unbalanced_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "b279dfcf017cf30e03e3601ace541b72a7096fad",
+      "sha256": "1a0f37ca2e9d034897817a117e5858549f2f3f3f8946bf89abcc5173eb852842",
+      "bytes": 1910,
+      "upstream_git_blob_sha1": "b279dfcf017cf30e03e3601ace541b72a7096fad",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_prime_power_donors.py",
+      "repository_path": "experiments/ppi_prime_power_donors.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "ccf91a87a493e8db84bcece07c226acd1daef1d6",
+      "sha256": "8e7cf2c366e662d0e4118ed001973a5f7642951e1c20cdb981bf054cf7a2a47f",
+      "bytes": 2457,
+      "upstream_git_blob_sha1": "ccf91a87a493e8db84bcece07c226acd1daef1d6",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_reallocated_pair.py",
+      "repository_path": "experiments/ppi_reallocated_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "695d2a1cd53610cd9da1603a3930adccce7e553c",
+      "sha256": "7b48ef35cddb67b85e74162a921ed11380feca70f1413dd5c6574a855b5660e0",
+      "bytes": 3509,
+      "upstream_git_blob_sha1": "695d2a1cd53610cd9da1603a3930adccce7e553c",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_upper_dual_bound.py",
+      "repository_path": "experiments/ppi_upper_dual_bound.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "17c11714da8fa0621fd8d8f6d2af9be62554af1c",
+      "sha256": "22762496dd9dd2f9527eb649e6b4628cb8ec43fde00d2952910c0df92613ca72",
+      "bytes": 3515,
+      "upstream_git_blob_sha1": "17c11714da8fa0621fd8d8f6d2af9be62554af1c",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_block_rank_pair.py",
+      "repository_path": "experiments/ppi_block_rank_pair.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "53a13ab445c7b738815fd17eb07d13b257825f89",
+      "sha256": "e8d447ed9f16d28fe2c591ac1e337499b67c61a868fa0c4f0468fbf41246552f",
+      "bytes": 4007,
+      "upstream_git_blob_sha1": "53a13ab445c7b738815fd17eb07d13b257825f89",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_reduced_lower.py",
+      "repository_path": "experiments/ppi_reduced_lower.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "ac0196640922af8eec5fee4fdeb3e1b9028c7c47",
+      "sha256": "bcf6011191d4d9f62dae77655bb6353eb1dcb7e3f77178d64fcee505513d6a8a",
+      "bytes": 2982,
+      "upstream_git_blob_sha1": "ac0196640922af8eec5fee4fdeb3e1b9028c7c47",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_three_prime_spectator.py",
+      "repository_path": "experiments/ppi_three_prime_spectator.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "0b6f6eb1bd633a4ba8648017e4be9c268c513720",
+      "sha256": "850eeaf49ffc212874465c35f9dd079a7112805af305853876f17c395e0dd37d",
+      "bytes": 1928,
+      "upstream_git_blob_sha1": "0b6f6eb1bd633a4ba8648017e4be9c268c513720",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/ppi_100_certificate.json",
+      "repository_path": "experiments/ppi_100_certificate.json",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "427f887b5f5130b89a1ff5f5b84e3b7189ee413a",
+      "sha256": "8a9c4d1ad87a9549148109524242de17d9a74cd0d8d28312d193e3ecc4d2a017",
+      "bytes": 2753,
+      "upstream_git_blob_sha1": "427f887b5f5130b89a1ff5f5b84e3b7189ee413a",
+      "text_transfer": "byte-identical"
+    },
+    {
+      "bundle_path": "experiments/level1_five_core_top_ranks.py",
+      "repository_path": "experiments/level1_five_core_top_ranks.py",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "a0bbf57ab1412e86c5e81e3f1b26d63d4f3bad5f",
+      "sha256": "2bab3130ad707f562bb1e69286884b70c53126e33b2217a9e0c3bb43173300df",
+      "bytes": 4970,
+      "upstream_git_blob_sha1": "a386c21cd277ca507c7511cb7afe743ac9c38c79",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/LEVEL1_99_ODD_PRIME_PAIR.md",
+      "repository_path": "proofs/LEVEL1_99_ODD_PRIME_PAIR.md",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "155bca74bd158388512152067bf433ac42929378",
+      "sha256": "f9510f13f0e3caccdb0f0e044b890f3f704eb4d88523d48bba96b9ed575c597d",
+      "bytes": 8867,
+      "upstream_git_blob_sha1": "f20bfcd31b5ceaa7c9db7740342a1ea010f04a2f",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/LEVEL1_TWO_SQUARED_AXES.md",
+      "repository_path": "proofs/LEVEL1_TWO_SQUARED_AXES.md",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "835579e28885a9c31abcbbb933108dfa85e8cd50",
+      "sha256": "06b64688e388e3146a4e1aa5dca966552abe5d068a438675483bf9cc5028172c",
+      "bytes": 5163,
+      "upstream_git_blob_sha1": "c79bf9a9888ae379122797dc5656b5b8f0196762",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/LEVEL1_H100_RANK_PRECISION.md",
+      "repository_path": "proofs/LEVEL1_H100_RANK_PRECISION.md",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "7b64a79131f4666a6384ce0d0267683ba9519ceb",
+      "sha256": "15e77cc3e483f9c1d7dc5ba4b9010105f3e47122cf87643ccb21f5354379b3a3",
+      "bytes": 5451,
+      "upstream_git_blob_sha1": "10f96008b7111edfe19cc75bea125a08b9380689",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/LEVEL1_PRIMARY_AXIS_COMMON_ZEROS.md",
+      "repository_path": "proofs/LEVEL1_PRIMARY_AXIS_COMMON_ZEROS.md",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "7405ba7ea6f5c3d9166bd984f021b19f31b4d87e",
+      "sha256": "360031d422779bc8a53d618cc389093c7fd3fdcd132853991086a79b7ce920a7",
+      "bytes": 13648,
+      "upstream_git_blob_sha1": "a079243b20ed8d4b7d628b408e606f04c0dbf446",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/LEVEL1_TERMINAL_PRODUCT_CRITERION.md",
+      "repository_path": "proofs/LEVEL1_TERMINAL_PRODUCT_CRITERION.md",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "9feccc864366f536020685654d657e13ce3afaaf",
+      "sha256": "2dfb43a570ec7be45e9e99fd72ea2aae82710c8819d939e9bf42711d2684ce79",
+      "bytes": 5308,
+      "upstream_git_blob_sha1": "dafe266435d087a8bdc1d96ae8a8510a27aa5b8a",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/LEVEL1_SQUAREFREE_STAR_PAIR.md",
+      "repository_path": "proofs/LEVEL1_SQUAREFREE_STAR_PAIR.md",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "4ac03a5e94fdf4324440fd513097532a9e41db39",
+      "sha256": "930fe46c108e4925d74ef1cb60bf9b1a09c4bee14a5de6e84f5f57f76eb0a7b8",
+      "bytes": 5327,
+      "upstream_git_blob_sha1": "d5ca4b705b6a46ced2f3501b69c4625f33dbf8b4",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/DYADIC_FIBER_SIZES_2026_11_17.md",
+      "repository_path": "proofs/DYADIC_FIBER_SIZES_2026_11_17.md",
+      "source_commit": "0930c856256add528c967cd1b35c742f88b4cf95",
+      "git_blob_sha1": "2147e374c43785e514e27acaf8bdd27a9b2b632f",
+      "sha256": "6bfcf251d0e889fb9b78fc5839948adb9ac8b63950e54454c9246a9680030cfa",
+      "bytes": 15323,
+      "upstream_git_blob_sha1": "249065c67c2fd59e0e91207250d5fe120d398a65",
+      "text_transfer": "one terminal newline appended during text transfer"
+    },
+    {
+      "bundle_path": "source_notes/PPI_100_PRIME_PAIR.md",
+      "repository_path": "proofs/PPI_100_PRIME_PAIR.md",
+      "source_commit": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+      "git_blob_sha1": "a4aef0f4636ae57201525900c2616590ba159151",
+      "sha256": "0fe8c0386a2668c9fa086c826e94e960f1cebbdeac0c41c84431d6f48855e5a9",
+      "bytes": 20182,
+      "upstream_git_blob_sha1": "a4aef0f4636ae57201525900c2616590ba159151",
+      "text_transfer": "byte-identical"
+    }
+  ]
+}

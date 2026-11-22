@@ -1,0 +1,112 @@
+\section{Verification scope and reproducible evidence}\label{v2:app:verification}
+The accompanying archive is a self-contained verification package. The
+manuscript's general proofs do not call a repository theorem as a black box.
+The programs check their finite data or provide finite regression tests,
+with the following distinct logical roles.
+
+\begin{center}\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{.27\linewidth}>{\raggedright\arraybackslash}p{.64\linewidth}@{}}\toprule
+Check & Scope of completed exact verification\\\midrule
+Conductor sign graph &
+All radial profiles for $1\le N\le60$: 8,182 profiles, including
+465 subgroup unions; 8,122 nonempty radial mate-count checks and
+405 nonempty subgroup-union mate-count checks. Direct cyclic
+autocorrelation is also checked on 980 nonempty profiles for $N\le30$.\\
+Cut moments and factor transfer &
+85 moduli, 1,567 divisor ideals, 503 membership cuts and 2,248
+factor-transfer comparisons. Spectral signatures are compared with
+direct labeled autocorrelation and inverse reconstruction.\\
+H100 arithmetic &
+The donor minors, rational norms, all 100 odd prime factors, prime-power
+map, interpolation bounds, precision and decoder parameters. The eight
+large helper primes use Pocklington certificates; the others use trial
+division.\\
+H100 nesting and decoding &
+902,016 tag cover checks, 14,517 used-fine-slot cover checks,
+291,711 fine height ranges, 42,804 ordinary height ranges and 2,175
+separately decoded targets.\\
+Rank truncation and H99 &
+All 174 H100 and 170 H99 endpoint inequalities; 435 and 425
+actual dyadic-grid targets respectively, including those endpoints;
+the changed absolute precision,
+nesting, error bound and prime-power map.\\
+Two squared axes &
+The six symbolic 36-cell grids and their exact exclusion counts in
+Section~\ref{subsec:terminal-grid-certificate}, within a completed 24-grid replay: every residual list was empty and
+all six rows matched. See the referee guide for the dated run record.\\\bottomrule
+\end{tabular}
+\end{center}
+
+\paragraph{Exact program and evidence locations.}
+Run \file{python3 verification/verify_cut_moments.py} from the bundle
+root to reproduce \file{evidence/cut_moment_results.json}: 85 moduli,
+1,567 ideals, 503 cuts and 2,248 transfer comparisons. This verifies the
+printed criterion on its stated finite domain; it does not certify the
+unrecovered outline's separate claim of 73 comparisons.
+The combined changed-data program is
+\file{verification/h99_independent_audit.py}; it records the 435 H100
+and 425 H99 targets in \file{evidence/h99_independent_results.json}.
+For H100 these comprise 174 endpoints and 261 strict interior targets;
+for H99, 170 endpoints and 255 strict interior targets. The original
+programs \file{experiments/ppi_100_rank_precision.py} and
+\file{experiments/ppi_99_prime_pair.py} instead reconstruct 261 and
+255 targets. The referee guide gives a fresh dependency-chain invocation
+of the separate audit and distinguishes it from these original programs.
+
+The referee revision also includes
+\file{verification/independent_primary_conductor_check.py} and
+\file{verification/check_primary_conductor_coordinates.py}.
+Their exact eight-conductor checks of the two cited cancellation examples
+are controls for the conductor convention, not a finite proof of
+Theorem~\ref{thm:primary-power-four-primes}. That theorem uses the
+nontrivial common character furnished by
+Lemma~\ref{lem:primary-common-zero}.
+
+The first two rows are finite checks of the universal formulas, not proofs
+by bounded experimentation. Likewise, sampled construction targets do not
+establish universal mass realization. That conclusion follows from the
+interval containment, denominator bound and reverse-parity induction in
+the main text. In contrast, the exact symbolic enumeration is a proof
+dependency of the result explicitly labeled \textsc{Computed}.
+
+\subsection{Source provenance and boundary of the audit}
+The recovered sources are pinned to these full repository commit identifiers:
+\begin{quote}\small
+Referee-response manuscript:\\
+\texttt{79350cb7bb6032df7637dcfd3e2bd029e6362a85}\\[.4em]
+New arithmetic, H100-height and H99 results:\\
+\texttt{20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25}\\[.4em]
+Common-dyadic-fiber source:\\
+\texttt{0930c856256add528c967cd1b35c742f88b4cf95}
+\end{quote}
+The original H100 certificate lineage is recorded by
+\cite{ConstructionH100,ReviewPackageH100}. The archive contains the relevant
+source files and a per-file provenance and checksum record.
+
+The files \texttt{LEVEL1\_GENERATOR\_LATTICE\_RANK.md} and
+\texttt{LEVEL1\_FACTOR\_CUT\_MOMENTS.md} were requested as central sources
+but were not recovered from the accessible repository revisions or supplied
+materials. Their absence prevents certification of their exact hypotheses,
+necessity, sufficiency and complexity assertions. It is not evidence that
+the proposed statements are false. This edition instead proves the full-grid
+rank and exhaustive coefficient-cut results at their stated scopes.
+No generator-compressed polynomial-time theorem is inferred from them.
+
+\subsection{How to inspect the package}
+The archive includes the modular and single-file \LaTeX{} sources,
+\texttt{experiments/} with all import dependencies,
+\texttt{verification/} with separate audit implementations, and
+\texttt{evidence/} with the exact outputs. The referee guide gives the full
+command sequence, software versions, expected counts, proof-dependency map
+and adversarial checklist. Every documented verification command runs on
+the included files without GitHub or research-conversation access.
+Python assertions must remain enabled; do not invoke Python with
+\texttt{-O}.
+
+The standalone mathematical proof obligations still deserving independent
+scrutiny are the binary-to-monotone realization after conductor sign changes;
+the least-disputed-fiber and $p=3$ boundary cases; the completeness and integer
+bounds of the symbolic enumeration; the grouped upper-helper interpolation;
+and the absolute precision and all-choice nesting of the changed H99 decoder.
+This edition provides arguments and evidence for them but does not replace
+independent external refereeing or formal verification.

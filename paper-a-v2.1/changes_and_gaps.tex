@@ -1,0 +1,157 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.08}
+\title{Paper A Version 2.1\\Changes and Verification Status}
+\author{Companion note for independent referees}
+\date{22 November 2026}
+\begin{document}
+\begin{center}
+{\Large\bfseries Paper A Version 2.1}\\[.35em]
+{\large Changes and Verification Status}\\[.5em]
+Companion note for independent referees\quad$\cdot$\quad22 November 2026
+\end{center}
+
+\section*{1\quad What this revision establishes}
+
+\textbf{Referee revision, Version 2.1.} Theorem 10.4 retains its original
+hypotheses and analytic proof. The new character calculation makes
+explicit that conductor $c>1$ forces a local shell sum $-1$; the all-positive
+evaluation is conductor one. Lemma 10.3 already excludes a common zero
+set consisting only of conductor one. The two reported cancellations are
+checked at all eight residual conductors and vanish only at the trivial
+character. This is a clarification of the printed argument, without a
+new existence assumption. The separate response document gives the full
+mathematical explanation.
+
+The revision also names the changed-data audit, corrects its default
+paths, uses \texttt{python3} consistently, and distinguishes 255 original
+H99 reconstructions from 425 in the separate audit. The latter includes
+170 endpoints and 255 strict interior targets. The printed 503-cut
+verification row was freshly reproduced; the outline's separate 73-count
+claim remains unverified. A construction roadmap, more explicit scope
+language and a paragraph on possible arithmetic invariants address the
+presentation comments. Theorem numbering is preserved.
+
+Version 2 supplies a complete constructive classification of the subgroup-union mates of a specified set, an explicit rank formulation on the conductor grid, and a separate exhaustive decision procedure for a specified modulus. It also includes complete proofs of additional rigidity families and preserves the interpolation construction of nonrigid examples, with audited refinements.
+
+The revision deliberately distinguishes these established results from two stronger source formulations named in the preliminary outline. Their complete source files were not recovered from the accessible repository revisions at the audit cutoff. They have therefore not been certified by this manuscript. The replacement rank and coefficient-moment results are proved at their own explicit scopes; they are not presented as verification of those missing formulations.
+
+\subsection*{Changes from the November 21 circulated manuscript}
+
+\begin{tabular}{@{}p{0.23\linewidth}p{0.72\linewidth}@{}}
+\toprule
+Area & Revision\\
+\midrule
+Central organization & Separates the classification of all mates of one set from deciding whether any nonrigid set exists at a modulus.\\
+Fourier classification & Retains the full proof, emphasizing integral inversion, binary reconstruction by mass and energy, and divisor closure from the marginal defect.\\
+Rank and moments & Adds the explicitly defined conductor-constraint rank theorem and an exhaustive cut-polynomial procedure with necessity, sufficiency, and witness extraction.\\
+Rigidity & Adds the common-fiber and primary-axis arguments, including all $2^e p^a qrs$ with distinct odd primes, arbitrary $e\geq0$, and $a\geq1$.\\
+Nonrigid examples & Retains the complete 100-prime construction and adds height 3360 for its original odd part and a construction with 99 distinct odd primes.\\
+Reviewability & Adds finite construction data, consistent conventions, verification instructions, proof dependencies, and explicit status labels.\\
+\bottomrule
+\end{tabular}
+
+\subsection*{Changes from the attached four-page Version 2 outline}
+
+The outline was a provisional list of claims and proof obligations. This revision replaces those placeholders with definitions and complete arguments for the results actually established. It removes any implication that a general rational nullspace automatically produces binary ideals, that finite numerical tests prove an unbounded theorem, or that algorithmic decidability supplies a short arithmetic classification.
+
+The earlier graph theorem remains the central structural result. Its complete proof already supports the exact $2^u$ mate count; the new rank statement makes the relevant linear algebra explicit.
+
+\clearpage
+\section*{2\quad Scope of the results included}
+
+\textbf{Universal set-level classification.} For a nonempty subgroup union $A$, construct the graph on its nonzero integer conductor coefficients. Adjacent congruences determine its edges; the root and pure prime-power conductors anchor components. If $u$ components contain no anchor, there are exactly $2^u$ subgroup-union mates, including $A$. Each selected component is negated and the inverse transform explicitly reconstructs its mate. The proof covers Fourier zeros, repeated prime factors, every dyadic height, and the separate empty-set case.
+
+\textbf{Conductor-grid rank.} The matrix has an incidence row for each graph edge and a coordinate row for each anchor. Its kernel has the unanchored-component indicators as a basis. Its binary kernel therefore is a cube, which justifies the exact power-of-two count. The stated $O(\omega(N)\tau(N))$ arithmetic-operation bound assumes an explicit valuation-grid profile and a supplied prime factorization. It is not a polynomial bit-time bound for a succinct generator list.
+
+\textbf{Universal modulus decision.} A polynomial records the complete squared conductor spectrum of each actual divisor ideal. Membership cuts separate unequal ideals. A nonnegative coefficient moment is positive precisely when a spectrum occurs on both sides of a cut, and retained generating data recover a witnessing pair. The factor recurrence preserves the full unsquared spectrum until its contributions have been added, so mixed Fourier terms are retained. The algorithm is finite and exhaustive; its potentially exponential enumeration is explicit.
+
+\textbf{Analytic rigidity.} Complete arguments cover odd and twice-odd orders, prime powers, a restricted $4M$ family, two arbitrary odd primary axes, the family $2^e p^a q^b r$, and the family $2^e p^a qrs$. In the last two formulas the displayed primes are distinct and odd and the displayed positive exponents are arbitrary. The $4M$ theorem assumes at most one prime divisor of $M$ is congruent to $3\pmod4$.
+
+\textbf{Symbolic computation.} The $2^e p^2q^2rs$ result is identified as \textbf{COMPUTED}, with its exact terminal reduction and ordered-grid certificate. The grids represent exponent and prime-order patterns, not a finite selection of numerical prime tuples. Their arithmetic exclusions are uniform in the prime values. The exhaustive implementation remains an explicit verification dependency; the referee guide records the current replay status.
+
+\textbf{Constructive nonrigidity.} The complete 100-prime interpolation, nested-section realization, and all-shift homometry argument are retained. Rank-dependent fine-slot truncation gives height 3360 for the same odd part. A separate refinement gives
+\[
+ N_{99}=2^{3408}\frac{65537M_{100}}{2101327^2\cdot4415573059603},
+\]
+with 99 distinct odd prime divisors. Both refinements are \textbf{PROVED with finite exact certificates}. None is asserted minimal. A local squarefree-block and tensor-damping appendix preserves a distinct useful method without asserting the larger squarefree construction.
+
+\clearpage
+\section*{3\quad Unverified imports and remaining proof obligations}
+
+\subsection*{Source-access limitations}
+
+The following specific source files were not recovered in full:
+\begin{enumerate}
+\item \path{LEVEL1_GENERATOR_LATTICE_RANK.md}. Its precise compressed lattice, matrix, hypotheses, proof, and complexity analysis remain unverified. In particular, the manuscript does not certify a gcd/lcm generator-lattice compression or polynomial bit-time for a fixed number of input generators.
+\item \path{LEVEL1_FACTOR_CUT_MOMENTS.md}. Its precise cut family, generating construction, and promised witness procedure remain unverified. The separately proved exhaustive moment theorem does not certify the reported avoidance of antichain backtracking.
+\end{enumerate}
+
+These are unavailable proof sources, not counterexamples to the claims and not demonstrated mathematical gaps in those theorems. Recovering and auditing the exact source definitions and proofs is necessary before either stronger formulation can be attributed to the results proved here. The provisional outline's associated totals of 191 rank comparisons, 2,741 lattice counts, and 73 cut-moment comparisons are not adopted as independently verified evidence.
+
+\subsection*{Claims deliberately deferred}
+
+\begin{itemize}
+\item The complete 196-odd-prime squarefree construction, its spectator realization and precision certificate, and claims of constructions avoiding an arbitrary prescribed finite set of primes are not established by the local squarefree appendix. Its balanced-block and damping lemmas are proved at their stated local scope.
+\item Broader arithmetic localization, finiteness, threshold, or minimality claims appearing in research notes are not imported solely because they were reported as proved there. Only results with the required proof or explicitly identified computation are included.
+\item The exact number of mates of the large constructed examples is not asserted. Their explicit pairs prove nonrigidity; the universal graph theorem gives a method for the full count, but that graph has not thereby been computed.
+\end{itemize}
+
+\subsection*{What still warrants independent scrutiny}
+
+No unresolved gap was identified in the included principal analytic proofs during this preparation audit and the targeted referee recheck. In particular, the conductor objection to Theorem 10.4 does not leave a missing premise under the printed definitions. This is an assessment of the checked arguments, not a substitute for independent refereeing. The most consequential checks are:
+\begin{enumerate}
+\item that adjacent conductor congruences suffice for integral inversion and that the marginal-defect identity forces divisor closure after an allowed sign flip;
+\item that the primary-axis common-zero argument includes the exceptional prime $3$ and every allowed exponent;
+\item that the terminal enumerator covers every admissible signed pattern and implements every symbolic exclusion correctly;
+\item that all construction data satisfy the asserted exact inequalities, and that rank-dependent truncation preserves the grid and all-choice nesting for every target, rather than only tested targets.
+\end{enumerate}
+
+For the 99-prime refinement, the dyadic assertion concerns $Kw$, not necessarily $w$ itself. Endpoint inequalities certify range containment; the separate denominator proof places every actual target on the required grid. For the fixed supplied parameters the endpoints themselves also lie on that grid. These distinctions are retained explicitly.
+
+\clearpage
+\section*{4\quad Open mathematics and the limits of verification}
+
+\subsection*{Questions that remain open}
+
+\begin{itemize}
+\item A necessary-and-sufficient structural description of rigid moduli in terms of prime factors and exponents that avoids exhaustive enumeration of divisor ideals.
+\item The least nonrigid modulus, the least possible number of odd prime divisors, and the divisibility-minimal nonrigid moduli. The 99-prime construction provides an upper bound, not a minimum.
+\item Rigidity at unrestricted $N=4M$ with $M$ odd. The proved congruence-restricted family does not settle this question.
+\item The first nonrigid dyadic height for a specified odd part, and the attainable values of that height. Heights 3360 and 3408 are sufficient construction bounds.
+\item The general four-primary-axis problem with arbitrary prime-power exponents, beyond the analytic families and explicitly recorded symbolic certificates.
+\item Effective compression bounds for generator-based certificates and a direct arithmetic characterization of realizable unanchored components.
+\end{itemize}
+
+Algorithmic completeness resolves a finite question for each input: every mate of a supplied set can be recovered, and every factored modulus can be decided by the stated exhaustive procedure. It does not replace these open questions about the structure of the infinite family of moduli.
+
+\subsection*{Evidence produced during preparation}
+
+The preparation included adversarial mathematical reconstruction and exact computational checks. An independent graph implementation checked all 8,182 radial profiles and 465 subgroup unions over $1\leq N\leq60$, including complete direct autocorrelation checks for every nonempty radial profile at $N\leq30$. An independent cut-moment implementation checked 1,567 ideals over 85 moduli, with 503 cut moments and 2,248 transfer comparisons. These finite regressions check formulas and implementations; the universal theorems rest on the supplied proofs.
+
+The original H100 certificate and separate arithmetic and decoder audits were replayed. A new implementation, importing no construction-verifier module and using the previously independently checked H100 donor rationals as data, verified the changed arithmetic for both refinements. It checked 174 H100 and 170 H99 endpoint inequalities and reconstructed 435 and 425 actual grid targets, respectively. The proof for every target uses interval coverage, the absolute precision bound, and the parity decoder; sample reconstructions are supplementary evidence.
+
+The complete ordered-grid replay finished during this preparation: all 24 ordered grids passed with no unresolved patterns, and all six two-squared-axis grids reproduced every recorded exclusion count. Its elapsed time was 1,039.8 seconds. The referee-support document and dated machine-readable record give the exact commands and per-grid totals.
+
+\subsection*{External review and formal verification}
+
+The preparation audits are distinct from the subsequently supplied Grok
+report and the \textit{Holds with fixes} report summary. This revision
+addresses the objections in those supplied texts; it does not certify the
+identity, execution environment or unseen attachments of an external
+review. The reported 49-minute external grid replay is not substituted
+for the archived preparation run. No Lean kernel verification of the
+complete manuscript is claimed. The proof-dependency map, exact commands,
+finite data and recorded outputs support independent scrutiny of every
+principal claim.
+
+\end{document}

@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-22",
+  "manuscript_pages": 49,
+  "referee_support_pages": 10,
+  "changes_and_gaps_pages": 4,
+  "standalone_manuscript_compiled": true,
+  "standalone_matches_modular_page_text": true,
+  "frozen_referee_labels_verified": 17,
+  "latex_overfull_boxes": 0,
+  "latex_undefined_references": 0,
+  "visual_review": "All three documents rendered and reviewed; dense construction/data pages inspected at full size.",
+  "source_files_pinned": 43,
+  "grid_complete": true,
+  "grid_count": 24,
+  "grid_residuals": 0,
+  "external_refereeing_completed": false,
+  "lean_verification_claimed": false
+}

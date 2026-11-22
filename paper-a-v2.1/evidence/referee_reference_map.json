@@ -1,0 +1,23 @@
+{
+  "purpose": "Frozen theorem references in standalone referee_support.tex",
+  "main_aux_sha256": "5c7ac7f918222b8f27716d3bac79fff44ab7e6b6fd6d8be7eff00740db6ed5d2",
+  "references": {
+    "ii:lem:integrality": "2.2",
+    "ii:thm:radial": "3.1",
+    "ii:thm:subgroups": "5.3",
+    "v2:thm:rank": "6.1",
+    "thm:cut-coefficient": "7.1",
+    "prop:cut-transfer": "7.2",
+    "ii:prop:odd": "4.1",
+    "vi:prop:twice": "9.1",
+    "prop:four": "9.2",
+    "lem:common-dyadic-fibers": "10.1",
+    "lem:primary-common-zero": "10.3",
+    "thm:primary-power-four-primes": "10.4",
+    "lem:terminal-incidence": "11.1",
+    "lem:terminal-implies-rigidity": "11.2",
+    "vi:th:main": "1.1",
+    "v2:cor:h100-height": "17.2",
+    "v2:thm:h99": "17.3"
+  }
+}

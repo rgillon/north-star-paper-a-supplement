@@ -1,0 +1,78 @@
+\begin{thebibliography}{10}
+
+\bibitem{Amiot2009}
+Emmanuel Amiot.
+\newblock On the group of rational spectral units with finite order, 2009.
+\newblock arXiv:0907.0857. \url{https://arxiv.org/abs/0907.0857}.
+
+\bibitem{BendoryEdidinGonzalez2023}
+Tamir Bendory, Dan Edidin, and Ivan Gonzalez.
+\newblock Finite alphabet phase retrieval.
+\newblock {\em Applied and Computational Harmonic Analysis}, 66:151--160, 2023.
+\newblock DOI: \url{https://doi.org/10.1016/j.acha.2023.04.005}.
+
+\bibitem{BoltjePfeiffer2008}
+Robert Boltje and G{\"o}tz Pfeiffer.
+\newblock An algorithm for the unit group of the {Burnside} ring of a finite
+  group.
+\newblock In C.~M. Campbell, M.~R. Quick, E.~F. Robertson, and G.~C. Smith,
+  editors, {\em Groups St Andrews 2005, Volume 1}, volume 339 of {\em London
+  Mathematical Society Lecture Note Series}, pages 230--236. Cambridge
+  University Press, 2007.
+\newblock DOI: \url{https://doi.org/10.1017/CBO9780511721212.015}.
+
+\bibitem{Patterson1944}
+A.~L. Patterson.
+\newblock Ambiguities in the {X}-ray analysis of crystal structures.
+\newblock {\em Physical Review}, 65:195--201, 1944.
+\newblock DOI: \url{https://doi.org/10.1103/PhysRev.65.195}.
+
+\bibitem{ReviewPackageH100}
+North~Star project.
+\newblock Complete {Paper A} certificate and graph-control sources, 2026.
+\newblock Source snapshot 2ddc150f363da5ae410ed4ac1de573e7cbd7bb80, inspected
+  and replayed 21 November. H100 programs are in experiments/; graph controls
+  are in manuscript/paper-a/graph-controls/.
+  \url{https://github.com/rgillon/north-star-math/tree/2ddc150f363da5ae410ed4ac1de573e7cbd7bb80}.
+
+\bibitem{ConstructionH100}
+North~Star project.
+\newblock A level 1 counterexample on 100 distinct odd primes, 2026.
+\newblock Proof and exact certificate, commit
+  09d77232d96df1e16ef52917ddf46ccff90deb0b, 20 November.
+  \url{https://github.com/rgillon/north-star-math/blob/09d77232d96df1e16ef52917ddf46ccff90deb0b/proofs/PPI_100_PRIME_PAIR.md}.
+
+\bibitem{HeightFour}
+North~Star project.
+\newblock Penultimate dyadic connectivity and a mod-four rigidity obstruction,
+  2026.
+\newblock Research note, November 10, Part II.
+  \url{https://github.com/rgillon/north-star-math/blob/6c48b58a866ea0833bc85a49e8171ca7336098c4/proofs/PENULTIMATE_BAND_AND_MOD4_RIGIDITY.md}.
+
+\bibitem{Rosenblatt1984}
+Joseph Rosenblatt.
+\newblock Phase retrieval.
+\newblock {\em Communications in Mathematical Physics}, 95:317--343, 1984.
+\newblock DOI: \url{https://doi.org/10.1007/BF01212402}.
+
+\bibitem{RosenblattSeymour1982}
+Joseph Rosenblatt and Paul~D. Seymour.
+\newblock The structure of homometric sets.
+\newblock {\em SIAM Journal on Algebraic and Discrete Methods}, 3(3):343--350,
+  1982.
+\newblock DOI: \url{https://doi.org/10.1137/0603035}.
+
+\bibitem{tomDieck1979}
+Tammo tom Dieck.
+\newblock {\em Transformation Groups and Representation Theory}, volume 766 of
+  {\em Lecture Notes in Mathematics}.
+\newblock Springer, 1979.
+\newblock DOI: \url{https://doi.org/10.1007/BFb0085965}.
+
+\bibitem{TothHaukkanen2011}
+L{\'a}szl{\'o} T{\'o}th and Pentti Haukkanen.
+\newblock The discrete fourier transform of {$r$}-even functions.
+\newblock {\em Acta Universitatis Sapientiae, Mathematica}, 3(1):5--25, 2011.
+\newblock arXiv:1009.5281. \url{https://arxiv.org/abs/1009.5281}.
+
+\end{thebibliography}

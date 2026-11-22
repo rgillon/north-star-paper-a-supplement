@@ -1,0 +1,46 @@
+{
+  "archive_entries": 99,
+  "checksum_entries": 98,
+  "all_checksums_matched": true,
+  "documented_explicit_h99_command_succeeds": true,
+  "bare_h99_invocation_fails": true,
+  "bare_invocation_failure": "stale research/snapshot/experiments default; donor default also points to verification rather than evidence",
+  "fresh_h100_arithmetic_passed": true,
+  "cut_result_equals_archived": true,
+  "H100_rank": {
+    "equals_archived_math": true,
+    "levels": 87,
+    "height": 3360,
+    "precision": 3353,
+    "endpoint_checks": 174,
+    "independent_replays": 435
+  },
+  "H99": {
+    "equals_archived_math": true,
+    "levels": 85,
+    "height": 3408,
+    "precision": 3401,
+    "endpoint_checks": 170,
+    "independent_replays": 425,
+    "error_over_delta_decimal": 0.3387485931919912
+  },
+  "target_categories": {
+    "H100_rank": {
+      "endpoints_on_grid": 174,
+      "strict_interior_targets": 261,
+      "all_targets": 435
+    },
+    "H99": {
+      "endpoints_on_grid": 170,
+      "strict_interior_targets": 255,
+      "all_targets": 425
+    }
+  },
+  "original_h99_reconstructions": 255,
+  "manuscript_425_interior_wording": "Incorrect adjective: 425 total sampled targets consist of 170 endpoints and 255 strict interior targets.",
+  "fixed_default_paths": {
+    "tested_in_scratch_copy": true,
+    "exit_code": 0,
+    "no_argument_invocation_matches_archived_json": true
+  }
+}

@@ -1,0 +1,1307 @@
+{
+  "status": "PASS",
+  "exact_arithmetic": true,
+  "moduli": 85,
+  "total_ideals": 1567,
+  "total_cut_moments": 503,
+  "total_transfer_comparisons": 2248,
+  "divisor_union_cases": [
+    {
+      "N": 1,
+      "ideals": 2,
+      "cuts": 1,
+      "transfer_comparisons": 0,
+      "distinct_signatures": 2,
+      "moments": [
+        0
+      ]
+    },
+    {
+      "N": 2,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 3,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 4,
+      "ideals": 4,
+      "cuts": 3,
+      "transfer_comparisons": 6,
+      "distinct_signatures": 4,
+      "moments": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 5,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 6,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 7,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 8,
+      "ideals": 5,
+      "cuts": 4,
+      "transfer_comparisons": 8,
+      "distinct_signatures": 5,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 9,
+      "ideals": 4,
+      "cuts": 3,
+      "transfer_comparisons": 6,
+      "distinct_signatures": 4,
+      "moments": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 10,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 11,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 12,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 13,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 14,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 15,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 16,
+      "ideals": 6,
+      "cuts": 5,
+      "transfer_comparisons": 10,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 17,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 18,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 19,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 20,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 21,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 22,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 23,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 24,
+      "ideals": 15,
+      "cuts": 8,
+      "transfer_comparisons": 32,
+      "distinct_signatures": 15,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 25,
+      "ideals": 4,
+      "cuts": 3,
+      "transfer_comparisons": 6,
+      "distinct_signatures": 4,
+      "moments": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 26,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 27,
+      "ideals": 5,
+      "cuts": 4,
+      "transfer_comparisons": 8,
+      "distinct_signatures": 5,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 28,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 29,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 30,
+      "ideals": 20,
+      "cuts": 8,
+      "transfer_comparisons": 48,
+      "distinct_signatures": 20,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 31,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 32,
+      "ideals": 7,
+      "cuts": 6,
+      "transfer_comparisons": 12,
+      "distinct_signatures": 7,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 33,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 34,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 35,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 36,
+      "ideals": 20,
+      "cuts": 9,
+      "transfer_comparisons": 36,
+      "distinct_signatures": 20,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 37,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 38,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 39,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 40,
+      "ideals": 15,
+      "cuts": 8,
+      "transfer_comparisons": 32,
+      "distinct_signatures": 15,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 41,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 42,
+      "ideals": 20,
+      "cuts": 8,
+      "transfer_comparisons": 48,
+      "distinct_signatures": 20,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 43,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 44,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 45,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 46,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 47,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 48,
+      "ideals": 21,
+      "cuts": 10,
+      "transfer_comparisons": 40,
+      "distinct_signatures": 21,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 49,
+      "ideals": 4,
+      "cuts": 3,
+      "transfer_comparisons": 6,
+      "distinct_signatures": 4,
+      "moments": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 50,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 51,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 52,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 53,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 54,
+      "ideals": 15,
+      "cuts": 8,
+      "transfer_comparisons": 32,
+      "distinct_signatures": 15,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 55,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 56,
+      "ideals": 15,
+      "cuts": 8,
+      "transfer_comparisons": 32,
+      "distinct_signatures": 15,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 57,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 58,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 59,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 60,
+      "ideals": 50,
+      "cuts": 12,
+      "transfer_comparisons": 72,
+      "distinct_signatures": 50,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 61,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 62,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 63,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 64,
+      "ideals": 8,
+      "cuts": 7,
+      "transfer_comparisons": 14,
+      "distinct_signatures": 8,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 65,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 66,
+      "ideals": 20,
+      "cuts": 8,
+      "transfer_comparisons": 48,
+      "distinct_signatures": 20,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 67,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 68,
+      "ideals": 10,
+      "cuts": 6,
+      "transfer_comparisons": 24,
+      "distinct_signatures": 10,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 69,
+      "ideals": 6,
+      "cuts": 4,
+      "transfer_comparisons": 16,
+      "distinct_signatures": 6,
+      "moments": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 70,
+      "ideals": 20,
+      "cuts": 8,
+      "transfer_comparisons": 48,
+      "distinct_signatures": 20,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 71,
+      "ideals": 3,
+      "cuts": 2,
+      "transfer_comparisons": 4,
+      "distinct_signatures": 3,
+      "moments": [
+        0,
+        0
+      ]
+    },
+    {
+      "N": 72,
+      "ideals": 35,
+      "cuts": 12,
+      "transfer_comparisons": 48,
+      "distinct_signatures": 35,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 84,
+      "ideals": 50,
+      "cuts": 12,
+      "transfer_comparisons": 72,
+      "distinct_signatures": 50,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 90,
+      "ideals": 50,
+      "cuts": 12,
+      "transfer_comparisons": 72,
+      "distinct_signatures": 50,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 96,
+      "ideals": 28,
+      "cuts": 12,
+      "transfer_comparisons": 48,
+      "distinct_signatures": 28,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 108,
+      "ideals": 35,
+      "cuts": 12,
+      "transfer_comparisons": 48,
+      "distinct_signatures": 35,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 120,
+      "ideals": 105,
+      "cuts": 16,
+      "transfer_comparisons": 96,
+      "distinct_signatures": 105,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 126,
+      "ideals": 50,
+      "cuts": 12,
+      "transfer_comparisons": 72,
+      "distinct_signatures": 50,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 132,
+      "ideals": 50,
+      "cuts": 12,
+      "transfer_comparisons": 72,
+      "distinct_signatures": 50,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 140,
+      "ideals": 50,
+      "cuts": 12,
+      "transfer_comparisons": 72,
+      "distinct_signatures": 50,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 144,
+      "ideals": 56,
+      "cuts": 15,
+      "transfer_comparisons": 60,
+      "distinct_signatures": 56,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 150,
+      "ideals": 50,
+      "cuts": 12,
+      "transfer_comparisons": 72,
+      "distinct_signatures": 50,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 168,
+      "ideals": 105,
+      "cuts": 16,
+      "transfer_comparisons": 96,
+      "distinct_signatures": 105,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 180,
+      "ideals": 175,
+      "cuts": 18,
+      "transfer_comparisons": 108,
+      "distinct_signatures": 175,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "N": 210,
+      "ideals": 168,
+      "cuts": 16,
+      "transfer_comparisons": 128,
+      "distinct_signatures": 168,
+      "moments": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "radial_positive_control": {
+    "N": 12,
+    "class_name": "all radial binary sets, not subgroup unions",
+    "cuts": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      12
+    ],
+    "moments": [
+      24,
+      24,
+      22,
+      8,
+      22,
+      8
+    ],
+    "witness": {
+      "cut": 1,
+      "left_orders": [
+        1
+      ],
+      "right_orders": [
+        2
+      ]
+    }
+  }
+}

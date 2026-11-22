@@ -1,0 +1,193 @@
+[
+  {
+    "path": "AGENTS.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "e4829b30b7722a3f9c44cf2ca8f20a4b5f2d4f56",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/AGENTS.md"
+  },
+  {
+    "path": "agents/MANUSCRIPT.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "17c9b8050bf1e283e930916b91487188cde09dc9",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/agents/MANUSCRIPT.md"
+  },
+  {
+    "path": "agents/ADVERSARIAL_VERIFICATION.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "1927586aa4ecd5df5a418625dadf3f3e30ec9e05",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/agents/ADVERSARIAL_VERIFICATION.md"
+  },
+  {
+    "path": "research/RESUME.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "7c5d5af5adace654d8bddcb8f6a396f404322e27",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/RESUME.md"
+  },
+  {
+    "path": "research/RESEARCH_STATE.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "15eb1d4969b0dbe84ee56f047dee9e9428dc8991",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/RESEARCH_STATE.md"
+  },
+  {
+    "path": "research/RESEARCH_DIRECTOR.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "a706abb6d5b5a54583585241d9917b0c217e0c0f",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/RESEARCH_DIRECTOR.md"
+  },
+  {
+    "path": "research/RESEARCH_PROTOCOL.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "f2346a871b488713bffbbfbb09dae43727f016b2",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/RESEARCH_PROTOCOL.md"
+  },
+  {
+    "path": "research/RESEARCH_GOVERNANCE.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "d65601b2fa9ca9a60543cc7ac790273a0fe2dc49",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/RESEARCH_GOVERNANCE.md"
+  },
+  {
+    "path": "research/UNIVERSAL_CLOSURE_ASSESSMENT.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "79a08b9ba4598f503056d5737e223cc97ae74fa6",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/UNIVERSAL_CLOSURE_ASSESSMENT.md"
+  },
+  {
+    "path": "research/NORTH_STAR.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "c7ce9eff5d90564ac082f991dc7ac81b925e718e",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/NORTH_STAR.md"
+  },
+  {
+    "path": "research/STATUS.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "f7240d5e2ee8842398455798096585e93d3ab179",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/STATUS.md"
+  },
+  {
+    "path": "research/PROOF_LEDGER.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "3e859df088eba86f587a2ab6b15caa7f8eb0f888",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/PROOF_LEDGER.md"
+  },
+  {
+    "path": "research/OPEN_PROBLEMS.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "3a3140506aa5f6548000c9fc0ec77b85dc877153",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/OPEN_PROBLEMS.md"
+  },
+  {
+    "path": "research/HANDOFF.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "e82faee38dcfac850434684bf8776c0d3da62d74",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/research/HANDOFF.md"
+  },
+  {
+    "path": "proofs/LEVEL1_PRIMARY_AXIS_COMMON_ZEROS.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "a079243b20ed8d4b7d628b408e606f04c0dbf446",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_PRIMARY_AXIS_COMMON_ZEROS.md"
+  },
+  {
+    "path": "proofs/LEVEL1_TWO_SQUARED_AXES.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "c79bf9a9888ae379122797dc5656b5b8f0196762",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_TWO_SQUARED_AXES.md"
+  },
+  {
+    "path": "proofs/LEVEL1_SQUAREFREE_STAR_PAIR.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "d5ca4b705b6a46ced2f3501b69c4625f33dbf8b4",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_SQUAREFREE_STAR_PAIR.md"
+  },
+  {
+    "path": "proofs/LEVEL1_99_ODD_PRIME_PAIR.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "f20bfcd31b5ceaa7c9db7740342a1ea010f04a2f",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_99_ODD_PRIME_PAIR.md"
+  },
+  {
+    "path": "proofs/LEVEL1_SPECTATOR_REALIZATION.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "61ffdb9ec3866db79476616f57b1889df770b268",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_SPECTATOR_REALIZATION.md"
+  },
+  {
+    "path": "proofs/LEVEL1_TERMINAL_PRODUCT_CRITERION.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "dafe266435d087a8bdc1d96ae8a8510a27aa5b8a",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_TERMINAL_PRODUCT_CRITERION.md"
+  },
+  {
+    "path": "proofs/LEVEL1_FIVE_FACTORS_WITH_MULTIPLICITY.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "00f2db30a104409e1ccd3a7e4e7ac8071d197e67",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_FIVE_FACTORS_WITH_MULTIPLICITY.md"
+  },
+  {
+    "path": "manuscript/paper-a/01-question.tex",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "2ffc71425b82a0ad0d8fff838586a0c403d9488f",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/01-question.tex"
+  },
+  {
+    "path": "manuscript/paper-a/02-sign-graph.tex",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "86f8b2d8a941e4d9c74cfed479131a4e59972d1d",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/02-sign-graph.tex"
+  },
+  {
+    "path": "manuscript/paper-a/03-boundaries.tex",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "299eaa70d346afe04bc1d7e8ad1d9ef1bf87e0ff",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/03-boundaries.tex"
+  },
+  {
+    "path": "manuscript/paper-a/04-small-examples.tex",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "3c73dbcf394a5d99c5988212ed09c4957baaa08a",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/04-small-examples.tex"
+  },
+  {
+    "path": "manuscript/paper-a/05-construction.tex",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "553452bacc9caf6066489e5695f769600fe6f079",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/05-construction.tex"
+  },
+  {
+    "path": "manuscript/paper-a/06-reproduction.tex",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "851755ced01ffebd3fd14ccf8afc1d79b17e581e",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/06-reproduction.tex"
+  },
+  {
+    "path": "manuscript/paper-a/main.tex",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "c99a7dffd8ae7b535da93cddd1d9558f5eb2b92b",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/main.tex"
+  },
+  {
+    "path": "manuscript/paper-a/references.bib",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "59ed2f5d2fb48450540d220ecae43ca757daeead",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/references.bib"
+  },
+  {
+    "path": "manuscript/paper-a/README.md",
+    "ref": "79350cb7bb6032df7637dcfd3e2bd029e6362a85",
+    "sha": "5e2eb808a805700bc23e452eeb022bec1085d8ac",
+    "url": "https://github.com/rgillon/north-star-math/blob/79350cb7bb6032df7637dcfd3e2bd029e6362a85/manuscript/paper-a/README.md"
+  },
+  {
+    "path": "proofs/DYADIC_FIBER_SIZES_2026_11_17.md",
+    "ref": "0930c856256add528c967cd1b35c742f88b4cf95",
+    "sha": "249065c67c2fd59e0e91207250d5fe120d398a65"
+  },
+  {
+    "path": "proofs/LEVEL1_H100_RANK_PRECISION.md",
+    "ref": "20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25",
+    "sha": "10f96008b7111edfe19cc75bea125a08b9380689",
+    "url": "https://github.com/rgillon/north-star-math/blob/20dd528d5fdd4bf7a16cc5ce05f9cd25ae155c25/proofs/LEVEL1_H100_RANK_PRECISION.md"
+  }
+]
